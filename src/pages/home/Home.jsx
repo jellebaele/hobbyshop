@@ -1,11 +1,12 @@
 import React from 'react';
-import Sidebar from '../../components/sidebar/Sidebar';
+import './home.scss';
+import Header from '../../components/header/Header';
 
 const Home = () => {
    return (
-      <div>
-         <Sidebar />
-         Home
+      <div className="homeContainer">
+         <Header pageTitle={'Overview'} />
+         Homeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
       </div>
    );
 };
