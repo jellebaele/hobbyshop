@@ -1,3 +1,5 @@
+$phone-breakpoint: 480px;
+
 .boxModal {
    position: absolute;
    top: 50%;
@@ -24,5 +26,12 @@
             cursor: pointer;
          }
       }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .boxModal {
+      width: 85%;
+      left: (50%);
    }
 }

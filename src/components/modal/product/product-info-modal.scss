@@ -1,7 +1,9 @@
 $phone-breakpoint: 480px;
+$tablet-breakpoint: 1024px;
 
 .basicModalContainer {
    display: flex;
+   flex-direction: column;
    padding: 5px;
    margin-bottom: 20px;
 
@@ -119,12 +121,16 @@ $phone-breakpoint: 480px;
    }
 }
 
+@media (max-width: $tablet-breakpoint) {
+   .basicModalContainer {
+      .left {
+         margin-bottom: 10px;
+      }
+   }
+}
+
 @media (max-width: $phone-breakpoint) {
    .basicModalContainer {
-      flex-direction: column;
-      padding: 5px;
-      // margin-bottom: 50px;
-
       .left {
          margin-bottom: 10px;
       }
