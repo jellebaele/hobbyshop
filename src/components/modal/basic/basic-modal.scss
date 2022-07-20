@@ -4,6 +4,9 @@
    left: calc(50% + 18px);
    transform: translate(-50%, -50%);
    width: 70%;
+   max-height: 80vh;
+   overflow: hidden;
+   overflow-y: auto;
    background-color: white;
    border: 2px solid black;
    padding: 10px;

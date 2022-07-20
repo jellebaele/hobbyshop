@@ -1,4 +1,3 @@
-import { TextareaAutosize } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import React from 'react';
@@ -16,9 +15,11 @@ const product = {
    amount: '5',
    unit: 'stuks',
    owner: 'Herman',
-   Status: 'In voorraad',
+   Status: 'inStock',
    UpdatedAt: '20-07-2022',
 };
+
+const inStockTranslation = 'In voorraad';
 
 const ProductInfoModal = ({ open, onModalClose, productIdModal }) => {
    let [amount, setAmount] = useState(0);
@@ -26,8 +27,13 @@ const ProductInfoModal = ({ open, onModalClose, productIdModal }) => {
    const handleIncreaseAmount = () => {
       if (amount < product.amount) setAmount(++amount);
    };
+
    const handleDecreaseAmount = () => {
       if (amount > 0) setAmount(--amount);
+   };
+
+   const getProductStatus = () => {
+      if (product.Status === 'inStock') return inStockTranslation;
    };
    /**
     * _id
@@ -53,51 +59,24 @@ const ProductInfoModal = ({ open, onModalClose, productIdModal }) => {
             <div className="left">
                <div className="detailsContainer">
                   <div className="inputGrid">
-                     <label htmlFor="name">Naam:</label>
-                     <input
-                        type="text"
-                        name="name"
-                        value={product.title}
-                        disabled
-                     />
-                     <label htmlFor="name">Categorie:</label>
-                     <input
-                        type="text"
-                        name="name"
-                        value={product.category}
-                        disabled
-                     />
-                     <label htmlFor="name">Beschrijving:</label>
-                     <TextareaAutosize
-                        className="textAreaAutosize"
-                        placeholder="test"
-                        value={product.description}
-                        disabled
-                        style={{ resize: 'none' }}
-                     />
-                     <label htmlFor="name">Stock:</label>
-                     <input
-                        type="text"
-                        name="name"
-                        value={`${product.amount} ${product.unit}`}
-                        disabled
-                     />
-
-                     <label htmlFor="name">Status:</label>
-                     <input
-                        type="text"
-                        name="name"
-                        value={product.Status}
-                        disabled
-                     />
-
-                     <label htmlFor="name">Eigenaar:</label>
-                     <input
-                        type="text"
-                        name="name"
-                        value={product.owner}
-                        disabled
-                     />
+                     <span>Naam:</span>
+                     <span className="productDetail">{product.title}</span>
+                     <span>Categorie:</span>
+                     <span className="productDetail">{product.category}</span>
+                     <span>Beschrijving:</span>
+                     <span className="productDetail">
+                        {product.description}
+                     </span>
+                     <span>Stock:</span>
+                     <span className="productDetail">{`${product.amount} ${product.unit}`}</span>
+                     <span>Status:</span>
+                     <span className="productDetail">
+                        <div className={`status ${product.Status}`}>
+                           {getProductStatus()}
+                        </div>
+                     </span>
+                     <span>Eigenaar:</span>
+                     <span className="productDetail">{product.owner}</span>
                   </div>
                </div>
             </div>
@@ -105,17 +84,17 @@ const ProductInfoModal = ({ open, onModalClose, productIdModal }) => {
                <div className="orderContainer">
                   <div className="amountContainer">
                      <button
-                        className="addButton"
-                        onClick={handleIncreaseAmount}
-                     >
-                        <AddIcon />
-                     </button>
-                     <div className="amount">{amount}</div>
-                     <button
                         className="removeButton"
                         onClick={handleDecreaseAmount}
                      >
                         <RemoveIcon />
+                     </button>
+                     <div className="amount">{amount}</div>
+                     <button
+                        className="addButton"
+                        onClick={handleIncreaseAmount}
+                     >
+                        <AddIcon />
                      </button>
                   </div>
                   <button className="orderButton">
