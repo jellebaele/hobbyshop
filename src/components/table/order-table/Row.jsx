@@ -10,7 +10,7 @@ import {
 import React, { useState } from 'react';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import { Edit, Visibility } from '@mui/icons-material';
+import { Visibility } from '@mui/icons-material';
 import './row.scss';
 import useIsMobile from '../../../hooks/useIsMobile';
 import useIsTablet from '../../../hooks/useIsTablet';
@@ -48,11 +48,7 @@ const Row = ({ row }) => {
                <div className="buttonContainer">
                   <button>
                      <Visibility className="icon" />
-                     Info
-                  </button>
-                  <button>
-                     <Edit className="icon" />
-                     Bewerk
+                     Toon
                   </button>
                </div>
             </TableCell>
