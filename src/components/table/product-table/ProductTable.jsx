@@ -1,4 +1,4 @@
-import { ShoppingBag, Visibility } from '@mui/icons-material';
+import { ShoppingBag } from '@mui/icons-material';
 import {
    Paper,
    Table,
@@ -78,13 +78,15 @@ const ProductTable = () => {
                            )}
                            <TableCell align="right">
                               <div className="buttonContainer">
-                                 <button
+                                 {/* <button
                                     onClick={() => handleModalOpen(row._id)}
                                  >
                                     <Visibility className="icon" />
                                     Info
-                                 </button>
-                                 <button>
+                                 </button> */}
+                                 <button
+                                    onClick={() => handleModalOpen(row._id)}
+                                 >
                                     <ShoppingBag className="icon" />
                                     Bestel
                                  </button>
