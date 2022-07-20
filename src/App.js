@@ -4,13 +4,14 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Orders from './pages/orders/Orders';
 import Products from './pages/products/Products';
+import './app.scss';
 
 function App() {
    const { pathname } = useLocation();
 
    return (
-      <div>
-         {pathname !== '/login' && <Sidebar />}
+      <div className="appContainer">
+         {pathname !== '/login' && <Sidebar className="sidebar" />}
          <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />

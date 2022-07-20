@@ -1,8 +1,36 @@
+$phone-breakpoint: 480px;
+$tablet-breakpoint: 1024px;
+
 .homeContainer {
+   width: calc(100% - 56px);
+   margin-left: 56px;
    display: flex;
+   flex-direction: column;
 
    .header {
       position: absolute;
       top: 50%;
+   }
+
+   .bodyContainer {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      margin: auto;
+      margin-bottom: 20px;
+
+      .tableContainer {
+         margin-top: 20px;
+         padding: 20px;
+         border: 2px solid #757575;
+      }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .homeContainer {
+      .bodyContainer {
+         width: 90% !important;
+      }
    }
 }

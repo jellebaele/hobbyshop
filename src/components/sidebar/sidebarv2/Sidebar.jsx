@@ -34,7 +34,10 @@ const Sidebar = () => {
          <div className="center">
             <ul>
                {menuItems.map((menuItem) => (
-                  <li className={pathname === menuItem.link ? 'active' : ''}>
+                  <li
+                     key={menuItem.title}
+                     className={pathname === menuItem.link ? 'active' : ''}
+                  >
                      <Link
                         to={menuItem.link}
                         style={{ textDecoration: 'none', color: 'inherit' }}

@@ -1,0 +1,62 @@
+.tableTitleContainer {
+   display: flex;
+   align-items: baseline;
+   justify-content: space-between;
+
+   .titleContainer {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .tableTitle {
+         cursor: pointer;
+         display: inline-block;
+         position: relative;
+
+         &::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: black;
+            transform-origin: bottom left;
+            transition: transform 0.25s ease-out;
+         }
+
+         &:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+         }
+      }
+   }
+
+   button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      border: rgb(80, 80, 80) 3px solid;
+      color: rgb(80, 80, 80);
+      padding: 5px;
+      transition: all ease 0.5s;
+      cursor: pointer;
+
+      .icon {
+         font-size: 20px !important;
+         margin-left: 3px;
+         transition: transform 0.25s ease;
+      }
+
+      &:hover {
+         background-color: rgb(80, 80, 80);
+         color: white;
+      }
+
+      &:hover .icon {
+         transform: translateX(3px);
+      }
+   }
+}

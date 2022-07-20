@@ -1,0 +1,96 @@
+.basicModalContainer {
+   display: flex;
+
+   .left {
+      flex: 1;
+      .detailsContainer {
+         padding-top: 20px;
+         max-height: 80vh;
+         overflow-y: auto;
+         width: 100%;
+
+         .inputGrid {
+            display: grid;
+            grid-template-columns: fit-content(200px) 1fr;
+            column-gap: 20px;
+            row-gap: 20px;
+            margin-bottom: 20px;
+
+            input,
+            .textAreaAutosize {
+               width: auto;
+               &:disabled {
+                  border: none;
+                  background-color: transparent;
+               }
+            }
+         }
+      }
+   }
+
+   .right {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .orderContainer {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+
+         .amountContainer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 30px;
+
+            .addButton,
+            .removeButton {
+               background-color: transparent;
+               color: rgb(80, 80, 80);
+               border-radius: 50%;
+               border: 2px solid rgb(80, 80, 80);
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               padding: 5px;
+               margin: 0px 20px;
+               cursor: pointer;
+               transition: all ease 0.5s;
+
+               &:hover {
+                  background-color: rgb(80, 80, 80);
+                  color: white;
+               }
+            }
+
+            .amount {
+               font-size: 24px;
+            }
+         }
+
+         .orderButton {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            border: rgb(80, 80, 80) 3px solid;
+            color: rgb(80, 80, 80);
+            padding: 5px;
+            transition: all ease 0.5s;
+            cursor: pointer;
+            margin-left: 5px;
+
+            .icon {
+               margin-right: 5px;
+            }
+
+            &:hover {
+               background-color: rgb(80, 80, 80);
+               color: white;
+            }
+         }
+      }
+   }
+}

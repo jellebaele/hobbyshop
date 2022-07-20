@@ -1,0 +1,49 @@
+$phone-breakpoint: 480px;
+$tablet-breakpoint: 1024px;
+$light-blue: #18bdac;
+
+.productTableContainer {
+   .buttonContainer {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      button {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         background-color: white;
+         border: rgb(80, 80, 80) 3px solid;
+         color: rgb(80, 80, 80);
+         padding: 5px;
+         transition: all ease 0.5s;
+         cursor: pointer;
+         margin-left: 5px;
+
+         .icon {
+            font-size: 15px !important;
+            margin-right: 3px;
+         }
+
+         &:hover {
+            background-color: rgb(80, 80, 80);
+            color: white;
+         }
+      }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .buttonContainer {
+      button {
+         padding: 3px !important;
+         font-size: 10px !important;
+         margin-left: 3px !important;
+         border: rgb(80, 80, 80) 1.5px solid !important;
+      }
+
+      .icon {
+         font-size: 8px !important;
+      }
+   }
+}
