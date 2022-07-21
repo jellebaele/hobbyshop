@@ -77,7 +77,7 @@ const OrderTable = () => {
 
    return (
       <div className="orderTableContainer">
-         <TableTitle title="Orders" to="/orders" />
+         <TableTitle title="Orders" to="/orders" className="tableTitle" />
          <div className="tableContainerWrapper">
             <TableContainer component={Paper}>
                <Table size={isMobile ? 'small' : 'medium'}>

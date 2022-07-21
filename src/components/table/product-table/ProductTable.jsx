@@ -61,7 +61,7 @@ const ProductTable = () => {
 
    return (
       <div className="productTableContainer">
-         <TableTitle title="Producten" to="/products" />
+         <TableTitle title="Producten" to="/products" className="tableTitle" />
          <div className="tableContainerWrapper">
             <TableContainer component={Paper}>
                <Table size={isMobile ? 'small' : 'medium'}>

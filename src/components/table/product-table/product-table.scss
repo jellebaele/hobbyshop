@@ -3,6 +3,9 @@ $tablet-breakpoint: 1024px;
 $light-blue: #18bdac;
 
 .productTableContainer {
+   .tableTitle {
+      margin-bottom: 10px;
+   }
    .buttonContainer {
       display: flex;
       align-items: center;
