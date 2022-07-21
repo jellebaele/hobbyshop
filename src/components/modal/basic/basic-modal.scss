@@ -22,6 +22,10 @@ $phone-breakpoint: 480px;
          background-color: white;
          border: none;
 
+         &:hover {
+            color: inherit;
+         }
+
          .modalCloseIcon {
             cursor: pointer;
          }

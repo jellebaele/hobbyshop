@@ -1,29 +1,21 @@
-import {
-   Collapse,
-   IconButton,
-   Table,
-   TableBody,
-   TableCell,
-   TableHead,
-   TableRow,
-} from '@mui/material';
+import { Collapse, IconButton, TableCell, TableRow } from '@mui/material';
 import React, { useState } from 'react';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { Visibility } from '@mui/icons-material';
-import './row.scss';
 import useIsMobile from '../../../hooks/useIsMobile';
 import useIsTablet from '../../../hooks/useIsTablet';
+import ProductSubTable from '../product-table/ProductSubTable';
+import './row.scss';
 
-const Row = ({ row }) => {
-   const [open, setOpen] = useState(false);
+const Row = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
 
    return (
       <>
          <TableRow>
-            {!isMobile && (
+            {/* {!isMobile && (
                <TableCell>
                   <IconButton
                      aria-label="expand row"
@@ -33,7 +25,7 @@ const Row = ({ row }) => {
                      {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
                   </IconButton>
                </TableCell>
-            )}
+            )} */}
             <TableCell component="th" scope="row">
                {row._id}
             </TableCell>
@@ -46,14 +38,14 @@ const Row = ({ row }) => {
             )}
             <TableCell align="right">
                <div className="buttonContainer">
-                  <button>
+                  <button onClick={() => handleModalOpen(row._id)}>
                      <Visibility className="icon" />
                      Toon
                   </button>
                </div>
             </TableCell>
          </TableRow>
-         <TableRow>
+         {/* <TableRow>
             {!isMobile && (
                <TableCell
                   style={{ paddingBottom: 0, paddingTop: 0 }}
@@ -61,28 +53,11 @@ const Row = ({ row }) => {
                >
                   <Collapse in={open} timeout="auto" unmountOnExit>
                      <h3 className="subrowTitle">Producten</h3>
-                     <Table size="small">
-                        <TableHead>
-                           <TableRow>
-                              <TableCell>Product</TableCell>
-                              <TableCell>Aantal</TableCell>
-                           </TableRow>
-                        </TableHead>
-                        <TableBody>
-                           {row.products.map((product) => (
-                              <TableRow key={product.productId}>
-                                 <TableCell component="th" scope="row">
-                                    {product.productId}
-                                 </TableCell>
-                                 <TableCell>{product.amount}</TableCell>
-                              </TableRow>
-                           ))}
-                        </TableBody>
-                     </Table>
+                     <ProductSubTable products={row.products} />
                   </Collapse>
                </TableCell>
             )}
-         </TableRow>
+         </TableRow> */}
       </>
    );
 };

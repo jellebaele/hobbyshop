@@ -54,8 +54,8 @@ const ProductInfoModal = ({ open, onModalClose, productId }) => {
          onModalClose={onModalClose}
          title="Product details"
       >
-         <div className="basicModalContainer">
-            <div className="left">
+         <div className="productInfoModalContainer">
+            <div className="top">
                <div className="inputGrid">
                   <span>Naam:</span>
                   <span className="productDetail">{product.title}</span>
@@ -75,7 +75,8 @@ const ProductInfoModal = ({ open, onModalClose, productId }) => {
                   <span className="productDetail">{product.owner}</span>
                </div>
             </div>
-            <div className="right">
+
+            <div className="bottom">
                <div className="orderContainer">
                   <div className="amountContainer">
                      <button

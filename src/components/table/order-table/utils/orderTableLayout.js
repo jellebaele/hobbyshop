@@ -1,5 +1,4 @@
 export const orderColumnLayoutDesktop = [
-   {},
    { name: 'Order Id' },
    {
       name: 'Gebruiker',
@@ -21,7 +20,6 @@ export const orderColumnLayoutMobile = [
 ];
 
 export const orderColumnLayoutTablet = [
-   {},
    { name: 'Order Id' },
    {
       name: 'Gebruiker',

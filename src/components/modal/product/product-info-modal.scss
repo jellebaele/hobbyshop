@@ -1,13 +1,13 @@
 $phone-breakpoint: 480px;
 $tablet-breakpoint: 1024px;
 
-.basicModalContainer {
+.productInfoModalContainer {
    display: flex;
    flex-direction: column;
    padding: 5px;
    margin-bottom: 20px;
 
-   .left {
+   .top {
       flex: 1;
       padding-top: 20px;
       width: 100%;
@@ -51,7 +51,7 @@ $tablet-breakpoint: 1024px;
       }
    }
 
-   .right {
+   .bottom {
       flex: 1;
       display: flex;
       justify-content: center;
