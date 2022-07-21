@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../components/header/Header';
-import ProductTableBasic from '../../components/table/product-table/ProductTableBasic';
+import ProductTableExtended from '../../components/table/product-table/product-table-extended/ProductTableExtended';
 import './products.scss';
 
 const Products = () => {
@@ -9,7 +9,7 @@ const Products = () => {
          <Header pageTitle="Producten" />
          <div className="bodyContainer">
             <div className="tableContainer">
-               <ProductTableBasic />
+               <ProductTableExtended />
             </div>
          </div>
       </div>

@@ -6,8 +6,8 @@ const TableHeader = ({ columns }) => {
       <TableHead>
          <TableRow>
             {columns.map((column, index) => (
-               <TableCell key={`${column.name}_${index}`}>
-                  {column.name}
+               <TableCell key={`${column.id}_${index}`}>
+                  {column.label}
                </TableCell>
             ))}
          </TableRow>

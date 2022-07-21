@@ -1,0 +1,31 @@
+.productTableExtendedContainer {
+   width: 100%;
+
+   .paper {
+      width: 100%;
+      margin-bottom: 10px;
+   }
+
+   button:hover {
+      color: inherit;
+   }
+
+   .status {
+      text-align: center;
+      padding: 3px;
+   }
+
+   .buttonContainer {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+         border-radius: 50%;
+
+         &:hover {
+            background-color: rgb(80, 80, 80);
+            color: white;
+         }
+      }
+   }
+}

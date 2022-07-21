@@ -1,31 +1,40 @@
 export const orderColumnLayoutDesktop = [
-   { name: 'Order Id' },
    {
-      name: 'Gebruiker',
+      id: 'orderId',
+      label: 'Order Id',
    },
    {
-      name: 'Datum',
+      id: 'user',
+      label: 'Gebruiker',
    },
    {
-      name: 'Status',
+      id: 'date',
+      label: 'Datum',
+   },
+   {
+      id: 'status',
+      label: 'Status',
    },
    {},
 ];
 
 export const orderColumnLayoutMobile = [
    {
-      name: 'Order id',
+      id: 'orderId',
+      label: 'Order id',
    },
    {},
 ];
 
 export const orderColumnLayoutTablet = [
-   { name: 'Order Id' },
+   { id: 'orderId', label: 'Order Id' },
    {
-      name: 'Gebruiker',
+      id: 'user',
+      label: 'Gebruiker',
    },
    {
-      name: 'Status',
+      id: 'status',
+      label: 'Status',
    },
    {},
 ];
