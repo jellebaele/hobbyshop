@@ -17,10 +17,18 @@ const TableTitle = ({ title, to }) => {
                <h2 className="tableTitle">{title}</h2>
             </div>
          </Link>
-         <button>
-            Meer
-            <ArrowForwardIcon className="icon" />
-         </button>
+         <Link
+            to={to}
+            style={{
+               textDecoration: 'none',
+               color: 'inherit',
+            }}
+         >
+            <button>
+               Meer
+               <ArrowForwardIcon className="icon" />
+            </button>
+         </Link>
       </div>
    );
 };
