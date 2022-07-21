@@ -78,12 +78,6 @@ const ProductTable = () => {
                            )}
                            <TableCell align="right">
                               <div className="buttonContainer">
-                                 {/* <button
-                                    onClick={() => handleModalOpen(row._id)}
-                                 >
-                                    <Visibility className="icon" />
-                                    Info
-                                 </button> */}
                                  <button
                                     onClick={() => handleModalOpen(row._id)}
                                  >

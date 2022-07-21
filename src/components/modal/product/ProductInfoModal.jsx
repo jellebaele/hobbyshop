@@ -21,7 +21,7 @@ const product = {
 
 const inStockTranslation = 'In voorraad';
 
-const ProductInfoModal = ({ open, onModalClose, productIdModal }) => {
+const ProductInfoModal = ({ open, onModalClose, productId }) => {
    let [amount, setAmount] = useState(0);
 
    const handleIncreaseAmount = () => {
@@ -52,32 +52,27 @@ const ProductInfoModal = ({ open, onModalClose, productIdModal }) => {
       <BasicModal
          open={open}
          onModalClose={onModalClose}
-         productId={productIdModal}
          title="Product details"
       >
          <div className="basicModalContainer">
             <div className="left">
-               <div className="detailsContainer">
-                  <div className="inputGrid">
-                     <span>Naam:</span>
-                     <span className="productDetail">{product.title}</span>
-                     <span>Categorie:</span>
-                     <span className="productDetail">{product.category}</span>
-                     <span>Beschrijving:</span>
-                     <span className="productDetail">
-                        {product.description}
-                     </span>
-                     <span>Stock:</span>
-                     <span className="productDetail">{`${product.amount} ${product.unit}`}</span>
-                     <span>Status:</span>
-                     <span className="productDetail">
-                        <div className={`status ${product.Status}`}>
-                           {getProductStatus()}
-                        </div>
-                     </span>
-                     <span>Eigenaar:</span>
-                     <span className="productDetail">{product.owner}</span>
-                  </div>
+               <div className="inputGrid">
+                  <span>Naam:</span>
+                  <span className="productDetail">{product.title}</span>
+                  <span>Categorie:</span>
+                  <span className="productDetail">{product.category}</span>
+                  <span>Beschrijving:</span>
+                  <span className="productDetail">{product.description}</span>
+                  <span>Stock:</span>
+                  <span className="productDetail">{`${product.amount} ${product.unit}`}</span>
+                  <span>Status:</span>
+                  <span className="productDetail">
+                     <div className={`status ${product.Status}`}>
+                        {getProductStatus()}
+                     </div>
+                  </span>
+                  <span>Eigenaar:</span>
+                  <span className="productDetail">{product.owner}</span>
                </div>
             </div>
             <div className="right">
