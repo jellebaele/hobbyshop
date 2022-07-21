@@ -41,7 +41,7 @@ const data = [
    },
 ];
 
-const ProductTable = () => {
+const ProductTableBasic = () => {
    const isMobile = useIsMobile();
    const [openInfoModal, setOpenInfoModal] = useState(false);
    const [productIdModal, setProductIdModal] = useState(undefined);
@@ -101,4 +101,4 @@ const ProductTable = () => {
    );
 };
 
-export default ProductTable;
+export default ProductTableBasic;
