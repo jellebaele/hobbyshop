@@ -1,12 +1,17 @@
 .productTableExtendedContainer {
    width: 100%;
 
+   .tableTitleContainer {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 30px;
+   }
    .paper {
       width: 100%;
       margin-bottom: 10px;
-   }
 
-   button:hover {
-      color: inherit;
+      button:hover {
+         color: inherit;
+      }
    }
 }

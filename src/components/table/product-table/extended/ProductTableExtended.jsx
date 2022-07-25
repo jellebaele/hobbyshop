@@ -10,6 +10,7 @@ import { getComparator } from '../../order-table/utils/sort';
 import EmptyRows from './EmptyRows';
 import ProductRowExtended from './ProductRowExtended';
 import { productColumnExtendedLayoutDesktop } from '../utils/productTableLayout';
+import { Add } from '@mui/icons-material';
 
 const rows = [
    {
@@ -235,6 +236,12 @@ export default function ProductTableExtended({ handleOnDelete }) {
 
    return (
       <div className="productTableExtendedContainer">
+         <div className="tableTitleContainer">
+            <h2>Producten</h2>
+            <button>
+               <Add className="icon" /> Nieuw
+            </button>
+         </div>
          <Paper className="paper">
             <TableContainer>
                <Table size={'small'}>
