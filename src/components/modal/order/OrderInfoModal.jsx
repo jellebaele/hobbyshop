@@ -2,7 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { ORDER_STATUS } from '../../../constants/order';
-import ProductSubTable from '../../table/product-table/product-table-basic/ProductSubTable';
+import ProductSubTable from '../../table/product-table/sub/ProductSubTable';
 import BasicModal from '../basic/BasicModal';
 import './order-info-modal.scss';
 
