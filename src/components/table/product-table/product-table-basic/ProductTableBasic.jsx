@@ -1,22 +1,15 @@
-import { ShoppingBag } from '@mui/icons-material';
-import {
-   Paper,
-   Table,
-   TableBody,
-   TableCell,
-   TableContainer,
-   TableRow,
-} from '@mui/material';
+import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
-import useIsMobile from '../../../hooks/useIsMobile';
-import ProductInfoModal from '../../modal/product/ProductInfoModal';
-import TableHeader from '../table-components/TableHeader';
-import TableTitle from '../table-components/TableTitle';
+import useIsMobile from '../../../../hooks/useIsMobile';
+import ProductInfoModal from '../../../modal/product/ProductInfoModal';
+import TableHeader from '../../common/TableHeader';
+import TableTitle from '../../common/TableTitle';
 import './product-table.scss';
+import ProductRow from './ProductRow';
 import {
    productColumnLayoutDesktop,
    productColumnLayoutMobile,
-} from './utils/productTableLayout';
+} from '../utils/productTableLayout';
 
 const data = [
    {
@@ -68,25 +61,11 @@ const ProductTableBasic = () => {
                   <TableHeader columns={getColumnLayout()} />
                   <TableBody>
                      {data.map((row) => (
-                        <TableRow key={row._id}>
-                           <TableCell component="th" scope="row">
-                              {row.title}
-                           </TableCell>
-                           {!isMobile && <TableCell>{row.category}</TableCell>}
-                           {!isMobile && (
-                              <TableCell>{`${row.amount} ${row.unit}`}</TableCell>
-                           )}
-                           <TableCell align="right">
-                              <div className="buttonContainer">
-                                 <button
-                                    onClick={() => handleModalOpen(row._id)}
-                                 >
-                                    <ShoppingBag className="icon" />
-                                    Bestel
-                                 </button>
-                              </div>
-                           </TableCell>
-                        </TableRow>
+                        <ProductRow
+                           row={row}
+                           handleModalOpen={handleModalOpen}
+                           key={row._id}
+                        />
                      ))}
                   </TableBody>
                </Table>

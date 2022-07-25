@@ -1,15 +1,8 @@
-import {
-   FormControl,
-   FormHelperText,
-   InputLabel,
-   MenuItem,
-   Select,
-} from '@mui/material';
-import { Box } from '@mui/system';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { ORDER_STATUS } from '../../../constants/order';
-import ProductSubTable from '../../table/product-table/ProductSubTable';
+import ProductSubTable from '../../table/product-table/product-table-basic/ProductSubTable';
 import BasicModal from '../basic/BasicModal';
 import './order-info-modal.scss';
 
@@ -41,25 +34,8 @@ const OrderInfoModal = ({ open, onModalClose, orderId }) => {
       setSelectedStatus(order.status);
    }, []);
 
-   const getNextStatus = () => {
-      const statusIndex = ORDER_STATUS.indexOf(orderStatus);
-      return statusIndex < ORDER_STATUS.length
-         ? ORDER_STATUS[statusIndex + 1]
-         : ORDER_STATUS[statusIndex];
-   };
-
-   const setNextStatus = () => {
-      setOrderStatus(getNextStatus());
-   };
-
    const handleStatusChange = (e) => {
       setSelectedStatus(e.target.value);
-   };
-
-   const [age, setAge] = React.useState('');
-
-   const handleChange = (event) => {
-      setAge(event.target.value);
    };
 
    return (
@@ -111,27 +87,6 @@ const OrderInfoModal = ({ open, onModalClose, orderId }) => {
                      Wijzig
                   </button>
                </div>
-
-               {/* 
-               <FormControl
-                  size="small"
-                  sx={{ m: 1, minWidth: 120 }}
-                  className="formControl"
-               >
-                  <Select
-                     value={selectedStatus}
-                     onChange={handleStatusChange}
-                     displayEmpty
-                     inputProps={{ 'aria-label': 'Without label' }}
-                  >
-                     {ORDER_STATUS.map((s) => (
-                        <MenuItem key={s} value={s}>
-                           {s}
-                        </MenuItem>
-                     ))}
-                  </Select>
-               </FormControl>
-                */}
             </div>
          </div>
       </BasicModal>

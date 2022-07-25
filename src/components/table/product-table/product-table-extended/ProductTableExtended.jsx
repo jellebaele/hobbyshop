@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import './product-table-extended.scss';
-import { Delete, Edit } from '@mui/icons-material';
 import ProductTableExtendedHead from './ProductTableExtendedHead';
 import { getComparator } from '../../order-table/utils/sort';
 import EmptyRows from './EmptyRows';
+import ProductRowExtended from './ProductRowExtended';
 
 const rows = [
    {
@@ -213,7 +211,7 @@ const rows = [
    },
 ];
 
-export default function EnhancedTable() {
+export default function ProductTableExtended({ handleOnDelete }) {
    const [order, setOrder] = useState('asc');
    const [orderBy, setOrderBy] = useState('calories');
    const [page, setPage] = useState(0);
@@ -247,7 +245,6 @@ export default function EnhancedTable() {
                   />
                   <TableBody>
                      {rows
-                        // .slice()
                         .sort(getComparator(order, orderBy))
                         .slice(
                            page * rowsPerPage,
@@ -255,39 +252,11 @@ export default function EnhancedTable() {
                         )
                         .map((row, index) => {
                            return (
-                              <TableRow tabIndex={-1} key={row._id}>
-                                 <TableCell
-                                    component="th"
-                                    scope="row"
-                                    padding="normal"
-                                 >
-                                    {row.name}
-                                 </TableCell>
-                                 <TableCell align="left">
-                                    {row.category}
-                                 </TableCell>
-                                 <TableCell align="right">
-                                    {row.amount}
-                                 </TableCell>
-                                 <TableCell align="left">
-                                    {row.updatedAt}
-                                 </TableCell>
-                                 <TableCell align="left">
-                                    <div className={`status ${row.status}`}>
-                                       {row.status}
-                                    </div>
-                                 </TableCell>
-                                 <TableCell align="right">
-                                    <div className="buttonContainer">
-                                       <button className="deleteButton">
-                                          <Delete />
-                                       </button>
-                                       <button>
-                                          <Edit className="editButton" />
-                                       </button>
-                                    </div>
-                                 </TableCell>
-                              </TableRow>
+                              <ProductRowExtended
+                                 row={row}
+                                 handleOnDelete={handleOnDelete}
+                                 key={row._id}
+                              />
                            );
                         })}
 

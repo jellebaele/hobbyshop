@@ -2,7 +2,7 @@ import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import Row from './Row';
 import './order-table.scss';
-import TableHeader from '../table-components/TableHeader';
+import TableHeader from '../common/TableHeader';
 import useIsMobile from '../../../hooks/useIsMobile';
 import {
    orderColumnLayoutDesktop,
@@ -10,7 +10,7 @@ import {
    orderColumnLayoutTablet,
 } from './utils/orderTableLayout';
 import useIsTablet from '../../../hooks/useIsTablet';
-import TableTitle from '../table-components/TableTitle';
+import TableTitle from '../common/TableTitle';
 import OrderInfoModal from '../../modal/order/OrderInfoModal';
 
 const data = [

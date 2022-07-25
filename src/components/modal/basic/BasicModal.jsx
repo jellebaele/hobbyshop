@@ -4,7 +4,7 @@ import React from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import './basic-modal.scss';
 
-const BasicModal = ({ open, onModalClose, title, children }) => {
+const BasicModal = ({ open, onModalClose, title, children, width = '70%' }) => {
    return (
       <div className="modalContainer">
          <Modal
@@ -13,7 +13,7 @@ const BasicModal = ({ open, onModalClose, title, children }) => {
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
          >
-            <Box className="boxModal">
+            <Box className="boxModal" style={{ width: width }}>
                <div className="titleContainerModal">
                   <h2>{title}</h2>
                   <button onClick={() => onModalClose()}>

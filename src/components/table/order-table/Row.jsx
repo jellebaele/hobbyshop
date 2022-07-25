@@ -5,7 +5,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { Visibility } from '@mui/icons-material';
 import useIsMobile from '../../../hooks/useIsMobile';
 import useIsTablet from '../../../hooks/useIsTablet';
-import ProductSubTable from '../product-table/ProductSubTable';
+// import ProductSubTable from '../product-table/ProductSubTable';
 import './row.scss';
 
 const Row = ({ row, handleModalOpen }) => {
