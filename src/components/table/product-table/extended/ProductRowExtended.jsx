@@ -1,7 +1,7 @@
 import { Delete, Edit } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
-import './product-row-extended.scss';
+import './stylesheets/product-row-extended.scss';
 
 const ProductRowExtended = ({ row, handleOnDelete }) => {
    return (

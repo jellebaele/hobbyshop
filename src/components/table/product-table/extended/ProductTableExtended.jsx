@@ -4,7 +4,7 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import './product-table-extended.scss';
+import './stylesheets/product-table-extended.scss';
 import ProductTableExtendedHead from './ProductTableExtendedHead';
 import { getComparator } from '../../order-table/utils/sort';
 import EmptyRows from './EmptyRows';
