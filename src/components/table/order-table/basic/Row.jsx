@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { Visibility } from '@mui/icons-material';
-import useIsMobile from '../../../hooks/useIsMobile';
-import useIsTablet from '../../../hooks/useIsTablet';
+import useIsMobile from '../../../../hooks/useIsMobile';
+import useIsTablet from '../../../../hooks/useIsTablet';
 // import ProductSubTable from '../product-table/ProductSubTable';
 import './row.scss';
 

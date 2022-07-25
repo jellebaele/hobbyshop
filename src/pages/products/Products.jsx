@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../components/header/Header';
 import ConfirmModal from '../../components/modal/confirm/ConfirmModal';
-import ProductTableExtended from '../../components/table/product-table/product-table-extended/ProductTableExtended';
+import ProductTableExtended from '../../components/table/product-table/extended/ProductTableExtended';
 import './products.scss';
 
 const Products = () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './home.scss';
 import Header from '../../components/header/Header';
-import OrderTable from '../../components/table/order-table/OrderTable';
+import OrderTable from '../../components/table/order-table/basic/OrderTable';
 import ProductTableBasic from '../../components/table/product-table/basic/ProductTableBasic';
 
 const Home = () => {
