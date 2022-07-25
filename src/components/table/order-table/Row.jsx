@@ -14,7 +14,10 @@ const Row = ({ row, handleModalOpen }) => {
 
    return (
       <>
-         <TableRow>
+         <TableRow
+            className="tableRowContainer"
+            onClick={() => handleModalOpen(row._id)}
+         >
             {/* {!isMobile && (
                <TableCell>
                   <IconButton
