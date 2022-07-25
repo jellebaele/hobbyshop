@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import './stylesheets/product-table-extended.scss';
-import ProductTableExtendedHead from './ProductTableExtendedHead';
+import TableHeaderSort from '../../common/TableHeaderSort';
 import { getComparator } from '../../order-table/utils/sort';
 import EmptyRows from './EmptyRows';
 import ProductRowExtended from './ProductRowExtended';
@@ -237,7 +237,7 @@ export default function ProductTableExtended({ handleOnDelete }) {
          <Paper className="paper">
             <TableContainer>
                <Table size={'small'}>
-                  <ProductTableExtendedHead
+                  <TableHeaderSort
                      order={order}
                      orderBy={orderBy}
                      onRequestSort={handleRequestSort}

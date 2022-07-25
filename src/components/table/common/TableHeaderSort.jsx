@@ -2,11 +2,11 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { visuallyHidden } from '@mui/utils';
-import { productColumnExtendedLayoutDesktop } from '../utils/productTableLayout';
+import { productColumnExtendedLayoutDesktop } from '../product-table/utils/productTableLayout';
 
 const headCells = productColumnExtendedLayoutDesktop;
 
-const ProductTableExtendedHead = ({ order, orderBy, onRequestSort }) => {
+const TableHeaderSort = ({ order, orderBy, onRequestSort }) => {
    const handleSortColumn = (property) => (event) => {
       onRequestSort(event, property);
    };
@@ -42,4 +42,4 @@ const ProductTableExtendedHead = ({ order, orderBy, onRequestSort }) => {
    );
 };
 
-export default ProductTableExtendedHead;
+export default TableHeaderSort;
