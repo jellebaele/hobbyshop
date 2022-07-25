@@ -2,11 +2,8 @@ import { TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { visuallyHidden } from '@mui/utils';
-import { productColumnExtendedLayoutDesktop } from '../product-table/utils/productTableLayout';
 
-const headCells = productColumnExtendedLayoutDesktop;
-
-const TableHeaderSort = ({ order, orderBy, onRequestSort }) => {
+const TableHeaderSort = ({ order, orderBy, onRequestSort, columns }) => {
    const handleSortColumn = (property) => (event) => {
       onRequestSort(event, property);
    };
@@ -14,7 +11,7 @@ const TableHeaderSort = ({ order, orderBy, onRequestSort }) => {
    return (
       <TableHead>
          <TableRow>
-            {headCells.map((headCell) => (
+            {columns.map((headCell) => (
                <TableCell
                   key={headCell.id}
                   align={headCell.numeric ? 'right' : 'left'}

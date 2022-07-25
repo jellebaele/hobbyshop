@@ -9,6 +9,7 @@ import TableHeaderSort from '../../common/TableHeaderSort';
 import { getComparator } from '../../order-table/utils/sort';
 import EmptyRows from './EmptyRows';
 import ProductRowExtended from './ProductRowExtended';
+import { productColumnExtendedLayoutDesktop } from '../utils/productTableLayout';
 
 const rows = [
    {
@@ -241,7 +242,7 @@ export default function ProductTableExtended({ handleOnDelete }) {
                      order={order}
                      orderBy={orderBy}
                      onRequestSort={handleRequestSort}
-                     rowCount={rows.length}
+                     columns={productColumnExtendedLayoutDesktop}
                   />
                   <TableBody>
                      {rows
