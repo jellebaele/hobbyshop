@@ -6,7 +6,7 @@ import { Visibility } from '@mui/icons-material';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import useIsTablet from '../../../../hooks/useIsTablet';
 // import ProductSubTable from '../product-table/ProductSubTable';
-import './row.scss';
+import './stylesheets/row.scss';
 
 const Row = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();

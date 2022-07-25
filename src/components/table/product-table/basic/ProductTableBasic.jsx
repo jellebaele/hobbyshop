@@ -4,7 +4,7 @@ import useIsMobile from '../../../../hooks/useIsMobile';
 import ProductInfoModal from '../../../modal/product/ProductInfoModal';
 import TableHeader from '../../common/TableHeader';
 import TableTitle from '../../common/TableTitle';
-import './product-table.scss';
+import './stylesheets/product-table.scss';
 import ProductRow from './ProductRow';
 import {
    productColumnLayoutDesktop,

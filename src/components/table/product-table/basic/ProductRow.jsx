@@ -2,7 +2,7 @@ import { ShoppingBag } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import './product-row.scss';
+import './stylesheets/product-row.scss';
 
 const ProductRow = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();

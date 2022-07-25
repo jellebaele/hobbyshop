@@ -1,7 +1,7 @@
 import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import Row from './Row';
-import './order-table.scss';
+import './stylesheets/order-table.scss';
 import TableHeader from '../../common/TableHeader';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import {
