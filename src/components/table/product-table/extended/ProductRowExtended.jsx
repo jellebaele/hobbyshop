@@ -3,7 +3,7 @@ import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import './stylesheets/product-row-extended.scss';
 
-const ProductRowExtended = ({ row, handleOnDelete }) => {
+const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
    return (
       <>
          <TableRow tabIndex={-1} className="productRowExtendedContainer">
@@ -25,7 +25,10 @@ const ProductRowExtended = ({ row, handleOnDelete }) => {
                      <Delete />
                   </button>
                   <button>
-                     <Edit className="editButton" />
+                     <Edit
+                        className="editButton"
+                        onClick={() => handleOnEdit(row._id)}
+                     />
                   </button>
                </div>
             </TableCell>

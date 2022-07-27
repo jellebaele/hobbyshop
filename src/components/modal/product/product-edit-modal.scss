@@ -1,0 +1,88 @@
+$phone-breakpoint: 480px;
+$tablet-breakpoint: 1024px;
+
+.productEditModalContainer {
+   display: flex;
+   flex-direction: column;
+   padding: 5px;
+   margin-bottom: 20px;
+
+   .top {
+      flex: 1;
+      padding-top: 20px;
+      width: 100%;
+
+      .inputGrid {
+         display: grid;
+         grid-template-columns: fit-content(180px) 1fr;
+         column-gap: 20px;
+         row-gap: 20px;
+         margin-bottom: 20px;
+         padding: 15px;
+
+         input,
+         .textAreaAutosize {
+            &:disabled {
+               border: none !important;
+               background-color: transparent !important;
+            }
+         }
+
+         .inputGroup {
+            display: flex;
+            flex-direction: column;
+
+            .formInputError {
+               min-height: 12px;
+               margin-top: 5px;
+               color: red;
+               font-size: 10px;
+            }
+
+            .stockGroup {
+               display: flex;
+
+               .amountInput {
+                  width: 50px;
+                  margin-right: 10px;
+               }
+            }
+
+            .customDropdown {
+               border-radius: 5px;
+               &.Active {
+                  color: green;
+                  background-color: rgba(0, 128, 0, 0.151);
+               }
+            }
+         }
+      }
+   }
+
+   .bottom {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .buttonContainer {
+         display: flex;
+      }
+   }
+}
+
+@media (max-width: $tablet-breakpoint) {
+   .basicModalContainer {
+      .left {
+         margin-bottom: 10px;
+      }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .basicModalContainer {
+      .left {
+         margin-bottom: 10px;
+      }
+   }
+}

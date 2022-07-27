@@ -213,7 +213,7 @@ const rows = [
    },
 ];
 
-export default function ProductTableExtended({ handleOnDelete }) {
+export default function ProductTableExtended({ handleOnDelete, handleOnEdit }) {
    const [order, setOrder] = useState('asc');
    const [orderBy, setOrderBy] = useState('calories');
    const [page, setPage] = useState(0);
@@ -263,6 +263,7 @@ export default function ProductTableExtended({ handleOnDelete }) {
                               <ProductRowExtended
                                  row={row}
                                  handleOnDelete={handleOnDelete}
+                                 handleOnEdit={handleOnEdit}
                                  key={row._id}
                               />
                            );

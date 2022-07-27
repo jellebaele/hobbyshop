@@ -1,26 +1,36 @@
 import React, { useState } from 'react';
 import Header from '../../components/header/Header';
-import ConfirmModal from '../../components/modal/confirm/ConfirmModal';
+import ProductDeleteModal from '../../components/modal/product/ProductDeleteModal';
+import ProductEditModal from '../../components/modal/product/ProductEditModal';
 import ProductTableExtended from '../../components/table/product-table/extended/ProductTableExtended';
 import './products.scss';
 
 const Products = () => {
-   const [openInfoModal, setOpenInfoModal] = useState(false);
+   const [openDeleteModal, setOpenDeleteModal] = useState(false);
+   const [openEditModal, setOpenEditModal] = useState(false);
    const [productId, setProductId] = useState(undefined);
 
-   const handleConfirmModalClose = () => {
-      setOpenInfoModal(false);
+   const handleDeleteModalClose = () => {
+      setOpenDeleteModal(false);
    };
 
-   const handleConfirmModalOpen = (id) => {
+   const handleEditModalClose = () => {
+      setOpenEditModal(false);
+   };
+
+   const handleDeleteModalOpen = (id) => {
       setProductId(id);
-      setOpenInfoModal(true);
+      setOpenDeleteModal(true);
+   };
+   const handleEditModalOpen = (id) => {
+      setProductId(id);
+      setOpenEditModal(true);
    };
 
-   const handleOnConfirm = (deleteProduct) => {
+   const handleOnDelete = (deleteProduct) => {
       if (deleteProduct) console.log('delete product' + productId);
       if (!deleteProduct) console.log('do not delete');
-      setOpenInfoModal(false);
+      setOpenDeleteModal(false);
    };
 
    return (
@@ -28,11 +38,18 @@ const Products = () => {
          <Header pageTitle="Producten" />
          <div className="bodyContainer">
             <div className="tableContainer">
-               <ProductTableExtended handleOnDelete={handleConfirmModalOpen} />
-               <ConfirmModal
-                  open={openInfoModal}
-                  onModalClose={handleConfirmModalClose}
-                  handleOnConfirm={handleOnConfirm}
+               <ProductTableExtended
+                  handleOnDelete={handleDeleteModalOpen}
+                  handleOnEdit={handleEditModalOpen}
+               />
+               <ProductDeleteModal
+                  open={openDeleteModal}
+                  onModalClose={handleDeleteModalClose}
+                  handleOnDelete={handleOnDelete}
+               />
+               <ProductEditModal
+                  open={openEditModal}
+                  onModalClose={handleEditModalClose}
                />
             </div>
          </div>
