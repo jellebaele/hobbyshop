@@ -19,7 +19,7 @@ const productData = {
    amount: '5',
    unit: 'stuks',
    owner: 'Herman',
-   status: 'Active',
+   status: 'Inactive',
    UpdatedAt: '20-07-2022',
 };
 
@@ -47,6 +47,7 @@ const ProductEditModal = ({ open, onModalClose }) => {
       reset,
       formState: { errors },
       setValue,
+      getValues,
    } = useForm(productFormOptions);
 
    useEffect(() => {
@@ -147,7 +148,7 @@ const ProductEditModal = ({ open, onModalClose }) => {
                            onSelect={(newValue) => setValue('status', newValue)}
                            register={register}
                            name="status"
-                           className="customDropdown Active"
+                           className={`customDropdown ${getValues('status')}`}
                            disabled={!edit}
                         />
                         <div className="formInputError">
@@ -162,7 +163,6 @@ const ProductEditModal = ({ open, onModalClose }) => {
                            onSelect={(newValue) => setValue('owner', newValue)}
                            register={register}
                            name="owner"
-                           //    className="customDropdown Active"
                            disabled={!edit}
                         />
                         <div className="formInputError">

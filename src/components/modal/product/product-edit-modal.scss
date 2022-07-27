@@ -49,9 +49,15 @@ $tablet-breakpoint: 1024px;
 
             .customDropdown {
                border-radius: 5px;
+
                &.Active {
                   color: green;
                   background-color: rgba(0, 128, 0, 0.151);
+               }
+
+               &.Inactive {
+                  color: crimson;
+                  background-color: rgba(220, 20, 60, 0.068);
                }
             }
          }

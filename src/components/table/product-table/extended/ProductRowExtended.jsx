@@ -24,11 +24,8 @@ const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
                   >
                      <Delete />
                   </button>
-                  <button>
-                     <Edit
-                        className="editButton"
-                        onClick={() => handleOnEdit(row._id)}
-                     />
+                  <button onClick={() => handleOnEdit(row._id)}>
+                     <Edit className="editButton" />
                   </button>
                </div>
             </TableCell>
