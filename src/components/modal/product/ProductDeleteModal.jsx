@@ -4,23 +4,6 @@ import BasicModal from '../basic/BasicModal';
 import './product-delete-modal.scss';
 
 const ProductDeleteModal = ({ open, onModalClose, handleOnDelete }) => {
-   //    const [openDeleteModal, setOpenDeleteModal] = useState(false);
-   //    const [productId, setProductId] = useState(undefined);
-
-   //    const handleDeleteModalClose = () => {
-   //       setOpenDeleteModal(false);
-   //    };
-
-   //    const handleDeleteModalOpen = (id) => {
-   //       setProductId(id);
-   //       setOpenDeleteModal(true);
-   //    };
-
-   //    const handleOnConfirm = (deleteProduct) => {
-   //       if (deleteProduct) console.log('delete product' + productId);
-   //       if (!deleteProduct) console.log('do not delete');
-   //    };
-
    return (
       <BasicModal
          open={open}

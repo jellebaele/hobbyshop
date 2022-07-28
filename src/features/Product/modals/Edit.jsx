@@ -2,14 +2,14 @@ import { Check, Clear, Delete, Edit } from '@mui/icons-material';
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import BasicModal from '../basic/BasicModal';
-import './product-edit-modal.scss';
-import * as Yup from 'yup';
-import { yupResolver } from '@hookform/resolvers/yup';
+import BasicModal from '../../../components/modal/basic/BasicModal';
+import './edit.scss';
 import { useEffect } from 'react';
 import { TextareaAutosize } from '@mui/material';
-import Dropdown from '../../elements/Dropdown';
-import { Button } from '../../elements/Button';
+import Dropdown from '../../../components/elements/Dropdown';
+import { Button } from '../../../components/elements/Button';
+import { productFormOptions } from '../validation';
+import { PRODUCT_STATUS } from '../constants';
 
 const productData = {
    _id: 'qvq54vqz1ev3saze',
@@ -24,20 +24,7 @@ const productData = {
    UpdatedAt: '20-07-2022',
 };
 
-const options = ['Active', 'Inactive'];
 const users = ['Herman', 'Jana', 'Jelle'];
-
-const validationSchema = Yup.object().shape({
-   title: Yup.string().required('Titel is verplicht.'),
-   category: Yup.string().required('Categorie is verplict.'),
-   description: Yup.string().max(
-      250,
-      'De beschrijving mag maximaal 250 karakters lang zijn.'
-   ),
-   status: Yup.string().required('Status is verplicht.'),
-});
-
-const productFormOptions = { resolver: yupResolver(validationSchema) };
 
 const ProductEditModal = ({ open, onModalClose }) => {
    const [edit, setEdit] = useState(false);
@@ -145,7 +132,7 @@ const ProductEditModal = ({ open, onModalClose }) => {
                      <label>Status:</label>
                      <div className="inputGroup">
                         <Dropdown
-                           options={options}
+                           options={PRODUCT_STATUS.values}
                            onSelect={(newValue) => setValue('status', newValue)}
                            register={register}
                            name="status"
