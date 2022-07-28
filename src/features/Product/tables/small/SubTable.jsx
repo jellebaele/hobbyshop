@@ -6,8 +6,9 @@ import {
    TableRow,
 } from '@mui/material';
 import React from 'react';
+import './sub-table.scss';
 
-const ProductSubTable = ({ products }) => {
+const SubProductTable = ({ products }) => {
    return (
       <Table size="small">
          <TableHead>
@@ -30,4 +31,4 @@ const ProductSubTable = ({ products }) => {
    );
 };
 
-export default ProductSubTable;
+export default SubProductTable;

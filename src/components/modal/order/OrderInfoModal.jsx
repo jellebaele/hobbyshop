@@ -2,9 +2,9 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { ORDER_STATUS } from '../../../constants/order';
+import SubProductTable from '../../../features/Product/tables/small/SubTable';
 import { Button } from '../../elements/Button';
 import { Status } from '../../elements/Status';
-import ProductSubTable from '../../table/product-table/sub/ProductSubTable';
 import BasicModal from '../basic/BasicModal';
 import './order-info-modal.scss';
 
@@ -56,7 +56,7 @@ const OrderInfoModal = ({ open, onModalClose, orderId }) => {
                <span>Producten:</span>
                <span className="orderDetail">
                   <div className="productOverviewTable">
-                     <ProductSubTable products={order.products} />
+                     <SubProductTable products={order.products} />
                   </div>
                </span>
 
