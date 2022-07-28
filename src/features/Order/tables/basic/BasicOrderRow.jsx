@@ -1,16 +1,17 @@
-import { Collapse, IconButton, TableCell, TableRow } from '@mui/material';
-import React, { useState } from 'react';
-import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+// import { Collapse, IconButton, TableCell, TableRow } from '@mui/material';
+import React from 'react';
+// import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
+// import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import { Visibility } from '@mui/icons-material';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import useIsTablet from '../../../../hooks/useIsTablet';
 // import ProductSubTable from '../product-table/ProductSubTable';
-import './stylesheets/row.scss';
-import { Button } from '../../../elements/Button';
-import { Status } from '../../../elements/Status';
+import './basic-order-row.scss';
+import { Button } from '../../../../components/elements/Button';
+import { Status } from '../../../../components/elements/Status';
+import { TableCell, TableRow } from '@mui/material';
 
-const Row = ({ row, handleModalOpen }) => {
+const BasicOrderRow = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
 
@@ -69,4 +70,4 @@ const Row = ({ row, handleModalOpen }) => {
    );
 };
 
-export default Row;
+export default BasicOrderRow;

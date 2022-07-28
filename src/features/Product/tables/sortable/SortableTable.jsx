@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import './sortable-table.scss';
-import SortableTableHeader from '../../../../components/table/common/SortableTableHeader';
+import SortableTableHeader from '../../../../components/table/SortableTableHeader';
 import { getComparator } from '../../../../components/table/utils/sort';
 import EmptyRows from '../../../../components/table/EmptyRows';
 import ProductRowExtended from './SortableRow';

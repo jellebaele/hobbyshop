@@ -1,8 +1,8 @@
 import React from 'react';
 import './home.scss';
 import Header from '../../components/header/Header';
-import OrderTable from '../../components/table/order-table/basic/OrderTable';
 import BasicProductTable from '../../features/Product/tables/basic/BasicTable';
+import BasicOrderTable from '../../features/Order/tables/basic/BasicOrderTable';
 
 const Home = () => {
    return (
@@ -13,7 +13,7 @@ const Home = () => {
                <BasicProductTable />
             </div>
             <div className="tableContainer">
-               <OrderTable />
+               <BasicOrderTable />
             </div>
          </div>
       </div>
