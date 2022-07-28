@@ -4,14 +4,14 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
-import './stylesheets/product-table-extended.scss';
-import TableHeaderSort from '../../common/TableHeaderSort';
-import { getComparator } from '../../order-table/utils/sort';
-import EmptyRows from './EmptyRows';
-import ProductRowExtended from './ProductRowExtended';
-import { productColumnExtendedLayoutDesktop } from '../utils/productTableLayout';
+import './sortable-table.scss';
+import TableHeaderSort from '../../../../components/table/common/TableHeaderSort';
+import { getComparator } from '../../../../components/table/utils/sort';
+import EmptyRows from '../../../../components/table/EmptyRows';
+import ProductRowExtended from './SortableRow';
+import { productColumnExtendedLayoutDesktop } from '../productTableLayout';
 import { Add } from '@mui/icons-material';
-import { Button } from '../../../elements/Button';
+import { Button } from '../../../../components/elements/Button';
 
 const rows = [
    {
@@ -214,7 +214,7 @@ const rows = [
    },
 ];
 
-export default function ProductTableExtended({ handleOnDelete, handleOnEdit }) {
+export default function SortableProductTable({ handleOnDelete, handleOnEdit }) {
    const [order, setOrder] = useState('asc');
    const [orderBy, setOrderBy] = useState('calories');
    const [page, setPage] = useState(0);

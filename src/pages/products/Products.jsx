@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../../components/header/Header';
-import ProductTableExtended from '../../components/table/product-table/extended/ProductTableExtended';
 import ProductDeleteModal from '../../features/Product/modals/Delete';
 import ProductEditModal from '../../features/Product/modals/Edit';
+import SortableProductTable from '../../features/Product/tables/sortable/SortableTable';
 import './products.scss';
 
 const Products = () => {
@@ -38,7 +38,7 @@ const Products = () => {
          <Header pageTitle="Producten" />
          <div className="bodyContainer">
             <div className="tableContainer">
-               <ProductTableExtended
+               <SortableProductTable
                   handleOnDelete={handleDeleteModalOpen}
                   handleOnEdit={handleEditModalOpen}
                />

@@ -2,10 +2,10 @@ import { ShoppingBag } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import { Button } from '../../../elements/Button';
-import './stylesheets/product-row.scss';
+import { Button } from '../../../../components/elements/Button';
+import './basic-row.scss';
 
-const ProductRow = ({ row, handleModalOpen }) => {
+const BasicProductRow = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();
    return (
       <>
@@ -33,4 +33,4 @@ const ProductRow = ({ row, handleModalOpen }) => {
    );
 };
 
-export default ProductRow;
+export default BasicProductRow;

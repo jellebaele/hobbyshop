@@ -1,11 +1,11 @@
 import { Delete, Edit } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
-import { IconButton } from '../../../elements/IconButton';
-import { Status } from '../../../elements/Status';
-import './stylesheets/product-row-extended.scss';
+import { IconButton } from '../../../../components/elements/IconButton';
+import { Status } from '../../../../components/elements/Status';
+import './sortable-row.scss';
 
-const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
+const SortableProductRow = ({ row, handleOnDelete, handleOnEdit }) => {
    return (
       <>
          <TableRow tabIndex={-1} className="productRowExtendedContainer">
@@ -39,4 +39,4 @@ const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
    );
 };
 
-export default ProductRowExtended;
+export default SortableProductRow;

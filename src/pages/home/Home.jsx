@@ -2,7 +2,7 @@ import React from 'react';
 import './home.scss';
 import Header from '../../components/header/Header';
 import OrderTable from '../../components/table/order-table/basic/OrderTable';
-import ProductTableBasic from '../../components/table/product-table/basic/ProductTableBasic';
+import BasicProductTable from '../../features/Product/tables/basic/BasicTable';
 
 const Home = () => {
    return (
@@ -10,7 +10,7 @@ const Home = () => {
          <Header pageTitle={'Dashboard'} />
          <div className="bodyContainer">
             <div className="tableContainer">
-               <ProductTableBasic />
+               <BasicProductTable />
             </div>
             <div className="tableContainer">
                <OrderTable />
