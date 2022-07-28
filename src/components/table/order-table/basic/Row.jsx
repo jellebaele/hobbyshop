@@ -8,6 +8,7 @@ import useIsTablet from '../../../../hooks/useIsTablet';
 // import ProductSubTable from '../product-table/ProductSubTable';
 import './stylesheets/row.scss';
 import { Button } from '../../../elements/Button';
+import { Status } from '../../../elements/Status';
 
 const Row = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();
@@ -37,7 +38,7 @@ const Row = ({ row, handleModalOpen }) => {
             {!isTablet && <TableCell>{row.dateUpdated}</TableCell>}
             {!isMobile && (
                <TableCell>
-                  <span className={`status ${row.status}`}>{row.status}</span>
+                  <Status status={row.status} />
                </TableCell>
             )}
             <TableCell align="right">

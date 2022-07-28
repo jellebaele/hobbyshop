@@ -21,6 +21,12 @@
 
       &.open {
          cursor: pointer;
+         border: 1px solid black;
+      }
+
+      &.editable {
+         border: 1px solid black;
+         border-radius: 5px;
       }
    }
 

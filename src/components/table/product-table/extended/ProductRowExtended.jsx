@@ -2,6 +2,7 @@ import { Delete, Edit } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import { IconButton } from '../../../elements/IconButton';
+import { Status } from '../../../elements/Status';
 import './stylesheets/product-row-extended.scss';
 
 const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
@@ -15,7 +16,7 @@ const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
             <TableCell align="right">{row.amount}</TableCell>
             <TableCell align="left">{row.updatedAt}</TableCell>
             <TableCell align="left">
-               <div className={`status ${row.status}`}>{row.status}</div>
+               <Status status={row.status} />
             </TableCell>
             <TableCell align="right">
                <div className="buttonContainer">

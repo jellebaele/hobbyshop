@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { ORDER_STATUS } from '../../../constants/order';
 import { Button } from '../../elements/Button';
+import { Status } from '../../elements/Status';
 import ProductSubTable from '../../table/product-table/sub/ProductSubTable';
 import BasicModal from '../basic/BasicModal';
 import './order-info-modal.scss';
@@ -61,7 +62,7 @@ const OrderInfoModal = ({ open, onModalClose, orderId }) => {
 
                <span>Status:</span>
                <span className="orderDetail">
-                  <div className={`status ${orderStatus}`}>{orderStatus}</div>
+                  <Status status={orderStatus} />
                </span>
             </div>
 

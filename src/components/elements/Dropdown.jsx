@@ -35,7 +35,9 @@ const Dropdown = ({
          <input
             name={name}
             type="text"
-            className={`dropdownInput ${className}`}
+            className={`dropdownInput ${className} ${open && 'open'} ${
+               !disabled && 'editable'
+            }`}
             {...register(name)}
             readOnly
             onClick={handleOnClick}

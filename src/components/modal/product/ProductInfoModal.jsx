@@ -5,6 +5,7 @@ import { Add, Remove, ShoppingBag } from '@mui/icons-material';
 import { useState } from 'react';
 import { IconButton } from '../../elements/IconButton';
 import { Button } from '../../elements/Button';
+import { Status } from '../../elements/Status';
 
 const product = {
    _id: 'qvq54vqz1ev3saze',
@@ -67,9 +68,9 @@ const ProductInfoModal = ({ open, onModalClose, productId }) => {
                   <span className="productDetail">{`${product.amount} ${product.unit}`}</span>
                   <span>Status:</span>
                   <span className="productDetail">
-                     <div className={`status ${product.Status}`}>
+                     <Status status={product.Status}>
                         {getProductStatus()}
-                     </div>
+                     </Status>
                   </span>
                   <span>Eigenaar:</span>
                   <span className="productDetail">{product.owner}</span>
