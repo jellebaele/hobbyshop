@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Header from '../../components/header/Header';
-import ProductDeleteModal from '../../components/modal/product/ProductDeleteModal';
 import ProductTableExtended from '../../components/table/product-table/extended/ProductTableExtended';
+import ProductDeleteModal from '../../features/Product/modals/Delete';
 import ProductEditModal from '../../features/Product/modals/Edit';
 import './products.scss';
 
