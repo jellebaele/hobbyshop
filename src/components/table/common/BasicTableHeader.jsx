@@ -1,7 +1,7 @@
 import { TableCell, TableHead, TableRow } from '@mui/material';
 import React from 'react';
 
-const TableHeader = ({ columns }) => {
+const BasicTableHeader = ({ columns }) => {
    return (
       <TableHead>
          <TableRow>
@@ -15,4 +15,4 @@ const TableHeader = ({ columns }) => {
    );
 };
 
-export default TableHeader;
+export default BasicTableHeader;

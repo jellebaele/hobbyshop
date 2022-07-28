@@ -3,7 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { visuallyHidden } from '@mui/utils';
 
-const TableHeaderSort = ({ order, orderBy, onRequestSort, columns }) => {
+const SortableTableHeader = ({ order, orderBy, onRequestSort, columns }) => {
    const handleSortColumn = (property) => (event) => {
       onRequestSort(event, property);
    };
@@ -39,4 +39,4 @@ const TableHeaderSort = ({ order, orderBy, onRequestSort, columns }) => {
    );
 };
 
-export default TableHeaderSort;
+export default SortableTableHeader;

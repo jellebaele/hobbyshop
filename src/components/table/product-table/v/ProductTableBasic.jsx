@@ -1,15 +1,15 @@
 import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import ProductInfoModal from '../../../../components/modal/product/ProductInfoModal';
-import BasicTableHeader from '../../../../components/table/common/BasicTableHeader';
-import TableTitle from '../../../../components/table/common/TableTitle';
-import './basic-table.scss';
+import ProductInfoModal from '../../../modal/product/ProductInfoModal';
+import BasicTableHeader from '../../common/BasicTableHeader';
+import TableTitle from '../../common/TableTitle';
+import './product-table.scss';
+import ProductRow from './ProductRow';
 import {
    productColumnLayoutDesktop,
    productColumnLayoutMobile,
-} from '../productTableLayout';
-import BasicProductRow from './BasicRow';
+} from '../utils/productTableLayout';
 
 const data = [
    {
@@ -34,7 +34,7 @@ const data = [
    },
 ];
 
-const BasicProductTable = () => {
+const ProductTableBasic = () => {
    const isMobile = useIsMobile();
    const [openInfoModal, setOpenInfoModal] = useState(false);
    const [productIdModal, setProductIdModal] = useState(undefined);
@@ -61,7 +61,7 @@ const BasicProductTable = () => {
                   <BasicTableHeader columns={getColumnLayout()} />
                   <TableBody>
                      {data.map((row) => (
-                        <BasicProductRow
+                        <ProductRow
                            row={row}
                            handleModalOpen={handleModalOpen}
                            key={row._id}
@@ -80,4 +80,4 @@ const BasicProductTable = () => {
    );
 };
 
-export default BasicProductTable;
+export default ProductTableBasic;

@@ -5,7 +5,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import './sortable-table.scss';
-import TableHeaderSort from '../../../../components/table/common/TableHeaderSort';
+import SortableTableHeader from '../../../../components/table/common/SortableTableHeader';
 import { getComparator } from '../../../../components/table/utils/sort';
 import EmptyRows from '../../../../components/table/EmptyRows';
 import ProductRowExtended from './SortableRow';
@@ -244,7 +244,7 @@ export default function SortableProductTable({ handleOnDelete, handleOnEdit }) {
          <Paper className="paper">
             <TableContainer>
                <Table size={'small'}>
-                  <TableHeaderSort
+                  <SortableTableHeader
                      order={order}
                      orderBy={orderBy}
                      onRequestSort={handleRequestSort}

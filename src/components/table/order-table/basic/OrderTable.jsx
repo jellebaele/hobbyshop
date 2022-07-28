@@ -2,7 +2,7 @@ import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import Row from './Row';
 import './stylesheets/order-table.scss';
-import TableHeader from '../../common/TableHeader';
+import BasicTableHeader from '../../common/BasicTableHeader';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import {
    orderColumnLayoutDesktop,
@@ -81,7 +81,7 @@ const OrderTable = () => {
          <div className="tableContainerWrapper">
             <TableContainer component={Paper}>
                <Table size={isMobile ? 'small' : 'medium'}>
-                  <TableHeader columns={getColumnLayout()} />
+                  <BasicTableHeader columns={getColumnLayout()} />
                   <TableBody>
                      {data.map((row) => (
                         <Row
