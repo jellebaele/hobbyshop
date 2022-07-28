@@ -6,8 +6,8 @@ import BasicModal from '../../../components/modal/basic/BasicModal';
 import './edit.scss';
 import { useEffect } from 'react';
 import { TextareaAutosize } from '@mui/material';
-import Dropdown from '../../../components/elements/Dropdown';
-import { Button } from '../../../components/elements/Button';
+import Dropdown from '../../../components/dropdown/Dropdown';
+import { Button } from '../../../components/button/Button';
 import { productFormOptions } from '../validation';
 import { PRODUCT_STATUS } from '../constants';
 

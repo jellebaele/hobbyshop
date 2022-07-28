@@ -2,7 +2,7 @@ import { ShoppingBag } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import { Button } from '../../../../components/elements/Button';
+import { Button } from '../../../../components/button/Button';
 import './basic-row.scss';
 
 const BasicProductRow = ({ row, handleModalOpen }) => {

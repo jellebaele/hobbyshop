@@ -1,7 +1,7 @@
 import { KeyboardArrowDown } from '@mui/icons-material';
 import React, { useRef, useState } from 'react';
 import useIsClickOutside from '../../hooks/useIsClickOutside';
-import './stylesheets/dropdown.scss';
+import './dropdown.scss';
 
 const Dropdown = ({
    options,

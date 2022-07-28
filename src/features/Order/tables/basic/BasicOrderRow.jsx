@@ -7,8 +7,8 @@ import useIsMobile from '../../../../hooks/useIsMobile';
 import useIsTablet from '../../../../hooks/useIsTablet';
 // import ProductSubTable from '../product-table/ProductSubTable';
 import './basic-order-row.scss';
-import { Button } from '../../../../components/elements/Button';
-import { Status } from '../../../../components/elements/Status';
+import { Button } from '../../../../components/button/Button';
+import { Status } from '../../../../components/status/Status';
 import { TableCell, TableRow } from '@mui/material';
 
 const BasicOrderRow = ({ row, handleModalOpen }) => {

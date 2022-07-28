@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '../../../components/elements/Button';
+import { Button } from '../../../components/button/Button';
 import BasicModal from '../../../components/modal/basic/BasicModal';
 import './delete.scss';
 

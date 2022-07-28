@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { ORDER_STATUS } from '../../../constants/order';
 import SubProductTable from '../../../features/Product/tables/small/SubTable';
-import { Button } from '../../elements/Button';
-import { Status } from '../../elements/Status';
+import { Button } from '../../button/Button';
+import { Status } from '../../status/Status';
 import BasicModal from '../basic/BasicModal';
 import './order-info-modal.scss';
 

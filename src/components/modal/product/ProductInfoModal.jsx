@@ -3,9 +3,9 @@ import BasicModal from '../basic/BasicModal';
 import './product-info-modal.scss';
 import { Add, Remove, ShoppingBag } from '@mui/icons-material';
 import { useState } from 'react';
-import { IconButton } from '../../elements/IconButton';
-import { Button } from '../../elements/Button';
-import { Status } from '../../elements/Status';
+import { IconButton } from '../../button/IconButton';
+import { Button } from '../../button/Button';
+import { Status } from '../../status/Status';
 
 const product = {
    _id: 'qvq54vqz1ev3saze',

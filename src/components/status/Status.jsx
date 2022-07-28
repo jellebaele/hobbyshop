@@ -1,5 +1,5 @@
 import React from 'react';
-import './stylesheets/status.scss';
+import './status.scss';
 
 export const Status = ({ status, children }) => {
    return (

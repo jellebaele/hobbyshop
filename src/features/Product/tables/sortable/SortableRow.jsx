@@ -1,8 +1,8 @@
 import { Delete, Edit } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
-import { IconButton } from '../../../../components/elements/IconButton';
-import { Status } from '../../../../components/elements/Status';
+import { IconButton } from '../../../../components/button/IconButton';
+import { Status } from '../../../../components/status/Status';
 import './sortable-row.scss';
 
 const SortableProductRow = ({ row, handleOnDelete, handleOnEdit }) => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import './stylesheets/button.scss';
+import './button.scss';
 
 export const Button = ({
    startIcon: StartIcon,

@@ -11,7 +11,7 @@ import EmptyRows from '../../../../components/table/EmptyRows';
 import ProductRowExtended from './SortableRow';
 import { productColumnExtendedLayoutDesktop } from '../productTableLayout';
 import { Add } from '@mui/icons-material';
-import { Button } from '../../../../components/elements/Button';
+import { Button } from '../../../../components/button/Button';
 
 const rows = [
    {

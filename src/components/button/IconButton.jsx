@@ -1,5 +1,5 @@
 import React from 'react';
-import './stylesheets/icon-button.scss';
+import './icon-button.scss';
 
 export const IconButton = ({
    onClick,
