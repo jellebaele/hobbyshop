@@ -1,10 +1,10 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Sidebar from './components/sidebar/sidebarv2/Sidebar';
 import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Orders from './pages/orders/Orders';
 import Products from './pages/products/Products';
 import './app.scss';
+import Sidebar from './components/sidebar/Sidebar';
 
 function App() {
    const { pathname } = useLocation();
