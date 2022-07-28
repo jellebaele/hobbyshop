@@ -7,6 +7,7 @@ import useIsMobile from '../../../../hooks/useIsMobile';
 import useIsTablet from '../../../../hooks/useIsTablet';
 // import ProductSubTable from '../product-table/ProductSubTable';
 import './stylesheets/row.scss';
+import { Button } from '../../../elements/Button';
 
 const Row = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();
@@ -41,10 +42,12 @@ const Row = ({ row, handleModalOpen }) => {
             )}
             <TableCell align="right">
                <div className="buttonContainer">
-                  <button onClick={() => handleModalOpen(row._id)}>
-                     <Visibility className="icon" />
+                  <Button
+                     onClick={() => handleModalOpen(row._id)}
+                     startIcon={Visibility}
+                  >
                      Toon
-                  </button>
+                  </Button>
                </div>
             </TableCell>
          </TableRow>

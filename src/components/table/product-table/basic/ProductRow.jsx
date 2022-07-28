@@ -2,6 +2,7 @@ import { ShoppingBag } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
+import { Button } from '../../../elements/Button';
 import './stylesheets/product-row.scss';
 
 const ProductRow = ({ row, handleModalOpen }) => {
@@ -19,10 +20,12 @@ const ProductRow = ({ row, handleModalOpen }) => {
             {!isMobile && <TableCell>{`${row.amount} ${row.unit}`}</TableCell>}
             <TableCell align="right">
                <div className="buttonContainer">
-                  <button onClick={() => handleModalOpen(row._id)}>
-                     <ShoppingBag className="icon" />
+                  <Button
+                     onClick={() => handleModalOpen(row._id)}
+                     startIcon={ShoppingBag}
+                  >
                      Bestel
-                  </button>
+                  </Button>
                </div>
             </TableCell>
          </TableRow>

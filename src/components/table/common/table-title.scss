@@ -34,13 +34,13 @@
    }
 
    button {
-      .icon {
+      .tableTitleIcon {
          font-size: 20px !important;
          margin-left: 3px;
          transition: transform 0.25s ease;
       }
 
-      &:hover .icon {
+      &:hover .tableTitleIcon {
          transform: translateX(3px);
       }
    }

@@ -11,6 +11,7 @@ import EmptyRows from './EmptyRows';
 import ProductRowExtended from './ProductRowExtended';
 import { productColumnExtendedLayoutDesktop } from '../utils/productTableLayout';
 import { Add } from '@mui/icons-material';
+import { Button } from '../../../elements/Button';
 
 const rows = [
    {
@@ -238,9 +239,7 @@ export default function ProductTableExtended({ handleOnDelete, handleOnEdit }) {
       <div className="productTableExtendedContainer">
          <div className="tableTitleContainer">
             <h2>Producten</h2>
-            <button>
-               <Add className="icon" /> Nieuw
-            </button>
+            <Button startIcon={Add}>Nieuw</Button>
          </div>
          <Paper className="paper">
             <TableContainer>

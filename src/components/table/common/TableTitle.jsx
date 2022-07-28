@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import './table-title.scss';
+import { Button } from '../../elements/Button';
 
 const TableTitle = ({ title, to }) => {
    return (
@@ -24,10 +25,9 @@ const TableTitle = ({ title, to }) => {
                color: 'inherit',
             }}
          >
-            <button>
+            <Button endIcon={ArrowForwardIcon} classNameIcon="tableTitleIcon">
                Meer
-               <ArrowForwardIcon className="icon" />
-            </button>
+            </Button>
          </Link>
       </div>
    );

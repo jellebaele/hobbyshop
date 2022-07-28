@@ -9,6 +9,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useEffect } from 'react';
 import { TextareaAutosize } from '@mui/material';
 import Dropdown from '../../elements/Dropdown';
+import { Button } from '../../elements/Button';
 
 const productData = {
    _id: 'qvq54vqz1ev3saze',
@@ -176,25 +177,23 @@ const ProductEditModal = ({ open, onModalClose }) => {
                   <div className="buttonContainer">
                      {!edit && (
                         <div className="buttonContainer">
-                           <button type="button" onClick={handleDelete}>
-                              <Delete className="icon" />
+                           <Button onClick={handleDelete} startIcon={Delete}>
                               Delete
-                           </button>
-                           <button type="button" onClick={handleEdit}>
-                              <Edit className="icon" /> Bewerk
-                           </button>
+                           </Button>
+                           <Button onClick={handleEdit} startIcon={Edit}>
+                              Bewerk
+                           </Button>
                         </div>
                      )}
 
                      {edit && (
                         <div className="buttonContainer">
-                           <button type="button" onClick={handleCancelEdit}>
-                              <Clear className="icon" /> Annuleer
-                           </button>
-
-                           <button type="submit">
-                              <Check className="icon" /> Update
-                           </button>
+                           <Button onClick={handleCancelEdit} startIcon={Clear}>
+                              Annuleer
+                           </Button>
+                           <Button type="submit" startIcon={Check}>
+                              Update
+                           </Button>
                         </div>
                      )}
                   </div>

@@ -69,24 +69,8 @@ $tablet-breakpoint: 1024px;
             align-items: center;
             margin-bottom: 30px;
 
-            .addButton,
-            .removeButton {
-               background-color: transparent;
-               color: rgb(80, 80, 80);
-               border-radius: 50%;
-               border: 2px solid rgb(80, 80, 80);
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               padding: 5px;
+            .modalButton {
                margin: 0px 20px;
-               cursor: pointer;
-               transition: all ease 0.5s;
-
-               &:hover {
-                  background-color: rgb(80, 80, 80);
-                  color: white;
-               }
             }
 
             .amount {
@@ -95,24 +79,12 @@ $tablet-breakpoint: 1024px;
          }
 
          .orderButton {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            border: rgb(80, 80, 80) 3px solid;
-            color: rgb(80, 80, 80);
             padding: 5px;
-            transition: all ease 0.5s;
-            cursor: pointer;
             margin-left: 5px;
 
-            .icon {
+            .orderIcon {
                margin-right: 5px;
-            }
-
-            &:hover {
-               background-color: rgb(80, 80, 80);
-               color: white;
+               font-size: 25px !important;
             }
          }
       }

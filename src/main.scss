@@ -1,26 +1,3 @@
-button {
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   background-color: white;
-   border: rgb(80, 80, 80) 3px solid;
-   color: rgb(80, 80, 80);
-   padding: 5px;
-   transition: all ease 0.5s;
-   cursor: pointer;
-   margin-left: 5px;
-
-   &:hover {
-      background-color: rgb(80, 80, 80);
-      color: white;
-   }
-
-   .icon {
-      font-size: 15px !important;
-      margin-right: 3px;
-   }
-}
-
 .status {
    padding: 5px;
    border-radius: 5px;

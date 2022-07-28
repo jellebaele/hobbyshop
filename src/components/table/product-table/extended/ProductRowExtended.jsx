@@ -1,6 +1,7 @@
 import { Delete, Edit } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
+import { IconButton } from '../../../elements/IconButton';
 import './stylesheets/product-row-extended.scss';
 
 const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
@@ -18,15 +19,18 @@ const ProductRowExtended = ({ row, handleOnDelete, handleOnEdit }) => {
             </TableCell>
             <TableCell align="right">
                <div className="buttonContainer">
-                  <button
-                     className="deleteButton"
+                  <IconButton
+                     className="rowButton"
                      onClick={() => handleOnDelete(row._id)}
                   >
                      <Delete />
-                  </button>
-                  <button onClick={() => handleOnEdit(row._id)}>
-                     <Edit className="editButton" />
-                  </button>
+                  </IconButton>
+                  <IconButton
+                     className="rowButton"
+                     onClick={() => handleOnEdit(row._id)}
+                  >
+                     <Edit />
+                  </IconButton>
                </div>
             </TableCell>
          </TableRow>

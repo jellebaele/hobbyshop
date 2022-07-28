@@ -2,6 +2,7 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { ORDER_STATUS } from '../../../constants/order';
+import { Button } from '../../elements/Button';
 import ProductSubTable from '../../table/product-table/sub/ProductSubTable';
 import BasicModal from '../basic/BasicModal';
 import './order-info-modal.scss';
@@ -83,9 +84,9 @@ const OrderInfoModal = ({ open, onModalClose, orderId }) => {
                   </FormControl>
                </div>
                <div className="buttonContainer">
-                  <button onClick={() => setOrderStatus(selectedStatus)}>
+                  <Button onClick={() => setOrderStatus(selectedStatus)}>
                      Wijzig
-                  </button>
+                  </Button>
                </div>
             </div>
          </div>

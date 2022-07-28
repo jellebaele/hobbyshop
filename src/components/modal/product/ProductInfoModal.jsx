@@ -1,10 +1,10 @@
-import AddIcon from '@mui/icons-material/Add';
-import RemoveIcon from '@mui/icons-material/Remove';
 import React from 'react';
 import BasicModal from '../basic/BasicModal';
 import './product-info-modal.scss';
-import { ShoppingBag } from '@mui/icons-material';
+import { Add, Remove, ShoppingBag } from '@mui/icons-material';
 import { useState } from 'react';
+import { IconButton } from '../../elements/IconButton';
+import { Button } from '../../elements/Button';
 
 const product = {
    _id: 'qvq54vqz1ev3saze',
@@ -79,24 +79,29 @@ const ProductInfoModal = ({ open, onModalClose, productId }) => {
             <div className="bottom">
                <div className="orderContainer">
                   <div className="amountContainer">
-                     <button
-                        className="removeButton"
+                     <IconButton
                         onClick={handleDecreaseAmount}
+                        className="modalButton"
                      >
-                        <RemoveIcon />
-                     </button>
+                        <Remove />
+                     </IconButton>
+
                      <div className="amount">{amount}</div>
-                     <button
-                        className="addButton"
+                     <IconButton
                         onClick={handleIncreaseAmount}
+                        className="modalButton"
                      >
-                        <AddIcon />
-                     </button>
+                        <Add />
+                     </IconButton>
                   </div>
-                  <button className="orderButton">
-                     <ShoppingBag className="icon" />
+
+                  <Button
+                     startIcon={ShoppingBag}
+                     className="orderButton"
+                     classNameIcon="orderIcon"
+                  >
                      In winkelwagen
-                  </button>
+                  </Button>
                </div>
             </div>
          </div>
