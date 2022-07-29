@@ -3,20 +3,23 @@ import React, { useEffect, useRef, useState } from 'react';
 const Textarea = ({ name, onChange, register, disabled, className }) => {
    const textareaRef = useRef(null);
    const [value, setValue] = useState('');
-   const { ref, ...rest } = register(name);
+   const { ref, ...rest } = register(name, {
+      onChange: (e) => setTextareaHeight(e),
+   });
 
    const textAreaChange = (event) => {
       setValue(event.target.value);
       onChange(event.target.value);
    };
 
-   // const setTextareaHeight = () => {
-   //    if (ref && ref.current) {
-   //       ref.current.style.height = '0px';
-   //       const scrollHeight = ref.current.scrollHeight;
-   //       ref.current.style.height = scrollHeight + 'px';
-   //    }
-   // };
+   const setTextareaHeight = (e) => {
+      if (e && e.target) {
+         e.target.style.height = '0px';
+         const scrollHeight = e.target.scrollHeight;
+         console.log(scrollHeight);
+         e.target.style.height = scrollHeight + 'px';
+      }
+   };
 
    useEffect(() => {
       if (textareaRef && textareaRef.current) {
