@@ -1,0 +1,73 @@
+$phone-breakpoint: 480px;
+
+.orderInfoModalContainer {
+   padding: 5px;
+   padding-top: 20px;
+   width: 100%;
+
+   .orderDetailsGrid {
+      display: grid;
+      grid-template-columns: fit-content(180px) 1fr;
+      column-gap: 20px;
+      row-gap: 20px;
+      margin-bottom: 20px;
+
+      .orderDetail {
+         font-size: smaller;
+         display: flex;
+         align-items: center;
+         color: #3b3b3b;
+
+         .productOverviewTable {
+            margin-top: 30px;
+            margin-left: -60px;
+            width: 80%;
+         }
+      }
+   }
+
+   .changeStatusContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .selectContainer {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         margin-bottom: 20px;
+
+         span {
+            margin-right: 20px;
+         }
+
+         .formControl {
+            margin-right: 30px;
+         }
+      }
+
+      button {
+         font-size: 16px;
+      }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .orderInfoModalContainer {
+      .orderDetailsGrid {
+         .orderDetail {
+            .productOverviewTable {
+               margin-left: -90px;
+               width: 100%;
+            }
+         }
+      }
+
+      .changeStatusContainer {
+         button {
+            font-size: 16px !important;
+         }
+      }
+   }
+}

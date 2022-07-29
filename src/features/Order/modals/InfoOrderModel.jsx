@@ -1,12 +1,12 @@
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { ORDER_STATUS } from '../../../features/Order/constants';
-import SubProductTable from '../../../features/Product/tables/small/SubProductTable';
-import { Button } from '../../button/Button';
-import { Status } from '../../status/Status';
-import BasicModal from '../basic/BasicModal';
-import './order-info-modal.scss';
+import { ORDER_STATUS } from '../constants';
+import SubProductTable from '../../Product/tables/small/SubProductTable';
+import { Button } from '../../../components/button/Button';
+import { Status } from '../../../components/status/Status';
+import BasicModal from '../../../components/modal/basic/BasicModal';
+import './info-order-modal.scss';
 
 const order = {
    _id: '432G01',
@@ -27,7 +27,7 @@ const order = {
    dateUpdated: '07-06-2022',
 };
 
-const OrderInfoModal = ({ open, onModalClose, orderId }) => {
+const InfoOrderModal = ({ open, onModalClose, orderId }) => {
    const [orderStatus, setOrderStatus] = useState(null);
    const [selectedStatus, setSelectedStatus] = useState(orderStatus);
 
@@ -95,4 +95,4 @@ const OrderInfoModal = ({ open, onModalClose, orderId }) => {
    );
 };
 
-export default OrderInfoModal;
+export default InfoOrderModal;

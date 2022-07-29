@@ -10,8 +10,8 @@ import {
 } from '../orderTableLayout';
 import useIsTablet from '../../../../hooks/useIsTablet';
 import TableTitle from '../../../../components/table/TableTitle';
-import OrderInfoModal from '../../../../components/modal/order/OrderInfoModal';
 import BasicOrderRow from './BasicOrderRow';
+import InfoOrderModal from '../../modals/InfoOrderModel';
 
 const data = [
    {
@@ -94,7 +94,7 @@ const BasicOrderTable = () => {
                </Table>
             </TableContainer>
          </div>
-         <OrderInfoModal
+         <InfoOrderModal
             open={openInfoModal}
             onModalClose={handleModalClose}
             orderId={orderIdModal}
