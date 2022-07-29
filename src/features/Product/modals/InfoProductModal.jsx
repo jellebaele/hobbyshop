@@ -22,7 +22,7 @@ const product = {
 
 const inStockTranslation = 'In voorraad';
 
-const InfoProductModal = ({ open, onModalClose, productId }) => {
+const InfoProductModal = ({ open, handleOnClose, productId }) => {
    let [amount, setAmount] = useState(0);
 
    const handleIncreaseAmount = () => {
@@ -52,7 +52,7 @@ const InfoProductModal = ({ open, onModalClose, productId }) => {
    return (
       <BasicModal
          open={open}
-         onModalClose={onModalClose}
+         handleOnClose={handleOnClose}
          title="Product details"
       >
          <div className="productInfoModalContainer">

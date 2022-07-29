@@ -27,7 +27,7 @@ const order = {
    dateUpdated: '07-06-2022',
 };
 
-const InfoOrderModal = ({ open, onModalClose, orderId }) => {
+const InfoOrderModal = ({ open, handleOnClose, orderId }) => {
    const [orderStatus, setOrderStatus] = useState(null);
    const [selectedStatus, setSelectedStatus] = useState(orderStatus);
 
@@ -41,7 +41,11 @@ const InfoOrderModal = ({ open, onModalClose, orderId }) => {
    };
 
    return (
-      <BasicModal open={open} onModalClose={onModalClose} title="Order details">
+      <BasicModal
+         open={open}
+         handleOnClose={handleOnClose}
+         title="Order details"
+      >
          <div className="orderInfoModalContainer">
             <div className="orderDetailsGrid">
                <span>Order Id:</span>

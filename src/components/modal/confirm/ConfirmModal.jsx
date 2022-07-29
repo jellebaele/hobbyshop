@@ -14,7 +14,7 @@ const ConfirmModal = ({
    return (
       <BasicModal
          open={open}
-         onModalClose={handleOnClose}
+         handleOnClose={handleOnClose}
          title={title}
          width={width}
       >

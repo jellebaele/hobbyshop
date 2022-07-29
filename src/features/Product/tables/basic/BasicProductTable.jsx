@@ -39,7 +39,7 @@ const BasicProductTable = () => {
    const [openInfoModal, setOpenInfoModal] = useState(false);
    const [productIdModal, setProductIdModal] = useState(undefined);
 
-   const handleModalClose = () => {
+   const handleOnModalClose = () => {
       setOpenInfoModal(false);
    };
 
@@ -73,7 +73,7 @@ const BasicProductTable = () => {
          </div>
          <InfoProductModal
             open={openInfoModal}
-            onModalClose={handleModalClose}
+            handleOnClose={handleOnModalClose}
             productId={productIdModal}
          />
       </div>

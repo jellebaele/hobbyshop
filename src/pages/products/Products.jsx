@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import Header from '../../components/header/Header';
 import DeleteProductModal from '../../features/Product/modals/DeleteProductModal';
 import EditProductModal from '../../features/Product/modals/EditProductModal';
+import NewProductModal from '../../features/Product/modals/NewProductModal';
 import SortableProductTable from '../../features/Product/tables/sortable/SortableProductTable';
 import './products.scss';
 
 const Products = () => {
    const [openDeleteModal, setOpenDeleteModal] = useState(false);
    const [openEditModal, setOpenEditModal] = useState(false);
+   const [openNewModal, setOpenNewModal] = useState(false);
    const [productId, setProductId] = useState(undefined);
 
    const handleDeleteModalClose = () => {
@@ -33,6 +35,13 @@ const Products = () => {
       setOpenDeleteModal(false);
    };
 
+   const handleNewModalOpen = () => {
+      setOpenNewModal(true);
+   };
+   const handleNewModalClose = () => {
+      setOpenNewModal(false);
+   };
+
    return (
       <div className="productsContainer">
          <Header pageTitle="Producten" />
@@ -41,6 +50,7 @@ const Products = () => {
                <SortableProductTable
                   handleOnDelete={handleDeleteModalOpen}
                   handleOnEdit={handleEditModalOpen}
+                  handleOnNew={handleNewModalOpen}
                />
                <DeleteProductModal
                   open={openDeleteModal}
@@ -49,7 +59,12 @@ const Products = () => {
                />
                <EditProductModal
                   open={openEditModal}
-                  onModalClose={handleEditModalClose}
+                  handleOnClose={handleEditModalClose}
+               />
+
+               <NewProductModal
+                  open={openNewModal}
+                  handleOnClose={handleNewModalClose}
                />
             </div>
          </div>

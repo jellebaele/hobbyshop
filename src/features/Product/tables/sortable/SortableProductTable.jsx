@@ -214,7 +214,11 @@ const rows = [
    },
 ];
 
-export default function SortableProductTable({ handleOnDelete, handleOnEdit }) {
+export default function SortableProductTable({
+   handleOnDelete,
+   handleOnEdit,
+   handleOnNew,
+}) {
    const [order, setOrder] = useState('asc');
    const [orderBy, setOrderBy] = useState('calories');
    const [page, setPage] = useState(0);
@@ -239,7 +243,9 @@ export default function SortableProductTable({ handleOnDelete, handleOnEdit }) {
       <div className="productTableExtendedContainer">
          <div className="tableTitleContainer">
             <h2>Producten</h2>
-            <Button startIcon={Add}>Nieuw</Button>
+            <Button startIcon={Add} onClick={handleOnNew}>
+               Nieuw
+            </Button>
          </div>
          <Paper className="paper">
             <TableContainer>

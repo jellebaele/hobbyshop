@@ -1,34 +1,15 @@
-import { Check, Clear, Delete, Edit } from '@mui/icons-material';
-import React from 'react';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import BasicModal from '../../../components/modal/basic/BasicModal';
-import './edit-product-modal.scss';
-import { useEffect } from 'react';
 import { TextareaAutosize } from '@mui/material';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import Dropdown from '../../../components/dropdown/Dropdown';
-import { Button } from '../../../components/button/Button';
-import { productFormOptions } from '../validation';
+import BasicModal from '../../../components/modal/basic/BasicModal';
 import { PRODUCT_STATUS } from '../constants';
-
-const productData = {
-   _id: 'qvq54vqz1ev3saze',
-   title: 'Appels',
-   description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum non, consequatur, officiis sed molestiae explicabo qui rem dolor nemo cumque molestias earum amet, recusandae ipsam in odit aliquam voluptatem nobis.',
-   category: 'Fruit',
-   amount: '5',
-   unit: 'stuks',
-   owner: 'Herman',
-   status: 'Inactive',
-   UpdatedAt: '20-07-2022',
-};
+import { productFormOptions } from '../validation';
+import './new-product-modal.scss';
 
 const users = ['Herman', 'Jana', 'Jelle'];
 
-const EditProductModal = ({ open, handleOnClose }) => {
-   const [edit, setEdit] = useState(false);
-   const [product, setProduct] = useState(productData);
+const NewProductModal = ({ open, handleOnClose }) => {
    const {
       register,
       handleSubmit,
@@ -38,29 +19,14 @@ const EditProductModal = ({ open, handleOnClose }) => {
       getValues,
    } = useForm(productFormOptions);
 
-   useEffect(() => {
-      reset(product);
-      setProduct(productData);
-   }, [product, reset]);
-
-   const handleDelete = () => {};
-   const handleEdit = () => {
-      setEdit(true);
-   };
-   const handleCancelEdit = () => {
-      setEdit(false);
-      reset();
-   };
-
    const onSubmit = (data) => {
       console.log(data);
    };
-
    return (
       <BasicModal
          open={open}
          handleOnClose={handleOnClose}
-         title="Product details"
+         title="Maak nieuw product"
       >
          <div className="productEditModalContainer">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -71,7 +37,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
                         <input
                            name="name"
                            type="text"
-                           disabled={!edit}
+                           disabled={false}
                            {...register('title')}
                         />
                         <div className="formInputError">
@@ -85,7 +51,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
                            name="category"
                            type="text"
                            className="productInput"
-                           disabled={!edit}
+                           disabled={false}
                            {...register('category')}
                         />
                         <div className="formInputError">
@@ -97,7 +63,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
                      <div className="inputGroup">
                         <TextareaAutosize
                            className="textAreaAutosize"
-                           disabled={!edit}
+                           disabled={false}
                            {...register('description')}
                            maxRows={10}
                         />
@@ -113,14 +79,14 @@ const EditProductModal = ({ open, handleOnClose }) => {
                               name="amount"
                               type="number"
                               className="amountInput"
-                              disabled={!edit}
+                              disabled={false}
                               {...register('amount')}
                            />
                            <input
                               name="amount"
                               type="text"
                               className="amountInput"
-                              disabled={!edit}
+                              disabled={false}
                               {...register('unit')}
                            />
                         </div>
@@ -137,7 +103,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
                            register={register}
                            name="status"
                            className={`customDropdown ${getValues('status')}`}
-                           disabled={!edit}
+                           disabled={false}
                         />
                         <div className="formInputError">
                            {errors.status?.message}
@@ -151,7 +117,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
                            onSelect={(newValue) => setValue('owner', newValue)}
                            register={register}
                            name="owner"
-                           disabled={!edit}
+                           disabled={false}
                         />
                         <div className="formInputError">
                            {errors.owner?.message}
@@ -160,7 +126,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
                   </div>
                </div>
 
-               <div className="bottom">
+               {/* <div className="bottom">
                   <div className="buttonContainer">
                      {!edit && (
                         <div className="buttonContainer">
@@ -184,11 +150,11 @@ const EditProductModal = ({ open, handleOnClose }) => {
                         </div>
                      )}
                   </div>
-               </div>
+                     </div>*/}
             </form>
          </div>
       </BasicModal>
    );
 };
 
-export default EditProductModal;
+export default NewProductModal;
