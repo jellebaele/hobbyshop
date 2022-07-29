@@ -1,8 +1,8 @@
 import React from 'react';
 import ConfirmModal from '../../../components/modal/confirm/ConfirmModal';
-import './delete.scss';
+import './delete-product-modal.scss';
 
-const ProductDeleteModal = ({ open, handleOnClose, handleOnDelete }) => {
+const DeleteProductModal = ({ open, handleOnClose, handleOnDelete }) => {
    return (
       <ConfirmModal
          title="Verwijder product"
@@ -14,4 +14,4 @@ const ProductDeleteModal = ({ open, handleOnClose, handleOnDelete }) => {
    );
 };
 
-export default ProductDeleteModal;
+export default DeleteProductModal;

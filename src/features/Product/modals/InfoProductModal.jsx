@@ -1,6 +1,6 @@
 import React from 'react';
 import BasicModal from '../../../components/modal/basic/BasicModal';
-import './product-info-modal.scss';
+import './info-product-modal.scss';
 import { Add, Remove, ShoppingBag } from '@mui/icons-material';
 import { useState } from 'react';
 import { IconButton } from '../../../components/button/IconButton';
@@ -22,7 +22,7 @@ const product = {
 
 const inStockTranslation = 'In voorraad';
 
-const ProductInfoModal = ({ open, onModalClose, productId }) => {
+const InfoProductModal = ({ open, onModalClose, productId }) => {
    let [amount, setAmount] = useState(0);
 
    const handleIncreaseAmount = () => {
@@ -110,4 +110,4 @@ const ProductInfoModal = ({ open, onModalClose, productId }) => {
    );
 };
 
-export default ProductInfoModal;
+export default InfoProductModal;

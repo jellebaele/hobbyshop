@@ -3,7 +3,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import BasicModal from '../../../components/modal/basic/BasicModal';
-import './edit.scss';
+import './edit-product-modal.scss';
 import { useEffect } from 'react';
 import { TextareaAutosize } from '@mui/material';
 import Dropdown from '../../../components/dropdown/Dropdown';
@@ -26,7 +26,7 @@ const productData = {
 
 const users = ['Herman', 'Jana', 'Jelle'];
 
-const ProductEditModal = ({ open, onModalClose }) => {
+const EditProductModal = ({ open, onModalClose }) => {
    const [edit, setEdit] = useState(false);
    const [product, setProduct] = useState(productData);
    const {
@@ -191,4 +191,4 @@ const ProductEditModal = ({ open, onModalClose }) => {
    );
 };
 
-export default ProductEditModal;
+export default EditProductModal;

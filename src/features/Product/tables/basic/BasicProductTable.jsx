@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import BasicTableHeader from '../../../../components/table/BasicTableHeader';
 import TableTitle from '../../../../components/table/TableTitle';
-import './basic-table.scss';
+import './basic-product-table.scss';
 import {
    productColumnLayoutDesktop,
    productColumnLayoutMobile,
 } from '../productTableLayout';
-import BasicProductRow from './BasicRow';
-import ProductInfoModal from '../../modals/ProductInfoModal';
+import BasicProductRow from './BasicProductRow';
+import InfoProductModal from '../../modals/InfoProductModal';
 
 const data = [
    {
@@ -71,7 +71,7 @@ const BasicProductTable = () => {
                </Table>
             </TableContainer>
          </div>
-         <ProductInfoModal
+         <InfoProductModal
             open={openInfoModal}
             onModalClose={handleModalClose}
             productId={productIdModal}

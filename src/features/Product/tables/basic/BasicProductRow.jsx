@@ -3,7 +3,7 @@ import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import { Button } from '../../../../components/button/Button';
-import './basic-row.scss';
+import './basic-product-row.scss';
 
 const BasicProductRow = ({ row, handleModalOpen }) => {
    const isMobile = useIsMobile();

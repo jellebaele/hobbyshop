@@ -6,7 +6,7 @@ import {
    TableRow,
 } from '@mui/material';
 import React from 'react';
-import './sub-table.scss';
+import './sub-product-table.scss';
 
 const SubProductTable = ({ products }) => {
    return (

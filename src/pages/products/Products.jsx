@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Header from '../../components/header/Header';
-import ProductDeleteModal from '../../features/Product/modals/Delete';
-import ProductEditModal from '../../features/Product/modals/Edit';
-import SortableProductTable from '../../features/Product/tables/sortable/SortableTable';
+import DeleteProductModal from '../../features/Product/modals/DeleteProductModal';
+import EditProductModal from '../../features/Product/modals/EditProductModal';
+import SortableProductTable from '../../features/Product/tables/sortable/SortableProductTable';
 import './products.scss';
 
 const Products = () => {
@@ -42,12 +42,12 @@ const Products = () => {
                   handleOnDelete={handleDeleteModalOpen}
                   handleOnEdit={handleEditModalOpen}
                />
-               <ProductDeleteModal
+               <DeleteProductModal
                   open={openDeleteModal}
                   handleOnClose={handleDeleteModalClose}
                   handleOnDelete={handleOnDelete}
                />
-               <ProductEditModal
+               <EditProductModal
                   open={openEditModal}
                   onModalClose={handleEditModalClose}
                />

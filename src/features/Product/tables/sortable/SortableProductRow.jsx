@@ -3,7 +3,7 @@ import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import { IconButton } from '../../../../components/button/IconButton';
 import { Status } from '../../../../components/status/Status';
-import './sortable-row.scss';
+import './sortable-product-row.scss';
 
 const SortableProductRow = ({ row, handleOnDelete, handleOnEdit }) => {
    return (
