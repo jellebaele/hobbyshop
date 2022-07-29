@@ -7,5 +7,12 @@
    .buttonContainer {
       display: flex;
       justify-content: flex-end;
+
+      .rowButton {
+         &:hover {
+            background-color: rgb(80, 80, 80);
+            color: white;
+         }
+      }
    }
 }
