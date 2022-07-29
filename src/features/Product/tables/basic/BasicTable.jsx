@@ -1,7 +1,6 @@
 import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import ProductInfoModal from '../../../../components/modal/product/ProductInfoModal';
 import BasicTableHeader from '../../../../components/table/BasicTableHeader';
 import TableTitle from '../../../../components/table/TableTitle';
 import './basic-table.scss';
@@ -10,6 +9,7 @@ import {
    productColumnLayoutMobile,
 } from '../productTableLayout';
 import BasicProductRow from './BasicRow';
+import ProductInfoModal from '../../modals/ProductInfoModal';
 
 const data = [
    {

@@ -1,11 +1,11 @@
 import React from 'react';
-import BasicModal from '../basic/BasicModal';
+import BasicModal from '../../../components/modal/basic/BasicModal';
 import './product-info-modal.scss';
 import { Add, Remove, ShoppingBag } from '@mui/icons-material';
 import { useState } from 'react';
-import { IconButton } from '../../button/IconButton';
-import { Button } from '../../button/Button';
-import { Status } from '../../status/Status';
+import { IconButton } from '../../../components/button/IconButton';
+import { Button } from '../../../components/button/Button';
+import { Status } from '../../../components/status/Status';
 
 const product = {
    _id: 'qvq54vqz1ev3saze',
