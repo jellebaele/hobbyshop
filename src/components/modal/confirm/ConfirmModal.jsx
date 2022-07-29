@@ -1,23 +1,26 @@
-import { Add } from '@mui/icons-material';
 import React from 'react';
-import { Button } from '../../elements/Button';
+import { Button } from '../../button/Button';
 import BasicModal from '../basic/BasicModal';
 import './confirm-modal.scss';
 
-const ConfirmModal = ({ open, onModalClose, handleOnConfirm }) => {
+const ConfirmModal = ({
+   open,
+   handleOnClose,
+   handleOnConfirm,
+   width = 'auto',
+   title,
+   description,
+}) => {
    return (
       <BasicModal
          open={open}
-         onModalClose={onModalClose}
-         title="Verwijder product"
-         width="auto"
+         onModalClose={handleOnClose}
+         title={title}
+         width={width}
       >
          <div className="confirmModalContainer">
-            <div className="confirmText">
-               {`Ben je zeker dat je product met naam 'Appel' wilt verwijderen?`}
-            </div>
+            <div className="confirmText">{description}</div>
             <div className="confirmModalButtonContainer">
-               <Button startIcon={Add}>Nieuw</Button>
                <Button onClick={() => handleOnConfirm(true)}>Ja</Button>
                <Button onClick={() => handleOnConfirm(false)}>Nee</Button>
             </div>

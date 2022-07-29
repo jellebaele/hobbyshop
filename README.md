@@ -73,9 +73,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 [] Generic product modal
 [] Generic order modal
-[] Constants / entities folder
-[] Generic button component
-[] Generic status component
+[x] Constants / entities folder
+[x] Generic button component
+[x] Generic status component
 [] Responsive products page
 [] Responsive orders page
 [] Toasters

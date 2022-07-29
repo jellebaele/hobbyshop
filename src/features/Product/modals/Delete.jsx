@@ -1,26 +1,16 @@
 import React from 'react';
-import { Button } from '../../../components/button/Button';
-import BasicModal from '../../../components/modal/basic/BasicModal';
+import ConfirmModal from '../../../components/modal/confirm/ConfirmModal';
 import './delete.scss';
 
-const ProductDeleteModal = ({ open, onModalClose, handleOnDelete }) => {
+const ProductDeleteModal = ({ open, handleOnClose, handleOnDelete }) => {
    return (
-      <BasicModal
-         open={open}
-         onModalClose={onModalClose}
+      <ConfirmModal
          title="Verwijder product"
-         width="auto"
-      >
-         <div className="confirmModalContainer">
-            <div className="confirmText">
-               {`Ben je zeker dat je product met naam 'Appel' wilt verwijderen?`}
-            </div>
-            <div className="confirmModalButtonContainer">
-               <Button onClick={() => handleOnDelete(true)}>Ja</Button>
-               <Button onClick={() => handleOnDelete(false)}>Nee</Button>
-            </div>
-         </div>
-      </BasicModal>
+         description="Ben je zeker dat je het product met de naam 'Appel' wilt verwijderen?"
+         open={open}
+         handleOnClose={handleOnClose}
+         handleOnConfirm={handleOnDelete}
+      />
    );
 };
 

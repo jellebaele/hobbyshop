@@ -44,7 +44,7 @@ const Products = () => {
                />
                <ProductDeleteModal
                   open={openDeleteModal}
-                  onModalClose={handleDeleteModalClose}
+                  handleOnClose={handleDeleteModalClose}
                   handleOnDelete={handleOnDelete}
                />
                <ProductEditModal
