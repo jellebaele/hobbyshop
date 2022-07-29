@@ -5,11 +5,9 @@ import { useForm } from 'react-hook-form';
 import BasicModal from '../../../components/modal/basic/BasicModal';
 import './edit-product-modal.scss';
 import { useEffect } from 'react';
-import { TextareaAutosize } from '@mui/material';
-import Dropdown from '../../../components/dropdown/Dropdown';
 import { Button } from '../../../components/button/Button';
 import { productFormOptions } from '../validation';
-import { PRODUCT_STATUS } from '../constants';
+import ProductBodyModal from './ProductBodyModal';
 
 const productData = {
    _id: 'qvq54vqz1ev3saze',
@@ -65,99 +63,14 @@ const EditProductModal = ({ open, handleOnClose }) => {
          <div className="productEditModalContainer">
             <form onSubmit={handleSubmit(onSubmit)}>
                <div className="top">
-                  <div className="inputGrid">
-                     <label>Naam:</label>
-                     <div className="inputGroup">
-                        <input
-                           name="name"
-                           type="text"
-                           disabled={!edit}
-                           {...register('title')}
-                        />
-                        <div className="formInputError">
-                           {errors.title?.message}
-                        </div>
-                     </div>
-
-                     <label>Categorie:</label>
-                     <div className="inputGroup">
-                        <input
-                           name="category"
-                           type="text"
-                           className="productInput"
-                           disabled={!edit}
-                           {...register('category')}
-                        />
-                        <div className="formInputError">
-                           {errors.category?.message}
-                        </div>
-                     </div>
-
-                     <label>Beschrijving:</label>
-                     <div className="inputGroup">
-                        <TextareaAutosize
-                           className="textAreaAutosize"
-                           disabled={!edit}
-                           {...register('description')}
-                           maxRows={10}
-                        />
-                        <div className="formInputError">
-                           {errors.description?.message}
-                        </div>
-                     </div>
-
-                     <label>Stock:</label>
-                     <div className="inputGroup">
-                        <div className="stockGroup">
-                           <input
-                              name="amount"
-                              type="number"
-                              className="amountInput"
-                              disabled={!edit}
-                              {...register('amount')}
-                           />
-                           <input
-                              name="amount"
-                              type="text"
-                              className="amountInput"
-                              disabled={!edit}
-                              {...register('unit')}
-                           />
-                        </div>
-                        <div className="formInputError">
-                           {errors.amount?.message}
-                        </div>
-                     </div>
-
-                     <label>Status:</label>
-                     <div className="inputGroup">
-                        <Dropdown
-                           options={PRODUCT_STATUS.values}
-                           onSelect={(newValue) => setValue('status', newValue)}
-                           register={register}
-                           name="status"
-                           className={`customDropdown ${getValues('status')}`}
-                           disabled={!edit}
-                        />
-                        <div className="formInputError">
-                           {errors.status?.message}
-                        </div>
-                     </div>
-
-                     <label>Eigenaar:</label>
-                     <div className="inputGroup">
-                        <Dropdown
-                           options={users}
-                           onSelect={(newValue) => setValue('owner', newValue)}
-                           register={register}
-                           name="owner"
-                           disabled={!edit}
-                        />
-                        <div className="formInputError">
-                           {errors.owner?.message}
-                        </div>
-                     </div>
-                  </div>
+                  <ProductBodyModal
+                     register={register}
+                     errors={errors}
+                     setValue={setValue}
+                     getValues={getValues}
+                     users={users}
+                     disabled={!edit}
+                  />
                </div>
 
                <div className="bottom">

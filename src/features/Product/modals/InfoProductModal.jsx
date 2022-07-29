@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import BasicModal from '../../../components/modal/basic/BasicModal';
 import './info-product-modal.scss';
 import { Add, Remove, ShoppingBag } from '@mui/icons-material';
 import { useState } from 'react';
 import { IconButton } from '../../../components/button/IconButton';
 import { Button } from '../../../components/button/Button';
-import { Status } from '../../../components/status/Status';
+import { useForm } from 'react-hook-form';
+import { productFormOptions } from '../validation';
+import ProductBodyModal from './ProductBodyModal';
 
-const product = {
+const productData = {
    _id: 'qvq54vqz1ev3saze',
    title: 'Appels',
    description:
@@ -16,25 +18,38 @@ const product = {
    amount: '5',
    unit: 'stuks',
    owner: 'Herman',
-   Status: 'inStock',
+   status: 'Inactive',
    UpdatedAt: '20-07-2022',
 };
 
-const inStockTranslation = 'In voorraad';
-
 const InfoProductModal = ({ open, handleOnClose, productId }) => {
+   const [product, setProduct] = useState(productData);
+   //  !! let?
    let [amount, setAmount] = useState(0);
+   const {
+      register,
+      handleSubmit,
+      reset,
+      formState: { errors },
+      setValue,
+      getValues,
+   } = useForm(productFormOptions);
+
+   useEffect(() => {
+      reset(product);
+      setProduct(productData);
+   }, [product, reset]);
 
    const handleIncreaseAmount = () => {
-      if (amount < product.amount) setAmount(++amount);
+      if (amount < productData.amount) setAmount(++amount);
    };
 
    const handleDecreaseAmount = () => {
       if (amount > 0) setAmount(--amount);
    };
 
-   const getProductStatus = () => {
-      if (product.Status === 'inStock') return inStockTranslation;
+   const onSubmit = (data) => {
+      console.log(data);
    };
    /**
     * _id
@@ -56,55 +71,47 @@ const InfoProductModal = ({ open, handleOnClose, productId }) => {
          title="Product details"
       >
          <div className="productInfoModalContainer">
-            <div className="top">
-               <div className="inputGrid">
-                  <span>Naam:</span>
-                  <span className="productDetail">{product.title}</span>
-                  <span>Categorie:</span>
-                  <span className="productDetail">{product.category}</span>
-                  <span>Beschrijving:</span>
-                  <span className="productDetail">{product.description}</span>
-                  <span>Stock:</span>
-                  <span className="productDetail">{`${product.amount} ${product.unit}`}</span>
-                  <span>Status:</span>
-                  <span className="productDetail">
-                     <Status status={product.Status}>
-                        {getProductStatus()}
-                     </Status>
-                  </span>
-                  <span>Eigenaar:</span>
-                  <span className="productDetail">{product.owner}</span>
+            <form onSubmit={handleSubmit(onSubmit)}>
+               <div className="top">
+                  <ProductBodyModal
+                     register={register}
+                     errors={errors}
+                     setValue={setValue}
+                     getValues={getValues}
+                     disabled={true}
+                  />
                </div>
-            </div>
 
-            <div className="bottom">
-               <div className="orderContainer">
-                  <div className="amountContainer">
-                     <IconButton
-                        onClick={handleDecreaseAmount}
-                        className="modalButton"
-                     >
-                        <Remove />
-                     </IconButton>
+               <div className="bottom">
+                  <div className="orderContainer">
+                     <div className="amountContainer">
+                        <IconButton
+                           onClick={handleDecreaseAmount}
+                           className="modalButton"
+                        >
+                           <Remove />
+                        </IconButton>
 
-                     <div className="amount">{amount}</div>
-                     <IconButton
-                        onClick={handleIncreaseAmount}
-                        className="modalButton"
+                        <div className="amount">{amount}</div>
+                        <IconButton
+                           onClick={handleIncreaseAmount}
+                           className="modalButton"
+                        >
+                           <Add />
+                        </IconButton>
+                     </div>
+
+                     <Button
+                        startIcon={ShoppingBag}
+                        className="orderButton"
+                        classNameIcon="orderIcon"
+                        type="submit"
                      >
-                        <Add />
-                     </IconButton>
+                        In winkelwagen
+                     </Button>
                   </div>
-
-                  <Button
-                     startIcon={ShoppingBag}
-                     className="orderButton"
-                     classNameIcon="orderIcon"
-                  >
-                     In winkelwagen
-                  </Button>
                </div>
-            </div>
+            </form>
          </div>
       </BasicModal>
    );

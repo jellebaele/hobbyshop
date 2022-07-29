@@ -43,7 +43,7 @@ const Dropdown = ({
             onClick={handleOnClick}
          />
          <div className={`dropdownContent ${open && 'active'}`}>
-            {options.map((option) => (
+            {options?.map((option) => (
                <span key={option} onClick={() => handleOnSelect(option)}>
                   {option}
                </span>
