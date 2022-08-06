@@ -1,6 +1,4 @@
-$phone-breakpoint: 480px;
-$tablet-breakpoint: 1024px;
-$light-blue: #18bdac;
+@import '../../variables.scss';
 
 .headerContainer {
    background-color: gray;
@@ -64,7 +62,7 @@ $light-blue: #18bdac;
       width: 60% !important;
 
       .title {
-         font-size: 24px !important;
+         font-size: 30px !important;
       }
 
       .pageTitle {

@@ -22,9 +22,9 @@
 }
 
 @media (max-width: $phone-breakpoint) {
-   .homeContainer {
-      width: calc(100% - $container-width-desktop) !important;
-      margin-left: $container-width-desktop !important;
+   .productsContainer {
+      width: calc(100% - $container-width-mobile) !important;
+      margin-left: $container-width-mobile !important;
 
       .bodyContainer {
          width: 90% !important;

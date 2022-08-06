@@ -71,17 +71,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # TODO
 
-[] Generic product modal
-[] Generic order modal
-[x] Constants / entities folder
-[x] Generic button component
-[x] Generic status component
-[] Responsive products page
-[] Responsive orders page
-[] Toasters
-[] Shopping cart
-[] Users page
-[] Profile page
-[] Login page
-[] Register page
-[] Fetch data from API
+-  [x] Generic product modal
+-  [x] Generic order modal
+-  [x] Constants / entities folder
+-  [x] Generic button component
+-  [x] Generic status component
+-  [x] auto size texarea
+-  [ ] Response home page
+-  [ ] Responsive products page
+   -  [ ] Responsive modals
+   -  [ ] Responsive table
+-  [ ] Responsive orders page
+-  [ ] Toasters
+-  [ ] Shopping cart
+-  [ ] Users page
+-  [ ] Profile page
+-  [ ] Login page
+-  [ ] Register page
+-  [ ] Fetch data from API

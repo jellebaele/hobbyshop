@@ -96,7 +96,7 @@ const BasicOrderTable = () => {
          </div>
          <InfoOrderModal
             open={openInfoModal}
-            onModalClose={handleModalClose}
+            handleOnClose={handleModalClose}
             orderId={orderIdModal}
          />
       </div>

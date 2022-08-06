@@ -36,6 +36,7 @@
 @media (max-width: $phone-breakpoint) {
    .boxModal {
       width: 85% !important;
+      max-height: 70vh;
       left: 50%;
    }
 }

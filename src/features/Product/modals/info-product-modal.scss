@@ -53,17 +53,15 @@ $tablet-breakpoint: 1024px;
 }
 
 @media (max-width: $tablet-breakpoint) {
-   .basicModalContainer {
-      .left {
-         margin-bottom: 10px;
+   .productInfoModalContainer {
+      .bottom {
+         .orderButton {
+            font-size: 16px;
+            padding: 10px !important;
+         }
       }
    }
 }
 
 @media (max-width: $phone-breakpoint) {
-   .basicModalContainer {
-      .left {
-         margin-bottom: 10px;
-      }
-   }
 }

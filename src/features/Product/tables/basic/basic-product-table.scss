@@ -1,6 +1,4 @@
-$phone-breakpoint: 480px;
-$tablet-breakpoint: 1024px;
-$light-blue: #18bdac;
+@import '../../../../variables.scss';
 
 .productTableContainer {
    .tableTitle {
