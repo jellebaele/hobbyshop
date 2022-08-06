@@ -1,4 +1,4 @@
-$phone-breakpoint: 480px;
+@import '../../../variables.scss';
 
 .boxModal {
    position: absolute;
@@ -35,7 +35,7 @@ $phone-breakpoint: 480px;
 
 @media (max-width: $phone-breakpoint) {
    .boxModal {
-      width: 85%;
-      left: (50%);
+      width: 85% !important;
+      left: 50%;
    }
 }

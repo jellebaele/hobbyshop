@@ -1,9 +1,8 @@
-$phone-breakpoint: 480px;
-$tablet-breakpoint: 1024px;
+@import '../../variables.scss';
 
 .homeContainer {
-   width: calc(100% - 56px);
-   margin-left: 56px;
+   width: calc(100% - $container-width-desktop);
+   margin-left: $container-width-desktop;
    display: flex;
    flex-direction: column;
 
@@ -24,6 +23,9 @@ $tablet-breakpoint: 1024px;
 
 @media (max-width: $phone-breakpoint) {
    .homeContainer {
+      width: calc(100% - $container-width-mobile) !important;
+      margin-left: $container-width-mobile !important;
+
       .bodyContainer {
          width: 90% !important;
       }
