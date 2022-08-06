@@ -1,6 +1,6 @@
-import { TextareaAutosize } from '@mui/material';
 import React from 'react';
 import Dropdown from '../../../components/dropdown/Dropdown';
+import Textarea from '../../../components/textarea/Textarea';
 import { PRODUCT_STATUS } from '../constants';
 import './product-body-modal.scss';
 
@@ -39,11 +39,13 @@ const ProductBodyModal = ({
 
          <label>Beschrijving:</label>
          <div className="inputGroup">
-            <TextareaAutosize
-               className="textAreaAutosize"
+            <Textarea
+               name="description"
+               onChange={(newValue) => setValue('description', newValue)}
+               register={register}
                disabled={disabled}
-               {...register('description')}
-               maxRows={10}
+               className="textarea"
+               initialValue={getValues('description')}
             />
             <div className="formInputError">{errors.description?.message}</div>
          </div>
@@ -90,6 +92,7 @@ const ProductBodyModal = ({
                register={register}
                name="owner"
                disabled={disabled}
+               className={`customDropdown ${disabled && 'disabled'}`}
             />
             <div className="formInputError">{errors.owner?.message}</div>
          </div>

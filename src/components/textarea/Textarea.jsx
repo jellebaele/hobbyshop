@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import useWindowSize from '../../hooks/useWindowSize';
+import './textarea.scss';
 
 const Textarea = ({ name, onChange, register, disabled, className }) => {
    const textareaRef = useRef(null);
@@ -6,18 +8,18 @@ const Textarea = ({ name, onChange, register, disabled, className }) => {
    const { ref, ...rest } = register(name, {
       onChange: (e) => setTextareaHeight(e),
    });
+   const windowSize = useWindowSize();
 
    const textAreaChange = (event) => {
       setValue(event.target.value);
       onChange(event.target.value);
    };
 
-   const setTextareaHeight = (e) => {
-      if (e && e.target) {
-         e.target.style.height = '0px';
-         const scrollHeight = e.target.scrollHeight;
-         console.log(scrollHeight);
-         e.target.style.height = scrollHeight + 'px';
+   const setTextareaHeight = (event) => {
+      if (event && event.target) {
+         event.target.style.height = '0px';
+         const scrollHeight = event.target.scrollHeight;
+         event.target.style.height = scrollHeight + 'px';
       }
    };
 
@@ -27,7 +29,7 @@ const Textarea = ({ name, onChange, register, disabled, className }) => {
          const scrollHeight = textareaRef.current.scrollHeight;
          textareaRef.current.style.height = scrollHeight + 'px';
       }
-   }, [value]);
+   }, [value, windowSize, disabled]);
 
    return (
       <textarea
@@ -38,10 +40,8 @@ const Textarea = ({ name, onChange, register, disabled, className }) => {
          onChange={textAreaChange}
          {...rest}
          disabled={disabled}
-         className={`${className}`}
-      >
-         {/* {value} */}
-      </textarea>
+         className={`textareaContainer ${className}`}
+      ></textarea>
    );
 };
 
