@@ -1,0 +1,37 @@
+@import '../../variables.scss';
+
+.myProductsContainer {
+   width: calc(100% - $container-width-desktop);
+   margin-left: $container-width-desktop;
+   display: flex;
+   flex-direction: column;
+
+   .bodyContainer {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      margin: auto;
+      margin-bottom: 20px;
+
+      .tableContainer {
+         margin-top: 20px;
+         padding: 20px;
+         border: 2px solid #757575;
+      }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .myProductsContainer {
+      width: calc(100% - $container-width-mobile) !important;
+      margin-left: $container-width-mobile !important;
+
+      .bodyContainer {
+         width: 95% !important;
+
+         .tableContainer {
+            padding: 15px;
+         }
+      }
+   }
+}

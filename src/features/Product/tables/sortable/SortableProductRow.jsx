@@ -1,7 +1,8 @@
-import { MoreVert } from '@mui/icons-material';
+import { MoreVert, ShoppingBag } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import { Button } from '../../../../components/button/Button';
+import { IconButton } from '../../../../components/button/IconButton';
 import { Status } from '../../../../components/status/Status';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import './sortable-product-row.scss';
@@ -25,12 +26,9 @@ const SortableProductRow = ({ row, handleOnDelete, handleOnEdit }) => {
             )}
             <TableCell align="right" sx={{ padding: '6px 10px' }}>
                <div className="buttonContainer">
-                  <Button
-                     className="rowButton more"
-                     onClick={() => handleOnEdit(row._id)}
-                  >
-                     <MoreVert />
-                  </Button>
+                  <IconButton className="rowButton more">
+                     <ShoppingBag />
+                  </IconButton>
                </div>
             </TableCell>
          </TableRow>
