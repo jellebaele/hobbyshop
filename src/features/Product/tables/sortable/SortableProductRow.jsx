@@ -1,8 +1,7 @@
-import { Delete, Edit, MoreVert } from '@mui/icons-material';
+import { MoreVert } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
 import { Button } from '../../../../components/button/Button';
-import { IconButton } from '../../../../components/button/IconButton';
 import { Status } from '../../../../components/status/Status';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import './sortable-product-row.scss';

@@ -1,9 +1,11 @@
 import {
    AccountCircle,
    Home,
+   Inventory,
    LocalOffer,
    Logout,
    ShoppingCart,
+   WorkHistory,
 } from '@mui/icons-material';
 
 const menuItems = [
@@ -13,18 +15,28 @@ const menuItems = [
       icon: <Home />,
    },
    {
-      title: 'Producten',
+      title: 'Alle producten',
       link: '/products',
       icon: <LocalOffer />,
    },
    {
-      title: 'Orders',
-      link: '/orders',
+      title: 'Mijn producten',
+      link: '/my-products',
+      icon: <Inventory />,
+   },
+   {
+      title: 'Winkelwagen',
+      link: '/shopping-cart',
       icon: <ShoppingCart />,
    },
    {
+      title: 'Orders',
+      link: '/orders',
+      icon: <WorkHistory />,
+   },
+   {
       title: 'Profiel',
-      link: '/profile',
+      link: '/my-profile',
       icon: <AccountCircle />,
    },
    {

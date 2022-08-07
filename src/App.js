@@ -5,6 +5,9 @@ import Orders from './pages/orders/Orders';
 import Products from './pages/products/Products';
 import './app.scss';
 import Sidebar from './components/sidebar/Sidebar';
+import MyProducts from './pages/my-products/MyProducts';
+import ShoppingCart from './pages/shopping-cart/ShoppingCart';
+import Profile from './pages/profile/Profile';
 
 function App() {
    const { pathname } = useLocation();
@@ -17,6 +20,9 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/products" element={<Products />} />
+            <Route path="/my-products" element={<MyProducts />} />
+            <Route path="/shopping-cart" element={<ShoppingCart />} />
+            <Route path="/my-profile" element={<Profile />} />
          </Routes>
       </div>
    );

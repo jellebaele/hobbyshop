@@ -8,8 +8,8 @@
    overflow: hidden;
    padding-top: 10px;
    color: rgba(0, 0, 0, 0.54);
-   width: 160px;
-   min-width: 160px;
+   width: 200px;
+   min-width: 200px;
    transition: all 0.75s ease;
    position: fixed;
    background-color: white;
@@ -74,6 +74,9 @@
 
 @media (max-width: $phone-breakpoint) {
    .sidebarContainer {
+      width: 180px;
+      min-width: 180px;
+
       &.closed {
          min-width: $container-width-mobile;
          width: $container-width-mobile;
