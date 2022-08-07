@@ -91,3 +91,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -  [ ] Login page
 -  [ ] Register page
 -  [ ] Fetch data from API
+
+# Goal
+
+-  Showcase all avaible products & order them
+   -  Products page
+   -  My products page -> edit
+   -  Shopping cart
+   -  Order shopping
+   -  Orders page
+      -  My orders
+      -  Orders that have to be processed
+   -  Profile page
+-  Overview orders that have to be processed
+-  Edit products
+-  Filter products & orders

@@ -60,3 +60,24 @@ export const productColumnExtendedLayoutDesktop = [
       label: '',
    },
 ];
+
+export const productColumnExtendedLayoutMobile = [
+   {
+      id: 'name',
+      numeric: false,
+      disablePadding: false,
+      label: 'Naam',
+   },
+   {
+      id: 'category',
+      numeric: false,
+      disablePadding: false,
+      label: 'Categorie',
+   },
+   {
+      id: 'buttons',
+      numeric: true,
+      disablePadding: false,
+      label: '',
+   },
+];

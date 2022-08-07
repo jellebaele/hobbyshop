@@ -9,9 +9,13 @@ import SortableTableHeader from '../../../../components/table/SortableTableHeade
 import { getComparator } from '../../../../components/table/utils/sort';
 import EmptyRows from '../../../../components/table/EmptyRows';
 import ProductRowExtended from './SortableProductRow';
-import { productColumnExtendedLayoutDesktop } from '../productTableLayout';
+import {
+   productColumnExtendedLayoutDesktop,
+   productColumnExtendedLayoutMobile,
+} from '../productTableLayout';
 import { Add } from '@mui/icons-material';
 import { Button } from '../../../../components/button/Button';
+import useIsMobile from '../../../../hooks/useIsMobile';
 
 const rows = [
    {
@@ -223,6 +227,13 @@ export default function SortableProductTable({
    const [orderBy, setOrderBy] = useState('calories');
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
+   const isMobile = useIsMobile();
+
+   const getColumnLayout = () => {
+      return isMobile
+         ? productColumnExtendedLayoutMobile
+         : productColumnExtendedLayoutDesktop;
+   };
 
    const handleRequestSort = (event, property) => {
       const isAsc = orderBy === property && order === 'asc';
@@ -254,7 +265,7 @@ export default function SortableProductTable({
                      order={order}
                      orderBy={orderBy}
                      onRequestSort={handleRequestSort}
-                     columns={productColumnExtendedLayoutDesktop}
+                     columns={getColumnLayout()}
                   />
                   <TableBody>
                      {rows
@@ -283,7 +294,7 @@ export default function SortableProductTable({
                </Table>
             </TableContainer>
             <TablePagination
-               rowsPerPageOptions={[5, 10, 25]}
+               rowsPerPageOptions={isMobile ? [10] : [5, 10, 25]}
                component="div"
                count={rows.length}
                rowsPerPage={rowsPerPage}

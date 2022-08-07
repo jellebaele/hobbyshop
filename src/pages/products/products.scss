@@ -27,7 +27,11 @@
       margin-left: $container-width-mobile !important;
 
       .bodyContainer {
-         width: 90% !important;
+         width: 95% !important;
+
+         .tableContainer {
+            padding: 15px;
+         }
       }
    }
 }
