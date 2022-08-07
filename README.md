@@ -78,6 +78,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -  [x] Generic status component
 -  [x] auto size texarea
 -  [ ] Response home page
+   -  [x] Products
+   -  [ ] Orders
 -  [ ] Responsive products page
    -  [ ] Responsive modals
    -  [ ] Responsive table
