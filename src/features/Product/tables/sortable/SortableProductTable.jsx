@@ -10,8 +10,10 @@ import ProductRowExtended from './SortableProductRow';
 import {
    productColumnExtendedLayoutDesktop,
    productColumnExtendedLayoutMobile,
+   productColumnExtendedLayoutTablet,
 } from '../productTableLayout';
 import useIsMobile from '../../../../hooks/useIsMobile';
+import useIsTablet from '../../../../hooks/useIsTablet';
 import TableTitle from '../../../../components/table/TableTitle';
 import SortableProductBody from './SortableProductBody';
 
@@ -228,11 +230,12 @@ export default function SortableProductTable({
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
    const isMobile = useIsMobile();
+   const isTablet = useIsTablet();
 
    const getColumnLayout = () => {
-      return isMobile
-         ? productColumnExtendedLayoutMobile
-         : productColumnExtendedLayoutDesktop;
+      if (isMobile) return productColumnExtendedLayoutMobile;
+      if (isTablet) return productColumnExtendedLayoutTablet;
+      return productColumnExtendedLayoutDesktop;
    };
 
    const handleRequestSort = (event, property) => {

@@ -52,7 +52,7 @@ const MyProducts = () => {
          <div className="bodyContainer">
             <div className="tableContainer">
                <SortableProductTable
-                  title={'Products'}
+                  title={'Mijn producten'}
                   titleButton={
                      <Button startIcon={Add} onClick={handleNewModalOpen}>
                         Nieuw

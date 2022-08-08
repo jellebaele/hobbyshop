@@ -61,6 +61,33 @@ export const productColumnExtendedLayoutDesktop = [
    },
 ];
 
+export const productColumnExtendedLayoutTablet = [
+   {
+      id: 'name',
+      numeric: false,
+      disablePadding: false,
+      label: 'Naam',
+   },
+   {
+      id: 'category',
+      numeric: false,
+      disablePadding: false,
+      label: 'Categorie',
+   },
+   {
+      id: 'status',
+      numeric: false,
+      disablePadding: false,
+      label: 'Status',
+   },
+   {
+      id: 'buttons',
+      numeric: true,
+      disablePadding: false,
+      label: '',
+   },
+];
+
 export const productColumnExtendedLayoutMobile = [
    {
       id: 'name',
