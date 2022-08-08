@@ -1,21 +1,20 @@
 import React, { useState } from 'react';
 import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TablePagination from '@mui/material/TablePagination';
 import Paper from '@mui/material/Paper';
 import './sortable-product-table.scss';
 import SortableTableHeader from '../../../../components/table/SortableTableHeader';
 import { getComparator } from '../../../../components/table/utils/sort';
-import EmptyRows from '../../../../components/table/EmptyRows';
 import ProductRowExtended from './SortableProductRow';
 import {
    productColumnExtendedLayoutDesktop,
    productColumnExtendedLayoutMobile,
 } from '../productTableLayout';
 import { Add } from '@mui/icons-material';
-import { Button } from '../../../../components/button/Button';
 import useIsMobile from '../../../../hooks/useIsMobile';
+import TableTitle from '../../../../components/table/TableTitle';
+import SortableProductBody from './SortableProductBody';
 
 const rows = [
    {
@@ -223,6 +222,8 @@ export default function SortableProductTable({
    handleOnEdit,
    handleOnNew,
 }) {
+   // title, rowButton, onRowClick, titleButton, onTitleClick
+
    const [order, setOrder] = useState('asc');
    const [orderBy, setOrderBy] = useState('calories');
    const [page, setPage] = useState(0);
@@ -252,12 +253,12 @@ export default function SortableProductTable({
 
    return (
       <div className="productTableExtendedContainer">
-         <div className="tableTitleContainer">
-            <h2>Producten</h2>
-            <Button startIcon={Add} onClick={handleOnNew}>
-               Nieuw
-            </Button>
-         </div>
+         <TableTitle
+            title="Producten"
+            buttonIcon={Add}
+            buttonText="Nieuw"
+            onButtonClick={handleOnNew}
+         />
          <Paper className="paper">
             <TableContainer>
                <Table size={'small'}>
@@ -267,30 +268,28 @@ export default function SortableProductTable({
                      onRequestSort={handleRequestSort}
                      columns={getColumnLayout()}
                   />
-                  <TableBody>
+
+                  <SortableProductBody
+                     rows={rows}
+                     page={page}
+                     rowsPerPage={rowsPerPage}
+                  >
                      {rows
                         .sort(getComparator(order, orderBy))
                         .slice(
                            page * rowsPerPage,
                            page * rowsPerPage + rowsPerPage
                         )
-                        .map((row, index) => {
+                        .map((row) => {
                            return (
                               <ProductRowExtended
                                  row={row}
-                                 handleOnDelete={handleOnDelete}
-                                 handleOnEdit={handleOnEdit}
+                                 onRowClick={handleOnEdit}
                                  key={row._id}
                               />
                            );
                         })}
-
-                     <EmptyRows
-                        page={page}
-                        rowsPerPage={rowsPerPage}
-                        amountOfRows={rows.length}
-                     />
-                  </TableBody>
+                  </SortableProductBody>
                </Table>
             </TableContainer>
             <TablePagination

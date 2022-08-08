@@ -52,6 +52,7 @@ const Products = () => {
                   handleOnEdit={handleEditModalOpen}
                   handleOnNew={handleNewModalOpen}
                />
+
                <DeleteProductModal
                   open={openDeleteModal}
                   handleOnClose={handleDeleteModalClose}

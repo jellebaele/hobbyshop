@@ -9,7 +9,7 @@ import {
    orderColumnLayoutTablet,
 } from '../orderTableLayout';
 import useIsTablet from '../../../../hooks/useIsTablet';
-import TableTitle from '../../../../components/table/TableTitle';
+import TableTitleLink from '../../../../components/table/TableTitleLink';
 import BasicOrderRow from './BasicOrderRow';
 import InfoOrderModal from '../../modals/InfoOrderModel';
 
@@ -77,7 +77,7 @@ const BasicOrderTable = () => {
 
    return (
       <div className="orderTableContainer">
-         <TableTitle title="Orders" to="/orders" className="tableTitle" />
+         <TableTitleLink title="Orders" to="/orders" className="tableTitle" />
          <div className="tableContainerWrapper">
             <TableContainer component={Paper}>
                <Table size={isMobile ? 'small' : 'medium'}>

@@ -7,7 +7,7 @@ import { Status } from '../../../../components/status/Status';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import './sortable-product-row.scss';
 
-const SortableProductRow = ({ row, handleOnDelete, handleOnEdit }) => {
+const SortableProductRow = ({ row, onRowClick }) => {
    const isMobile = useIsMobile();
 
    return (
@@ -26,7 +26,7 @@ const SortableProductRow = ({ row, handleOnDelete, handleOnEdit }) => {
             )}
             <TableCell align="right" sx={{ padding: '6px 10px' }}>
                <div className="buttonContainer">
-                  <IconButton className="rowButton more">
+                  <IconButton className="rowButton more" onClick={onRowClick}>
                      <ShoppingBag />
                   </IconButton>
                </div>

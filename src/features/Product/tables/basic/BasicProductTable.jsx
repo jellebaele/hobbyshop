@@ -2,7 +2,7 @@ import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import BasicTableHeader from '../../../../components/table/BasicTableHeader';
-import TableTitle from '../../../../components/table/TableTitle';
+import TableTitleLink from '../../../../components/table/TableTitleLink';
 import './basic-product-table.scss';
 import {
    productColumnLayoutDesktop,
@@ -54,7 +54,11 @@ const BasicProductTable = () => {
 
    return (
       <div className="productTableContainer">
-         <TableTitle title="Producten" to="/products" className="tableTitle" />
+         <TableTitleLink
+            title="Producten"
+            to="/products"
+            className="tableTitle"
+         />
          <div className="tableContainerWrapper">
             <TableContainer component={Paper}>
                <Table size={isMobile ? 'small' : 'medium'}>
