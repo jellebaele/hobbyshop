@@ -1,13 +1,10 @@
-import { MoreVert, ShoppingBag } from '@mui/icons-material';
 import { TableCell, TableRow } from '@mui/material';
 import React from 'react';
-import { Button } from '../../../../components/button/Button';
-import { IconButton } from '../../../../components/button/IconButton';
 import { Status } from '../../../../components/status/Status';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import './sortable-product-row.scss';
 
-const SortableProductRow = ({ row, onRowClick }) => {
+const SortableProductRow = ({ row, children }) => {
    const isMobile = useIsMobile();
 
    return (
@@ -26,9 +23,11 @@ const SortableProductRow = ({ row, onRowClick }) => {
             )}
             <TableCell align="right" sx={{ padding: '6px 10px' }}>
                <div className="buttonContainer">
-                  <IconButton className="rowButton more" onClick={onRowClick}>
-                     <ShoppingBag />
-                  </IconButton>
+                  {children}
+
+                  {/* <IconButton className="rowButton more" onClick={onRowClick}>
+                     {rowIcon}
+                  </IconButton> */}
                </div>
             </TableCell>
          </TableRow>

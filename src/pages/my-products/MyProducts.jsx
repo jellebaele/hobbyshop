@@ -4,7 +4,10 @@ import DeleteProductModal from '../../features/Product/modals/DeleteProductModal
 import EditProductModal from '../../features/Product/modals/EditProductModal';
 import NewProductModal from '../../features/Product/modals/NewProductModal';
 import SortableProductTable from '../../features/Product/tables/sortable/SortableProductTable';
+import { IconButton } from '../../components/button/IconButton';
 import './my-products.scss';
+import { Add, Edit } from '@mui/icons-material';
+import { Button } from '../../components/button/Button';
 
 const MyProducts = () => {
    const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -20,10 +23,11 @@ const MyProducts = () => {
       setOpenEditModal(false);
    };
 
-   const handleDeleteModalOpen = (id) => {
-      setProductId(id);
-      setOpenDeleteModal(true);
-   };
+   // const handleDeleteModalOpen = (id) => {
+   //    setProductId(id);
+   //    setOpenDeleteModal(true);
+   // };
+
    const handleEditModalOpen = (id) => {
       setProductId(id);
       setOpenEditModal(true);
@@ -44,14 +48,26 @@ const MyProducts = () => {
 
    return (
       <div className="myProductsContainer">
-         <Header pageTitle="Producten" />
+         <Header pageTitle="Mijn producten" />
          <div className="bodyContainer">
             <div className="tableContainer">
                <SortableProductTable
-                  handleOnDelete={handleDeleteModalOpen}
-                  handleOnEdit={handleEditModalOpen}
-                  handleOnNew={handleNewModalOpen}
+                  title={'Products'}
+                  titleButton={
+                     <Button startIcon={Add} onClick={handleNewModalOpen}>
+                        Nieuw
+                     </Button>
+                  }
+                  rowButton={
+                     <IconButton
+                        onClick={handleEditModalOpen}
+                        className="rowButton"
+                     >
+                        <Edit />
+                     </IconButton>
+                  }
                />
+
                <DeleteProductModal
                   open={openDeleteModal}
                   handleOnClose={handleDeleteModalClose}

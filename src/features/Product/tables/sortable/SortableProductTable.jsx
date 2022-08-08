@@ -11,7 +11,6 @@ import {
    productColumnExtendedLayoutDesktop,
    productColumnExtendedLayoutMobile,
 } from '../productTableLayout';
-import { Add } from '@mui/icons-material';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import TableTitle from '../../../../components/table/TableTitle';
 import SortableProductBody from './SortableProductBody';
@@ -218,9 +217,9 @@ const rows = [
 ];
 
 export default function SortableProductTable({
-   handleOnDelete,
-   handleOnEdit,
-   handleOnNew,
+   title,
+   titleButton,
+   rowButton,
 }) {
    // title, rowButton, onRowClick, titleButton, onTitleClick
 
@@ -253,12 +252,7 @@ export default function SortableProductTable({
 
    return (
       <div className="productTableExtendedContainer">
-         <TableTitle
-            title="Producten"
-            buttonIcon={Add}
-            buttonText="Nieuw"
-            onButtonClick={handleOnNew}
-         />
+         <TableTitle title={title}>{titleButton}</TableTitle>
          <Paper className="paper">
             <TableContainer>
                <Table size={'small'}>
@@ -282,11 +276,9 @@ export default function SortableProductTable({
                         )
                         .map((row) => {
                            return (
-                              <ProductRowExtended
-                                 row={row}
-                                 onRowClick={handleOnEdit}
-                                 key={row._id}
-                              />
+                              <ProductRowExtended row={row} key={row._id}>
+                                 {rowButton}
+                              </ProductRowExtended>
                            );
                         })}
                   </SortableProductBody>

@@ -1,46 +1,13 @@
+import { ShoppingBag } from '@mui/icons-material';
 import React, { useState } from 'react';
+import { IconButton } from '../../components/button/IconButton';
 import Header from '../../components/header/Header';
-import DeleteProductModal from '../../features/Product/modals/DeleteProductModal';
-import EditProductModal from '../../features/Product/modals/EditProductModal';
-import NewProductModal from '../../features/Product/modals/NewProductModal';
 import SortableProductTable from '../../features/Product/tables/sortable/SortableProductTable';
+import InfoProductModal from '../../features/Product/modals/InfoProductModal';
 import './products.scss';
 
 const Products = () => {
-   const [openDeleteModal, setOpenDeleteModal] = useState(false);
-   const [openEditModal, setOpenEditModal] = useState(false);
-   const [openNewModal, setOpenNewModal] = useState(false);
-   const [productId, setProductId] = useState(undefined);
-
-   const handleDeleteModalClose = () => {
-      setOpenDeleteModal(false);
-   };
-
-   const handleEditModalClose = () => {
-      setOpenEditModal(false);
-   };
-
-   const handleDeleteModalOpen = (id) => {
-      setProductId(id);
-      setOpenDeleteModal(true);
-   };
-   const handleEditModalOpen = (id) => {
-      setProductId(id);
-      setOpenEditModal(true);
-   };
-
-   const handleOnDelete = (deleteProduct) => {
-      if (deleteProduct) console.log('delete product' + productId);
-      if (!deleteProduct) console.log('do not delete');
-      setOpenDeleteModal(false);
-   };
-
-   const handleNewModalOpen = () => {
-      setOpenNewModal(true);
-   };
-   const handleNewModalClose = () => {
-      setOpenNewModal(false);
-   };
+   const [openModal, setOpenModal] = useState(false);
 
    return (
       <div className="productsContainer">
@@ -48,24 +15,17 @@ const Products = () => {
          <div className="bodyContainer">
             <div className="tableContainer">
                <SortableProductTable
-                  handleOnDelete={handleDeleteModalOpen}
-                  handleOnEdit={handleEditModalOpen}
-                  handleOnNew={handleNewModalOpen}
+                  title="Producten"
+                  rowButton={
+                     <IconButton onClick={() => setOpenModal(true)}>
+                        <ShoppingBag />
+                     </IconButton>
+                  }
                />
 
-               <DeleteProductModal
-                  open={openDeleteModal}
-                  handleOnClose={handleDeleteModalClose}
-                  handleOnDelete={handleOnDelete}
-               />
-               <EditProductModal
-                  open={openEditModal}
-                  handleOnClose={handleEditModalClose}
-               />
-
-               <NewProductModal
-                  open={openNewModal}
-                  handleOnClose={handleNewModalClose}
+               <InfoProductModal
+                  open={openModal}
+                  handleOnClose={() => setOpenModal(false)}
                />
             </div>
          </div>

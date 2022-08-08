@@ -17,6 +17,12 @@
          margin-top: 20px;
          padding: 20px;
          border: 2px solid #757575;
+
+         .rowButton {
+            &:hover {
+               color: white;
+            }
+         }
       }
    }
 }
