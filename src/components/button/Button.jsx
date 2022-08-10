@@ -8,15 +8,20 @@ export const Button = ({
    className,
    classNameIcon,
    children,
+   width,
    type = 'button',
 }) => {
    return (
-      <div className={`customButtonContainer`} onClick={onClick}>
+      <div
+         className={`customButtonContainer`}
+         onClick={onClick}
+         style={width && { width: width }}
+      >
          <button type={type} className={className}>
             {StartIcon && (
                <StartIcon className={`startIcon ${classNameIcon}`} />
             )}
-            {children}
+            <div className="textContainer">{children}</div>
             {EndIcon && <EndIcon className={`endIcon ${classNameIcon}`} />}
          </button>
       </div>
