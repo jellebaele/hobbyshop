@@ -15,6 +15,11 @@
       background-color: rgba(189, 189, 3, 0.103);
    }
 
+   &.processing {
+      color: #2c5470;
+      background: #5aa3b9;
+   }
+
    &.inactive {
       color: crimson;
       background-color: rgba(220, 20, 60, 0.068);
