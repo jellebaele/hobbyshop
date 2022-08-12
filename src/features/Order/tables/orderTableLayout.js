@@ -72,3 +72,51 @@ export const desktopSortable = [
       label: '',
    },
 ];
+
+export const tabletSortable = [
+   {
+      id: '_id',
+      numeric: false,
+      disablePadding: false,
+      label: 'Order Id',
+   },
+   {
+      id: 'status',
+      numeric: false,
+      disablePadding: false,
+      label: 'Status',
+   },
+   {
+      id: 'dateUpdated',
+      numeric: false,
+      disablePadding: false,
+      label: 'Datum',
+   },
+   {
+      id: 'buttons',
+      numeric: true,
+      disablePadding: false,
+      label: '',
+   },
+];
+
+export const mobileSortable = [
+   {
+      id: '_id',
+      numeric: false,
+      disablePadding: false,
+      label: 'Order Id',
+   },
+   {
+      id: 'status',
+      numeric: false,
+      disablePadding: false,
+      label: 'Status',
+   },
+   {
+      id: 'buttons',
+      numeric: true,
+      disablePadding: false,
+      label: '',
+   },
+];
