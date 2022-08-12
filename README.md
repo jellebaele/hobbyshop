@@ -77,6 +77,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -  [x] Generic button component
 -  [x] Generic status component
 -  [x] auto size texarea
+-  [ ] Dropdown component
+   -  [ ] Support status
 -  [x] Responsive home page
    -  [x] Products
    -  [x] Orders
@@ -85,9 +87,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
    -  [x] Responsive modals
    -  [x] Responsive table
 -  [x] Responsive my products page
--  [ ] Responsive orders page
-   -  [ ] Response modals
+-  [x] Responsive orders page
+   -  [x] Response modals
    -  [x] Responsive table
+-  Edit product modal
+   -  [ ] Open product on table click
 -  [ ] Toasters
 -  [x] Shopping cart
 -  [ ] Profile page

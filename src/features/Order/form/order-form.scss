@@ -33,3 +33,19 @@
       }
    }
 }
+
+@media (max-width: $tablet-breakpoint) {
+   .orderFormContainer {
+      .inputGrid {
+         display: flex;
+         flex-direction: column;
+
+         .orderProducts {
+            .productOverviewTable {
+               margin-top: 0px;
+               margin-left: 0px;
+            }
+         }
+      }
+   }
+}
