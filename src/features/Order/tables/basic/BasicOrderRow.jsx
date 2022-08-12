@@ -26,11 +26,9 @@ const BasicOrderRow = ({ row, handleModalOpen }) => {
                <Status status={row.status} />
             </TableCell>
             <TableCell align="right">
-               <div className="buttonContainer">
-                  <IconButton className="button">
-                     <MoreVert />
-                  </IconButton>
-               </div>
+               <IconButton className="button">
+                  <MoreVert />
+               </IconButton>
             </TableCell>
          </TableRow>
       </>

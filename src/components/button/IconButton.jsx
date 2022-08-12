@@ -13,7 +13,7 @@ export const IconButton = ({
          className={`iconButton ${className ? className : ''}`}
          onClick={onClick}
       >
-         <div className="iconContainer">{children}</div>
+         {children}
       </button>
    );
 };

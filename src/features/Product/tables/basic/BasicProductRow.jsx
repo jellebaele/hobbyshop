@@ -19,11 +19,9 @@ const BasicProductRow = ({ row, handleModalOpen }) => {
             <TableCell>{row.category}</TableCell>
             {!isMobile && <TableCell>{`${row.amount} ${row.unit}`}</TableCell>}
             <TableCell align="right">
-               <div className="buttonContainer">
-                  <IconButton>
-                     <ShoppingBag />
-                  </IconButton>
-               </div>
+               <IconButton className="button">
+                  <ShoppingBag />
+               </IconButton>
             </TableCell>
          </TableRow>
       </>

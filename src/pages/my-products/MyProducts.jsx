@@ -53,10 +53,7 @@ const MyProducts = () => {
                      </Button>
                   }
                   rowButton={
-                     <IconButton
-                        onClick={handleEditModalOpen}
-                        className="rowButton"
-                     >
+                     <IconButton onClick={handleEditModalOpen}>
                         <Edit />
                      </IconButton>
                   }

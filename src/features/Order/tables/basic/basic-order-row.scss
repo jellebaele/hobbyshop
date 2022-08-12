@@ -1,15 +1,7 @@
-$phone-breakpoint: 480px;
-
 .tableRowContainer {
    cursor: pointer;
 
-   .buttonContainer {
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-
-      .button {
-         border: none;
-      }
+   .button {
+      border: none;
    }
 }
