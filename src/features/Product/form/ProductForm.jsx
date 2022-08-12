@@ -8,7 +8,14 @@ import { PRODUCT_STATUS } from '../constants';
 import { productFormOptions } from '../validation';
 import './edit-product-form-container.scss';
 
-const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
+const ProductForm = ({
+   product,
+   edit,
+   users,
+   onSubmit,
+   onCancelEdit,
+   confirmText,
+}) => {
    const {
       register,
       handleSubmit,
@@ -104,10 +111,13 @@ const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
          </div>
 
          {edit && (
-            <ConfirmForm confirmText="Update" onCancel={handleCancelEdit} />
+            <ConfirmForm
+               confirmText={confirmText}
+               onCancel={handleCancelEdit}
+            />
          )}
       </form>
    );
 };
 
-export default EditProductForm;
+export default ProductForm;

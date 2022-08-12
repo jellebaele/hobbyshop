@@ -1,15 +1,10 @@
 import { Delete, Edit } from '@mui/icons-material';
 import React from 'react';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import BasicModal from '../../../components/modal/basic/BasicModal';
 import './edit-product-modal.scss';
-import { useEffect } from 'react';
 import { Button } from '../../../components/button/Button';
-import { productFormOptions } from '../validation';
-import ProductBodyModal from './ProductBodyModal';
-import ConfirmForm from '../../../components/form/ConfirmForm';
-import EditProductForm from '../form/EditProductForm';
+import ProductForm from '../form/ProductForm';
 
 const productData = {
    _id: 'qvq54vqz1ev3saze',
@@ -28,26 +23,11 @@ const users = ['Herman', 'Jana', 'Jelle'];
 
 const EditProductModal = ({ open, handleOnClose }) => {
    const [edit, setEdit] = useState(false);
-   const [product, setProduct] = useState(productData);
-   const {
-      register,
-      handleSubmit,
-      reset,
-      formState: { errors },
-      setValue,
-      getValues,
-   } = useForm(productFormOptions);
-
-   useEffect(() => {
-      reset(product);
-      setProduct(productData);
-   }, [product, reset]);
 
    const handleDelete = () => {};
 
    const handleCancelEdit = () => {
       setEdit(false);
-      // reset();
    };
 
    const onSubmit = (data) => {
@@ -61,24 +41,14 @@ const EditProductModal = ({ open, handleOnClose }) => {
          title="Product details"
       >
          <div className="productEditModalContainer">
-            <EditProductForm
+            <ProductForm
                product={productData}
                edit={edit}
                users={users}
                onSubmit={onSubmit}
                onCancelEdit={handleCancelEdit}
+               confirmText="Update"
             />
-            {/* <form onSubmit={handleSubmit(onSubmit)}>
-               <div className="top">
-                  <ProductBodyModal
-                     register={register}
-                     errors={errors}
-                     setValue={setValue}
-                     getValues={getValues}
-                     users={users}
-                     disabled={!edit}
-                  />
-               </div> */}
 
             {!edit && (
                <div className="buttonContainer">
@@ -98,7 +68,6 @@ const EditProductModal = ({ open, handleOnClose }) => {
                   </Button>
                </div>
             )}
-            {/* </form> */}
          </div>
       </BasicModal>
    );
