@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { IconButton } from '../../components/button/IconButton';
 import Header from '../../components/header/Header';
 import SortableProductTable from '../../features/Product/tables/sortable/SortableProductTable';
-import InfoProductModal from '../../features/Product/modals/InfoProductModal';
+import OrderProductModal from '../../features/Product/modals/OrderProductModal';
 import './products.scss';
 
 const Products = () => {
@@ -23,7 +23,7 @@ const Products = () => {
                   }
                />
 
-               <InfoProductModal
+               <OrderProductModal
                   open={openModal}
                   handleOnClose={() => setOpenModal(false)}
                />

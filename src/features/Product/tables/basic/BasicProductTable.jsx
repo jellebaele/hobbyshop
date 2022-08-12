@@ -9,7 +9,7 @@ import {
    productColumnLayoutMobile,
 } from '../productTableLayout';
 import BasicProductRow from './BasicProductRow';
-import InfoProductModal from '../../modals/InfoProductModal';
+import OrderProductModal from '../../modals/OrderProductModal';
 
 const data = [
    {
@@ -75,7 +75,7 @@ const BasicProductTable = () => {
                </Table>
             </TableContainer>
          </div>
-         <InfoProductModal
+         <OrderProductModal
             open={openInfoModal}
             handleOnClose={handleOnModalClose}
             productId={productIdModal}
