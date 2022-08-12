@@ -29,10 +29,12 @@ const rows = [
       products: [
          {
             productId: '33q1q3qs89t',
+            productName: 'Biefstuk',
             amount: 3,
          },
          {
             productId: 'qqs46q4svgndgqsbs',
+            productName: 'Wortel',
             amount: 1,
          },
       ],

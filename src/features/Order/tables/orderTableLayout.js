@@ -42,7 +42,7 @@ export const tableBasic = [
 export const desktopSortable = [
    { id: 'collaps', numeric: false, disablePadding: false, label: '' },
    {
-      id: 'orderId',
+      id: '_id',
       numeric: false,
       disablePadding: false,
       label: 'Order Id',
@@ -60,7 +60,7 @@ export const desktopSortable = [
       label: 'Status',
    },
    {
-      id: 'date',
+      id: 'dateUpdated',
       numeric: false,
       disablePadding: false,
       label: 'Datum',
