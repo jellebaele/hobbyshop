@@ -2,7 +2,7 @@ import { Paper, Table, TableContainer, TablePagination } from '@mui/material';
 import React, { useState } from 'react';
 import SortableTableBody from './SortableTableBody';
 import useIsMobile from '../../../hooks/useIsMobile';
-import SortableTableHeader from '../SortableTableHeader';
+import SortableTableHeader from './SortableTableHeader';
 import { getComparator } from '../utils/sort';
 
 const SortableTable = ({
