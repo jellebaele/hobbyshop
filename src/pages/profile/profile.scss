@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+.profileContainer {
+   width: calc(100% - $container-width-desktop);
+   margin-left: $container-width-desktop;
+   display: flex;
+   flex-direction: column;
+
+   .bodyContainer {
+      display: flex;
+      flex-direction: column;
+      width: 80%;
+      margin: auto;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 2px solid #a1a1a1;
+   }
+}

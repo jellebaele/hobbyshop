@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+$padding: 10px;
+
+.userOverviewContainer {
+   .profileData {
+      .formRow {
+         display: flex;
+         justify-content: space-between;
+      }
+
+      .buttonContainer {
+         display: flex;
+         padding: $padding;
+         justify-content: center;
+
+         .button {
+            margin-left: 10px !important;
+         }
+      }
+   }
+}

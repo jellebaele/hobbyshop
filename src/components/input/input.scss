@@ -1,0 +1,8 @@
+.customInput {
+   &:disabled {
+      border: none !important;
+      background-color: transparent !important;
+      color: rgb(66, 66, 66);
+      padding: 5px;
+   }
+}

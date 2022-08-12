@@ -14,10 +14,9 @@ export const Button = ({
    return (
       <div
          className={`customButtonContainer`}
-         onClick={onClick}
          style={width && { width: width }}
       >
-         <button type={type} className={className}>
+         <button type={type} className={className} onClick={onClick}>
             {StartIcon && (
                <StartIcon className={`startIcon ${classNameIcon}`} />
             )}
