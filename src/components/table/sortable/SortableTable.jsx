@@ -57,11 +57,9 @@ const SortableTable = ({
                         )
                         .map((row) => {
                            return (
-                              <Row row={row}>{rowButton}</Row>
-
-                              //   <ProductRowExtended row={row} key={row._id}>
-                              //      {rowButton}
-                              //   </ProductRowExtended>
+                              <Row row={row} key={row._id}>
+                                 {rowButton}
+                              </Row>
                            );
                         })}
                   </SortableTableBody>

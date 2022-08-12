@@ -29,7 +29,16 @@ const Orders = () => {
             </CollapsibleContainer>
 
             <CollapsibleContainer title="Alle orders">
-               <SortableOrderTable />
+               <SortableOrderTable
+                  rowButton={
+                     <IconButton
+                        onClick={handleEditModalOpen}
+                        className="rowButton"
+                     >
+                        <Edit />
+                     </IconButton>
+                  }
+               />
             </CollapsibleContainer>
          </div>
       </div>

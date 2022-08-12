@@ -1,9 +1,8 @@
-import { Paper, Table, TableContainer, TablePagination } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import SortableTable from '../../../../components/table/sortable/SortableTable';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import { desktopSortable } from '../orderTableLayout';
-import OrderRowSortable from './OrderRowSortable';
+import SortableOrderRow from './SortableOrderRow';
 
 const rows = [
    {
@@ -55,7 +54,7 @@ const SortableOrderTable = ({ rowButton }) => {
             rows={rows}
             initialOrder="user"
             getColumnLayout={getColumnLayout}
-            Row={OrderRowSortable}
+            Row={SortableOrderRow}
             rowButton={rowButton}
          />
       </div>

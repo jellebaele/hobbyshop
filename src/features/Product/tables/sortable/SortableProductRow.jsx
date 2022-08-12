@@ -11,7 +11,7 @@ const SortableProductRow = ({ row, children }) => {
 
    return (
       <>
-         <TableRow tabIndex={-1} className="productRowExtendedContainer">
+         <TableRow tabIndex={-1} className="sortableProductRowContainer">
             <TableCell component="th" scope="row" padding="normal">
                {row.name}
             </TableCell>
@@ -24,13 +24,7 @@ const SortableProductRow = ({ row, children }) => {
                </TableCell>
             )}
             <TableCell align="right" sx={{ padding: '6px 10px' }}>
-               <div className="buttonContainer">
-                  {children}
-
-                  {/* <IconButton className="rowButton more" onClick={onRowClick}>
-                     {rowIcon}
-                  </IconButton> */}
-               </div>
+               <div className="buttonContainer">{children}</div>
             </TableCell>
          </TableRow>
       </>

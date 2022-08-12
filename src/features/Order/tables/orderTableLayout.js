@@ -40,6 +40,7 @@ export const tableBasic = [
 ];
 
 export const desktopSortable = [
+   { id: 'collaps', numeric: false, disablePadding: false, label: '' },
    {
       id: 'orderId',
       numeric: false,
