@@ -8,10 +8,12 @@ export const IconButton = ({
    type = 'button',
 }) => {
    return (
-      <div className="iconButton" onClick={onClick}>
-         <button type={type} className={className}>
-            {children}
-         </button>
-      </div>
+      <button
+         type={type}
+         className={`iconButton ${className ? className : ''}`}
+         onClick={onClick}
+      >
+         <div className="iconContainer">{children}</div>
+      </button>
    );
 };

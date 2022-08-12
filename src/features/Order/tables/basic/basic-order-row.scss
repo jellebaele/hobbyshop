@@ -7,20 +7,9 @@ $phone-breakpoint: 480px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
-   }
 
-   @media (max-width: $phone-breakpoint) {
-      .buttonContainer {
-         button {
-            padding: 3px;
-            font-size: 10px;
-            margin-left: 3px;
-            border: rgb(80, 80, 80) 1.5px solid;
-         }
-
-         .icon {
-            font-size: 8px !important;
-         }
+      .button {
+         border: none;
       }
    }
 }

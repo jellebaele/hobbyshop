@@ -21,7 +21,11 @@ export const desktopBasic = [
 export const mobileBasic = [
    {
       id: 'orderId',
-      label: 'Order id',
+      label: 'Order Id',
+   },
+   {
+      id: 'status',
+      label: 'Status',
    },
    {},
 ];

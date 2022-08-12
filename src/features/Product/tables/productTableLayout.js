@@ -19,6 +19,10 @@ export const mobileBasic = [
       id: 'name',
       label: 'Naam',
    },
+   {
+      id: 'category',
+      label: 'Categorie',
+   },
    {},
 ];
 
