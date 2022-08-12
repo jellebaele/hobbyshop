@@ -1,7 +1,12 @@
 import React from 'react';
 import SortableTable from '../../../../components/table/sortable/SortableTable';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import { desktopSortable } from '../orderTableLayout';
+import useIsTablet from '../../../../hooks/useIsTablet';
+import {
+   desktopSortable,
+   mobileSortable,
+   tabletSortable,
+} from '../orderTableLayout';
 import SortableOrderRow from './SortableOrderRow';
 
 const rows = [
@@ -45,8 +50,11 @@ const rows = [
 
 const SortableOrderTable = ({ rowButton }) => {
    const isMobile = useIsMobile();
+   const isTablet = useIsTablet();
 
    const getColumnLayout = () => {
+      if (isMobile) return mobileSortable;
+      if (isTablet) return tabletSortable;
       return desktopSortable;
    };
 
