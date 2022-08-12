@@ -22,12 +22,6 @@ const MyProducts = () => {
    const handleEditModalClose = () => {
       setOpenEditModal(false);
    };
-
-   // const handleDeleteModalOpen = (id) => {
-   //    setProductId(id);
-   //    setOpenDeleteModal(true);
-   // };
-
    const handleEditModalOpen = (id) => {
       setProductId(id);
       setOpenEditModal(true);

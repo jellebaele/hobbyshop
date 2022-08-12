@@ -28,3 +28,12 @@
       }
    }
 }
+
+@media (max-width: $phone-breakpoint) {
+   .editProductFormContainer {
+      .inputGrid {
+         display: flex;
+         flex-direction: column;
+      }
+   }
+}
