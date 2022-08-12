@@ -10,6 +10,7 @@ const Dropdown = ({
    name,
    disabled,
    className,
+   type,
 }) => {
    const [open, setOpen] = useState(false);
    const ref = useRef(null);
@@ -34,7 +35,7 @@ const Dropdown = ({
          )}
          <input
             name={name}
-            type="text"
+            type={type}
             className={`dropdownInput ${className} ${open && 'open'} ${
                !disabled && 'editable'
             }`}

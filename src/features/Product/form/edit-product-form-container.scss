@@ -12,5 +12,19 @@
          display: flex;
          align-items: center;
       }
+
+      .descriptionLabel {
+         align-items: flex-start;
+         margin-top: 5px;
+      }
+
+      .stockGroup {
+         display: flex;
+         width: fit-content;
+
+         .stockInput {
+            margin-right: 5px;
+         }
+      }
    }
 }

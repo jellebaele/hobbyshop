@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import Dropdown from '../../../components/dropdown/Dropdown';
 import ConfirmForm from '../../../components/form/ConfirmForm';
+import FormDropdown from '../../../components/form/FormDropdown';
 import FormInput from '../../../components/form/FormInput';
-import Textarea from '../../../components/textarea/Textarea';
+import FormTextarea from '../../../components/form/FormTextarea';
 import { PRODUCT_STATUS } from '../constants';
 import { productFormOptions } from '../validation';
 import './edit-product-form-container.scss';
@@ -42,28 +42,6 @@ const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
                error={errors.title}
             />
 
-            {/* <FormInput
-            label="Naam"
-            name="title"
-            type="text"
-            disabled={!edit}
-            register={register}
-            error={errors.title}
-         /> */}
-
-            {/* <label>Naam:</label> */}
-
-            {/* <label>Naam:</label>
-         <div className="inputGroup">
-            <input
-               name="name"
-               type="text"
-               disabled={!edit}
-               {...register('title')}
-            />
-            <div className="formInputError">{errors.title?.message}</div>
-         </div> */}
-
             <label>Categorie:</label>
             <FormInput
                name="category"
@@ -73,76 +51,56 @@ const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
                error={errors.category}
             />
 
-            {/* <div className="inputGroup">
-            <input
-               name="category"
-               type="text"
-               className="productInput"
-               disabled={!edit}
-               {...register('category')}
-            />
-            <div className="formInputError">{errors.category?.message}</div>
-         </div>
-
-         <label>Beschrijving:</label>
-         <div className="inputGroup">
-            <Textarea
+            <label className="descriptionLabel">Beschrijving:</label>
+            <FormTextarea
                name="description"
-               onChange={(newValue) => setValue('description', newValue)}
-               register={register}
+               type="text"
                disabled={!edit}
-               className="textarea"
-               initialValue={getValues('description')}
+               register={register}
+               error={errors.description}
+               setValue={setValue}
+               getValues={getValues}
             />
-            <div className="formInputError">{errors.description?.message}</div>
-         </div>
 
-         <label>Stock:</label>
-         <div className="inputGroup">
+            <label>Stock:</label>
             <div className="stockGroup">
-               <input
+               <FormInput
                   name="amount"
                   type="number"
-                  className="amountInput"
                   disabled={!edit}
-                  {...register('amount')}
+                  register={register}
+                  error={errors.amount}
+                  className="stockInput"
                />
-               <input
-                  name="amount"
+               <FormInput
+                  name="unit"
                   type="text"
-                  className="amountInput"
                   disabled={!edit}
-                  {...register('unit')}
+                  register={register}
                />
             </div>
-            <div className="formInputError">{errors.amount?.message}</div>
-         </div>
 
-         <label>Status:</label>
-         <div className="inputGroup">
-            <Dropdown
+            <label>Status:</label>
+            <FormDropdown
                options={PRODUCT_STATUS.values}
-               onSelect={(newValue) => setValue('status', newValue)}
-               register={register}
                name="status"
-               className={`customDropdown ${getValues('status')}`}
+               type="text"
                disabled={!edit}
-            />
-            <div className="formInputError">{errors.status?.message}</div>
-         </div>
-
-         <label>Eigenaar:</label>
-         <div className="inputGroup">
-            <Dropdown
-               options={users}
-               onSelect={(newValue) => setValue('owner', newValue)}
                register={register}
-               name="owner"
-               disabled={!edit}
-               className={`customDropdown ${!edit && 'disabled'}`}
+               error={errors.status}
+               setValue={setValue}
             />
-            <div className="formInputError">{errors.owner?.message}</div>
-         </div> */}
+
+            <label>Eigenaar:</label>
+            <FormDropdown
+               options={users}
+               name="owner"
+               type="text"
+               disabled={!edit}
+               register={register}
+               error={errors.owner}
+               setValue={setValue}
+            />
          </div>
 
          {edit && (

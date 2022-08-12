@@ -1,19 +1,26 @@
 import React from 'react';
 import Input from '../input/Input';
-import ValidationError from '../validation-error/ValidationError';
-import './form-input.scss';
+import FormFieldBasic from './FormFieldBasic';
 
-const FormInput = ({ name, type = 'text', disabled, register, error }) => {
+const FormInput = ({
+   name,
+   type = 'text',
+   disabled,
+   register,
+   error,
+   className,
+}) => {
    return (
-      <div className="formInputContainer">
-         <Input
-            name={name}
-            type={type}
-            disabled={disabled}
-            register={register}
-         />
-         <ValidationError message={error?.message} />
-      </div>
+      <>
+         <FormFieldBasic error={error} className={className}>
+            <Input
+               name={name}
+               type={type}
+               disabled={disabled}
+               register={register}
+            />
+         </FormFieldBasic>
+      </>
    );
 };
 
