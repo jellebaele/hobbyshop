@@ -21,21 +21,10 @@ const BasicOrderRow = ({ row, handleModalOpen }) => {
             className="tableRowContainer"
             onClick={() => handleModalOpen(row._id)}
          >
-            {/* {!isMobile && (
-               <TableCell>
-                  <IconButton
-                     aria-label="expand row"
-                     size="small"
-                     onClick={() => setOpen(!open)}
-                  >
-                     {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
-                  </IconButton>
-               </TableCell>
-            )} */}
             <TableCell component="th" scope="row">
                {row._id}
             </TableCell>
-            {!isMobile && <TableCell>{row.user}</TableCell>}
+            {!isMobile && <TableCell>{row.orderer}</TableCell>}
             {!isTablet && <TableCell>{row.dateUpdated}</TableCell>}
             {!isMobile && (
                <TableCell>

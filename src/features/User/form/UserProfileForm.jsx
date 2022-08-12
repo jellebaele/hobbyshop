@@ -3,8 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ConfirmForm from '../../../components/form/ConfirmForm';
 import FormInputGroup from '../../../components/form/FormInputGroup';
-
-import { UserEditFormOptions } from '../validation';
+import { UserEditFormOptions } from './validation';
 
 const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
    const {

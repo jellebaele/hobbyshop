@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ConfirmForm from '../../../components/form/ConfirmForm';
 import FormInputGroup from '../../../components/form/FormInputGroup';
-import { PasswordEditFormOptions } from '../validation';
+import { PasswordEditFormOptions } from './validation';
 
 const ChangePasswordForm = ({ user, edit, onSubmit, onCancelEdit }) => {
    const {

@@ -5,7 +5,7 @@ import FormDropdown from '../../../components/form/FormDropdown';
 import FormInput from '../../../components/form/FormInput';
 import FormTextarea from '../../../components/form/FormTextarea';
 import { PRODUCT_STATUS } from '../constants';
-import { productFormOptions } from '../validation';
+import { productFormOptions } from './validation';
 import './product-form.scss';
 
 const ProductForm = ({

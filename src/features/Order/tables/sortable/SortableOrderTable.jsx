@@ -12,7 +12,8 @@ import SortableOrderRow from './SortableOrderRow';
 const rows = [
    {
       _id: '432G01',
-      user: 'Jelle',
+      orderer: 'Jelle',
+      deliverer: 'Herman',
       products: [
          {
             productId: '33q1q3qs89t',
@@ -30,7 +31,8 @@ const rows = [
    },
    {
       _id: '432F01',
-      user: 'Jelle',
+      orderer: 'Jelle',
+      deliverer: 'Herman',
       products: [
          {
             productId: '33q1q3qs89t',

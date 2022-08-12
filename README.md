@@ -86,12 +86,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
    -  [x] Responsive table
 -  [x] Responsive my products page
 -  [ ] Responsive orders page
+   -  [ ] Response modals
+   -  [x] Responsive table
 -  [ ] Toasters
 -  [x] Shopping cart
 -  [ ] Profile page
    -  [x] Edit profile
    -  [x] Edit password
-   -  [ ] Validation error
+   -  [x] Validation error
    -  [ ] Order history
 -  [ ] Login page
 -  [ ] Register page

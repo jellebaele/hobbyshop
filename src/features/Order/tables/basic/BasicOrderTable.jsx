@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './basic-order-table.scss';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import { desktopBasic, mobileBasic, tableBasic } from '../orderTableLayout';
+import { desktopBasic, mobileBasic, tabletBasic } from '../orderTableLayout';
 import useIsTablet from '../../../../hooks/useIsTablet';
 import TableTitleLink from '../../../../components/table/TableTitleLink';
 import BasicOrderRow from './BasicOrderRow';
@@ -11,7 +11,8 @@ import BasicTable from '../../../../components/table/basic/BasicTable';
 const data = [
    {
       _id: '432G01',
-      user: 'Jelle',
+      orderer: 'Jelle',
+      deliverer: 'Herman',
       products: [
          {
             productId: '33q1q3qs89t',
@@ -29,7 +30,8 @@ const data = [
    },
    {
       _id: '432F01',
-      user: 'Jelle',
+      orderer: 'Jana',
+      deliverer: 'Herman',
       products: [
          {
             productId: '33q1q3qs89t',
@@ -64,7 +66,7 @@ const BasicOrderTable = () => {
       if (isTablet && isMobile) {
          return mobileBasic;
       } else if (isTablet && !isMobile) {
-         return tableBasic;
+         return tabletBasic;
       } else {
          return desktopBasic;
       }

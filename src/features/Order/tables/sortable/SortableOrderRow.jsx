@@ -29,7 +29,8 @@ const SortableOrderRow = ({ row, children }) => {
             <TableCell component="th" scope="row" padding="normal">
                {row._id}
             </TableCell>
-            {!isTablet && <TableCell align="left">{row.user}</TableCell>}
+            {!isTablet && <TableCell align="left">{row.orderer}</TableCell>}
+            {!isTablet && <TableCell align="left">{row.deliverer}</TableCell>}
             <TableCell align="left">
                <Status status={row.status} />
             </TableCell>

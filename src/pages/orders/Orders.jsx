@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/header/Header';
 import './orders.scss';
 import CollapsibleContainer from '../../components/collapsibleContainer/CollapsibleContainer';
 import SortableOrderTable from '../../features/Order/tables/sortable/SortableOrderTable';
 import { IconButton } from '../../components/button/IconButton';
 import { Edit } from '@mui/icons-material';
+import EditOrderModal from '../../features/Order/modals/EditOrderModal';
 
 const Orders = () => {
+   const [openModal, setOpenModal] = useState(false);
+
    const handleEditModalOpen = () => {
-      console.log('Open');
+      setOpenModal(true);
    };
 
    return (
@@ -41,6 +44,10 @@ const Orders = () => {
                />
             </CollapsibleContainer>
          </div>
+         <EditOrderModal
+            open={openModal}
+            handleOnClose={() => setOpenModal(false)}
+         />
       </div>
    );
 };

@@ -13,7 +13,7 @@ const SubProductTable = ({ products }) => {
       <Table size="small">
          <TableHead>
             <TableRow>
-               <TableCell>Product</TableCell>
+               <TableCell>Naam</TableCell>
                <TableCell>Aantal</TableCell>
             </TableRow>
          </TableHead>

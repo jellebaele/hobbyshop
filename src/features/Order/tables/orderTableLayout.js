@@ -4,8 +4,8 @@ export const desktopBasic = [
       label: 'Order Id',
    },
    {
-      id: 'user',
-      label: 'Gebruiker',
+      id: 'orderer',
+      label: 'Besteller',
    },
    {
       id: 'date',
@@ -26,11 +26,11 @@ export const mobileBasic = [
    {},
 ];
 
-export const tableBasic = [
+export const tabletBasic = [
    { id: 'orderId', label: 'Order Id' },
    {
-      id: 'user',
-      label: 'Gebruiker',
+      id: 'orderer',
+      label: 'Besteller',
    },
    {
       id: 'status',
@@ -48,10 +48,16 @@ export const desktopSortable = [
       label: 'Order Id',
    },
    {
-      id: 'user',
+      id: 'orderer',
       numeric: false,
       disablePadding: false,
-      label: 'Gebruiker',
+      label: 'Besteller',
+   },
+   {
+      id: 'deliverer',
+      numeric: false,
+      disablePadding: false,
+      label: 'Bezorger',
    },
    {
       id: 'status',
