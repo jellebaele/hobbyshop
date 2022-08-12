@@ -1,8 +1,7 @@
-import { Check, Clear } from '@mui/icons-material';
 import { Collapse } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '../../../components/button/Button';
+import ConfirmForm from '../../../components/form/ConfirmForm';
 import FormInput from '../../../components/input/FormInput';
 import { PasswordEditFormOptions } from '../validation';
 
@@ -17,6 +16,11 @@ const ChangePassword = ({ user, edit, onSubmit, onCancelEdit }) => {
    useEffect(() => {
       reset(user);
    }, [reset, user]);
+
+   const handleCancelEdit = () => {
+      reset();
+      onCancelEdit();
+   };
 
    return (
       <form
@@ -59,18 +63,7 @@ const ChangePassword = ({ user, edit, onSubmit, onCancelEdit }) => {
          </Collapse>
 
          {edit && (
-            <div className="buttonContainer">
-               <Button
-                  startIcon={Clear}
-                  onClick={onCancelEdit}
-                  className="button"
-               >
-                  Annuleer
-               </Button>
-               <Button type="submit" startIcon={Check} className="button">
-                  Update
-               </Button>
-            </div>
+            <ConfirmForm confirmText="Update" onCancel={handleCancelEdit} />
          )}
       </form>
    );
