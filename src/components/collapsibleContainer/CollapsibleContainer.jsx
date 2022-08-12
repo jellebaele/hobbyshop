@@ -1,10 +1,10 @@
 import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
 import { Collapse } from '@mui/material';
 import React, { useState } from 'react';
-import { IconButton } from '../../components/button/IconButton';
-import './table-container.scss';
+import { IconButton } from '../button/IconButton';
+import './collapsible-container.scss';
 
-const TableContainer = ({ title, children }) => {
+const CollapsibleContainer = ({ title, children }) => {
    const [open, setOpen] = useState(false);
 
    return (
@@ -22,4 +22,4 @@ const TableContainer = ({ title, children }) => {
    );
 };
 
-export default TableContainer;
+export default CollapsibleContainer;

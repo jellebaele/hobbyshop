@@ -1,4 +1,4 @@
-export const orderColumnLayoutDesktop = [
+export const desktopBasic = [
    {
       id: 'orderId',
       label: 'Order Id',
@@ -18,7 +18,7 @@ export const orderColumnLayoutDesktop = [
    {},
 ];
 
-export const orderColumnLayoutMobile = [
+export const mobileBasic = [
    {
       id: 'orderId',
       label: 'Order id',
@@ -26,7 +26,7 @@ export const orderColumnLayoutMobile = [
    {},
 ];
 
-export const orderColumnLayoutTablet = [
+export const tableBasic = [
    { id: 'orderId', label: 'Order Id' },
    {
       id: 'user',
@@ -37,4 +37,37 @@ export const orderColumnLayoutTablet = [
       label: 'Status',
    },
    {},
+];
+
+export const desktopSortable = [
+   {
+      id: 'orderId',
+      numeric: false,
+      disablePadding: false,
+      label: 'Order Id',
+   },
+   {
+      id: 'user',
+      numeric: false,
+      disablePadding: false,
+      label: 'Gebruiker',
+   },
+   {
+      id: 'status',
+      numeric: false,
+      disablePadding: false,
+      label: 'Status',
+   },
+   {
+      id: 'date',
+      numeric: false,
+      disablePadding: false,
+      label: 'Datum',
+   },
+   {
+      id: 'buttons',
+      numeric: true,
+      disablePadding: false,
+      label: '',
+   },
 ];

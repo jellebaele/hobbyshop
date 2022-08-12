@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
-import Table from '@mui/material/Table';
-import TableContainer from '@mui/material/TableContainer';
-import TablePagination from '@mui/material/TablePagination';
-import Paper from '@mui/material/Paper';
+import React from 'react';
 import './sortable-product-table.scss';
-import SortableTableHeader from '../../../../components/table/SortableTableHeader';
-import { getComparator } from '../../../../components/table/utils/sort';
 import ProductRowExtended from './SortableProductRow';
 import {
-   productColumnExtendedLayoutDesktop,
-   productColumnExtendedLayoutMobile,
-   productColumnExtendedLayoutTablet,
+   desktopSortable,
+   mobileSortable,
+   tabletSortable,
 } from '../productTableLayout';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import useIsTablet from '../../../../hooks/useIsTablet';
 import TableTitle from '../../../../components/table/TableTitle';
-import SortableProductBody from './SortableProductBody';
+import SortableTable from '../../../../components/table/sortable/SortableTable';
 
 const rows = [
    {
@@ -223,80 +217,25 @@ export default function SortableProductTable({
    titleButton,
    rowButton,
 }) {
-   // title, rowButton, onRowClick, titleButton, onTitleClick
-
-   const [order, setOrder] = useState('asc');
-   const [orderBy, setOrderBy] = useState('calories');
-   const [page, setPage] = useState(0);
-   const [rowsPerPage, setRowsPerPage] = useState(10);
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
 
    const getColumnLayout = () => {
-      if (isMobile) return productColumnExtendedLayoutMobile;
-      if (isTablet) return productColumnExtendedLayoutTablet;
-      return productColumnExtendedLayoutDesktop;
-   };
-
-   const handleRequestSort = (event, property) => {
-      const isAsc = orderBy === property && order === 'asc';
-      setOrder(isAsc ? 'desc' : 'asc');
-      setOrderBy(property);
-   };
-
-   const handleChangePage = (event, newPage) => {
-      setPage(newPage);
-   };
-
-   const handleChangeRowsPerPage = (event) => {
-      setRowsPerPage(parseInt(event.target.value, 10));
-      setPage(0);
+      if (isMobile) return mobileSortable;
+      if (isTablet) return tabletSortable;
+      return desktopSortable;
    };
 
    return (
-      <div className="productTableExtendedContainer">
+      <div className="sortableProductTableContainer">
          <TableTitle title={title}>{titleButton}</TableTitle>
-         <Paper className="paper">
-            <TableContainer>
-               <Table size={'small'}>
-                  <SortableTableHeader
-                     order={order}
-                     orderBy={orderBy}
-                     onRequestSort={handleRequestSort}
-                     columns={getColumnLayout()}
-                  />
-
-                  <SortableProductBody
-                     rows={rows}
-                     page={page}
-                     rowsPerPage={rowsPerPage}
-                  >
-                     {rows
-                        .sort(getComparator(order, orderBy))
-                        .slice(
-                           page * rowsPerPage,
-                           page * rowsPerPage + rowsPerPage
-                        )
-                        .map((row) => {
-                           return (
-                              <ProductRowExtended row={row} key={row._id}>
-                                 {rowButton}
-                              </ProductRowExtended>
-                           );
-                        })}
-                  </SortableProductBody>
-               </Table>
-            </TableContainer>
-            <TablePagination
-               rowsPerPageOptions={isMobile ? [10] : [5, 10, 25]}
-               component="div"
-               count={rows.length}
-               rowsPerPage={rowsPerPage}
-               page={page}
-               onPageChange={handleChangePage}
-               onRowsPerPageChange={handleChangeRowsPerPage}
-            />
-         </Paper>
+         <SortableTable
+            rows={rows}
+            initialOrder="name"
+            getColumnLayout={getColumnLayout}
+            Row={ProductRowExtended}
+            rowButton={rowButton}
+         />
       </div>
    );
 }

@@ -3,11 +3,7 @@ import React, { useState } from 'react';
 import './basic-order-table.scss';
 import BasicTableHeader from '../../../../components/table/BasicTableHeader';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import {
-   orderColumnLayoutDesktop,
-   orderColumnLayoutMobile,
-   orderColumnLayoutTablet,
-} from '../orderTableLayout';
+import { desktopBasic, mobileBasic, tableBasic } from '../orderTableLayout';
 import useIsTablet from '../../../../hooks/useIsTablet';
 import TableTitleLink from '../../../../components/table/TableTitleLink';
 import BasicOrderRow from './BasicOrderRow';
@@ -67,11 +63,11 @@ const BasicOrderTable = () => {
 
    const getColumnLayout = () => {
       if (isTablet && isMobile) {
-         return orderColumnLayoutMobile;
+         return mobileBasic;
       } else if (isTablet && !isMobile) {
-         return orderColumnLayoutTablet;
+         return tableBasic;
       } else {
-         return orderColumnLayoutDesktop;
+         return desktopBasic;
       }
    };
 

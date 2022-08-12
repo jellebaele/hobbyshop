@@ -1,8 +1,8 @@
 import { TableBody } from '@mui/material';
 import React from 'react';
-import EmptyRows from '../../../../components/table/EmptyRows';
+import EmptyRows from '../EmptyRows';
 
-const SortableProductBody = ({ rows, page, rowsPerPage, children }) => {
+const SortableTableBody = ({ rows, page, rowsPerPage, children }) => {
    return (
       <TableBody>
          {children}
@@ -15,4 +15,4 @@ const SortableProductBody = ({ rows, page, rowsPerPage, children }) => {
    );
 };
 
-export default SortableProductBody;
+export default SortableTableBody;

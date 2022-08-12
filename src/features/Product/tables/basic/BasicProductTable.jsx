@@ -4,10 +4,7 @@ import useIsMobile from '../../../../hooks/useIsMobile';
 import BasicTableHeader from '../../../../components/table/BasicTableHeader';
 import TableTitleLink from '../../../../components/table/TableTitleLink';
 import './basic-product-table.scss';
-import {
-   productColumnLayoutDesktop,
-   productColumnLayoutMobile,
-} from '../productTableLayout';
+import { desktopBasic, mobileBasic } from '../productTableLayout';
 import BasicProductRow from './BasicProductRow';
 import OrderProductModal from '../../modals/OrderProductModal';
 
@@ -49,7 +46,7 @@ const BasicProductTable = () => {
    };
 
    const getColumnLayout = () => {
-      return isMobile ? productColumnLayoutMobile : productColumnLayoutDesktop;
+      return isMobile ? mobileBasic : desktopBasic;
    };
 
    return (

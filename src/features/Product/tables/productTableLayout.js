@@ -1,4 +1,4 @@
-export const productColumnLayoutDesktop = [
+export const desktopBasic = [
    {
       id: 'name',
       label: 'Naam',
@@ -14,7 +14,7 @@ export const productColumnLayoutDesktop = [
    {},
 ];
 
-export const productColumnLayoutMobile = [
+export const mobileBasic = [
    {
       id: 'name',
       label: 'Naam',
@@ -22,7 +22,7 @@ export const productColumnLayoutMobile = [
    {},
 ];
 
-export const productColumnExtendedLayoutDesktop = [
+export const desktopSortable = [
    {
       id: 'name',
       numeric: false,
@@ -61,7 +61,7 @@ export const productColumnExtendedLayoutDesktop = [
    },
 ];
 
-export const productColumnExtendedLayoutTablet = [
+export const tabletSortable = [
    {
       id: 'name',
       numeric: false,
@@ -88,7 +88,7 @@ export const productColumnExtendedLayoutTablet = [
    },
 ];
 
-export const productColumnExtendedLayoutMobile = [
+export const mobileSortable = [
    {
       id: 'name',
       numeric: false,
