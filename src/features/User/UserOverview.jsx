@@ -1,7 +1,7 @@
 import { Edit, Lock } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { Button } from '../../components/button/Button';
-import ChangePassword from './form/ChangePassword';
+import ChangePasswordForm from './form/ChangePasswordForm';
 import UserProfileForm from './form/UserProfileForm';
 import './user-overview.scss';
 
@@ -27,7 +27,7 @@ const UserOverview = ({ user }) => {
                onSubmit={onSubmit}
                onCancelEdit={handleCancelEdit}
             />
-            <ChangePassword
+            <ChangePasswordForm
                user={user}
                edit={editPassword}
                onSubmit={onSubmit}

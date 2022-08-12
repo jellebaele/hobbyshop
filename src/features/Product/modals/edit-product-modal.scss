@@ -1,5 +1,6 @@
 $phone-breakpoint: 480px;
 $tablet-breakpoint: 1024px;
+$padding: 10px;
 
 .productEditModalContainer {
    display: flex;
@@ -13,16 +14,26 @@ $tablet-breakpoint: 1024px;
       width: 100%;
    }
 
-   .bottom {
-      flex: 1;
+   .buttonContainer {
       display: flex;
+      padding: $padding;
       justify-content: center;
-      align-items: center;
 
-      .buttonContainer {
-         display: flex;
+      .button {
+         margin-left: 10px !important;
       }
    }
+
+   // .bottom {
+   //    flex: 1;
+   //    display: flex;
+   //    justify-content: center;
+   //    align-items: center;
+
+   //    .buttonContainer {
+   //       display: flex;
+   //    }
+   // }
 }
 
 @media (max-width: $tablet-breakpoint) {

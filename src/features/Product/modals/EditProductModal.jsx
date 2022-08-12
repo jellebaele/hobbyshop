@@ -1,4 +1,4 @@
-import { Check, Clear, Delete, Edit } from '@mui/icons-material';
+import { Delete, Edit } from '@mui/icons-material';
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 import { Button } from '../../../components/button/Button';
 import { productFormOptions } from '../validation';
 import ProductBodyModal from './ProductBodyModal';
+import ConfirmForm from '../../../components/form/ConfirmForm';
+import EditProductForm from '../form/EditProductForm';
 
 const productData = {
    _id: 'qvq54vqz1ev3saze',
@@ -42,12 +44,9 @@ const EditProductModal = ({ open, handleOnClose }) => {
    }, [product, reset]);
 
    const handleDelete = () => {};
-   const handleEdit = () => {
-      setEdit(true);
-   };
+
    const handleCancelEdit = () => {
       setEdit(false);
-      reset();
    };
 
    const onSubmit = (data) => {
@@ -61,44 +60,32 @@ const EditProductModal = ({ open, handleOnClose }) => {
          title="Product details"
       >
          <div className="productEditModalContainer">
-            <form onSubmit={handleSubmit(onSubmit)}>
-               <div className="top">
-                  <ProductBodyModal
-                     register={register}
-                     errors={errors}
-                     setValue={setValue}
-                     getValues={getValues}
-                     users={users}
-                     disabled={!edit}
-                  />
-               </div>
+            <EditProductForm
+               product={productData}
+               edit={edit}
+               users={users}
+               onSubmit={onSubmit}
+               onCancelEdit={handleCancelEdit}
+            />
 
-               <div className="bottom">
-                  <div className="buttonContainer">
-                     {!edit && (
-                        <div className="buttonContainer">
-                           <Button onClick={handleDelete} startIcon={Delete}>
-                              Delete
-                           </Button>
-                           <Button onClick={handleEdit} startIcon={Edit}>
-                              Bewerk
-                           </Button>
-                        </div>
-                     )}
-
-                     {edit && (
-                        <div className="buttonContainer">
-                           <Button onClick={handleCancelEdit} startIcon={Clear}>
-                              Annuleer
-                           </Button>
-                           <Button type="submit" startIcon={Check}>
-                              Update
-                           </Button>
-                        </div>
-                     )}
-                  </div>
+            {!edit && (
+               <div className="buttonContainer">
+                  <Button
+                     startIcon={Delete}
+                     className="button"
+                     onClick={handleDelete}
+                  >
+                     Verwijder
+                  </Button>
+                  <Button
+                     startIcon={Edit}
+                     onClick={() => setEdit(true)}
+                     className="button"
+                  >
+                     Bewerk
+                  </Button>
                </div>
-            </form>
+            )}
          </div>
       </BasicModal>
    );
