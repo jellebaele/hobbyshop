@@ -47,6 +47,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
 
    const handleCancelEdit = () => {
       setEdit(false);
+      // reset();
    };
 
    const onSubmit = (data) => {
@@ -67,6 +68,17 @@ const EditProductModal = ({ open, handleOnClose }) => {
                onSubmit={onSubmit}
                onCancelEdit={handleCancelEdit}
             />
+            {/* <form onSubmit={handleSubmit(onSubmit)}>
+               <div className="top">
+                  <ProductBodyModal
+                     register={register}
+                     errors={errors}
+                     setValue={setValue}
+                     getValues={getValues}
+                     users={users}
+                     disabled={!edit}
+                  />
+               </div> */}
 
             {!edit && (
                <div className="buttonContainer">
@@ -86,6 +98,7 @@ const EditProductModal = ({ open, handleOnClose }) => {
                   </Button>
                </div>
             )}
+            {/* </form> */}
          </div>
       </BasicModal>
    );

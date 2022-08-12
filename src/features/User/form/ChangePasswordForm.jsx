@@ -2,7 +2,7 @@ import { Collapse } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ConfirmForm from '../../../components/form/ConfirmForm';
-import FormInput from '../../../components/input/FormInput';
+import FormInputGroup from '../../../components/form/v2/FormInputGroup';
 import { PasswordEditFormOptions } from '../validation';
 
 const ChangePasswordForm = ({ user, edit, onSubmit, onCancelEdit }) => {
@@ -29,7 +29,7 @@ const ChangePasswordForm = ({ user, edit, onSubmit, onCancelEdit }) => {
       >
          <Collapse in={edit} timeout="auto" unmountOnExit className="collaps">
             <div className="passwordContainer">
-               <FormInput
+               <FormInputGroup
                   label="Huidig wachtwoord"
                   name="currentPassword"
                   type="password"
@@ -40,7 +40,7 @@ const ChangePasswordForm = ({ user, edit, onSubmit, onCancelEdit }) => {
             </div>
 
             <div className="passwordContainer">
-               <FormInput
+               <FormInputGroup
                   label="Nieuw wachtwoord"
                   name="newPassword"
                   type="password"
@@ -51,7 +51,7 @@ const ChangePasswordForm = ({ user, edit, onSubmit, onCancelEdit }) => {
             </div>
 
             <div className="passwordContainer">
-               <FormInput
+               <FormInputGroup
                   label="Herhaal nieuw wachtwoord"
                   name="confirmNewPassword"
                   type="password"

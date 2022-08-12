@@ -2,7 +2,7 @@ import { Collapse } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ConfirmForm from '../../../components/form/ConfirmForm';
-import FormInput from '../../../components/input/FormInput';
+import FormInputGroup from '../../../components/form/v2/FormInputGroup';
 import { UserEditFormOptions } from '../validation';
 
 const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
@@ -25,7 +25,7 @@ const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
    return (
       <form className="userProfileContainer" onSubmit={handleSubmit(onSubmit)}>
          <div className="formRow">
-            <FormInput
+            <FormInputGroup
                label="Voornaam"
                name="firstName"
                type="text"
@@ -34,7 +34,7 @@ const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
                error={errors.firstName}
             />
 
-            <FormInput
+            <FormInputGroup
                label="Achternaam"
                name="lastName"
                type="text"
@@ -45,7 +45,7 @@ const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
          </div>
 
          <div className="formRow">
-            <FormInput
+            <FormInputGroup
                label="Email"
                name="email"
                type="email"
@@ -54,7 +54,7 @@ const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
                error={errors.email}
             />
 
-            <FormInput
+            <FormInputGroup
                label="Gebruikersnaam"
                name="username"
                type="text"
@@ -66,7 +66,7 @@ const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
 
          <Collapse in={edit} timeout="auto" unmountOnExit className="collaps">
             <div className="passwordContainer">
-               <FormInput
+               <FormInputGroup
                   label="Huidig wachtwoord"
                   name="currentPassword"
                   type="password"

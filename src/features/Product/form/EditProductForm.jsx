@@ -2,9 +2,11 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import ConfirmForm from '../../../components/form/ConfirmForm';
+import FormInput from '../../../components/form/v2/FormInput';
 import Textarea from '../../../components/textarea/Textarea';
 import { PRODUCT_STATUS } from '../constants';
 import { productFormOptions } from '../validation';
+import './edit-product-form-container.scss';
 
 const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
    const {
@@ -28,9 +30,30 @@ const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
    return (
       <form
          onSubmit={handleSubmit(onSubmit)}
-         className="productBodyModalContainer"
+         className="editProductFormContainer"
       >
-         <label>Naam:</label>
+         <div className="inputGrid">
+            <label>Naam:</label>
+            <FormInput
+               name="title"
+               type="text"
+               disabled={!edit}
+               register={register}
+               error={errors.title}
+            />
+
+            {/* <FormInput
+            label="Naam"
+            name="title"
+            type="text"
+            disabled={!edit}
+            register={register}
+            error={errors.title}
+         /> */}
+
+            {/* <label>Naam:</label> */}
+
+            {/* <label>Naam:</label>
          <div className="inputGroup">
             <input
                name="name"
@@ -39,10 +62,18 @@ const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
                {...register('title')}
             />
             <div className="formInputError">{errors.title?.message}</div>
-         </div>
+         </div> */}
 
-         <label>Categorie:</label>
-         <div className="inputGroup">
+            <label>Categorie:</label>
+            <FormInput
+               name="category"
+               type="text"
+               disabled={!edit}
+               register={register}
+               error={errors.category}
+            />
+
+            {/* <div className="inputGroup">
             <input
                name="category"
                type="text"
@@ -111,6 +142,7 @@ const EditProductForm = ({ product, edit, users, onSubmit, onCancelEdit }) => {
                className={`customDropdown ${!edit && 'disabled'}`}
             />
             <div className="formInputError">{errors.owner?.message}</div>
+         </div> */}
          </div>
 
          {edit && (
