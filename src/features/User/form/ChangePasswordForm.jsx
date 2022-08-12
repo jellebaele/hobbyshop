@@ -5,7 +5,7 @@ import ConfirmForm from '../../../components/form/ConfirmForm';
 import FormInput from '../../../components/input/FormInput';
 import { PasswordEditFormOptions } from '../validation';
 
-const ChangePassword = ({ user, edit, onSubmit, onCancelEdit }) => {
+const ChangePasswordForm = ({ user, edit, onSubmit, onCancelEdit }) => {
    const {
       register,
       handleSubmit,
@@ -69,4 +69,4 @@ const ChangePassword = ({ user, edit, onSubmit, onCancelEdit }) => {
    );
 };
 
-export default ChangePassword;
+export default ChangePasswordForm;

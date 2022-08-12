@@ -5,7 +5,7 @@ import ConfirmForm from '../../../components/form/ConfirmForm';
 import FormInput from '../../../components/input/FormInput';
 import { UserEditFormOptions } from '../validation';
 
-const UserProfile = ({ user, edit, onSubmit, onCancelEdit }) => {
+const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
    const {
       register,
       handleSubmit,
@@ -84,4 +84,4 @@ const UserProfile = ({ user, edit, onSubmit, onCancelEdit }) => {
    );
 };
 
-export default UserProfile;
+export default UserProfileForm;

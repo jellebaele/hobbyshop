@@ -2,7 +2,7 @@ import { Edit, Lock } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { Button } from '../../components/button/Button';
 import ChangePassword from './form/ChangePassword';
-import UserProfile from './form/UserProfile';
+import UserProfileForm from './form/UserProfileForm';
 import './user-overview.scss';
 
 const UserOverview = ({ user }) => {
@@ -21,7 +21,7 @@ const UserOverview = ({ user }) => {
    return (
       <div className="userOverviewContainer">
          <div className="profileData">
-            <UserProfile
+            <UserProfileForm
                user={user}
                edit={editUserData}
                onSubmit={onSubmit}
