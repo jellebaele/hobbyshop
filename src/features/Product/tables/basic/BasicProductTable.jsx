@@ -1,12 +1,11 @@
-import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import useIsMobile from '../../../../hooks/useIsMobile';
-import BasicTableHeader from '../../../../components/table/BasicTableHeader';
 import TableTitleLink from '../../../../components/table/TableTitleLink';
 import './basic-product-table.scss';
 import { desktopBasic, mobileBasic } from '../productTableLayout';
 import BasicProductRow from './BasicProductRow';
 import OrderProductModal from '../../modals/OrderProductModal';
+import BasicTable from '../../../../components/table/basic/BasicTable';
 
 const data = [
    {
@@ -56,22 +55,12 @@ const BasicProductTable = () => {
             to="/products"
             className="tableTitle"
          />
-         <div className="tableContainerWrapper">
-            <TableContainer component={Paper}>
-               <Table size={isMobile ? 'small' : 'medium'}>
-                  <BasicTableHeader columns={getColumnLayout()} />
-                  <TableBody>
-                     {data.map((row) => (
-                        <BasicProductRow
-                           row={row}
-                           handleModalOpen={handleModalOpen}
-                           key={row._id}
-                        />
-                     ))}
-                  </TableBody>
-               </Table>
-            </TableContainer>
-         </div>
+         <BasicTable
+            rows={data}
+            getColumnLayout={getColumnLayout}
+            Row={BasicProductRow}
+            handleModalOpen={handleModalOpen}
+         />
          <OrderProductModal
             open={openInfoModal}
             handleOnClose={handleOnModalClose}

@@ -1,13 +1,12 @@
-import { Paper, Table, TableBody, TableContainer } from '@mui/material';
 import React, { useState } from 'react';
 import './basic-order-table.scss';
-import BasicTableHeader from '../../../../components/table/BasicTableHeader';
 import useIsMobile from '../../../../hooks/useIsMobile';
 import { desktopBasic, mobileBasic, tableBasic } from '../orderTableLayout';
 import useIsTablet from '../../../../hooks/useIsTablet';
 import TableTitleLink from '../../../../components/table/TableTitleLink';
 import BasicOrderRow from './BasicOrderRow';
 import InfoOrderModal from '../../modals/InfoOrderModel';
+import BasicTable from '../../../../components/table/basic/BasicTable';
 
 const data = [
    {
@@ -74,22 +73,12 @@ const BasicOrderTable = () => {
    return (
       <div className="orderTableContainer">
          <TableTitleLink title="Orders" to="/orders" className="tableTitle" />
-         <div className="tableContainerWrapper">
-            <TableContainer component={Paper}>
-               <Table size={isMobile ? 'small' : 'medium'}>
-                  <BasicTableHeader columns={getColumnLayout()} />
-                  <TableBody>
-                     {data.map((row) => (
-                        <BasicOrderRow
-                           key={row._id}
-                           row={row}
-                           handleModalOpen={handleModalOpen}
-                        />
-                     ))}
-                  </TableBody>
-               </Table>
-            </TableContainer>
-         </div>
+         <BasicTable
+            rows={data}
+            getColumnLayout={getColumnLayout}
+            Row={BasicOrderRow}
+            handleModalOpen={handleModalOpen}
+         />
          <InfoOrderModal
             open={openInfoModal}
             handleOnClose={handleModalClose}
