@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from '../../input/Input';
-import ValidationError from '../../validation-error/ValidationError';
+import Input from '../input/Input';
+import ValidationError from '../validation-error/ValidationError';
 import './form-input.scss';
 
 const FormInput = ({ name, type = 'text', disabled, register, error }) => {

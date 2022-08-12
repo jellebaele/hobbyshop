@@ -2,7 +2,8 @@ import { Collapse } from '@mui/material';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import ConfirmForm from '../../../components/form/ConfirmForm';
-import FormInputGroup from '../../../components/form/v2/FormInputGroup';
+import FormInputGroup from '../../../components/form/FormInputGroup';
+
 import { UserEditFormOptions } from '../validation';
 
 const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {

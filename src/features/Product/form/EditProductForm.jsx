@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Dropdown from '../../../components/dropdown/Dropdown';
 import ConfirmForm from '../../../components/form/ConfirmForm';
-import FormInput from '../../../components/form/v2/FormInput';
+import FormInput from '../../../components/form/FormInput';
 import Textarea from '../../../components/textarea/Textarea';
 import { PRODUCT_STATUS } from '../constants';
 import { productFormOptions } from '../validation';
