@@ -6,7 +6,7 @@ import FormInput from '../../../components/form/FormInput';
 import FormTextarea from '../../../components/form/FormTextarea';
 import { PRODUCT_STATUS } from '../constants';
 import { productFormOptions } from '../validation';
-import './edit-product-form-container.scss';
+import './product-form.scss';
 
 const ProductForm = ({
    product,
