@@ -90,7 +90,7 @@ const InfoOrderModal = ({ open, handleOnClose, orderId }) => {
                </div>
                <div className="buttonContainer">
                   <Button onClick={() => setOrderStatus(selectedStatus)}>
-                     Wijzig
+                     Wijzig status
                   </Button>
                </div>
             </div>

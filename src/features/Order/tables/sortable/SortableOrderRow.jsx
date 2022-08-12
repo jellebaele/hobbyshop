@@ -32,15 +32,17 @@ const SortableOrderRow = ({ row, children }) => {
                <div className="buttonContainer">{children}</div>
             </TableCell>
          </TableRow>
-         <TableRow>
+         <TableRow className="sortableOrderSubRowContainer">
             {
                <TableCell
                   style={{ paddingBottom: 0, paddingTop: 0 }}
                   colSpan={6}
                >
                   <Collapse in={open} timeout="auto" unmountOnExit>
-                     <h3 className="subrowTitle">Producten</h3>
-                     <SubProductTable products={row.products} />
+                     <div className="subTableProduct">
+                        <h3 className="subrowTitle">Producten</h3>
+                        <SubProductTable products={row.products} />
+                     </div>
                   </Collapse>
                </TableCell>
             }
