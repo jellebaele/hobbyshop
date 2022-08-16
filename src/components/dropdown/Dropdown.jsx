@@ -1,6 +1,7 @@
 import { KeyboardArrowDown } from '@mui/icons-material';
 import React, { useRef, useState } from 'react';
 import useIsClickOutside from '../../hooks/useIsClickOutside';
+import { InputStatus } from '../status/Status';
 import './dropdown.scss';
 
 const Dropdown = ({
@@ -11,6 +12,8 @@ const Dropdown = ({
    disabled,
    className,
    type,
+   isStatus = false,
+   getValues,
 }) => {
    const [open, setOpen] = useState(false);
    const ref = useRef(null);
@@ -25,14 +28,23 @@ const Dropdown = ({
       !disabled ? setOpen(!open) : setOpen(false);
    };
 
-   return (
-      <div className="dropdownContainer" ref={ref}>
-         {!disabled && (
-            <KeyboardArrowDown
-               className="dropdownIcon"
+   const getInput = () => {
+      if (isStatus)
+         return (
+            <InputStatus
+               register={register}
+               name={name}
+               type={type}
+               status={getValues(name)}
+               className={`dropdownInput ${className} ${open && 'open'} ${
+                  !disabled && 'editable'
+               }`}
+               readOnly
                onClick={handleOnClick}
             />
-         )}
+         );
+
+      return (
          <input
             name={name}
             type={type}
@@ -43,6 +55,20 @@ const Dropdown = ({
             readOnly
             onClick={handleOnClick}
          />
+      );
+   };
+
+   return (
+      <div className="dropdownContainer" ref={ref}>
+         {!disabled && (
+            <KeyboardArrowDown
+               className="dropdownIcon"
+               onClick={handleOnClick}
+            />
+         )}
+
+         {getInput()}
+
          <div className={`dropdownContent ${open && 'active'}`}>
             {options?.map((option) => (
                <span key={option} onClick={() => handleOnSelect(option)}>

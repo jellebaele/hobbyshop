@@ -96,6 +96,8 @@ const ProductForm = ({
                register={register}
                error={errors.status}
                setValue={setValue}
+               getValues={getValues}
+               isStatus
             />
 
             <label>Eigenaar:</label>

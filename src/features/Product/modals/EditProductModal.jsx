@@ -15,7 +15,7 @@ const productData = {
    amount: '5',
    unit: 'stuks',
    owner: 'Herman',
-   status: 'Inactive',
+   status: 'Active',
    UpdatedAt: '20-07-2022',
 };
 

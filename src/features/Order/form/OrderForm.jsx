@@ -42,6 +42,7 @@ const OrderForm = ({
       reset,
       formState: { errors },
       setValue,
+      getValues,
    } = useForm(orderFormOptions);
 
    useEffect(() => {
@@ -99,6 +100,8 @@ const OrderForm = ({
                register={register}
                error={errors.status}
                setValue={setValue}
+               getValues={getValues}
+               isStatus
             />
 
             <label>Datum:</label>

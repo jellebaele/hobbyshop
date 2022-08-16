@@ -10,6 +10,8 @@ const FormDropdown = ({
    error,
    options,
    setValue,
+   getValues,
+   isStatus = false,
 }) => {
    return (
       <>
@@ -21,6 +23,8 @@ const FormDropdown = ({
                name={name}
                disabled={disabled}
                type={type}
+               isStatus={isStatus}
+               getValues={getValues}
             />
          </FormFieldBasic>
       </>
