@@ -34,20 +34,18 @@ const Sidebar = () => {
          <div className="center">
             <ul>
                {menuItems.map((menuItem) => (
-                  <li
+                  <Link
+                     to={menuItem.link}
+                     style={{ textDecoration: 'none', color: 'inherit' }}
                      key={menuItem.title}
-                     className={pathname === menuItem.link ? 'active' : ''}
                   >
-                     <Link
-                        to={menuItem.link}
-                        style={{ textDecoration: 'none', color: 'inherit' }}
-                     >
+                     <li className={pathname === menuItem.link ? 'active' : ''}>
                         <div className="listContainer">
                            <div className="icon">{menuItem.icon}</div>
                            <span>{menuItem.title}</span>
                         </div>
-                     </Link>
-                  </li>
+                     </li>
+                  </Link>
                ))}
             </ul>
          </div>
