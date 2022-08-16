@@ -10,7 +10,7 @@ const BasicProductRow = ({ row, handleModalOpen }) => {
    return (
       <>
          <TableRow
-            className="productTableRowContainer"
+            className="basicProductTableRowContainer"
             onClick={() => handleModalOpen(row._id)}
          >
             <TableCell component="th" scope="row">
@@ -19,9 +19,11 @@ const BasicProductRow = ({ row, handleModalOpen }) => {
             <TableCell>{row.category}</TableCell>
             {!isMobile && <TableCell>{`${row.amount} ${row.unit}`}</TableCell>}
             <TableCell align="right">
-               <IconButton className="button">
-                  <ShoppingBag />
-               </IconButton>
+               <div className="buttonContainer">
+                  <IconButton className="button">
+                     <ShoppingBag />
+                  </IconButton>
+               </div>
             </TableCell>
          </TableRow>
       </>

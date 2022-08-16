@@ -1,7 +1,11 @@
-.tableRowContainer {
+.basicTableRowContainer {
    cursor: pointer;
 
-   .button {
-      border: none;
+   .buttonContainer {
+      display: flex;
+      justify-content: flex-end;
+      .button {
+         border: none;
+      }
    }
 }

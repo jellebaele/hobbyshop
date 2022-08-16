@@ -14,7 +14,7 @@ const BasicOrderRow = ({ row, handleModalOpen }) => {
    return (
       <>
          <TableRow
-            className="tableRowContainer"
+            className="basicTableRowContainer"
             onClick={() => handleModalOpen(row._id)}
          >
             <TableCell component="th" scope="row">
@@ -26,9 +26,11 @@ const BasicOrderRow = ({ row, handleModalOpen }) => {
                <Status status={row.status} />
             </TableCell>
             <TableCell align="right">
-               <IconButton className="button">
-                  <MoreVert />
-               </IconButton>
+               <div className="buttonContainer">
+                  <IconButton className="button">
+                     <MoreVert />
+                  </IconButton>
+               </div>
             </TableCell>
          </TableRow>
       </>

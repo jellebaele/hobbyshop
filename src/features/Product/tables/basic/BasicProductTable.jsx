@@ -51,7 +51,7 @@ const BasicProductTable = () => {
    return (
       <div className="productTableContainer">
          <TableTitleLink
-            title="Producten"
+            title="Uitgelichte producten"
             to="/products"
             className="tableTitle"
          />
