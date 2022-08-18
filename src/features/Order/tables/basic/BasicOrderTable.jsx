@@ -5,7 +5,7 @@ import { desktopBasic, mobileBasic, tabletBasic } from '../orderTableLayout';
 import useIsTablet from '../../../../hooks/useIsTablet';
 import TableTitleLink from '../../../../components/table/TableTitleLink';
 import BasicOrderRow from './BasicOrderRow';
-import InfoOrderModal from '../../modals/InfoOrderModel';
+import InfoOrderModal from '../../modals/InfoOrderModal';
 import BasicTable from '../../../../components/table/basic/BasicTable';
 
 const data = [

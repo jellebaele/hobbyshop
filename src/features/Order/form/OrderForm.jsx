@@ -30,7 +30,8 @@ import SubProductTable from '../../Product/tables/small/SubProductTable';
 
 const OrderForm = ({
    order,
-   edit,
+   edit = false,
+   editStatus = false,
    onSubmit,
    onCancelEdit,
    confirmText,
@@ -92,18 +93,6 @@ const OrderForm = ({
                setValue={setValue}
             />
 
-            <label>Status:</label>
-            <FormDropdown
-               options={ORDER_STATUS}
-               name="status"
-               disabled={!edit}
-               register={register}
-               error={errors.status}
-               setValue={setValue}
-               getValues={getValues}
-               isStatus
-            />
-
             <label>Datum:</label>
             <FormInput
                name="dateUpdated"
@@ -111,9 +100,21 @@ const OrderForm = ({
                disabled={true}
                register={register}
             />
+
+            <label>Status:</label>
+            <FormDropdown
+               options={ORDER_STATUS}
+               name="status"
+               disabled={!(edit || editStatus)}
+               register={register}
+               error={errors.status}
+               setValue={setValue}
+               getValues={getValues}
+               isStatus
+            />
          </div>
 
-         {edit && (
+         {(edit || editStatus) && (
             <ConfirmForm
                confirmText={confirmText}
                onCancel={handleCancelEdit}
