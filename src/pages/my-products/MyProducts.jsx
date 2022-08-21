@@ -47,12 +47,12 @@ const MyProducts = () => {
             <div className="tableContainer">
                <SortableProductTable
                   title={'Mijn producten'}
-                  titleButton={
+                  TitleButton={
                      <Button startIcon={Add} onClick={handleNewModalOpen}>
                         Nieuw
                      </Button>
                   }
-                  rowButton={
+                  RowButton={
                      <IconButton onClick={handleEditModalOpen}>
                         <Edit />
                      </IconButton>

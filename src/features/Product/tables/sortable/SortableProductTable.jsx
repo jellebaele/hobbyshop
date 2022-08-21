@@ -214,8 +214,8 @@ const rows = [
 
 export default function SortableProductTable({
    title,
-   titleButton,
-   rowButton,
+   TitleButton,
+   RowButton,
 }) {
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
@@ -228,13 +228,13 @@ export default function SortableProductTable({
 
    return (
       <div className="sortableProductTableContainer">
-         <TableTitle title={title}>{titleButton}</TableTitle>
+         <TableTitle title={title}>{TitleButton}</TableTitle>
          <SortableTable
             rows={rows}
             initialOrder="name"
             getColumnLayout={getColumnLayout}
             Row={ProductRowExtended}
-            rowButton={rowButton}
+            RowButton={RowButton}
          />
       </div>
    );

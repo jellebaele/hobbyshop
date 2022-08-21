@@ -68,7 +68,7 @@ const SortableOrderTable = ({ rowButton, handleRowClick }) => {
             getColumnLayout={getColumnLayout}
             Row={SortableOrderRow}
             onRowClick={handleRowClick}
-            rowButton={rowButton}
+            RowButton={rowButton}
          />
       </div>
    );

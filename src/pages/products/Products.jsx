@@ -16,7 +16,7 @@ const Products = () => {
             <div className="tableContainer">
                <SortableProductTable
                   title="Producten"
-                  rowButton={
+                  RowButton={
                      <IconButton onClick={() => setOpenModal(true)}>
                         <ShoppingBag />
                      </IconButton>

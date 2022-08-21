@@ -11,7 +11,7 @@ const SortableTable = ({
    getColumnLayout,
    Row,
    onRowClick,
-   rowButton,
+   RowButton,
 }) => {
    const [order, setOrder] = useState('asc');
    const [orderBy, setOrderBy] = useState(initialOrder);
@@ -59,7 +59,7 @@ const SortableTable = ({
                         .map((row) => {
                            return (
                               <Row row={row} key={row._id} onClick={onRowClick}>
-                                 {rowButton}
+                                 {RowButton}
                               </Row>
                            );
                         })}
