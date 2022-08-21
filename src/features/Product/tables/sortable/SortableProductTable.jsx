@@ -216,6 +216,7 @@ export default function SortableProductTable({
    title,
    TitleButton,
    RowButton,
+   handleOnRowClick,
 }) {
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
@@ -234,6 +235,7 @@ export default function SortableProductTable({
             initialOrder="name"
             getColumnLayout={getColumnLayout}
             Row={ProductRowExtended}
+            onRowClick={handleOnRowClick}
             RowButton={RowButton}
          />
       </div>

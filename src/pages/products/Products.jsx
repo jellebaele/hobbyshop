@@ -21,6 +21,7 @@ const Products = () => {
                         <ShoppingBag />
                      </IconButton>
                   }
+                  handleOnRowClick={() => setOpenModal(true)}
                />
 
                <OrderProductModal

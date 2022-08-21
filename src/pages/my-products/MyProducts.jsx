@@ -57,6 +57,7 @@ const MyProducts = () => {
                         <Edit />
                      </IconButton>
                   }
+                  handleOnRowClick={handleEditModalOpen}
                />
 
                <DeleteProductModal

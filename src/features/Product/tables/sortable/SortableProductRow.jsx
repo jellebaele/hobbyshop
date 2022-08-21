@@ -5,13 +5,17 @@ import useIsMobile from '../../../../hooks/useIsMobile';
 import useIsTablet from '../../../../hooks/useIsTablet';
 import './sortable-product-row.scss';
 
-const SortableProductRow = ({ row, children }) => {
+const SortableProductRow = ({ row, children, onClick }) => {
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
 
    return (
       <>
-         <TableRow tabIndex={-1} className="sortableProductRowContainer">
+         <TableRow
+            tabIndex={-1}
+            className="sortableProductRowContainer"
+            onClick={() => (isMobile || isTablet) && onClick(row._id)}
+         >
             <TableCell component="th" scope="row" padding="normal">
                {row.name}
             </TableCell>
