@@ -50,7 +50,7 @@ const rows = [
    },
 ];
 
-const SortableOrderTable = ({ rowButton }) => {
+const SortableOrderTable = ({ rowButton, handleRowClick }) => {
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
 
@@ -67,6 +67,7 @@ const SortableOrderTable = ({ rowButton }) => {
             initialOrder="user"
             getColumnLayout={getColumnLayout}
             Row={SortableOrderRow}
+            onRowClick={handleRowClick}
             rowButton={rowButton}
          />
       </div>

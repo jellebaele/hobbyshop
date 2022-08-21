@@ -7,14 +7,18 @@ import useIsTablet from '../../../../hooks/useIsTablet';
 import SubProductTable from '../../../Product/tables/small/SubProductTable';
 import './sortable-order-row.scss';
 
-const SortableOrderRow = ({ row, children }) => {
+const SortableOrderRow = ({ row, children, onClick }) => {
    const [open, setOpen] = useState(false);
    const isMobile = useIsMobile();
    const isTablet = useIsTablet();
 
    return (
       <>
-         <TableRow tabIndex={-1} className="sortableOrderRowContainer">
+         <TableRow
+            tabIndex={-1}
+            className="sortableOrderRowContainer"
+            onClick={() => (isMobile || isTablet) && onClick(row._id)}
+         >
             {!isTablet && (
                <TableCell>
                   <IconButton

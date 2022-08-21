@@ -28,6 +28,7 @@ const Orders = () => {
                         <Edit />
                      </IconButton>
                   }
+                  handleRowClick={handleEditModalOpen}
                />
             </CollapsibleContainer>
 
