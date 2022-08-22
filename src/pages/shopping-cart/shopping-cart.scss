@@ -18,52 +18,6 @@
 
       .shoppingCartBody {
          margin-top: 30px;
-
-         .top {
-            .product {
-               border-bottom: #757575 1px solid;
-               display: flex;
-               align-items: center;
-               justify-content: space-between;
-               min-width: 100%;
-
-               &:last-child {
-                  border-bottom: none;
-               }
-
-               .left {
-                  .productDetails {
-                     display: flex;
-                     flex-direction: column;
-                     margin-top: 10px;
-                     margin-bottom: 10px;
-
-                     span {
-                        padding: 5px;
-
-                        &.id {
-                           font-size: smaller;
-                           margin-top: 2px;
-                        }
-                     }
-                  }
-               }
-
-               .right {
-                  .buttonContainer {
-                     display: flex;
-                     align-items: center;
-                     justify-content: center;
-                     margin-right: 30px;
-
-                     .editAmountButton {
-                        margin: 0px 10px;
-                     }
-                  }
-               }
-            }
-         }
-
          .bottom {
             margin-top: 20px;
             display: flex;

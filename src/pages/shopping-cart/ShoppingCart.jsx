@@ -1,10 +1,9 @@
-import { Add, Remove, ShoppingBag } from '@mui/icons-material';
+import { ShoppingBag } from '@mui/icons-material';
 import React, { useState } from 'react';
 import { Button } from '../../components/button/Button';
-import { IconButton } from '../../components/button/IconButton';
 import Header from '../../components/header/Header';
 import ConfirmModal from '../../components/modal/confirm/ConfirmModal';
-import { Status } from '../../components/status/Status';
+import Item from '../../features/ShoppingCart/Item';
 import './shopping-cart.scss';
 
 const rows = [
@@ -47,43 +46,7 @@ const ShoppingCart = () => {
             <div className="shoppingCartBody">
                <div className="top">
                   {rows.map((row) => (
-                     <div key={row._id} className="product">
-                        <div className="left">
-                           <div className="productDetails">
-                              <span className="productName">
-                                 <b>Product: </b>
-                                 {row.name}
-                              </span>
-                              <span className="category">
-                                 <b>Category: </b>
-                                 {row.category}
-                              </span>
-                              <span className="owner">
-                                 <b>Eigenaar: </b>
-                                 {row.owner}
-                              </span>
-                              <span className="statusSpan">
-                                 <b>Status: </b>
-                                 <Status status={row.status} />
-                              </span>
-                              <span className="id">
-                                 <b>Id: </b>
-                                 {row._id}
-                              </span>
-                           </div>
-                        </div>
-                        <div className="right">
-                           <div className="buttonContainer">
-                              <IconButton className="editAmountButton">
-                                 <Remove />
-                              </IconButton>
-                              {row.amount} {row.unit}
-                              <IconButton className="editAmountButton">
-                                 <Add />
-                              </IconButton>
-                           </div>
-                        </div>
-                     </div>
+                     <Item key={row._id} shoppingCartItem={row} />
                   ))}
                </div>
                <div className="bottom">

@@ -21,14 +21,14 @@ const productData = {
 };
 
 const OrderProductModal = ({ open, handleOnClose, productId }) => {
-   let [amount, setAmount] = useState(0);
+   const [amount, setAmount] = useState(0);
 
    const handleIncreaseAmount = () => {
-      if (amount < productData.amount) setAmount(++amount);
+      if (amount < productData.amount) setAmount(parseInt(amount) + 1);
    };
 
    const handleDecreaseAmount = () => {
-      if (amount > 0) setAmount(--amount);
+      if (amount > 0) setAmount(parseInt(amount) + 1);
    };
 
    const onSubmit = (data) => {
