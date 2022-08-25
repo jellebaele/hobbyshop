@@ -9,9 +9,10 @@ const FormInputGroup = ({
    disabled,
    register,
    error,
+   className,
 }) => {
    return (
-      <div className="formInputGroupContainer">
+      <div className={`formInputGroupContainer ${className ? className : ''}`}>
          <label>{label}</label>
          <FormInput
             name={name}

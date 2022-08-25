@@ -4,11 +4,6 @@ $padding: 10px;
 
 .userOverviewContainer {
    .profileData {
-      .formRow {
-         display: flex;
-         justify-content: space-between;
-      }
-
       .buttonContainer {
          display: flex;
          padding: $padding;

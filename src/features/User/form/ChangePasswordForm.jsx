@@ -28,38 +28,32 @@ const ChangePasswordForm = ({ user, edit, onSubmit, onCancelEdit }) => {
          onSubmit={handleSubmit(onSubmit)}
       >
          <Collapse in={edit} timeout="auto" unmountOnExit className="collaps">
-            <div className="passwordContainer">
-               <FormInputGroup
-                  label="Huidig wachtwoord"
-                  name="currentPassword"
-                  type="password"
-                  disabled={!edit}
-                  register={register}
-                  error={errors.currentPassword}
-               />
-            </div>
+            <FormInputGroup
+               label="Huidig wachtwoord"
+               name="currentPassword"
+               type="password"
+               disabled={!edit}
+               register={register}
+               error={errors.currentPassword}
+            />
 
-            <div className="passwordContainer">
-               <FormInputGroup
-                  label="Nieuw wachtwoord"
-                  name="newPassword"
-                  type="password"
-                  disabled={!edit}
-                  register={register}
-                  error={errors.newPassword}
-               />
-            </div>
+            <FormInputGroup
+               label="Nieuw wachtwoord"
+               name="newPassword"
+               type="password"
+               disabled={!edit}
+               register={register}
+               error={errors.newPassword}
+            />
 
-            <div className="passwordContainer">
-               <FormInputGroup
-                  label="Herhaal nieuw wachtwoord"
-                  name="confirmNewPassword"
-                  type="password"
-                  disabled={!edit}
-                  register={register}
-                  error={errors.confirmNewPassword}
-               />
-            </div>
+            <FormInputGroup
+               label="Herhaal nieuw wachtwoord"
+               name="confirmNewPassword"
+               type="password"
+               disabled={!edit}
+               register={register}
+               error={errors.confirmNewPassword}
+            />
          </Collapse>
 
          {edit && (

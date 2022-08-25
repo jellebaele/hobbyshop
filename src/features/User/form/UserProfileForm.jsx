@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import ConfirmForm from '../../../components/form/ConfirmForm';
 import FormInputGroup from '../../../components/form/FormInputGroup';
 import { UserEditFormOptions } from './validation';
+import './user-profile-form.scss';
 
 const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
    const {
@@ -23,7 +24,10 @@ const UserProfileForm = ({ user, edit, onSubmit, onCancelEdit }) => {
    };
 
    return (
-      <form className="userProfileContainer" onSubmit={handleSubmit(onSubmit)}>
+      <form
+         className="userProfileFormContainer"
+         onSubmit={handleSubmit(onSubmit)}
+      >
          <div className="formRow">
             <FormInputGroup
                label="Voornaam"

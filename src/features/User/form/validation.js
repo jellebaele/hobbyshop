@@ -43,3 +43,14 @@ const editPasswordValidationScehma = Yup.object().shape({
 export const PasswordEditFormOptions = {
    resolver: yupResolver(editPasswordValidationScehma),
 };
+
+const loginValidationSchema = Yup.object().shape({
+   usernameOrPassword: Yup.string().required(
+      'Gebruikersnaam/e-mail is verplicht'
+   ),
+   password: Yup.string().required('Wachtwoord is verplict'),
+});
+
+export const LoginFormOptions = {
+   resolver: yupResolver(loginValidationSchema),
+};
