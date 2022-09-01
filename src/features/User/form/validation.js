@@ -48,9 +48,38 @@ const loginValidationSchema = Yup.object().shape({
    usernameOrPassword: Yup.string().required(
       'Gebruikersnaam/e-mail is verplicht'
    ),
-   password: Yup.string().required('Wachtwoord is verplict'),
+   password: Yup.string().required('Wachtwoord is verplicht'),
 });
 
 export const LoginFormOptions = {
    resolver: yupResolver(loginValidationSchema),
+};
+
+const registerValidationSchema = Yup.object().shape({
+   surname: Yup.string()
+      .required('Voornaam is verplicht')
+      .min(2, 'Voornaam moet minstens 2 karakters lang zijn')
+      .max(30, 'Voornaam mag niet langer zijn dan 30 karakters'),
+   lastname: Yup.string()
+      .required('Achternaam is verplicht')
+      .min(2, 'Achternaam moet minstens 2 karakters lang zijn')
+      .max(30, 'Achternaam mag niet langer zijn dan 30 karakters'),
+   username: Yup.string()
+      .required('Gebruikersnaam is verplicht')
+      .min(2, 'Gebruikers moet minstens 2 karakters lang zijn')
+      .max(30, 'Gebruikersnaam mag niet langer zijn dan 30 karakters')
+      .test(
+         'Correct username',
+         'Gebruikersnaam is reeds in gebruik',
+         function (value) {
+            return true;
+         }
+      ),
+   email: Yup.string()
+      .email('Geen geldig e-mail adres')
+      .required('E-mail adres is verplicht'),
+});
+
+export const RegisterFormOptions = {
+   resolver: yupResolver(registerValidationSchema),
 };

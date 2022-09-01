@@ -8,15 +8,19 @@ import Sidebar from './components/sidebar/Sidebar';
 import MyProducts from './pages/my-products/MyProducts';
 import ShoppingCart from './pages/shopping-cart/ShoppingCart';
 import Profile from './pages/profile/Profile';
+import Register from './pages/register/Register';
 
 function App() {
    const { pathname } = useLocation();
 
    return (
       <div className="appContainer">
-         {pathname !== '/login' && <Sidebar className="sidebar" />}
+         {pathname !== '/login' && pathname !== '/register' && (
+            <Sidebar className="sidebar" />
+         )}
          <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/" element={<Home />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/products" element={<Products />} />

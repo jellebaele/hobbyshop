@@ -7,6 +7,7 @@ const Login = () => {
    const onSubmit = (data) => {
       console.log(data);
    };
+
    return (
       <div className="loginContainer">
          <div className="bodyContainer">
@@ -22,7 +23,7 @@ const Login = () => {
                   to="/register"
                   style={{ textDecoration: 'none', color: 'inherit' }}
                >
-                  <span>Nog geen account? Registreer hier!</span>
+                  <span>Nog geen account? Vraag hier aan!</span>
                </Link>
             </div>
          </div>
