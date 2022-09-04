@@ -77,12 +77,13 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -  [x] Generic button component
 -  [x] Generic status component
 -  [x] auto size texarea
--  [ ] Dropdown component
-   -  [ ] Support status
+-  [x] Dropdown component
+   -  [x] Support status
 -  [x] Responsive home page
    -  [x] Products
    -  [x] Orders
-   -  [ ] Change table layour: Order & show button without text + extra column
+   -  [x] Change table layour: Order & show button without text + extra column
+   -  [x] Implement order form in modal order
 -  [x] Responsive products page
    -  [x] Responsive modals
    -  [x] Responsive table
@@ -90,17 +91,20 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 -  [x] Responsive orders page
    -  [x] Response modals
    -  [x] Responsive table
--  Edit product modal
-   -  [ ] Open product on table click
--  [ ] Toasters
+-  [x] Edit product modal
+   -  [x] Open product on table click
+-  [x] Style validation error text
+-  [x] Toaster/snackbar
 -  [x] Shopping cart
+   -  [x] Remove item
 -  [ ] Profile page
    -  [x] Edit profile
    -  [x] Edit password
    -  [x] Validation error
    -  [ ] Order history
--  [ ] Login page
--  [ ] Register page
+-  [x] Login page
+-  [x] Register page
+-  [x] Register success page
 -  [ ] Fetch data from API
 
 # Goal
