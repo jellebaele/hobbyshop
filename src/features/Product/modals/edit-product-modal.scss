@@ -1,0 +1,35 @@
+@import '../../../variables.scss';
+$padding: 10px;
+
+.productEditModalContainer {
+   display: flex;
+   flex-direction: column;
+   padding: 5px;
+   margin-bottom: 20px;
+
+   .buttonContainer {
+      display: flex;
+      padding: $padding;
+      justify-content: center;
+
+      .button {
+         margin-left: 10px !important;
+      }
+   }
+}
+
+@media (max-width: $tablet-breakpoint) {
+   .basicModalContainer {
+      .left {
+         margin-bottom: 10px;
+      }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .basicModalContainer {
+      .left {
+         margin-bottom: 10px;
+      }
+   }
+}

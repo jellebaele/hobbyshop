@@ -1,0 +1,26 @@
+.tableContainer {
+   border: 2px solid #a1a1a1;
+   padding: 20px;
+   margin-bottom: 20px;
+
+   .top {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+
+      h2 {
+         display: flex;
+         align-items: center;
+      }
+
+      .arrowIcon {
+         border: none;
+         cursor: pointer;
+
+         &:hover {
+            background-color: transparent;
+            color: inherit;
+         }
+      }
+   }
+}

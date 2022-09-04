@@ -1,0 +1,99 @@
+@import '../../variables.scss';
+
+.sidebarContainer {
+   display: flex;
+   flex-direction: column;
+   border-right: 1px rgba(0, 0, 0, 0.54) solid;
+   min-height: 100vh;
+   overflow: hidden;
+   padding-top: 10px;
+   color: rgba(0, 0, 0, 0.54);
+   width: 200px;
+   min-width: 200px;
+   transition: all 0.75s ease;
+   position: fixed;
+   background-color: white;
+   z-index: 99;
+
+   &.closed {
+      min-width: $container-width-desktop;
+      width: $container-width-desktop;
+   }
+
+   .top {
+      display: flex;
+
+      .icon {
+         padding: 0px 16px;
+         cursor: pointer;
+      }
+   }
+
+   .center {
+      min-width: 180px;
+      ul {
+         list-style: none;
+         margin: 0;
+         padding: 0;
+
+         li {
+            padding: 8px 16px;
+            cursor: pointer;
+            transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+            &:hover {
+               background-color: rgb(238, 238, 238);
+            }
+
+            &.active {
+               background-color: rgb(218, 218, 218);
+            }
+
+            .listContainer {
+               display: flex;
+               align-items: center;
+            }
+
+            .icon {
+               font-size: 24px;
+               margin-right: 12px;
+               display: flex;
+               align-items: center;
+            }
+
+            span {
+               font-size: 14px;
+               font-weight: bold;
+               color: #888;
+               margin-left: 10px;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: $phone-breakpoint) {
+   .sidebarContainer {
+      width: 180px;
+      min-width: 180px;
+
+      &.closed {
+         min-width: $container-width-mobile;
+         width: $container-width-mobile;
+      }
+
+      .top {
+         .icon {
+            padding: 0px 10px;
+         }
+      }
+
+      .center {
+         ul {
+            li {
+               padding: 6px 10px;
+            }
+         }
+      }
+   }
+}
