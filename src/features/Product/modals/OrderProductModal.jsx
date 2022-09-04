@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { IconButton } from '../../../components/button/IconButton';
 import { Button } from '../../../components/button/Button';
 import ProductForm from '../form/ProductForm';
+import { useSnackbar } from 'notistack';
 import './order-product-modal.scss';
 
 const productData = {
@@ -22,6 +23,7 @@ const productData = {
 
 const OrderProductModal = ({ open, handleOnClose, productId }) => {
    const [amount, setAmount] = useState(0);
+   const { enqueueSnackbar } = useSnackbar();
 
    const handleIncreaseAmount = () => {
       if (amount < productData.amount) setAmount(parseInt(amount) + 1);
@@ -33,6 +35,7 @@ const OrderProductModal = ({ open, handleOnClose, productId }) => {
 
    const onSubmit = (data) => {
       console.log(productData);
+      enqueueSnackbar('Success!', { variant: 'success' });
    };
 
    return (
