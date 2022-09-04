@@ -1,0 +1,23 @@
+.productNewModalContainer {
+   display: flex;
+   flex-direction: column;
+   padding: 5px;
+   margin-bottom: 20px;
+
+   .top {
+      flex: 1;
+      padding-top: 10px;
+      width: 100%;
+   }
+
+   .bottom {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .buttonContainer {
+         display: flex;
+      }
+   }
+}

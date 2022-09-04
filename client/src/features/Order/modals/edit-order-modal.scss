@@ -1,0 +1,19 @@
+@import '../../../variables.scss';
+$padding: 10px;
+
+.editOrderModalContainer {
+   display: flex;
+   flex-direction: column;
+   padding: 5px;
+   margin-bottom: 20px;
+
+   .buttonContainer {
+      display: flex;
+      padding: $padding;
+      justify-content: center;
+
+      .button {
+         margin-left: 10px !important;
+      }
+   }
+}

@@ -1,0 +1,39 @@
+@import '../../../variables.scss';
+
+.editProductFormContainer {
+   .inputGrid {
+      display: grid;
+      grid-template-columns: fit-content(180px) 1fr;
+      column-gap: 20px;
+      row-gap: 5px;
+      padding: 5px 15px;
+
+      label {
+         display: flex;
+         align-items: center;
+      }
+
+      .descriptionLabel {
+         align-items: flex-start;
+         margin-top: 5px;
+      }
+
+      .stockGroup {
+         display: flex;
+         width: fit-content;
+
+         .stockInput {
+            margin-right: 5px;
+         }
+      }
+   }
+}
+
+@media (max-width: $tablet-breakpoint) {
+   .editProductFormContainer {
+      .inputGrid {
+         display: flex;
+         flex-direction: column;
+      }
+   }
+}
