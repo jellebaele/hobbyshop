@@ -25,6 +25,12 @@ const Login = () => {
                >
                   <span>Nog geen account? Vraag hier aan!</span>
                </Link>
+               <Link
+                  to="/"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+               >
+                  <span>Wachtwoord vergeten?</span>
+               </Link>
             </div>
          </div>
       </div>

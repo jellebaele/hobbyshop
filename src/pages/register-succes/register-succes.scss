@@ -1,6 +1,6 @@
 @import '../../variables.scss';
 
-.loginContainer {
+.registerSuccessContainer {
    background-image: url(../../../public/assets/OG27A00.jpg);
    background-size: cover;
    min-height: 100vh;
@@ -19,24 +19,21 @@
          flex-direction: column;
          justify-content: center;
          align-items: center;
-         color: $light-blue;
+         margin-bottom: 10px;
 
-         h1,
-         h4 {
-            text-align: center;
+         .checkIcon {
+            font-size: 35px;
+            margin-bottom: 15px;
+            border: 3px solid $light-blue;
+            border-radius: 50%;
+            padding: 3px;
+            color: $light-blue;
          }
       }
 
-      .bottom {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-      }
-
-      .footer {
-         margin-top: 20px;
-         display: flex;
-         flex-direction: column;
+      .link {
+         text-decoration: none;
+         color: inherit;
 
          span {
             font-size: small;
@@ -49,18 +46,9 @@
 }
 
 @media (max-width: $phone-breakpoint) {
-   .loginContainer {
+   .registerSuccessContainer {
       .bodyContainer {
          width: 70%;
-
-         .top {
-            h4 {
-               font-size: 13px;
-            }
-            h1 {
-               font-size: 36px;
-            }
-         }
       }
    }
 }
