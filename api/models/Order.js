@@ -1,5 +1,7 @@
 /**
- * userId
+ * _id
+ * orderer
+ * deliverer
  * products: [
  *  productId
  *  quantity
