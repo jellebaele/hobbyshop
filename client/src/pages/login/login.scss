@@ -1,66 +1,66 @@
 @import '../../variables.scss';
 
 .loginContainer {
-   background-image: url(../../../public/assets/OG27A00.jpg);
-   background-size: cover;
-   min-height: 100vh;
-   min-width: 100vw;
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  background-image: url(../../../public/assets/OG27A00.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-   .bodyContainer {
-      background-color: white;
-      border: 7px solid $light-blue;
-      padding: 20px;
+  .bodyContainer {
+    background-color: white;
+    border: 7px solid $light-blue;
+    padding: 20px;
 
-      .top {
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         color: $light-blue;
+    .top {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: $light-blue;
 
-         h1,
-         h4 {
-            text-align: center;
-         }
+      h1,
+      h4 {
+        text-align: center;
       }
+    }
 
-      .bottom {
-         display: flex;
-         justify-content: center;
-         align-items: center;
+    .bottom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+
+      span {
+        font-size: small;
+        text-decoration: underline;
+        color: $light-blue;
+        cursor: pointer;
       }
-
-      .footer {
-         margin-top: 20px;
-         display: flex;
-         flex-direction: column;
-
-         span {
-            font-size: small;
-            text-decoration: underline;
-            color: $light-blue;
-            cursor: pointer;
-         }
-      }
-   }
+    }
+  }
 }
 
 @media (max-width: $phone-breakpoint) {
-   .loginContainer {
-      .bodyContainer {
-         width: 70%;
+  .loginContainer {
+    .bodyContainer {
+      width: 70%;
 
-         .top {
-            h4 {
-               font-size: 13px;
-            }
-            h1 {
-               font-size: 36px;
-            }
-         }
+      .top {
+        h4 {
+          font-size: 13px;
+        }
+        h1 {
+          font-size: 36px;
+        }
       }
-   }
+    }
+  }
 }
