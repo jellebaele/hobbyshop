@@ -14,7 +14,7 @@ import LoggedInRoute from './components/routes/LoggedInRoute';
 
 function App() {
   const { pathname } = useLocation();
-  const user = { username: 'Test' };
+  const user = null;
 
   return (
     <div className="appContainer">
