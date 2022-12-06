@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import BadRequestError from '../error/implementations/BadRequestError';
-import AuthService from '../service/AuthService';
-import UserService from '../service/UserService';
-import TextUtils from '../utils/TextUtils';
+import BadRequestError from '../../error/implementations/BadRequestError';
+import AuthService from '../../service/AuthService';
+import UserService from '../../service/UserService';
+import TextUtils from '../../utils/TextUtils';
 import { registerSchema } from './validation';
 import SchemaValidator from './validation/SchemaValidator';
 
