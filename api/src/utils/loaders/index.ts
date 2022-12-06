@@ -1,8 +1,10 @@
 import setupExpress from './express';
 import { Express } from 'express';
+import setupMongoose from './database';
 
 const setupServer = (): Express | undefined => {
   try {
+    setupMongoose();
     const app = setupExpress();
 
     return app;
