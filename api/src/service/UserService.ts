@@ -1,16 +1,16 @@
 import { FilterQuery, QueryOptions } from 'mongoose';
 import InternalServerError from '../error/implementations/InternalServerError';
-import UserModel, { IUserDto } from '../models/User';
+import UserModel, { IUserDocument, IUserDto } from '../models/User';
 
 class UserService {
   public async getUser(
     filterQuery: FilterQuery<IUserDto>,
     options: QueryOptions = {}
-  ): Promise<IUserDto | null> {
+  ): Promise<IUserDocument | null> {
     return await UserModel.findOne(filterQuery, {}, options);
   }
 
-  public async createUser(userDto: IUserDto): Promise<IUserDto> {
+  public async createUser(userDto: IUserDto): Promise<IUserDocument> {
     const newUser = await new UserModel({ ...userDto, isAdmin: false }).save();
 
     if (!newUser) {
@@ -22,11 +22,24 @@ class UserService {
     return newUser;
   }
 
+  public async getUserById(id: string): Promise<IUserDocument | null> {
+    return await this.getUser({ id });
+  }
+
   public async getUserByUsernameOrEmail(
     name: string,
     email: string
-  ): Promise<IUserDto | null> {
+  ): Promise<IUserDocument | null> {
     return await this.getUser({ $or: [{ name }, { email }] });
+  }
+
+  public async getAllUsers(
+    limit: number = 50
+  ): Promise<(IUserDocument | null)[]> {
+    if (limit > 50) limit = 50;
+    const users = await UserModel.find().limit(limit);
+
+    return users;
   }
 }
 
