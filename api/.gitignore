@@ -105,3 +105,6 @@ dist
 
 # Typescript output folder
 build/
+
+# Docker
+data/
