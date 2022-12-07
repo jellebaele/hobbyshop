@@ -1,6 +1,13 @@
 version: '3.5'
 
 services:
+  cache: 
+    image: redis:alpine
+    ports:
+      - '6379:6379'
+    command: ['--requirepass "${REDIS_PASSWORD}"']
+    restart: "always"
+
   mongo:
     image: mongo
     restart: always
