@@ -15,13 +15,13 @@ authRouter.post(
   })
 );
 
-// authRouter.post(
-//   '/login',
-//   ensureLoggedOut,
-//   asyncErrorHandler(async (req: Request, res: Response) => {
-//     await authController.loginUserHandler(req, res);
-//   })
-// );
+authRouter.post(
+  '/login',
+  ensureLoggedOut,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await authController.loginUserHandler(req, res);
+  })
+);
 
 // authRouter.post(
 //   '/logout',

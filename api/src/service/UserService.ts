@@ -27,10 +27,10 @@ class UserService {
   }
 
   public async getUserByUsernameOrEmail(
-    name: string,
-    email: string
+    username: string | null = null,
+    email: string | null = null
   ): Promise<IUserDocument | null> {
-    return await this.getUser({ $or: [{ name }, { email }] });
+    return await this.getUser({ $or: [{ username }, { email }] });
   }
 
   public async getAllUsers(
