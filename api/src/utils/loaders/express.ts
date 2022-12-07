@@ -5,11 +5,13 @@ import helmet from 'helmet';
 import compression from 'compression';
 import v1Router from '../../api/routes/v1';
 import {
+  asyncErrorHandler,
   internalErrorHandler,
   notFoundErrorHandler,
 } from '../../api/middleware';
 import session, { Store } from 'express-session';
 import { SESSION_OPTIONS } from '../../config';
+import { checkTimeLoggedIn } from '../../api/middleware/authMiddleware';
 
 const origin = {
   origin: '*',
@@ -26,6 +28,7 @@ const setupExpress = (store: Store): Express => {
 
   app.use(session({ store, ...SESSION_OPTIONS }));
 
+  app.use(asyncErrorHandler(checkTimeLoggedIn));
   app.use(v1Router);
 
   app.use(notFoundErrorHandler);

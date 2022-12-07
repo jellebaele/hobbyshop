@@ -12,6 +12,7 @@ export default class AuthService {
 
   public login(req: Request, userId: string): void {
     req.session.userId = userId;
+    req.session.createdAt = Date.now();
   }
 
   public isLoggedIn(req: Request): boolean {
