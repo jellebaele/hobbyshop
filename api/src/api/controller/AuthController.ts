@@ -53,6 +53,23 @@ export default class AuthController {
     if (!user || !(await user.matchesPassword(password)))
       throw new UnauthorizedError('Invalid username or password.');
 
+    this.authService.login(req, user.id);
+
     return res.status(200).json({ message: 'OK' });
+  }
+
+  public async logoutUserHandler(req: Request, res: Response) {
+    await this.authService.logout(req, res);
+
+    res.json({ message: 'OK' });
+  }
+
+  public async getCurrentUserHandler(req: Request, res: Response) {
+    const userId = req.session.userId;
+
+    if (!userId) throw new UnauthorizedError();
+
+    const user = await this.userService.getUserById(userId);
+    return res.json(user);
   }
 }
