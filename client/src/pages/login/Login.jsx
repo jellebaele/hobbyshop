@@ -3,15 +3,22 @@ import LoginForm from '../../features/User/form/LoginForm';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.scss';
 import { useDispatch } from 'react-redux';
-import { userLoggedIn } from '../../redux/authSlice';
+import { login } from '../../redux/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const onSubmit = (data) => {
-    dispatch(userLoggedIn({ username: data.usernameOrPassword }));
-    navigate('/');
+  const onSubmit = async (data) => {
+    try {
+      await dispatch(
+        login({ username: data.usernameOrEmail, password: data.password })
+      ).unwrap();
+
+      navigate('/');
+    } catch (error) {
+      console.error('Error logging in: ', error);
+    }
   };
 
   return (
