@@ -1,13 +1,14 @@
 import React from 'react';
 import LoginForm from '../../features/User/form/LoginForm';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './login.scss';
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, selectCurrentUser } from '../../redux/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const currentUser = useSelector(selectCurrentUser);
 
   const onSubmit = async (data) => {
     try {
@@ -20,6 +21,10 @@ const Login = () => {
       console.error('Error logging in: ', error);
     }
   };
+
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="loginContainer">

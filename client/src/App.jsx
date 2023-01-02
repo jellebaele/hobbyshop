@@ -11,11 +11,22 @@ import Profile from './pages/profile/Profile';
 import Register from './pages/register/Register';
 import RegisterSucces from './pages/register-succes/RegisterSucces';
 import LoggedInRoute from './components/routes/LoggedInRoute';
-import { useSelector } from 'react-redux';
-import { selectCurrentUser } from './redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCurrentUser, selectCurrentUser } from './redux/authSlice';
+import { useEffect } from 'react';
 
 function App() {
   const { pathname } = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getUser = async () => {
+      await dispatch(fetchCurrentUser()).unwrap();
+    };
+
+    getUser();
+  }, [dispatch]);
+
   const currentUser = useSelector(selectCurrentUser);
 
   return (
