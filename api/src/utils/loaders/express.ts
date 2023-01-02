@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 import morgan from 'morgan';
-import cors from 'cors';
+import cors, { CorsOptions } from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import v1Router from '../../api/routes/v1';
@@ -10,11 +10,12 @@ import {
   notFoundErrorHandler,
 } from '../../api/middleware';
 import session, { Store } from 'express-session';
-import { SESSION_OPTIONS } from '../../config';
+import { ORIGIN, SESSION_OPTIONS } from '../../config';
 import { checkTimeLoggedIn } from '../../api/middleware/authMiddleware';
 
-const origin = {
-  origin: '*',
+const origin: CorsOptions = {
+  origin: ORIGIN,
+  credentials: true,
 };
 
 const setupExpress = (store: Store): Express => {
