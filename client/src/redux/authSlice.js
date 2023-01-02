@@ -2,8 +2,11 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import authService from '../services/authService';
 
 const initialState = {
+  isLoggedIn: false,
   currentUser: null,
-  status: 'idle',
+  status: {
+    logout: 'idle',
+  },
   error: null,
 };
 
@@ -51,33 +54,41 @@ const authSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers(builder) {
-    builder.addCase(login.rejected, (state, action) => {
-      state.currentUser = null;
-      state.error = action.payload;
-    });
-    builder.addCase(fetchCurrentUser.fulfilled, (state, action) => {
-      state.currentUser = action.payload;
-      state.error = null;
-    });
-    builder.addCase(fetchCurrentUser.rejected, (state, action) => {
-      state.currentUser = null;
-      state.error = action.payload;
-    });
-    builder.addCase(logout.pending, (state, payload) => {
-      state.status = 'pending';
-    });
-    builder.addCase(logout.fulfilled, (state, action) => {
-      state.status = 'succeeded';
-      state.currentUser = null;
-      state.error = null;
-    });
-    builder.addCase(logout.rejected, (state, action) => {
-      state.status = 'rejected';
-      state.error = action.payload;
-    });
+    builder
+
+      .addCase(login.fulfilled, (state, action) => {
+        state.isLoggedIn = true;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.isLoggedIn = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchCurrentUser.fulfilled, (state, action) => {
+        state.currentUser = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchCurrentUser.rejected, (state, action) => {
+        state.currentUser = null;
+        state.error = action.payload;
+      })
+      .addCase(logout.pending, (state, payload) => {
+        state.status.logout = 'pending';
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.status.logout = 'succeeded';
+        state.isLoggedIn = false;
+        state.currentUser = null;
+        state.error = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
+        state.status.logout = 'rejected';
+        state.error = action.payload;
+      });
   },
 });
 
 export const selectCurrentUser = (state) => state.auth.currentUser;
+export const selectLoginStatus = (state) => state.auth.status.login;
+export const selectLogoutStatus = (state) => state.auth.status.logout;
 
 export default authSlice.reducer;

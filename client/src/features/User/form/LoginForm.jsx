@@ -5,13 +5,30 @@ import FormInputGroup from '../../../components/form/FormInputGroup';
 import { LoginFormOptions } from './validation';
 import './login-form.scss';
 import { ArrowForward } from '@mui/icons-material';
+import ValidationError from '../../../components/validation-error/ValidationError';
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, status, error }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm(LoginFormOptions);
+
+  const renderSubmitButton = (status) => {
+    if (status === 'pending') {
+      return (
+        <Button type="submit" className="button" disabled>
+          Even geduld...
+        </Button>
+      );
+    }
+
+    return (
+      <Button type="submit" className="button" endIcon={ArrowForward}>
+        Login
+      </Button>
+    );
+  };
 
   return (
     <form className="loginFormContainer" onSubmit={handleSubmit(onSubmit)}>
@@ -32,11 +49,8 @@ const LoginForm = ({ onSubmit }) => {
         error={errors.password}
         className="formInput"
       />
-      <div className="buttonContainer">
-        <Button type="submit" className="button" endIcon={ArrowForward}>
-          Login
-        </Button>
-      </div>
+      {error && <ValidationError message={error} />}
+      <div className="buttonContainer">{renderSubmitButton(status)}</div>
     </form>
   );
 };

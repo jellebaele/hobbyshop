@@ -9,35 +9,45 @@ import MyProducts from './pages/my-products/MyProducts';
 import ShoppingCart from './pages/shopping-cart/ShoppingCart';
 import Profile from './pages/profile/Profile';
 import Register from './pages/register/Register';
-import RegisterSucces from './pages/register-succes/RegisterSucces';
+import RegisterSucces from './pages/register-success/RegisterSucces';
 import LoggedInRoute from './components/routes/LoggedInRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser, selectCurrentUser } from './redux/authSlice';
 import { useEffect } from 'react';
 import Logout from './pages/logout/Logout';
+import LoginSuccess from './pages/login-success/LoginSuccess';
+
+const routesWithoutSidebar = [
+  '/login',
+  '/login/success',
+  '/register',
+  '/register/success',
+  '/logout',
+];
 
 function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const isUserLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   useEffect(() => {
     const getUser = async () => {
-      await dispatch(fetchCurrentUser()).unwrap();
+      if (isUserLoggedIn) await dispatch(fetchCurrentUser()).unwrap();
     };
 
     getUser();
-  }, [dispatch]);
+  }, [dispatch, isUserLoggedIn]);
 
   const currentUser = useSelector(selectCurrentUser);
 
   return (
     <div className="appContainer">
-      {pathname !== '/login' &&
-        pathname !== '/register' &&
-        pathname !== '/register/success' &&
-        pathname !== '/logout' && <Sidebar className="sidebar" />}
+      {!routesWithoutSidebar.includes(pathname) && (
+        <Sidebar className="sidebar" />
+      )}
       <Routes>
         <Route path="/login" element={<Login />} />
+        <Route path="/login/success" element={<LoginSuccess />} />
         <Route path="/register" element={<Register />}></Route>
         <Route path="/register/success" element={<RegisterSucces />} />
         <Route path="/logout" element={<Logout />} />

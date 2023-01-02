@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LoginForm from '../../features/User/form/LoginForm';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './login.scss';
@@ -8,22 +8,36 @@ import {
   login,
   selectCurrentUser,
 } from '../../redux/authSlice';
+import { useSnackbar } from 'notistack';
 
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
+
   const currentUser = useSelector(selectCurrentUser);
+  const [requestStatus, setRequestStatus] = useState('idle');
+  const [error, setError] = useState(null);
 
   const onSubmit = async (data) => {
     try {
-      await dispatch(
-        login({ username: data.usernameOrEmail, password: data.password })
-      ).unwrap();
+      if (requestStatus !== 'pending') {
+        setRequestStatus('pending');
+        await dispatch(
+          login({ username: data.usernameOrEmail, password: data.password })
+        ).unwrap();
 
-      await dispatch(fetchCurrentUser()).unwrap();
-      navigate('/');
+        await dispatch(fetchCurrentUser()).unwrap();
+        setRequestStatus('success');
+        enqueueSnackbar('Succesvol ingelogd!', {
+          variant: 'success',
+        });
+        navigate('/');
+      }
     } catch (error) {
+      setRequestStatus('error');
       console.error('Error logging in: ', error);
+      setError('Fout bij het inloggen. Gelieve opnieuw te proberen.');
     }
   };
 
@@ -39,7 +53,7 @@ const Login = () => {
           <h1>Herman's hobbyshop</h1>
         </div>
         <div className="bottom">
-          <LoginForm onSubmit={onSubmit} />
+          <LoginForm onSubmit={onSubmit} status={requestStatus} error={error} />
         </div>
         <div className="footer">
           <Link

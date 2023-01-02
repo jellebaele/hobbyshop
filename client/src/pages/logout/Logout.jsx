@@ -1,25 +1,29 @@
 import { CircularProgress } from '@mui/material';
+import { useSnackbar } from 'notistack';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../redux/authSlice';
+import { logout, selectLogoutStatus } from '../../redux/authSlice';
 import './logout.scss';
 
 const Logout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const status = useSelector((state) => state.auth.status);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const status = useSelector(selectLogoutStatus);
 
   useEffect(() => {
     const logoutUser = async () => {
       await dispatch(logout()).unwrap();
 
+      enqueueSnackbar('Succesvol uitgelogd!', { variant: 'success' });
       navigate('/login');
     };
 
     logoutUser();
-  }, [navigate, dispatch]);
+  }, [navigate, dispatch, enqueueSnackbar]);
 
   if (status === 'pending') {
     return (
