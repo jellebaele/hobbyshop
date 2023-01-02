@@ -2,11 +2,15 @@ import React from 'react';
 import LoginForm from '../../features/User/form/LoginForm';
 import { Link, useNavigate } from 'react-router-dom';
 import './login.scss';
+import { useDispatch } from 'react-redux';
+import { userLoggedIn } from '../../redux/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const onSubmit = (data) => {
-    console.log(data);
+    dispatch(userLoggedIn({ username: data.usernameOrPassword }));
     navigate('/');
   };
 

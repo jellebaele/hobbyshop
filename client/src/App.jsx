@@ -16,7 +16,7 @@ import { selectCurrentUser } from './redux/authSlice';
 
 function App() {
   const { pathname } = useLocation();
-  const user = useSelector(selectCurrentUser);
+  const currentUser = useSelector(selectCurrentUser);
 
   return (
     <div className="appContainer">
@@ -27,7 +27,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />}></Route>
         <Route path="/register/success" element={<RegisterSucces />} />
-        <Route element={<LoggedInRoute user={user} />}>
+        <Route element={<LoggedInRoute user={currentUser} />}>
           <Route path="/" element={<Home />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/products" element={<Products />} />
