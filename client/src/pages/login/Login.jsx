@@ -1,11 +1,13 @@
 import React from 'react';
 import LoginForm from '../../features/User/form/LoginForm';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './login.scss';
 
 const Login = () => {
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     console.log(data);
+    navigate('/');
   };
 
   return (

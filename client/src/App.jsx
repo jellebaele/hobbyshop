@@ -11,10 +11,12 @@ import Profile from './pages/profile/Profile';
 import Register from './pages/register/Register';
 import RegisterSucces from './pages/register-succes/RegisterSucces';
 import LoggedInRoute from './components/routes/LoggedInRoute';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from './redux/authSlice';
 
 function App() {
   const { pathname } = useLocation();
-  const user = null;
+  const user = useSelector(selectCurrentUser);
 
   return (
     <div className="appContainer">
