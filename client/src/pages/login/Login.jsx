@@ -3,7 +3,11 @@ import LoginForm from '../../features/User/form/LoginForm';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './login.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, selectCurrentUser } from '../../redux/authSlice';
+import {
+  fetchCurrentUser,
+  login,
+  selectCurrentUser,
+} from '../../redux/authSlice';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +20,7 @@ const Login = () => {
         login({ username: data.usernameOrEmail, password: data.password })
       ).unwrap();
 
+      await dispatch(fetchCurrentUser()).unwrap();
       navigate('/');
     } catch (error) {
       console.error('Error logging in: ', error);

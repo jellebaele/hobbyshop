@@ -10,6 +10,11 @@ const fetchCurrentUser = async () => {
   return response.data;
 };
 
-const authService = { login, fetchCurrentUser };
+const logout = async () => {
+  const response = await client.post('/auth/logout');
+  return response.data;
+};
+
+const authService = { login, fetchCurrentUser, logout };
 
 export default authService;

@@ -35,6 +35,17 @@ export const fetchCurrentUser = createAsyncThunk(
   }
 );
 
+export const logout = createAsyncThunk('auth/logout', async (thunkApi) => {
+  return authService
+    .logout()
+    .then((response) => response)
+    .catch((error) => {
+      return thunkApi.rejectWithValue(
+        `${error.message}: ${JSON.stringify(error.response?.data)}` || error
+      );
+    });
+});
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -50,6 +61,18 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchCurrentUser.rejected, (state, action) => {
       state.currentUser = null;
+      state.error = action.payload;
+    });
+    builder.addCase(logout.pending, (state, payload) => {
+      state.status = 'pending';
+    });
+    builder.addCase(logout.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.currentUser = null;
+      state.error = null;
+    });
+    builder.addCase(logout.rejected, (state, action) => {
+      state.status = 'rejected';
       state.error = action.payload;
     });
   },

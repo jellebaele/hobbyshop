@@ -14,6 +14,7 @@ import LoggedInRoute from './components/routes/LoggedInRoute';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser, selectCurrentUser } from './redux/authSlice';
 import { useEffect } from 'react';
+import Logout from './pages/logout/Logout';
 
 function App() {
   const { pathname } = useLocation();
@@ -33,11 +34,13 @@ function App() {
     <div className="appContainer">
       {pathname !== '/login' &&
         pathname !== '/register' &&
-        pathname !== '/register/success' && <Sidebar className="sidebar" />}
+        pathname !== '/register/success' &&
+        pathname !== '/logout' && <Sidebar className="sidebar" />}
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />}></Route>
         <Route path="/register/success" element={<RegisterSucces />} />
+        <Route path="/logout" element={<Logout />} />
         <Route element={<LoggedInRoute user={currentUser} />}>
           <Route path="/" element={<Home />} />
           <Route path="/orders" element={<Orders />} />
