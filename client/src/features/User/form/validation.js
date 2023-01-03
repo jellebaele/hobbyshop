@@ -2,8 +2,8 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 const editUserValidationSchema = Yup.object().shape({
-  firstName: Yup.string().required('Voornaam is verplicht.'),
-  lastName: Yup.string().required('Achternaam is verplicht.'),
+  name: Yup.string().required('Voornaam is verplicht.'),
+  lastname: Yup.string().required('Achternaam is verplicht.'),
   email: Yup.string().email().required('E-mail is verplicht.'),
   username: Yup.string().required('Gebruikersnaam is verplicht.'),
   currentPassword: Yup.string()
