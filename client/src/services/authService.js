@@ -15,6 +15,10 @@ const logout = async () => {
   return response.data;
 };
 
-const authService = { login, fetchCurrentUser, logout };
+const register = (data) => {
+  return client.post('/auth/register', data);
+};
+
+const authService = { login, fetchCurrentUser, logout, register };
 
 export default authService;

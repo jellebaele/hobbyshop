@@ -3,9 +3,11 @@ import { useForm } from 'react-hook-form';
 import FormInputGroup from '../../../components/form/FormInputGroup';
 import { RegisterFormOptions } from './validation';
 import './register-form.scss';
-import { Button } from '../../../components/button/Button';
+import ValidationError from '../../../components/validation-error/ValidationError';
+import SubmitButton from '../../../components/form/SubmitButton';
+import { ArrowForward } from '@mui/icons-material';
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = ({ onSubmit, error, status }) => {
   const {
     register,
     handleSubmit,
@@ -65,10 +67,18 @@ const RegisterForm = ({ onSubmit }) => {
         error={errors.passwordConfirmation}
         className="formInput"
       />
+      <div className="generalValidationError">
+        {error && <ValidationError message={error} />}
+      </div>
       <div className="buttonContainer">
-        <Button type="submit" className="button">
+        <SubmitButton
+          text={'Registreer'}
+          status={status}
+          endIcon={ArrowForward}
+        />
+        {/* <Button type="submit" className="button">
           Registreer
-        </Button>
+        </Button> */}
       </div>
     </form>
   );
