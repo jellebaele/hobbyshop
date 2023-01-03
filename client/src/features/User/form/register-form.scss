@@ -1,18 +1,19 @@
 @import '../../../variables.scss';
 
 .registerFormContainer {
-   width: 90%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   flex-direction: column;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-   .formInput {
-      width: 100% !important;
-   }
+  .formInput {
+    width: 100% !important;
+    padding: 5px;
+  }
 
-   .buttonContainer {
-      display: flex;
-      justify-content: center;
-   }
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
 }
