@@ -1,12 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, Navigate } from 'react-router-dom';
 import RegisterForm from '../../features/User/form/RegisterForm';
+import { selectCurrentUser } from '../../redux/authSlice';
 import './register.scss';
 
 const Register = () => {
+  const currentUser = useSelector(selectCurrentUser);
+
   const onSubmit = (data) => {
     console.log(data);
   };
+
+  if (currentUser) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="registerContainer">

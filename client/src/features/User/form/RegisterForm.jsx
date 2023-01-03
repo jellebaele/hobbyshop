@@ -16,10 +16,10 @@ const RegisterForm = ({ onSubmit }) => {
     <form className="registerFormContainer" onSubmit={handleSubmit(onSubmit)}>
       <FormInputGroup
         label="Voornaam"
-        name="surname"
+        name="name"
         type="text"
         register={register}
-        error={errors.surname}
+        error={errors.name}
         className="formInput"
       />
 
@@ -47,6 +47,22 @@ const RegisterForm = ({ onSubmit }) => {
         type="mail"
         register={register}
         error={errors.email}
+        className="formInput"
+      />
+      <FormInputGroup
+        label="Wachtwoord"
+        name="password"
+        type="password"
+        register={register}
+        error={errors.password}
+        className="formInput"
+      />
+      <FormInputGroup
+        label="Wachtwoord bevestigen"
+        name="passwordConfirmation"
+        type="password"
+        register={register}
+        error={errors.passwordConfirmation}
         className="formInput"
       />
       <div className="buttonContainer">

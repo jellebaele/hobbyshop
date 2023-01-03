@@ -54,18 +54,18 @@ export const LoginFormOptions = {
 };
 
 const registerValidationSchema = Yup.object().shape({
-  surname: Yup.string()
+  name: Yup.string()
     .required('Voornaam is verplicht')
-    .min(2, 'Voornaam moet minstens 2 karakters lang zijn')
-    .max(30, 'Voornaam mag niet langer zijn dan 30 karakters'),
+    .min(3, 'Voornaam moet minstens 3 karakters lang zijn')
+    .max(128, 'Voornaam mag niet langer zijn dan 128 karakters'),
   lastname: Yup.string()
     .required('Achternaam is verplicht')
-    .min(2, 'Achternaam moet minstens 2 karakters lang zijn')
-    .max(30, 'Achternaam mag niet langer zijn dan 30 karakters'),
+    .min(3, 'Achternaam moet minstens 3 karakters lang zijn')
+    .max(128, 'Achternaam mag niet langer zijn dan 128 karakters'),
   username: Yup.string()
     .required('Gebruikersnaam is verplicht')
-    .min(2, 'Gebruikers moet minstens 2 karakters lang zijn')
-    .max(30, 'Gebruikersnaam mag niet langer zijn dan 30 karakters')
+    .min(3, 'Gebruikers moet minstens 3 karakters lang zijn')
+    .max(128, 'Gebruikersnaam mag niet langer zijn dan 128 karakters')
     .test(
       'Correct username',
       'Gebruikersnaam is reeds in gebruik',
@@ -76,6 +76,18 @@ const registerValidationSchema = Yup.object().shape({
   email: Yup.string()
     .email('Geen geldig e-mail adres')
     .required('E-mail adres is verplicht'),
+  password: Yup.string()
+    .required('Wachtwoord is verplicht')
+    .min(8, 'Wachtwoord moet minstens 8 karakters lang zijn')
+    .max(128, 'Wachtwoord mag niet langer zijn dan 128 karakters')
+    .matches(
+      /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/u,
+      'Het wachtwoord moet minstens 1 hoofdletter, 1 cijfer en 1 speciaal karakter bevatten.'
+    ),
+  passwordConfirmation: Yup.string().oneOf(
+    [Yup.ref('password'), null],
+    'Wachtwoorden moeten hetzelfde zijn.'
+  ),
 });
 
 export const RegisterFormOptions = {
