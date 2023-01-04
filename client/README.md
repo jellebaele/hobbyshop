@@ -50,3 +50,11 @@
 -  [x] Register page
 -  [x] Register success page
 -  [ ] Fetch data from API
+   -  [x] Login
+   -  [x] Register
+   -  [x] Logout
+   -  [ ] Fetch products
+   -  [ ] Create products
+   -  [ ] Update products
+   -  [ ] Delete products
+   -  [ ] ...
