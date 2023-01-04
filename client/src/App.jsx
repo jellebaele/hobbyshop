@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchCurrentUser, selectCurrentUser } from './redux/authSlice';
 import { useEffect } from 'react';
 import Logout from './pages/logout/Logout';
-import LoginSuccess from './pages/login-success/LoginSuccess';
 
 const routesWithoutSidebar = [
   '/login',
@@ -47,7 +46,6 @@ function App() {
       )}
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/login/success" element={<LoginSuccess />} />
         <Route path="/register" element={<Register />}></Route>
         <Route path="/register/success" element={<RegisterSucces />} />
         <Route path="/logout" element={<Logout />} />
