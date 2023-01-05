@@ -23,7 +23,7 @@ class UserService {
   }
 
   public async getUserById(id: string): Promise<IUserDocument | null> {
-    return await this.getUser({ id });
+    return await this.getUser({ _id: id });
   }
 
   public async getUserByUsernameOrEmail(
