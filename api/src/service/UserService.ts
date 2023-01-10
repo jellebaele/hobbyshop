@@ -10,18 +10,6 @@ class UserService {
     return await UserModel.findOne(filterQuery, {}, options);
   }
 
-  public async createUser(userDto: IUserDto): Promise<IUserDocument> {
-    const newUser = await new UserModel({ ...userDto, isAdmin: false }).save();
-
-    if (!newUser) {
-      throw new InternalServerError(
-        'Something went wrong. User is not created.'
-      );
-    }
-
-    return newUser;
-  }
-
   public async getUserById(id: string): Promise<IUserDocument | null> {
     return await this.getUser({ _id: id });
   }
@@ -40,6 +28,18 @@ class UserService {
     const users = await UserModel.find().limit(limit);
 
     return users;
+  }
+
+  public async createUser(userDto: IUserDto): Promise<IUserDocument> {
+    const newUser = await new UserModel({ ...userDto, isAdmin: false }).save();
+
+    if (!newUser) {
+      throw new InternalServerError(
+        'Something went wrong. User is not created.'
+      );
+    }
+
+    return newUser;
   }
 }
 
