@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import UnauthorizedError from '../../error/implementations/UnauthorizedError';
 import ProductService from '../../service/ProductService';
 import TextUtils from '../../utils/TextUtils';
+import { createProductSchema } from './validation/productSchemas';
 import SchemaValidator from './validation/SchemaValidator';
 
 export default class ProductController {
@@ -14,6 +15,7 @@ export default class ProductController {
   }
 
   public async createProductHandler(req: Request, res: Response) {
+    await this.schemaValidator.validate(createProductSchema, req.body);
     const name = TextUtils.sanitize(req.body.name);
     const description = TextUtils.sanitize(req.body.description);
     const category = TextUtils.sanitize(req.body.category);
