@@ -30,7 +30,14 @@ productRouter.get(
     await productController.getAllProductsHandler(req, res);
   })
 );
-// productRouter.put('/productId');
+
+productRouter.put(
+  '/:productId',
+  ensureLoggedIn,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await productController.updateProductByIdHandler(req, res);
+  })
+);
 
 // productRouter.get(
 //   '/all',

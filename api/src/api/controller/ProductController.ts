@@ -1,10 +1,12 @@
 import { Request, Response } from 'express';
+import NotFoundError from '../../error/implementations/NotFoundError';
 import UnauthorizedError from '../../error/implementations/UnauthorizedError';
 import ProductService from '../../service/ProductService';
 import TextUtils from '../../utils/TextUtils';
 import {
   createProductSchema,
   getProductByIdSchema,
+  updateProductByIdSchema,
 } from './validation/productSchemas';
 import SchemaValidator from './validation/SchemaValidator';
 
@@ -68,42 +70,28 @@ export default class ProductController {
   }
 
   public async updateProductByIdHandler(req: Request, res: Response) {
-    await this.schemaValidator.validate(createProductSchema, req.body);
-    const productId = TextUtils.sanitize(req.body.productId);
-    const name = TextUtils.sanitize(req.body.name);
-    const description = TextUtils.sanitize(req.body.description);
-    const category = TextUtils.sanitize(req.body.category);
-    const amount = parseInt(TextUtils.sanitize(req.body.amount));
-    const unit = TextUtils.sanitize(req.body.unit);
-    const status = TextUtils.sanitize(req.body.status);
+    // Sanitize whole body?
+    await this.schemaValidator.validate(updateProductByIdSchema, req.params);
+    const productId = TextUtils.sanitize(req.params.productId);
 
-    const user = req.session.userId;
-    if (!user) throw new UnauthorizedError();
+    const name = req.body.name && TextUtils.sanitize(req.body.name);
+    const description =
+      req.body.description && TextUtils.sanitize(req.body.description);
+    const category = req.body.category && TextUtils.sanitize(req.body.category);
+    const amount =
+      req.body.amount && parseInt(TextUtils.sanitize(req.body.amount));
+    const unit = req.body.unit && TextUtils.sanitize(req.body.unit);
+    const status = req.body.status && TextUtils.sanitize(req.body.status);
+
+    const found = await this.productService.getProductById(productId);
+    if (!found) throw new NotFoundError();
 
     const updatedProduct = await this.productService.updateProductById(
       productId,
-      {
-        name,
-        description,
-        category,
-        amount,
-        unit,
-        user,
-        status,
-      }
+      { name, description, category, amount, unit, status },
+      { lean: true }
     );
 
-    return res.json(updatedProduct);
+    return res.send(updatedProduct);
   }
-
-  // public async getAllUsersHandler(
-  //   req: Request,
-  //   res: Response
-  // ): Promise<Response> {
-  //   await this.schemaValidator.validate(getAllUsersSchema, req.query);
-  //   const limit: number | undefined = parseInt(req.query.limit as string);
-  //   const users = await this.userService.getAllUsers(limit);
-
-  //   return res.status(200).json(users);
-  // }
 }
