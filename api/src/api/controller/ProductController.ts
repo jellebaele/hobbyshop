@@ -76,7 +76,7 @@ export default class ProductController {
 
     const isAuthorized =
       (await this.authService.isAdmin(req)) ||
-      (await this.authService.isSameUser(req, found.user.toString()));
+      this.authService.isSameUser(req, found.user.toString());
 
     if (!isAuthorized)
       throw new UnauthorizedError(
@@ -101,7 +101,7 @@ export default class ProductController {
 
     const isAuthorized =
       (await this.authService.isAdmin(req)) ||
-      (await this.authService.isSameUser(req, found.user.toString()));
+      this.authService.isSameUser(req, found.user.toString());
     if (!isAuthorized)
       throw new UnauthorizedError(
         'You cannot delete this product, as it is not yours.'
