@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import NotFoundError from '../../error/implementations/NotFoundError';
 import UnauthorizedError from '../../error/implementations/UnauthorizedError';
+import { IProductDto } from '../../models/Product';
 import ProductService from '../../service/ProductService';
 import TextUtils from '../../utils/TextUtils';
 import {
@@ -24,25 +25,14 @@ export default class ProductController {
     res: Response
   ): Promise<Response> {
     await this.schemaValidator.validate(createProductSchema, req.body);
-    const name = TextUtils.sanitize(req.body.name);
-    const description = TextUtils.sanitize(req.body.description);
-    const category = TextUtils.sanitize(req.body.category);
-    const amount = parseInt(TextUtils.sanitize(req.body.amount));
-    const unit = TextUtils.sanitize(req.body.unit);
-    const status = TextUtils.sanitize(req.body.status);
+    const body = TextUtils.sanitizeObject(req.body);
 
     const user = req.session.userId;
     if (!user) throw new UnauthorizedError();
 
-    const newProduct = await this.productService.createProduct({
-      name,
-      description,
-      category,
-      amount,
-      unit,
-      user,
-      status,
-    });
+    const newProduct = await this.productService.createProduct(
+      body as IProductDto
+    );
 
     return res.json(newProduct);
   }
@@ -70,25 +60,17 @@ export default class ProductController {
   }
 
   public async updateProductByIdHandler(req: Request, res: Response) {
-    // Sanitize whole body?
     await this.schemaValidator.validate(updateProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
 
-    const name = req.body.name && TextUtils.sanitize(req.body.name);
-    const description =
-      req.body.description && TextUtils.sanitize(req.body.description);
-    const category = req.body.category && TextUtils.sanitize(req.body.category);
-    const amount =
-      req.body.amount && parseInt(TextUtils.sanitize(req.body.amount));
-    const unit = req.body.unit && TextUtils.sanitize(req.body.unit);
-    const status = req.body.status && TextUtils.sanitize(req.body.status);
+    const body = TextUtils.sanitizeObject(req.body);
 
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
 
     const updatedProduct = await this.productService.updateProductById(
       productId,
-      { name, description, category, amount, unit, status },
+      body,
       { lean: true }
     );
 
