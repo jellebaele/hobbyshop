@@ -9,11 +9,13 @@ export default class TextUtils {
     return domPurify.sanitize(text);
   }
 
-  public static sanitizeObject(object: object): object {
-    let sanitizedObject: { [k: string]: any } = {};
+  public static sanitizeObject(object: object, exclude: string[] = []): object {
+    let sanitizedObject: { [key: string]: any } = {};
 
     for (const [key, value] of Object.entries(object)) {
-      sanitizedObject[key] = domPurify.sanitize(value);
+      sanitizedObject[key] = exclude.includes(key)
+        ? value
+        : domPurify.sanitize(value);
     }
 
     return sanitizedObject;

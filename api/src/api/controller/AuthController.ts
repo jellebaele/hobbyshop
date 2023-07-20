@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import BadRequestError from '../../error/implementations/BadRequestError';
 import UnauthorizedError from '../../error/implementations/UnauthorizedError';
+import { IUserDto } from '../../models/User';
 import AuthService from '../../service/AuthService';
 import UserService from '../../service/UserService';
 import TextUtils from '../../utils/TextUtils';
@@ -20,11 +21,12 @@ export default class AuthController {
 
   public async registerUserHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(registerSchema, req.body);
-    const username = TextUtils.sanitize(req.body.username);
-    const email = TextUtils.sanitize(req.body.email);
-    const name = TextUtils.sanitize(req.body.name);
-    const lastname = TextUtils.sanitize(req.body.lastname);
-    const password = req.body.password;
+    const body: IUserDto = TextUtils.sanitizeObject(req.body, [
+      'password',
+    ]) as IUserDto;
+
+    const username = body.username;
+    const email = body.email;
 
     const found = await this.userService.getUserByUsernameOrEmail(
       username,
@@ -33,13 +35,7 @@ export default class AuthController {
 
     if (found) throw new BadRequestError('Invalid username or email');
 
-    await this.authService.registerUser({
-      username,
-      email,
-      name,
-      lastname,
-      password,
-    });
+    await this.authService.registerUser(body);
 
     return res.status(201).json({ message: 'OK' });
   }
