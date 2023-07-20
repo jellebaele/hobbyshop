@@ -5,7 +5,17 @@ const { window } = new JSDOM('');
 const domPurify = DOMPurify(window);
 
 export default class TextUtils {
-  public static sanitize(text: string) {
+  public static sanitize(text: string): string {
     return domPurify.sanitize(text);
+  }
+
+  public static sanitizeObject(object: object): object {
+    let sanitizedObject: { [k: string]: any } = {};
+
+    for (const [key, value] of Object.entries(object)) {
+      sanitizedObject[key] = domPurify.sanitize(value);
+    }
+
+    return sanitizedObject;
   }
 }
