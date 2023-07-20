@@ -13,6 +13,17 @@
 -  Edit products
 -  Filter products & orders
 
+# How to start
+Run:
+```console
+$ npm run start
+```
+
+build:
+```console
+$ npm run build
+```
+
 # TODO
 
 -  [x] Generic product modal
@@ -49,10 +60,12 @@
 -  [x] Login page
 -  [x] Register page
 -  [x] Register success page
+-  [ ] Forgot password page
 -  [ ] Fetch data from API
    -  [x] Login
    -  [x] Register
    -  [x] Logout
+   -  [ ] Forgot password
    -  [ ] Fetch products
    -  [ ] Create products
    -  [ ] Update products
