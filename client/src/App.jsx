@@ -57,6 +57,7 @@ function App() {
           <Route path="/shopping-cart" element={<ShoppingCart />} />
           <Route path="/my-profile" element={<Profile />} />
         </Route>
+        <Route path="*" element={<Login />} />
       </Routes>
     </div>
   );

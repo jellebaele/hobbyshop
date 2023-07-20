@@ -61,6 +61,7 @@ $ npm run build
 -  [x] Register page
 -  [x] Register success page
 -  [ ] Forgot password page
+-  [ ] Unknown page
 -  [ ] Fetch data from API
    -  [x] Login
    -  [x] Register
