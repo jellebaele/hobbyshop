@@ -49,3 +49,4 @@ TODO:
 - [ ] Register verification via mail
 - [ ] CRUD Product
 - [ ] Admin priviliges (User API)
+- [ ] Get all products in parts

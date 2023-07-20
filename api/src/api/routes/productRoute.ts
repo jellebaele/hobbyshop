@@ -17,8 +17,17 @@ productRouter.post(
 
 productRouter.get(
   '/:productId',
+  ensureLoggedIn,
   asyncErrorHandler(async (req: Request, res: Response) => {
     await productController.getProductByIdHandler(req, res);
+  })
+);
+
+productRouter.get(
+  '',
+  ensureLoggedIn,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await productController.getAllProductsHandler(req, res);
   })
 );
 // productRouter.put('/productId');

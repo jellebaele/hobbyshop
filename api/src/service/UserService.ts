@@ -1,4 +1,5 @@
 import { FilterQuery, QueryOptions } from 'mongoose';
+import { QUERY_DEFAULT_AMOUNT, QUERY_MAX_AMOUNT } from '../config';
 import InternalServerError from '../error/implementations/InternalServerError';
 import UserModel, { IUserDocument, IUserDto } from '../models/User';
 
@@ -22,9 +23,9 @@ class UserService {
   }
 
   public async getAllUsers(
-    limit: number = 50
+    limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string)
   ): Promise<(IUserDocument | null)[]> {
-    if (limit > 50) limit = 50;
+    if (limit > QUERY_MAX_AMOUNT) limit = parseInt(QUERY_MAX_AMOUNT as string);
     const users = await UserModel.find().limit(limit);
 
     return users;

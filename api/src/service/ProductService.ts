@@ -1,7 +1,7 @@
 import { FilterQuery, QueryOptions } from 'mongoose';
+import { QUERY_DEFAULT_AMOUNT, QUERY_MAX_AMOUNT } from '../config';
 import InternalServerError from '../error/implementations/InternalServerError';
 import ProductModel, { IProductDocument, IProductDto } from '../models/Product';
-import UserModel, { IUserDocument, IUserDto } from '../models/User';
 
 class ProductService {
   public async getProduct(
@@ -13,6 +13,15 @@ class ProductService {
 
   public async getProductById(id: string): Promise<IProductDocument | null> {
     return await this.getProduct({ _id: id });
+  }
+
+  public async getAllProducts(
+    limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string)
+  ): Promise<(IProductDocument | null)[]> {
+    if (limit > QUERY_MAX_AMOUNT) limit = parseInt(QUERY_MAX_AMOUNT as string);
+    const products = await ProductModel.find().limit(limit);
+
+    return products;
   }
 
   public async updateProductById(id: string, productDto: IProductDto) {

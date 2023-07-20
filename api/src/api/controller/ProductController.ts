@@ -17,7 +17,10 @@ export default class ProductController {
     this.productService = new ProductService();
   }
 
-  public async createProductHandler(req: Request, res: Response) {
+  public async createProductHandler(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
     await this.schemaValidator.validate(createProductSchema, req.body);
     const name = TextUtils.sanitize(req.body.name);
     const description = TextUtils.sanitize(req.body.description);
@@ -42,12 +45,26 @@ export default class ProductController {
     return res.json(newProduct);
   }
 
-  public async getProductByIdHandler(req: Request, res: Response) {
+  public async getProductByIdHandler(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
     await this.schemaValidator.validate(getProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
 
     const product = await this.productService.getProductById(productId);
     return res.status(200).json(product);
+  }
+
+  public async getAllProductsHandler(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
+    const limit: number | undefined =
+      parseInt(req.query.limit as string) || undefined;
+
+    const products = await this.productService.getAllProducts(limit);
+    return res.status(200).json(products);
   }
 
   public async updateProductByIdHandler(req: Request, res: Response) {
