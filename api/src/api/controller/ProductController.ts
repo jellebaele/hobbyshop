@@ -46,8 +46,8 @@ export default class ProductController {
     const productId = TextUtils.sanitize(req.params.productId);
 
     const product = await this.productService.getProductById(productId);
-    if (!product) return res.status(404).send();
 
+    if (!product) throw new NotFoundError();
     return res.status(200).json(product);
   }
 

@@ -28,6 +28,18 @@ export const ensureLoggedIn = (
   return next();
 };
 
+export const ensureIsAdmin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const isAuthorized = await authService.isAuthorized(req);
+
+  if (!isAuthorized) return next(new UnauthorizedError());
+
+  next();
+};
+
 export const checkTimeLoggedIn = async (
   req: Request,
   res: Response,

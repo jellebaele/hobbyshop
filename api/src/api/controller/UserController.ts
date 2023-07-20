@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import NotFoundError from '../../error/implementations/NotFoundError';
 import UserService from '../../service/UserService';
 import TextUtils from '../../utils/TextUtils';
 import SchemaValidator from './validation/SchemaValidator';
@@ -24,6 +25,7 @@ export default class UserController {
     const userId = TextUtils.sanitize(req.params.userId);
 
     const user = await this.userService.getUserById(userId);
+    if (!user) throw new NotFoundError();
     return res.status(200).json(user);
   }
 
