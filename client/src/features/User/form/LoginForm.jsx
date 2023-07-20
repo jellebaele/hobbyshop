@@ -17,7 +17,7 @@ const LoginForm = ({ onSubmit, status, error }) => {
   return (
     <form className="loginFormContainer" onSubmit={handleSubmit(onSubmit)}>
       <FormInputGroup
-        label="Gebruikersnaam of e-mail"
+        label="Gebruikersnaam"
         name="usernameOrEmail"
         type="text"
         register={register}

@@ -63,7 +63,7 @@ const Login = () => {
             <span>Nog geen account? Registreer hier!</span>
           </Link>
           <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <span>Wachtwoord vergeten?</span>
+            <span>Wachtwoord of gebruikersnaam vergeten?</span>
           </Link>
         </div>
       </div>
