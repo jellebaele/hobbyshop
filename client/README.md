@@ -66,6 +66,7 @@ $ npm run build
    -  [x] Login
    -  [x] Register
    -  [x] Logout
+   -  [ ] Update user
    -  [ ] Forgot password
    -  [ ] Fetch products
    -  [ ] Create products
