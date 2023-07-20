@@ -2,7 +2,10 @@ import { Request, Response } from 'express';
 import UnauthorizedError from '../../error/implementations/UnauthorizedError';
 import ProductService from '../../service/ProductService';
 import TextUtils from '../../utils/TextUtils';
-import { createProductSchema } from './validation/productSchemas';
+import {
+  createProductSchema,
+  getProductByIdSchema,
+} from './validation/productSchemas';
 import SchemaValidator from './validation/SchemaValidator';
 
 export default class ProductController {
@@ -39,13 +42,42 @@ export default class ProductController {
     return res.json(newProduct);
   }
 
-  // public async getUserByIdHandler(req: Request, res: Response) {
-  //   await this.schemaValidator.validate(getCurrentUserSchema, req.params);
-  //   const userId = TextUtils.sanitize(req.params.userId);
+  public async getProductByIdHandler(req: Request, res: Response) {
+    await this.schemaValidator.validate(getProductByIdSchema, req.params);
+    const productId = TextUtils.sanitize(req.params.productId);
 
-  //   const user = await this.userService.getUserById(userId);
-  //   return res.status(200).json(user);
-  // }
+    const product = await this.productService.getProductById(productId);
+    return res.status(200).json(product);
+  }
+
+  public async updateProductByIdHandler(req: Request, res: Response) {
+    await this.schemaValidator.validate(createProductSchema, req.body);
+    const productId = TextUtils.sanitize(req.body.productId);
+    const name = TextUtils.sanitize(req.body.name);
+    const description = TextUtils.sanitize(req.body.description);
+    const category = TextUtils.sanitize(req.body.category);
+    const amount = parseInt(TextUtils.sanitize(req.body.amount));
+    const unit = TextUtils.sanitize(req.body.unit);
+    const status = TextUtils.sanitize(req.body.status);
+
+    const user = req.session.userId;
+    if (!user) throw new UnauthorizedError();
+
+    const updatedProduct = await this.productService.updateProductById(
+      productId,
+      {
+        name,
+        description,
+        category,
+        amount,
+        unit,
+        user,
+        status,
+      }
+    );
+
+    return res.json(updatedProduct);
+  }
 
   // public async getAllUsersHandler(
   //   req: Request,

@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import { ProductStatus } from '../../../utils/enums';
 
+const productId = Joi.string().min(3).max(128).required();
 const name = Joi.string().min(3).max(128).trim().required();
 const description = Joi.string().max(256).trim();
 const category = Joi.string().min(1).max(128).trim().default('onbekend');
@@ -19,3 +20,7 @@ export const createProductSchema = Joi.object({
   unit,
   status,
 });
+
+export const getProductByIdSchema = Joi.object({ productId });
+
+export const updateProductByIdSchema = Joi.object({ productId });

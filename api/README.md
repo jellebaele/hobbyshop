@@ -48,3 +48,4 @@ TODO:
 - [ ] Get all units present in DB
 - [ ] Register verification via mail
 - [ ] CRUD Product
+- [ ] Admin priviliges (User API)

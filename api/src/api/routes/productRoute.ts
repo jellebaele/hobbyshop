@@ -15,13 +15,13 @@ productRouter.post(
   })
 );
 
-// productRouter.get(
-//   '/:userId',
-//   //ensureIsAdmin
-//   asyncErrorHandler(async (req: Request, res: Response) => {
-//     await productController.getUserByIdHandler(req, res);
-//   })
-// );
+productRouter.get(
+  '/:productId',
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await productController.getProductByIdHandler(req, res);
+  })
+);
+// productRouter.put('/productId');
 
 // productRouter.get(
 //   '/all',
