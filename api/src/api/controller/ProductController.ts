@@ -6,6 +6,7 @@ import ProductService from '../../service/ProductService';
 import TextUtils from '../../utils/TextUtils';
 import {
   createProductSchema,
+  deleteProductByIdSchema,
   getProductByIdSchema,
   updateProductByIdSchema,
 } from './validation/productSchemas';
@@ -81,5 +82,22 @@ export default class ProductController {
     );
 
     return res.send(updatedProduct);
+  }
+
+  public async deleteProductByIdHandler(req: Request, res: Response) {
+    await this.schemaValidator.validate(deleteProductByIdSchema, req.params);
+    const productId = TextUtils.sanitize(req.params.productId);
+    const currentUser = req.session.userId;
+
+    const found = await this.productService.getProductById(productId);
+    if (!found) throw new NotFoundError();
+
+    if (!(found.user.toString() === currentUser))
+      throw new UnauthorizedError(
+        'You cannot delete this product, as it is not yours.'
+      );
+
+    await this.productService.deleteProductById(productId);
+    return res.sendStatus(200);
   }
 }

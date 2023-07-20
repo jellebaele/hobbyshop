@@ -39,12 +39,12 @@ productRouter.put(
   })
 );
 
-// productRouter.get(
-//   '/all',
-//   //ensureIsAdmin
-//   asyncErrorHandler(async (req: Request, res: Response) => {
-//     await productController.getAllUsersHandler(req, res);
-//   })
-// );
+productRouter.delete(
+  '/:productId',
+  ensureLoggedIn,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await productController.deleteProductByIdHandler(req, res);
+  })
+);
 
 export default productRouter;

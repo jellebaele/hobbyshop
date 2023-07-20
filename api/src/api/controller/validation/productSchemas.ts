@@ -22,5 +22,5 @@ export const createProductSchema = Joi.object({
 });
 
 export const getProductByIdSchema = Joi.object({ productId });
-
 export const updateProductByIdSchema = Joi.object({ productId });
+export const deleteProductByIdSchema = Joi.object({ productId });

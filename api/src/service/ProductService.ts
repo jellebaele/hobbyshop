@@ -49,6 +49,10 @@ class ProductService {
       new: true,
     });
   }
+
+  public async deleteProductById(id: string) {
+    return ProductModel.deleteOne({ _id: id });
+  }
 }
 
 export default ProductService;
