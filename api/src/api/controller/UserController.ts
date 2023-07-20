@@ -16,7 +16,10 @@ export default class UserController {
     this.userService = new UserService();
   }
 
-  public async getUserByIdHandler(req: Request, res: Response) {
+  public async getUserByIdHandler(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
     await this.schemaValidator.validate(getCurrentUserSchema, req.params);
     const userId = TextUtils.sanitize(req.params.userId);
 
