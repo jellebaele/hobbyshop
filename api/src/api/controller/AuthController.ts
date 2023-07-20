@@ -33,7 +33,7 @@ export default class AuthController {
 
     if (found) throw new BadRequestError('Invalid username or email');
 
-    const newUser = await this.authService.registerUser({
+    await this.authService.registerUser({
       username,
       email,
       name,
