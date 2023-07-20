@@ -37,11 +37,15 @@ export default class AuthService {
     });
   };
 
-  isAuthorized = async (req: Request): Promise<boolean> => {
+  isAdmin = async (req: Request): Promise<boolean> => {
     if (!this.isLoggedIn(req)) return false;
     const userId = req.session?.userId;
     const user = await this.userService.getUserById(userId as string);
 
     return user === null ? false : user.isAdmin;
+  };
+
+  isSameUser = async (req: Request, userId: string): Promise<boolean> => {
+    return req.session?.userId === userId;
   };
 }

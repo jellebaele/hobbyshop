@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import NotFoundError from '../../error/implementations/NotFoundError';
 import UnauthorizedError from '../../error/implementations/UnauthorizedError';
 import { IProductDto } from '../../models/Product';
+import AuthService from '../../service/AuthService';
 import ProductService from '../../service/ProductService';
 import TextUtils from '../../utils/TextUtils';
 import {
@@ -15,10 +16,12 @@ import SchemaValidator from './validation/SchemaValidator';
 export default class ProductController {
   schemaValidator: SchemaValidator;
   productService: ProductService;
+  authService: AuthService;
 
   constructor() {
     this.schemaValidator = new SchemaValidator();
     this.productService = new ProductService();
+    this.authService = new AuthService();
   }
 
   public async createProductHandler(
@@ -65,14 +68,17 @@ export default class ProductController {
   public async updateProductByIdHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(updateProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
-    const currentUser = req.session.userId;
 
     const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
 
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
 
-    if (!(found.user.toString() === currentUser))
+    const isAuthorized =
+      (await this.authService.isAdmin(req)) ||
+      (await this.authService.isSameUser(req, found.user.toString()));
+
+    if (!isAuthorized)
       throw new UnauthorizedError(
         'You cannot edit this product, as it is not yours.'
       );
@@ -89,12 +95,14 @@ export default class ProductController {
   public async deleteProductByIdHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(deleteProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
-    const currentUser = req.session.userId;
 
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
 
-    if (!(found.user.toString() === currentUser))
+    const isAuthorized =
+      (await this.authService.isAdmin(req)) ||
+      (await this.authService.isSameUser(req, found.user.toString()));
+    if (!isAuthorized)
       throw new UnauthorizedError(
         'You cannot delete this product, as it is not yours.'
       );
