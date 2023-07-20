@@ -62,11 +62,17 @@ export default class ProductController {
   public async updateProductByIdHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(updateProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
+    const currentUser = req.session.userId;
 
-    const body = TextUtils.sanitizeObject(req.body);
+    const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
 
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
+
+    if (!(found.user.toString() === currentUser))
+      throw new UnauthorizedError(
+        'You cannot edit this product, as it is not yours.'
+      );
 
     const updatedProduct = await this.productService.updateProductById(
       productId,
