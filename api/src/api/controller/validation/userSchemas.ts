@@ -14,3 +14,11 @@ export const getCurrentUserSchema = Joi.object({
 export const getAllUsersSchema = Joi.object({
   limit,
 });
+
+export const updateUserByIdSchema = Joi.object({
+  userId,
+});
+
+export const deleteUserByIdSchema = Joi.object({
+  userId,
+});
