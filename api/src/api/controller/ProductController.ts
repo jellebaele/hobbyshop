@@ -81,13 +81,14 @@ export default class ProductController {
 
     const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
 
+    // Is authorized: is admin or user of this product is the same user as logged in user
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
 
-    const isAuthorized =
-      (await this.authService.isAdmin(req)) ||
-      this.authService.isSameUser(req, found.user.toString());
-
+    const isAuthorized = await this.authService.isAdminOrSameUser(
+      req,
+      found.user.toString()
+    );
     if (!isAuthorized)
       throw new UnauthorizedError(
         'You cannot edit this product, as it is not yours.'
@@ -109,9 +110,11 @@ export default class ProductController {
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
 
-    const isAuthorized =
-      (await this.authService.isAdmin(req)) ||
-      this.authService.isSameUser(req, found.user.toString());
+    // Is authorized: is admin or user of this product is the same user as logged in user
+    const isAuthorized = await this.authService.isAdminOrSameUser(
+      req,
+      found.user.toString()
+    );
     if (!isAuthorized)
       throw new UnauthorizedError(
         'You cannot delete this product, as it is not yours.'

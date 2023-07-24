@@ -59,10 +59,10 @@ export default class UserController {
     const found = await this.userService.getUserById(userId);
     if (!found) throw new NotFoundError();
 
-    const isAuthorized =
-      (await this.authService.isAdmin(req)) ||
-      this.authService.isSameUser(req, found._id.toString());
-
+    const isAuthorized = await this.authService.isAdminOrSameUser(
+      req,
+      found._id.toString()
+    );
     if (!isAuthorized) throw new UnauthorizedError();
 
     const updatedUser = await this.userService.updateUserById(userId, body);

@@ -45,7 +45,14 @@ export default class AuthService {
     return user === null ? false : user.isAdmin;
   };
 
-  isSameUser = (req: Request, userId: string): boolean => {
+  isAdminOrSameUser = async (
+    req: Request,
+    userId: string
+  ): Promise<boolean> => {
+    return (await this.isAdmin(req)) || this.isSameUser(req, userId);
+  };
+
+  private isSameUser = (req: Request, userId: string): boolean => {
     return req.session?.userId === userId;
   };
 }
