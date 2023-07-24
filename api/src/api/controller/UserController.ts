@@ -36,13 +36,11 @@ export default class UserController {
     return res.status(200).json(user);
   }
 
-  public async getAllUsersHandler(
-    req: Request,
-    res: Response
-  ): Promise<Response> {
+  public async getUsersHandler(req: Request, res: Response): Promise<Response> {
     await this.schemaValidator.validate(getAllUsersSchema, req.query);
     const limit: number | undefined = parseInt(req.query.limit as string);
-    const users = await this.userService.getAllUsers(limit);
+
+    const users = await this.userService.getUsers(limit);
 
     return res.status(200).json(users);
   }

@@ -23,7 +23,7 @@ class UserService {
     return await this.getUser({ $or: [{ username }, { email }] });
   }
 
-  public async getAllUsers(
+  public async getUsers(
     limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string)
   ): Promise<(IUserDocument | null)[]> {
     if (limit > +QUERY_MAX_AMOUNT) limit = parseInt(QUERY_MAX_AMOUNT as string);

@@ -19,7 +19,7 @@ userRouter.get(
   '/',
   ensureIsAdmin,
   asyncErrorHandler(async (req: Request, res: Response) => {
-    await userController.getAllUsersHandler(req, res);
+    await userController.getUsersHandler(req, res);
   })
 );
 
