@@ -31,10 +31,11 @@ class ProductService {
   }
 
   public async getAllProducts(
-    limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string)
+    limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string),
+    query: FilterQuery<IProductDocument>
   ): Promise<(IProductDocument | null)[]> {
-    if (limit > QUERY_MAX_AMOUNT) limit = parseInt(QUERY_MAX_AMOUNT as string);
-    const products = await ProductModel.find().limit(limit);
+    if (limit > +QUERY_MAX_AMOUNT) limit = parseInt(QUERY_MAX_AMOUNT as string);
+    const products = await ProductModel.find({ ...query }).limit(limit);
 
     return products;
   }

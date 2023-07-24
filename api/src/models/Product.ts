@@ -33,14 +33,14 @@ export interface IProductDocument extends Document {
   status: String;
 }
 
-const ProductSchevma = new Schema<IProductDocument>(
+const ProductSchema = new Schema<IProductDocument>(
   {
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     description: { type: String, required: true },
     category: { type: String, required: true },
     amount: { type: Number, required: true },
     unit: { type: String, required: true },
-    user: [{ type: Schema.Types.ObjectId, ref: 'User', required: false }],
+    user: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }],
     status: {
       type: String,
       default: ProductStatus.inactive,
@@ -50,6 +50,6 @@ const ProductSchevma = new Schema<IProductDocument>(
   { timestamps: true }
 );
 
-const ProductModel = model<IProductDocument>('Product', ProductSchevma);
+const ProductModel = model<IProductDocument>('Product', ProductSchema);
 
 export default ProductModel;
