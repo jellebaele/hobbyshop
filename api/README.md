@@ -50,3 +50,4 @@ TODO:
 - [ ] CRUD Product
 - [ ] Admin priviliges (User API)
 - [ ] Get all products in parts
+- [ ] Move all authority to routes layer instead of controller layer
