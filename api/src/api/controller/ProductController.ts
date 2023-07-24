@@ -59,7 +59,7 @@ export default class ProductController {
     return res.status(200).json(product);
   }
 
-  public async getAllProductsHandler(
+  public async getProductsHandler(
     req: Request,
     res: Response
   ): Promise<Response> {
@@ -68,7 +68,6 @@ export default class ProductController {
     delete req.query.limit;
 
     const query = TextUtils.sanitizeObject(req.query);
-    console.log(query);
 
     const products = await this.productService.getProducts(limit, query);
     return res.status(200).json(products);

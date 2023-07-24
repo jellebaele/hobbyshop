@@ -27,7 +27,7 @@ productRouter.get(
   '',
   ensureLoggedIn,
   asyncErrorHandler(async (req: Request, res: Response) => {
-    await productController.getAllProductsHandler(req, res);
+    await productController.getProductsHandler(req, res);
   })
 );
 
