@@ -34,9 +34,10 @@ export default class ProductController {
     const user = req.session.userId;
     if (!user) throw new UnauthorizedError();
 
-    const newProduct = await this.productService.createProduct(
-      body as IProductDto
-    );
+    const newProduct = await this.productService.createProduct({
+      ...(body as IProductDto),
+      user,
+    });
 
     return res.json(newProduct);
   }
@@ -60,9 +61,14 @@ export default class ProductController {
   ): Promise<Response> {
     const limit: number | undefined =
       parseInt(req.query.limit as string) || undefined;
+    delete req.query.limit;
 
-    const products = await this.productService.getAllProducts(limit);
+    const query = TextUtils.sanitizeObject(req.query);
+    console.log(query);
+
+    const products = await this.productService.getAllProducts(limit, query);
     return res.status(200).json(products);
+    // return res.status(200).json();
   }
 
   public async updateProductByIdHandler(req: Request, res: Response) {
