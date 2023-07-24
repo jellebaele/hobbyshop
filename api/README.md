@@ -49,5 +49,6 @@ TODO:
 - [ ] Register verification via mail
 - [ ] CRUD Product
 - [ ] Admin priviliges (User API)
-- [ ] Get all products in parts
+- [ ] Get all products in parts (adjust limit)
 - [ ] Move all authority to routes layer instead of controller layer
+- [ ] Validation for CRUD (test everything)
