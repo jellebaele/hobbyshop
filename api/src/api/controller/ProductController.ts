@@ -70,9 +70,8 @@ export default class ProductController {
     const query = TextUtils.sanitizeObject(req.query);
     console.log(query);
 
-    const products = await this.productService.getAllProducts(limit, query);
+    const products = await this.productService.getProducts(limit, query);
     return res.status(200).json(products);
-    // return res.status(200).json();
   }
 
   public async updateProductByIdHandler(req: Request, res: Response) {

@@ -32,7 +32,6 @@ export default class AuthController {
       username,
       email
     );
-
     if (found) throw new BadRequestError('Invalid username or email');
 
     await this.authService.registerUser(body);

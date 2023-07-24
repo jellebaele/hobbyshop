@@ -30,7 +30,7 @@ class ProductService {
     else return null;
   }
 
-  public async getAllProducts(
+  public async getProducts(
     limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string),
     query: FilterQuery<IProductDocument>
   ): Promise<(IProductDocument | null)[]> {
