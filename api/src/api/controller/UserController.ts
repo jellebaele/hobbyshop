@@ -8,7 +8,7 @@ import TextUtils from '../../utils/TextUtils';
 import SchemaValidator from './validation/SchemaValidator';
 import {
   deleteUserByIdSchema,
-  getAllUsersSchema,
+  getUsersSchema,
   getCurrentUserSchema,
   updateUserByIdSchema,
 } from './validation/userSchemas';
@@ -37,10 +37,12 @@ export default class UserController {
   }
 
   public async getUsersHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(getAllUsersSchema, req.query);
+    await this.schemaValidator.validate(getUsersSchema, req.query);
     const limit: number | undefined = parseInt(req.query.limit as string);
+    delete req.query.limit;
 
-    const users = await this.userService.getUsers(limit);
+    const query = TextUtils.sanitizeObject(req.query);
+    const users = await this.userService.getUsers(limit, query);
 
     return res.status(200).json(users);
   }

@@ -24,10 +24,11 @@ class UserService {
   }
 
   public async getUsers(
-    limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string)
+    limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string),
+    query: FilterQuery<IUserDocument>
   ): Promise<(IUserDocument | null)[]> {
     if (limit > +QUERY_MAX_AMOUNT) limit = parseInt(QUERY_MAX_AMOUNT as string);
-    const users = await UserModel.find().limit(limit);
+    const users = await UserModel.find({ ...query }).limit(limit);
 
     return users;
   }

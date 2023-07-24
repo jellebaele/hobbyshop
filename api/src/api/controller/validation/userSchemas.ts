@@ -1,24 +1,30 @@
 import Joi from 'joi';
 
-const userId = Joi.string().min(3).max(128).required();
+const userIdOptional = Joi.string().min(3).max(128);
+const userIdRequired = userIdOptional.required();
 const limit = Joi.number().min(1).max(50);
-const name = Joi.string().min(3).max(128).trim().required();
-const lastname = Joi.string().min(3).max(128).trim().required();
-const email = Joi.string().email().lowercase().trim().required();
-const username = Joi.string().min(3).max(128).trim().required();
+const name = Joi.string().min(3).max(128).trim();
+const lastname = Joi.string().min(3).max(128).trim();
+const email = Joi.string().email().lowercase().trim();
+const username = Joi.string().min(3).max(128).trim();
 
 export const getCurrentUserSchema = Joi.object({
-  userId,
+  userId: userIdRequired,
 });
 
-export const getAllUsersSchema = Joi.object({
+export const getUsersSchema = Joi.object({
+  userId: userIdOptional,
   limit,
+  name,
+  lastname,
+  email,
+  username,
 });
 
 export const updateUserByIdSchema = Joi.object({
-  userId,
+  userId: userIdRequired,
 });
 
 export const deleteUserByIdSchema = Joi.object({
-  userId,
+  userId: userIdRequired,
 });
