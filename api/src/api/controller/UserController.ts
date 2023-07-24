@@ -51,7 +51,10 @@ export default class UserController {
     req: Request,
     res: Response
   ): Promise<Response> {
-    await this.schemaValidator.validate(updateUserByIdSchema, req.params);
+    await this.schemaValidator.validate(updateUserByIdSchema, {
+      ...req.params,
+      ...req.body,
+    });
     const userId = TextUtils.sanitize(req.params.userId);
 
     const body: IUserDto = TextUtils.sanitizeObject(req.body) as IUserDto;
