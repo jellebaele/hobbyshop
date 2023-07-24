@@ -9,6 +9,7 @@ import {
   createProductSchema,
   deleteProductByIdSchema,
   getProductByIdSchema,
+  getProductsSchema,
   updateProductByIdSchema,
 } from './validation/productSchemas';
 import SchemaValidator from './validation/SchemaValidator';
@@ -63,6 +64,7 @@ export default class ProductController {
     req: Request,
     res: Response
   ): Promise<Response> {
+    await this.schemaValidator.validate(getProductsSchema, req.query);
     const limit: number | undefined =
       parseInt(req.query.limit as string) || undefined;
     delete req.query.limit;
