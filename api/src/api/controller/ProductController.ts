@@ -12,6 +12,7 @@ import {
   updateProductByIdSchema,
 } from './validation/productSchemas';
 import SchemaValidator from './validation/SchemaValidator';
+import BadRequestError from '../../error/implementations/BadRequestError';
 
 export default class ProductController {
   schemaValidator: SchemaValidator;
@@ -29,10 +30,13 @@ export default class ProductController {
     res: Response
   ): Promise<Response> {
     await this.schemaValidator.validate(createProductSchema, req.body);
-    const body = TextUtils.sanitizeObject(req.body);
+    const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
 
     const user = req.session.userId;
     if (!user) throw new UnauthorizedError();
+
+    const found = await this.productService.getProduct({ name: body.name });
+    if (found) throw new BadRequestError('Product already exists.');
 
     const newProduct = await this.productService.createProduct({
       ...(body as IProductDto),
