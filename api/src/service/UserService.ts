@@ -24,12 +24,15 @@ class UserService {
   }
 
   public async getUsers(
-    limit: number = parseInt(QUERY_DEFAULT_PER_PAGE as string),
-    query: FilterQuery<IUserDocument>
+    query: FilterQuery<IUserDocument>,
+    pageNumber: number,
+    perPage: number
   ): Promise<(IUserDocument | null)[]> {
-    if (limit > +QUERY_MAX_PER_PAGE)
-      limit = parseInt(QUERY_MAX_PER_PAGE as string);
-    const users = await UserModel.find({ ...query }).limit(limit);
+    if (perPage > +QUERY_MAX_PER_PAGE)
+      perPage = parseInt(QUERY_MAX_PER_PAGE as string);
+    const users = await UserModel.find({ ...query })
+      .limit(perPage)
+      .skip(perPage * (pageNumber - 1));
 
     return users;
   }
@@ -63,6 +66,10 @@ class UserService {
 
   public async deleteUserById(id: string) {
     return UserModel.deleteOne({ _id: id });
+  }
+
+  public async countDocuments(): Promise<number> {
+    return UserModel.countDocuments();
   }
 
   private async assessIsUsernameAndEmailUnique(
