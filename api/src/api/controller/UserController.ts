@@ -56,7 +56,6 @@ export default class UserController {
       ...req.body,
     });
     const userId = TextUtils.sanitize(req.params.userId);
-
     const body: IUserDto = TextUtils.sanitizeObject(req.body) as IUserDto;
 
     const found = await this.userService.getUserById(userId);

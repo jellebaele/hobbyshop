@@ -2,10 +2,8 @@ import Joi from 'joi';
 import { ProductStatus } from '../../../utils/enums';
 
 const limit = Joi.number().min(1).max(50);
-const productIdOptional = Joi.string().min(3).max(128);
-const productIdRequired = productIdOptional.required();
-const nameOptional = Joi.string().min(3).max(128).trim();
-const nameRequired = nameOptional.required();
+const productId = Joi.string().min(3).max(128).required();
+const name = Joi.string().min(3).max(128).trim().required();
 const description = Joi.string().max(256).trim();
 const category = Joi.string().min(1).max(128).trim().default('onbekend');
 const amount = Joi.number().min(0).default(0);
@@ -17,7 +15,7 @@ const status = Joi.string()
 const userId = Joi.string().min(3).max(128);
 
 export const createProductSchema = Joi.object({
-  name: nameRequired,
+  name,
   description,
   category,
   amount,
@@ -26,18 +24,25 @@ export const createProductSchema = Joi.object({
 });
 
 export const getProductByIdSchema = Joi.object({
-  productId: productIdRequired,
+  productId,
 });
-export const updateProductByIdSchema = Joi.object({
-  productId: productIdRequired,
+export const updateProductByIdSchema = Joi.object().keys({
+  productId,
+  name: name.optional(),
+  description,
+  category,
+  amount,
+  unit: unit.optional(),
+  status,
+  userId,
 });
 export const deleteProductByIdSchema = Joi.object({
-  productId: productIdRequired,
+  productId,
 });
 
-export const getProductsSchema = Joi.object({
-  productId: productIdOptional,
-  name: nameOptional,
+export const getProductsSchema = Joi.object().keys({
+  productId: productId.optional(),
+  name: name.optional(),
   description,
   user: userId,
   limit,

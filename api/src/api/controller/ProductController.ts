@@ -76,7 +76,10 @@ export default class ProductController {
   }
 
   public async updateProductByIdHandler(req: Request, res: Response) {
-    await this.schemaValidator.validate(updateProductByIdSchema, req.params);
+    await this.schemaValidator.validate(updateProductByIdSchema, {
+      ...req.params,
+      ...req.body,
+    });
     const productId = TextUtils.sanitize(req.params.productId);
     const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
 
