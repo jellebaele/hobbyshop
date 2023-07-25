@@ -1,7 +1,9 @@
 import Joi from 'joi';
 import { ProductStatus } from '../../../utils/enums';
+import { QUERY_MAX_PER_PAGE } from '../../../config';
 
-const limit = Joi.number().min(1).max(50);
+const page = Joi.number().min(1);
+const perPage = Joi.number().min(1).max(+QUERY_MAX_PER_PAGE);
 const productId = Joi.string().min(3).max(128).required();
 const name = Joi.string().min(3).max(128).trim().required();
 const description = Joi.string().max(256).trim();
@@ -45,7 +47,8 @@ export const getProductsSchema = Joi.object().keys({
   name: name.optional(),
   description,
   user: userId,
-  limit,
+  page,
+  per_page: perPage,
   category,
   status,
 });

@@ -14,16 +14,20 @@ import {
 } from './validation/productSchemas';
 import SchemaValidator from './validation/SchemaValidator';
 import BadRequestError from '../../error/implementations/BadRequestError';
+import { QUERY_DEFAULT_PER_PAGE } from '../../config';
+import Pagination from '../../utils/Pagination';
 
 export default class ProductController {
   schemaValidator: SchemaValidator;
   productService: ProductService;
   authService: AuthService;
+  pagination: Pagination;
 
   constructor() {
     this.schemaValidator = new SchemaValidator();
     this.productService = new ProductService();
     this.authService = new AuthService();
+    this.pagination = new Pagination();
   }
 
   public async createProductHandler(
@@ -65,13 +69,27 @@ export default class ProductController {
     res: Response
   ): Promise<Response> {
     await this.schemaValidator.validate(getProductsSchema, req.query);
-    const limit: number | undefined =
-      parseInt(req.query.limit as string) || undefined;
-    delete req.query.limit;
-
+    const pageNumber = parseInt(req.query.page as string) || 1;
+    const perPage =
+      parseInt(req.query.per_page as string) ||
+      (QUERY_DEFAULT_PER_PAGE as number);
     const query = TextUtils.sanitizeObject(req.query);
 
-    const products = await this.productService.getProducts(limit, query);
+    const products = await this.productService.getProducts(
+      query,
+      pageNumber,
+      perPage
+    );
+
+    const pageMetaData = this.pagination.generateHeadersMetadata(
+      await this.productService.countDocuments(),
+      pageNumber,
+      perPage,
+      req
+    );
+
+    if (pageMetaData) res.set('Link', pageMetaData);
+
     return res.status(200).json(products);
   }
 

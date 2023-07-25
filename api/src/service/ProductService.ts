@@ -31,12 +31,16 @@ class ProductService {
   }
 
   public async getProducts(
-    limit: number = parseInt(QUERY_DEFAULT_PER_PAGE as string),
-    query: FilterQuery<IProductDocument>
+    query: FilterQuery<IProductDocument>,
+    pageNumber: number,
+    perPage: number
   ): Promise<(IProductDocument | null)[]> {
-    if (limit > +QUERY_MAX_PER_PAGE)
-      limit = parseInt(QUERY_MAX_PER_PAGE as string);
-    const products = await ProductModel.find({ ...query }).limit(limit);
+    if (perPage > +QUERY_MAX_PER_PAGE)
+      perPage = parseInt(QUERY_MAX_PER_PAGE as string);
+
+    const products = await ProductModel.find({ ...query })
+      .limit(perPage)
+      .skip(perPage * (pageNumber - 1));
 
     return products;
   }
@@ -54,6 +58,10 @@ class ProductService {
 
   public async deleteProductById(id: string) {
     return ProductModel.deleteOne({ _id: id });
+  }
+
+  public async countDocuments(): Promise<number> {
+    return ProductModel.countDocuments();
   }
 }
 
