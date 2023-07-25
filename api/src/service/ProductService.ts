@@ -1,5 +1,5 @@
 import { FilterQuery, isValidObjectId, QueryOptions } from 'mongoose';
-import { QUERY_DEFAULT_AMOUNT, QUERY_MAX_AMOUNT } from '../config';
+import { QUERY_DEFAULT_PER_PAGE, QUERY_MAX_PER_PAGE } from '../config';
 import InternalServerError from '../error/implementations/InternalServerError';
 import ProductModel, { IProductDocument, IProductDto } from '../models/Product';
 
@@ -31,10 +31,11 @@ class ProductService {
   }
 
   public async getProducts(
-    limit: number = parseInt(QUERY_DEFAULT_AMOUNT as string),
+    limit: number = parseInt(QUERY_DEFAULT_PER_PAGE as string),
     query: FilterQuery<IProductDocument>
   ): Promise<(IProductDocument | null)[]> {
-    if (limit > +QUERY_MAX_AMOUNT) limit = parseInt(QUERY_MAX_AMOUNT as string);
+    if (limit > +QUERY_MAX_PER_PAGE)
+      limit = parseInt(QUERY_MAX_PER_PAGE as string);
     const products = await ProductModel.find({ ...query }).limit(limit);
 
     return products;
