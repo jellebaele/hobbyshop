@@ -50,6 +50,6 @@ TODO:
 - [x] CRUD Product
 - [x] CRUD User
 - [x] Admin priviliges (User API)
-- [ ] Get all products in parts (adjust limit): https://docs.github.com/en/rest/guides/using-pagination-in-the-rest-api?apiVersion=2022-11-28
+- [x] Get all products and users in parts (adjust limit): https://docs.github.com/en/rest/guides/using-pagination-in-the-rest-api?apiVersion=2022-11-28
 - [x] Move all authority to routes layer instead of controller layer
 - [x] Validation for CRUD (test everything)
