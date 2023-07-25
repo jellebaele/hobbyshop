@@ -78,10 +78,8 @@ export default class ProductController {
   public async updateProductByIdHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(updateProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
-
     const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
 
-    // Is authorized: is admin or user of this product is the same user as logged in user
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
 
@@ -110,7 +108,6 @@ export default class ProductController {
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();
 
-    // Is authorized: is admin or user of this product is the same user as logged in user
     const isAuthorized = await this.authService.isAdminOrSameUser(
       req,
       found.user.toString()
