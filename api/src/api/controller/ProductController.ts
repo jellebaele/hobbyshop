@@ -93,7 +93,10 @@ export default class ProductController {
     return res.status(200).json(products);
   }
 
-  public async updateProductByIdHandler(req: Request, res: Response) {
+  public async updateProductByIdHandler(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
     await this.schemaValidator.validate(updateProductByIdSchema, {
       ...req.params,
       ...req.body,
@@ -122,7 +125,10 @@ export default class ProductController {
     return res.send(updatedProduct);
   }
 
-  public async deleteProductByIdHandler(req: Request, res: Response) {
+  public async deleteProductByIdHandler(
+    req: Request,
+    res: Response
+  ): Promise<Response> {
     await this.schemaValidator.validate(deleteProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
 
