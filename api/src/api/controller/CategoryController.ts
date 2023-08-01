@@ -3,7 +3,7 @@ import AuthService from '../../service/AuthService';
 import ProductService from '../../service/ProductService';
 import SchemaValidator from './validation/SchemaValidator';
 import Pagination from '../../utils/Pagination';
-import CategoryService from '../../service/CategoryService';
+import CategoryService from '../../service/implementation/CategoryService';
 import CategoryModel, { ICategoryDto } from '../../models/Category';
 import {
   createCategorySchema,
@@ -53,6 +53,7 @@ export default class CategoryController {
     req: Request,
     res: Response
   ): Promise<Response> {
+    console.log('Hier?');
     await this.schemaValidator.validate(getCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 

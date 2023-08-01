@@ -29,4 +29,12 @@ categoryRouter.get(
   })
 );
 
+categoryRouter.put(
+  '/:categoryId',
+  ensureLoggedIn,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await categoryController.updateCategoryByIdHandler(req, res);
+  })
+);
+
 export default categoryRouter;
