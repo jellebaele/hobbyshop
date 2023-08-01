@@ -13,7 +13,7 @@ export interface ICategoryDocument extends Document {
 const CategorySchema = new Schema<ICategoryDocument>(
   {
     name: { type: String, required: true, unique: true },
-    description: { type: String, required: true },
+    description: { type: String, required: false, default: '' },
   },
   { timestamps: true }
 );

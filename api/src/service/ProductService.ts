@@ -1,5 +1,5 @@
 import { FilterQuery, isValidObjectId, QueryOptions } from 'mongoose';
-import { QUERY_DEFAULT_PER_PAGE, QUERY_MAX_PER_PAGE } from '../config';
+import { QUERY_MAX_PER_PAGE } from '../config';
 import InternalServerError from '../error/implementations/InternalServerError';
 import ProductModel, { IProductDocument, IProductDto } from '../models/Product';
 

@@ -83,7 +83,6 @@ export default class UserController {
     if (!isAuthorized) throw new UnauthorizedError();
 
     const updatedUser = await this.userService.updateUserById(userId, body);
-
     return res.send(updatedUser);
   }
   public async deleteUserByIdHandler(
