@@ -55,6 +55,21 @@ export default abstract class BaseService<T extends Document> {
     return documents;
   }
 
+  protected async updateDocumentById(
+    id: string,
+    query: FilterQuery<T>,
+    options: QueryOptions<unknown>
+  ): Promise<T | null> {
+    return await this._model.findByIdAndUpdate({ _id: id }, query, {
+      ...options,
+      new: true,
+    });
+  }
+
+  protected async deleteDocumentById(id: string) {
+    return this._model.deleteOne({ _id: id });
+  }
+
   public async countDocuments(): Promise<number> {
     return this._model.countDocuments();
   }

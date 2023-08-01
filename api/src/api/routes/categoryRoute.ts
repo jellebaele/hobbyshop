@@ -37,4 +37,12 @@ categoryRouter.put(
   })
 );
 
+categoryRouter.delete(
+  '/:categoryId',
+  ensureLoggedIn,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await categoryController.deleteCategoryByIdHandler(req, res);
+  })
+);
+
 export default categoryRouter;

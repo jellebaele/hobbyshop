@@ -7,8 +7,10 @@ import CategoryService from '../../service/implementation/CategoryService';
 import CategoryModel, { ICategoryDto } from '../../models/Category';
 import {
   createCategorySchema,
+  deleteCategoryByIdSchema,
   getCategoriesSchema,
   getCategoryByIdSchema,
+  updateCategoryByIdSchema,
 } from './validation';
 import TextUtils from '../../utils/TextUtils';
 import UnauthorizedError from '../../error/implementations/UnauthorizedError';
@@ -95,13 +97,38 @@ export default class CategoryController {
     req: Request,
     res: Response
   ): Promise<Response> {
-    return res.send().json();
+    await this.schemaValidator.validate(updateCategoryByIdSchema, {
+      ...req.params,
+      ...req.body,
+    });
+    const categoryId = TextUtils.sanitize(req.params.categoryId);
+    const body: ICategoryDto = TextUtils.sanitizeObject(
+      req.body
+    ) as ICategoryDto;
+
+    const found = await this.categoryService.getCategoryById(categoryId);
+    if (!found) throw new NotFoundError();
+
+    const updatedCategory = await this.categoryService.updateCategoryById(
+      categoryId,
+      body,
+      { lean: true }
+    );
+
+    return res.send(updatedCategory);
   }
 
   public async deleteCategoryByIdHandler(
     req: Request,
     res: Response
   ): Promise<Response> {
-    return res.send().json();
+    await this.schemaValidator.validate(deleteCategoryByIdSchema, req.params);
+    const categoryId = TextUtils.sanitize(req.params.categoryId);
+
+    const found = await this.categoryService.getCategoryById(categoryId);
+    if (!found) throw new NotFoundError();
+
+    await this.categoryService.deleteCategoryById(categoryId);
+    return res.sendStatus(200);
   }
 }

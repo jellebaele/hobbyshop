@@ -1,10 +1,5 @@
-import { FilterQuery, isValidObjectId, QueryOptions } from 'mongoose';
-import { QUERY_MAX_PER_PAGE } from '../../config';
-import InternalServerError from '../../error/implementations/InternalServerError';
-import CategoryModel, {
-  ICategoryDocument,
-  ICategoryDto,
-} from '../../models/Category';
+import { FilterQuery, QueryOptions } from 'mongoose';
+import { ICategoryDocument, ICategoryDto } from '../../models/Category';
 import BaseService from '../BaseService';
 
 export default class CategoryService extends BaseService<ICategoryDocument> {
@@ -31,5 +26,17 @@ export default class CategoryService extends BaseService<ICategoryDocument> {
     perPage: number
   ): Promise<(ICategoryDocument | null)[]> {
     return this.getDocuments(query, pageNumber, perPage);
+  }
+
+  public async updateCategoryById(
+    id: string,
+    query: FilterQuery<ICategoryDto>,
+    options: QueryOptions<unknown>
+  ): Promise<ICategoryDocument | null> {
+    return this.updateDocumentById(id, query, options);
+  }
+
+  public async deleteCategoryById(id: string) {
+    return this.deleteDocumentById(id);
   }
 }

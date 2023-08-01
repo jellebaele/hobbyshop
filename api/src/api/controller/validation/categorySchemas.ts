@@ -23,16 +23,13 @@ export const getCategoriesSchema = Joi.object().keys({
   page,
   per_page: perPage,
 });
-// export const updateProductByIdSchema = Joi.object().keys({
-//   productId,
-//   name: name.optional(),
-//   description,
-//   category,
-//   amount,
-//   unit: unit.optional(),
-//   status,
-//   userId,
-// });
-// export const deleteProductByIdSchema = Joi.object({
-//   productId,
-// });
+
+export const updateCategoryByIdSchema = Joi.object().keys({
+  categoryId,
+  name: name.optional(),
+  description,
+});
+
+export const deleteCategoryByIdSchema = Joi.object({
+  categoryId,
+});
