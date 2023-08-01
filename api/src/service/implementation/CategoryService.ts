@@ -30,7 +30,6 @@ export default class CategoryService extends BaseService<ICategoryDocument> {
     pageNumber: number,
     perPage: number
   ): Promise<(ICategoryDocument | null)[]> {
-    console.log(query);
     return this.getDocuments(query, pageNumber, perPage);
   }
 }

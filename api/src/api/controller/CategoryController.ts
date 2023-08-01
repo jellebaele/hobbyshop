@@ -53,7 +53,6 @@ export default class CategoryController {
     req: Request,
     res: Response
   ): Promise<Response> {
-    console.log('Hier?');
     await this.schemaValidator.validate(getCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
