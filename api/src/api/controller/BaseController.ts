@@ -8,12 +8,12 @@ export abstract class BaseController {
     this._schemaValidator = new SchemaValidator();
   }
 
-  ok<T>(res: Response, dto?: T): Response {
+  async ok<T>(res: Response, dto?: T): Promise<Response> {
     if (dto) return res.status(200).json(dto);
     return res.sendStatus(200);
   }
 
-  created<T>(res: Response, dto?: T) {
+  async created<T>(res: Response, dto?: T): Promise<Response> {
     if (dto) return res.status(201).json(dto);
     return res.sendStatus(201);
   }

@@ -27,23 +27,23 @@ export default class CategoryController extends BaseController {
     this.categoryService = new CategoryService(CategoryModel);
   }
 
-  public async createCategoryHandler(req: Request, res: Response) {
+  public async createCategoryHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(createCategorySchema, req.body);
 
     const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
 
     const newCategory = await this.categoryService.createCategory(body);
-    this.created(res, newCategory);
+    return this.created(res, newCategory);
   }
 
-  public async getCategoryByIdHandler(req: Request, res: Response) {
+  public async getCategoryByIdHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(getCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
     const category = await this.categoryService.getCategoryById(categoryId);
     if (!category) throw new NotFoundError();
 
-    this.ok(res, category);
+    return this.ok(res, category);
   }
 
   public async getCategoriesHandler(req: Request, res: Response): Promise<Response> {
