@@ -40,7 +40,7 @@ export default class CategoryController extends BaseController {
     await this._schemaValidator.validate(getCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
-    const category = await this.categoryService.getCategoryById(categoryId);
+    const category = await this.categoryService.getById(categoryId);
     if (!category) throw new NotFoundError();
 
     return this.ok(res, category);
@@ -52,7 +52,7 @@ export default class CategoryController extends BaseController {
     const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
     const query = TextUtils.sanitizeObject(req.query);
 
-    const products = await this.categoryService.getCategories(query, pageNumber, perPage);
+    const products = await this.categoryService.getByQuery(query, pageNumber, perPage);
     const pageMetaData = this.pagination.generateHeadersMetadata(
       await this.categoryService.count(query),
       pageNumber,
@@ -73,10 +73,10 @@ export default class CategoryController extends BaseController {
     const categoryId = TextUtils.sanitize(req.params.categoryId);
     const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
 
-    const found = await this.categoryService.getCategoryById(categoryId);
+    const found = await this.categoryService.getById(categoryId);
     if (!found) throw new NotFoundError();
 
-    const updatedCategory = await this.categoryService.updateCategoryById(categoryId, body, {
+    const updatedCategory = await this.categoryService.updateById(categoryId, body, {
       lean: true,
     });
 
@@ -87,10 +87,10 @@ export default class CategoryController extends BaseController {
     await this._schemaValidator.validate(deleteCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
-    const found = await this.categoryService.getCategoryById(categoryId);
+    const found = await this.categoryService.getById(categoryId);
     if (!found) throw new NotFoundError();
 
-    await this.categoryService.deleteCategoryById(categoryId);
+    await this.categoryService.deleteById(categoryId);
     return this.ok(res);
   }
 }

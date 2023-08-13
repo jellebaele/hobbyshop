@@ -9,7 +9,7 @@ export default abstract class BaseService<T extends Document> {
     this._model = model;
   }
 
-  protected async createDocument(dto: Object): Promise<T> {
+  public async create(dto: Object): Promise<T> {
     const newDocument = await new this._model({ ...dto }).save();
 
     if (!newDocument) {
@@ -21,19 +21,19 @@ export default abstract class BaseService<T extends Document> {
     return newDocument;
   }
 
-  protected async getDocument(
+  public async getOneByQuery(
     filterQuery: FilterQuery<T>,
     options: QueryOptions = {}
   ): Promise<T | null> {
     return await this._model.findOne<T>(filterQuery, {}, options);
   }
 
-  protected async getDocumentById(id: string): Promise<T | null> {
-    if (isValidObjectId(id)) return await this.getDocument({ _id: id });
+  public async getById(id: string): Promise<T | null> {
+    if (isValidObjectId(id)) return await this.getOneByQuery({ _id: id });
     else return null;
   }
 
-  protected async getDocuments(
+  public async getByQuery(
     query: FilterQuery<T>,
     pageNumber: number,
     perPage: number
@@ -48,7 +48,7 @@ export default abstract class BaseService<T extends Document> {
     return documents;
   }
 
-  protected async updateDocumentById(
+  public async updateById(
     id: string,
     query: FilterQuery<T>,
     options: QueryOptions<unknown>
@@ -59,7 +59,7 @@ export default abstract class BaseService<T extends Document> {
     });
   }
 
-  protected async deleteDocumentById(id: string) {
+  public async deleteById(id: string) {
     return this._model.deleteOne({ _id: id });
   }
 
