@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import AuthService from '../../service/AuthService';
-import ProductService from '../../service/ProductService';
 import SchemaValidator from './validation/SchemaValidator';
 import Pagination from '../../utils/Pagination';
 import CategoryService from '../../service/implementation/CategoryService';
@@ -13,76 +12,52 @@ import {
   updateCategoryByIdSchema,
 } from './validation';
 import TextUtils from '../../utils/TextUtils';
-import UnauthorizedError from '../../error/implementations/UnauthorizedError';
-import BadRequestError from '../../error/implementations/BadRequestError';
-import { IProductDto } from '../../models/Product';
 import NotFoundError from '../../error/implementations/NotFoundError';
 import { QUERY_DEFAULT_PER_PAGE } from '../../config';
+import { BaseController } from './BaseController';
 
-export default class CategoryController {
+export default class CategoryController extends BaseController {
   schemaValidator: SchemaValidator;
-  // productService: ProductService;
   authService: AuthService;
   pagination: Pagination;
   categoryService: CategoryService;
 
   constructor() {
+    super();
     this.schemaValidator = new SchemaValidator();
-    // this.productService = new ProductService();
     this.authService = new AuthService();
     this.pagination = new Pagination();
     this.categoryService = new CategoryService(CategoryModel);
   }
 
-  public async createCategoryHandler(
-    req: Request,
-    res: Response
-  ): Promise<Response> {
+  public async createCategoryHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(createCategorySchema, req.body);
 
-    const body: ICategoryDto = TextUtils.sanitizeObject(
-      req.body
-    ) as ICategoryDto;
+    const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
 
-    const found = await this.categoryService.getCategory({ name: body.name });
-    if (found) throw new BadRequestError('Category already exists.');
-
-    const newCategory = await this.categoryService.createCategorie(body);
-    return res.status(201).json(newCategory);
+    const newCategory = await this.categoryService.createCategory(body);
+    this.created(res, newCategory);
   }
 
-  public async getCategoryByIdHandler(
-    req: Request,
-    res: Response
-  ): Promise<Response> {
+  public async getCategoryByIdHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(getCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
     const category = await this.categoryService.getCategoryById(categoryId);
-
     if (!category) throw new NotFoundError();
-    return res.status(200).json(category);
+
+    this.ok(res, category);
   }
 
-  public async getCategoriesHandler(
-    req: Request,
-    res: Response
-  ): Promise<Response> {
+  public async getCategoriesHandler(req: Request, res: Response): Promise<Response> {
     await this.schemaValidator.validate(getCategoriesSchema, req.query);
     const pageNumber = parseInt(req.query.page as string) || 1;
-    const perPage =
-      parseInt(req.query.per_page as string) ||
-      (QUERY_DEFAULT_PER_PAGE as number);
+    const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
     const query = TextUtils.sanitizeObject(req.query);
 
-    const products = await this.categoryService.getCategories(
-      query,
-      pageNumber,
-      perPage
-    );
-
+    const products = await this.categoryService.getCategories(query, pageNumber, perPage);
     const pageMetaData = this.pagination.generateHeadersMetadata(
-      await this.categoryService.countDocuments(),
+      await this.categoryService.count(query),
       pageNumber,
       perPage,
       req
@@ -90,38 +65,28 @@ export default class CategoryController {
 
     if (pageMetaData) res.set('Link', pageMetaData);
 
-    return res.status(200).json(products);
+    return this.ok(res, products);
   }
 
-  public async updateCategoryByIdHandler(
-    req: Request,
-    res: Response
-  ): Promise<Response> {
+  public async updateCategoryByIdHandler(req: Request, res: Response): Promise<Response> {
     await this.schemaValidator.validate(updateCategoryByIdSchema, {
       ...req.params,
       ...req.body,
     });
     const categoryId = TextUtils.sanitize(req.params.categoryId);
-    const body: ICategoryDto = TextUtils.sanitizeObject(
-      req.body
-    ) as ICategoryDto;
+    const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
 
     const found = await this.categoryService.getCategoryById(categoryId);
     if (!found) throw new NotFoundError();
 
-    const updatedCategory = await this.categoryService.updateCategoryById(
-      categoryId,
-      body,
-      { lean: true }
-    );
+    const updatedCategory = await this.categoryService.updateCategoryById(categoryId, body, {
+      lean: true,
+    });
 
-    return res.send(updatedCategory);
+    return this.ok(res, updatedCategory);
   }
 
-  public async deleteCategoryByIdHandler(
-    req: Request,
-    res: Response
-  ): Promise<Response> {
+  public async deleteCategoryByIdHandler(req: Request, res: Response): Promise<Response> {
     await this.schemaValidator.validate(deleteCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
@@ -129,6 +94,6 @@ export default class CategoryController {
     if (!found) throw new NotFoundError();
 
     await this.categoryService.deleteCategoryById(categoryId);
-    return res.sendStatus(200);
+    return this.ok(res);
   }
 }
