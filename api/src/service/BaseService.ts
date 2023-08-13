@@ -1,10 +1,4 @@
-import {
-  FilterQuery,
-  Model,
-  QueryOptions,
-  Schema,
-  isValidObjectId,
-} from 'mongoose';
+import { FilterQuery, Model, QueryOptions, isValidObjectId } from 'mongoose';
 import InternalServerError from '../error/implementations/InternalServerError';
 import { QUERY_MAX_PER_PAGE } from '../config';
 
@@ -44,8 +38,7 @@ export default abstract class BaseService<T extends Document> {
     pageNumber: number,
     perPage: number
   ): Promise<(T | null)[]> {
-    if (perPage > +QUERY_MAX_PER_PAGE)
-      perPage = parseInt(QUERY_MAX_PER_PAGE as string);
+    if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
 
     const documents = await this._model
       .find<T>({ ...query })
@@ -70,7 +63,8 @@ export default abstract class BaseService<T extends Document> {
     return this._model.deleteOne({ _id: id });
   }
 
-  public async countDocuments(): Promise<number> {
+  public async count(query?: FilterQuery<T>): Promise<number> {
+    if (query) return this._model.count(query);
     return this._model.countDocuments();
   }
 }
