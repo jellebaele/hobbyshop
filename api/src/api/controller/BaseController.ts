@@ -1,6 +1,13 @@
 import { Response } from 'express';
+import SchemaValidator from './validation/SchemaValidator';
 
 export abstract class BaseController {
+  protected readonly _schemaValidator: SchemaValidator;
+
+  constructor() {
+    this._schemaValidator = new SchemaValidator();
+  }
+
   ok<T>(res: Response, dto?: T): Response {
     if (dto) return res.status(200).json(dto);
     return res.sendStatus(200);

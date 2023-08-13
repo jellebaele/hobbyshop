@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import AuthService from '../../service/AuthService';
-import SchemaValidator from './validation/SchemaValidator';
 import Pagination from '../../utils/Pagination';
 import CategoryService from '../../service/implementation/CategoryService';
 import CategoryModel, { ICategoryDto } from '../../models/Category';
@@ -17,21 +16,19 @@ import { QUERY_DEFAULT_PER_PAGE } from '../../config';
 import { BaseController } from './BaseController';
 
 export default class CategoryController extends BaseController {
-  schemaValidator: SchemaValidator;
   authService: AuthService;
   pagination: Pagination;
   categoryService: CategoryService;
 
   constructor() {
     super();
-    this.schemaValidator = new SchemaValidator();
     this.authService = new AuthService();
     this.pagination = new Pagination();
     this.categoryService = new CategoryService(CategoryModel);
   }
 
   public async createCategoryHandler(req: Request, res: Response) {
-    await this.schemaValidator.validate(createCategorySchema, req.body);
+    await this._schemaValidator.validate(createCategorySchema, req.body);
 
     const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
 
@@ -40,7 +37,7 @@ export default class CategoryController extends BaseController {
   }
 
   public async getCategoryByIdHandler(req: Request, res: Response) {
-    await this.schemaValidator.validate(getCategoryByIdSchema, req.params);
+    await this._schemaValidator.validate(getCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
     const category = await this.categoryService.getCategoryById(categoryId);
@@ -50,7 +47,7 @@ export default class CategoryController extends BaseController {
   }
 
   public async getCategoriesHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(getCategoriesSchema, req.query);
+    await this._schemaValidator.validate(getCategoriesSchema, req.query);
     const pageNumber = parseInt(req.query.page as string) || 1;
     const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
     const query = TextUtils.sanitizeObject(req.query);
@@ -69,7 +66,7 @@ export default class CategoryController extends BaseController {
   }
 
   public async updateCategoryByIdHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(updateCategoryByIdSchema, {
+    await this._schemaValidator.validate(updateCategoryByIdSchema, {
       ...req.params,
       ...req.body,
     });
@@ -87,7 +84,7 @@ export default class CategoryController extends BaseController {
   }
 
   public async deleteCategoryByIdHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(deleteCategoryByIdSchema, req.params);
+    await this._schemaValidator.validate(deleteCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
     const found = await this.categoryService.getCategoryById(categoryId);
