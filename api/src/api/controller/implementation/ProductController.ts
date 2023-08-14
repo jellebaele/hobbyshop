@@ -8,7 +8,7 @@ import {
   getProductsSchema,
   updateProductByIdSchema,
 } from '../validation';
-import { IProductDto } from '../../../models/Product';
+import ProductModel, { IProductDto } from '../../../models/Product';
 import TextUtils from '../../../utils/TextUtils';
 import { BadRequestError, NotFoundError, UnauthorizedError } from '../../../error';
 import { QUERY_DEFAULT_PER_PAGE } from '../../../config';
@@ -19,7 +19,7 @@ export default class ProductController extends BaseController {
 
   constructor() {
     super();
-    this.productService = new ProductService();
+    this.productService = new ProductService(ProductModel);
     this.authService = new AuthService();
   }
 
@@ -30,10 +30,10 @@ export default class ProductController extends BaseController {
     const user = req.session.userId;
     if (!user) throw new UnauthorizedError();
 
-    const found = await this.productService.getProduct({ name: body.name });
+    const found = await this.productService.getOneByQuery({ name: body.name });
     if (found) throw new BadRequestError('Product already exists.');
 
-    const newProduct = await this.productService.createProduct({
+    const newProduct = await this.productService.create({
       ...(body as IProductDto),
       user,
     });
@@ -45,7 +45,7 @@ export default class ProductController extends BaseController {
     await this._schemaValidator.validate(getProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
 
-    const product = await this.productService.getProductById(productId);
+    const product = await this.productService.getById(productId);
 
     if (!product) throw new NotFoundError();
     return this.ok(res, product);
@@ -57,10 +57,10 @@ export default class ProductController extends BaseController {
     const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
     const query = TextUtils.sanitizeObject<any>(req.query);
 
-    const products = await this.productService.getProducts(query, pageNumber, perPage);
+    const products = await this.productService.getByQuery(query, pageNumber, perPage);
 
     const pageMetaData = this._pagination.generateHeadersMetadata(
-      await this.productService.countDocuments(),
+      await this.productService.count(),
       pageNumber,
       perPage,
       req
@@ -79,14 +79,14 @@ export default class ProductController extends BaseController {
     const productId = TextUtils.sanitize(req.params.productId);
     const body: IProductDto = TextUtils.sanitizeObject(req.body);
 
-    const found = await this.productService.getProductById(productId);
+    const found = await this.productService.getById(productId);
     if (!found) throw new NotFoundError();
 
     const isAuthorized = await this.authService.isAdminOrSameUser(req, found.user.toString());
     if (!isAuthorized)
       throw new UnauthorizedError('You cannot edit this product, as it is not yours.');
 
-    const updatedProduct = await this.productService.updateProductById(productId, body, {
+    const updatedProduct = await this.productService.updateById(productId, body, {
       lean: true,
     });
 
@@ -97,14 +97,14 @@ export default class ProductController extends BaseController {
     await this._schemaValidator.validate(deleteProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
 
-    const found = await this.productService.getProductById(productId);
+    const found = await this.productService.getById(productId);
     if (!found) throw new NotFoundError();
 
     const isAuthorized = await this.authService.isAdminOrSameUser(req, found.user.toString());
     if (!isAuthorized)
       throw new UnauthorizedError('You cannot delete this product, as it is not yours.');
 
-    await this.productService.deleteProductById(productId);
+    await this.productService.deleteById(productId);
     return this.ok(res);
   }
 }

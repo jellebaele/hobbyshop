@@ -1,61 +1,12 @@
-import { FilterQuery, isValidObjectId, QueryOptions } from 'mongoose';
-import ProductModel, { IProductDocument, IProductDto } from '../../models/Product';
-import { InternalServerError } from '../../error';
-import { QUERY_MAX_PER_PAGE } from '../../config';
+import { IProductDocument, IProductDto } from '../../models/Product';
+import { BadRequestError } from '../../error';
+import BaseService from '../BaseService';
 
-export class ProductService {
-  public async createProduct(productDto: IProductDto): Promise<IProductDocument> {
-    const newProduct = await new ProductModel({ ...productDto }).save();
+export class ProductService extends BaseService<IProductDocument> {
+  public async create(productDto: IProductDto): Promise<IProductDocument> {
+    const found = await this.getOneByQuery({ name: productDto.name });
 
-    if (!newProduct) {
-      throw new InternalServerError('Something went wrong. Product is not created.');
-    }
-
-    return newProduct;
-  }
-
-  public async getProduct(
-    filterQuery: FilterQuery<IProductDto>,
-    options: QueryOptions = {}
-  ): Promise<IProductDocument | null> {
-    return await ProductModel.findOne(filterQuery, {}, options);
-  }
-
-  public async getProductById(id: string): Promise<IProductDocument | null> {
-    if (isValidObjectId(id)) return await this.getProduct({ _id: id });
-    else return null;
-  }
-
-  public async getProducts(
-    query: FilterQuery<IProductDocument>,
-    pageNumber: number,
-    perPage: number
-  ): Promise<(IProductDocument | null)[]> {
-    if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
-
-    const products = await ProductModel.find({ ...query })
-      .limit(perPage)
-      .skip(perPage * (pageNumber - 1));
-
-    return products;
-  }
-
-  public async updateProductById(
-    id: string,
-    query: FilterQuery<IProductDocument>,
-    options: QueryOptions<unknown>
-  ): Promise<IProductDocument | null> {
-    return await ProductModel.findByIdAndUpdate({ _id: id }, query, {
-      ...options,
-      new: true,
-    });
-  }
-
-  public async deleteProductById(id: string) {
-    return ProductModel.deleteOne({ _id: id });
-  }
-
-  public async countDocuments(): Promise<number> {
-    return ProductModel.countDocuments();
+    if (found) throw new BadRequestError('Product already exists. The name must be unique.');
+    return super.create(productDto);
   }
 }
