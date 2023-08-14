@@ -1,8 +1,8 @@
 import { Request, Response, Router } from 'express';
-import ProductController from '../controller/ProductController';
 
 import { asyncErrorHandler } from '../middleware';
 import { ensureLoggedIn } from '../middleware/authMiddleware';
+import ProductController from '../controller/implementation/ProductController';
 
 const productRouter: Router = Router();
 const productController = new ProductController();

@@ -1,6 +1,6 @@
 import { FilterQuery, Model, QueryOptions, isValidObjectId } from 'mongoose';
-import InternalServerError from '../error/implementations/InternalServerError';
 import { QUERY_MAX_PER_PAGE } from '../config';
+import { InternalServerError } from '../error';
 
 export default abstract class BaseService<T extends Document> {
   private _model: Model<T>;

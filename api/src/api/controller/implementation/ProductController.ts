@@ -1,20 +1,17 @@
 import { Request, Response } from 'express';
-import NotFoundError from '../../error/implementations/NotFoundError';
-import UnauthorizedError from '../../error/implementations/UnauthorizedError';
-import { IProductDto } from '../../models/Product';
-import AuthService from '../../service/AuthService';
-import ProductService from '../../service/ProductService';
-import TextUtils from '../../utils/TextUtils';
+import { BaseController } from '../BaseController';
+import { AuthService, ProductService } from '../../../service';
 import {
   createProductSchema,
   deleteProductByIdSchema,
   getProductByIdSchema,
   getProductsSchema,
   updateProductByIdSchema,
-} from './validation/productSchemas';
-import BadRequestError from '../../error/implementations/BadRequestError';
-import { QUERY_DEFAULT_PER_PAGE } from '../../config';
-import { BaseController } from './BaseController';
+} from '../validation';
+import { IProductDto } from '../../../models/Product';
+import TextUtils from '../../../utils/TextUtils';
+import { BadRequestError, NotFoundError, UnauthorizedError } from '../../../error';
+import { QUERY_DEFAULT_PER_PAGE } from '../../../config';
 
 export default class ProductController extends BaseController {
   productService: ProductService;

@@ -1,8 +1,7 @@
 import { Request, Response, Router } from 'express';
-import AuthController from '../controller/AuthController';
-
 import { asyncErrorHandler } from '../middleware';
 import { ensureLoggedIn, ensureLoggedOut } from '../middleware/authMiddleware';
+import AuthController from '../controller/implementation/AuthController';
 
 const authRouter: Router = Router();
 const authController = new AuthController();

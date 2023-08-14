@@ -1,10 +1,9 @@
 import { FilterQuery, QueryOptions } from 'mongoose';
-import { QUERY_DEFAULT_PER_PAGE, QUERY_MAX_PER_PAGE } from '../config';
-import InternalServerError from '../error/implementations/InternalServerError';
-import BadRequestError from '../error/implementations/BadRequestError';
-import UserModel, { IUserDocument, IUserDto } from '../models/User';
+import UserModel, { IUserDocument, IUserDto } from '../../models/User';
+import { QUERY_MAX_PER_PAGE } from '../../config';
+import { BadRequestError, InternalServerError } from '../../error';
 
-class UserService {
+export class UserService {
   public async getUser(
     filterQuery: FilterQuery<IUserDto>,
     options: QueryOptions = {}
@@ -28,8 +27,7 @@ class UserService {
     pageNumber: number,
     perPage: number
   ): Promise<(IUserDocument | null)[]> {
-    if (perPage > +QUERY_MAX_PER_PAGE)
-      perPage = parseInt(QUERY_MAX_PER_PAGE as string);
+    if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
     const users = await UserModel.find({ ...query })
       .limit(perPage)
       .skip(perPage * (pageNumber - 1));
@@ -41,9 +39,7 @@ class UserService {
     const newUser = await new UserModel({ ...userDto, isAdmin: false }).save();
 
     if (!newUser) {
-      throw new InternalServerError(
-        'Something went wrong. User is not created.'
-      );
+      throw new InternalServerError('Something went wrong. User is not created.');
     }
 
     return newUser;
@@ -53,11 +49,8 @@ class UserService {
     id: string,
     query: FilterQuery<IUserDocument>
   ): Promise<IUserDocument | null> {
-    const isUsernameAndEmailUnique = await this.assessIsUsernameAndEmailUnique(
-      query
-    );
-    if (!isUsernameAndEmailUnique)
-      throw new BadRequestError('Username or email invalid.');
+    const isUsernameAndEmailUnique = await this.assessIsUsernameAndEmailUnique(query);
+    if (!isUsernameAndEmailUnique) throw new BadRequestError('Username or email invalid.');
 
     return await UserModel.findByIdAndUpdate({ _id: id }, query, {
       new: true,
@@ -82,5 +75,3 @@ class UserService {
     return existingUser.length > 0 ? false : true;
   }
 }
-
-export default UserService;

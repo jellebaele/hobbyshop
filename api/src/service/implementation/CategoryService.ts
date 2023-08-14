@@ -1,8 +1,8 @@
+import { BadRequestError } from '../../error';
 import { ICategoryDocument, ICategoryDto } from '../../models/Category';
 import BaseService from '../BaseService';
-import BadRequestError from '../../error/implementations/BadRequestError';
 
-export default class CategoryService extends BaseService<ICategoryDocument> {
+export class CategoryService extends BaseService<ICategoryDocument> {
   public async create(categoryDto: ICategoryDto): Promise<ICategoryDocument> {
     const found = await this.getOneByQuery({ name: categoryDto.name });
 

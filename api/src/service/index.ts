@@ -1,4 +1,4 @@
-export * from './AuthService';
+export * from './implementation/AuthService';
 export * from './implementation/CategoryService';
-export * from './ProductService';
-export * from './UserService';
+export * from './implementation/ProductService';
+export * from './implementation/UserService';

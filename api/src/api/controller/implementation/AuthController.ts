@@ -1,12 +1,10 @@
 import { Request, Response } from 'express';
-import BadRequestError from '../../error/implementations/BadRequestError';
-import UnauthorizedError from '../../error/implementations/UnauthorizedError';
-import { IUserDto } from '../../models/User';
-import AuthService from '../../service/AuthService';
-import UserService from '../../service/UserService';
-import TextUtils from '../../utils/TextUtils';
-import { loginSchema, registerSchema } from './validation';
-import SchemaValidator from './validation/SchemaValidator';
+import SchemaValidator from '../validation/SchemaValidator';
+import { AuthService, UserService } from '../../../service';
+import { loginSchema, registerSchema } from '../validation';
+import { IUserDto } from '../../../models/User';
+import TextUtils from '../../../utils/TextUtils';
+import { BadRequestError, UnauthorizedError } from '../../../error';
 
 export default class AuthController {
   schemaValidator: SchemaValidator;
@@ -21,17 +19,12 @@ export default class AuthController {
 
   public async registerUserHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(registerSchema, req.body);
-    const body: IUserDto = TextUtils.sanitizeObject(req.body, [
-      'password',
-    ]) as IUserDto;
+    const body: IUserDto = TextUtils.sanitizeObject(req.body, ['password']) as IUserDto;
 
     const username = body.username;
     const email = body.email;
 
-    const found = await this.userService.getUserByUsernameOrEmail(
-      username,
-      email
-    );
+    const found = await this.userService.getUserByUsernameOrEmail(username, email);
     if (found) throw new BadRequestError('Invalid username or email');
 
     await this.authService.registerUser(body);

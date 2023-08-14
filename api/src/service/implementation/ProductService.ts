@@ -1,18 +1,14 @@
 import { FilterQuery, isValidObjectId, QueryOptions } from 'mongoose';
-import { QUERY_MAX_PER_PAGE } from '../config';
-import InternalServerError from '../error/implementations/InternalServerError';
-import ProductModel, { IProductDocument, IProductDto } from '../models/Product';
+import ProductModel, { IProductDocument, IProductDto } from '../../models/Product';
+import { InternalServerError } from '../../error';
+import { QUERY_MAX_PER_PAGE } from '../../config';
 
-class ProductService {
-  public async createProduct(
-    productDto: IProductDto
-  ): Promise<IProductDocument> {
+export class ProductService {
+  public async createProduct(productDto: IProductDto): Promise<IProductDocument> {
     const newProduct = await new ProductModel({ ...productDto }).save();
 
     if (!newProduct) {
-      throw new InternalServerError(
-        'Something went wrong. Product is not created.'
-      );
+      throw new InternalServerError('Something went wrong. Product is not created.');
     }
 
     return newProduct;
@@ -35,8 +31,7 @@ class ProductService {
     pageNumber: number,
     perPage: number
   ): Promise<(IProductDocument | null)[]> {
-    if (perPage > +QUERY_MAX_PER_PAGE)
-      perPage = parseInt(QUERY_MAX_PER_PAGE as string);
+    if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
 
     const products = await ProductModel.find({ ...query })
       .limit(perPage)
@@ -64,5 +59,3 @@ class ProductService {
     return ProductModel.countDocuments();
   }
 }
-
-export default ProductService;

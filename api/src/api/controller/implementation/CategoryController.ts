@@ -1,18 +1,17 @@
 import { Request, Response } from 'express';
-import AuthService from '../../service/AuthService';
-import CategoryService from '../../service/implementation/CategoryService';
-import CategoryModel, { ICategoryDto } from '../../models/Category';
+import { BaseController } from '../BaseController';
+import { AuthService, CategoryService } from '../../../service';
+import CategoryModel, { ICategoryDto } from '../../../models/Category';
 import {
   createCategorySchema,
   deleteCategoryByIdSchema,
   getCategoriesSchema,
   getCategoryByIdSchema,
   updateCategoryByIdSchema,
-} from './validation';
-import TextUtils from '../../utils/TextUtils';
-import NotFoundError from '../../error/implementations/NotFoundError';
-import { QUERY_DEFAULT_PER_PAGE } from '../../config';
-import { BaseController } from './BaseController';
+} from '../validation';
+import TextUtils from '../../../utils/TextUtils';
+import { NotFoundError } from '../../../error';
+import { QUERY_DEFAULT_PER_PAGE } from '../../../config';
 
 export default class CategoryController extends BaseController {
   authService: AuthService;

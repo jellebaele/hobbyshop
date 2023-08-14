@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import CategoryController from '../controller/CategoryController';
 import { asyncErrorHandler, ensureLoggedIn } from '../middleware';
+import CategoryController from '../controller/implementation/CategoryController';
 
 const categoryRouter: Router = Router();
 const categoryController = new CategoryController();

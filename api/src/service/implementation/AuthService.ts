@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { SESSION_NAME } from '../config';
-import { IUserDocument, IUserDto } from '../models/User';
-import UserService from './UserService';
+import { SESSION_NAME } from '../../config';
+import { IUserDocument, IUserDto } from '../../models/User';
+import { UserService } from './UserService';
 
-export default class AuthService {
+export class AuthService {
   userService: UserService;
 
   constructor() {
@@ -45,10 +45,7 @@ export default class AuthService {
     return user === null ? false : user.isAdmin;
   };
 
-  isAdminOrSameUser = async (
-    req: Request,
-    userId: string
-  ): Promise<boolean> => {
+  isAdminOrSameUser = async (req: Request, userId: string): Promise<boolean> => {
     return (await this.isAdmin(req)) || this.isSameUser(req, userId);
   };
 
