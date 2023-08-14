@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthService, UserService, userService } from '../../../service';
+import { AuthService, UserService, authService, userService } from '../../../service';
 import {
   deleteUserByIdSchema,
   getCurrentUserSchema,
@@ -18,7 +18,7 @@ export default class UserController extends BaseController {
   constructor() {
     super();
     this._userService = userService;
-    this._authService = new AuthService();
+    this._authService = authService;
   }
 
   public async getUserByIdHandler(req: Request, res: Response): Promise<Response> {

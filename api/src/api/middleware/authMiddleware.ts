@@ -1,9 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { SESSION_ABSOLUTE_TIMEOUT } from '../../config';
-import { AuthService } from '../../service';
 import { BadRequestError, UnauthorizedError } from '../../error';
-
-const authService = new AuthService();
+import { authService } from '../../service';
 
 export const ensureLoggedOut = (req: Request, res: Response, next: NextFunction) => {
   if (authService.isLoggedIn(req)) {

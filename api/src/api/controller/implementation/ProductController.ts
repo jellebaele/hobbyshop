@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BaseController } from '../BaseController';
-import { AuthService, ProductService, productService } from '../../../service';
+import { AuthService, ProductService, authService, productService } from '../../../service';
 import {
   createProductSchema,
   deleteProductByIdSchema,
@@ -19,7 +19,7 @@ export default class ProductController extends BaseController {
   constructor() {
     super();
     this._productService = productService;
-    this._authService = new AuthService();
+    this._authService = authService;
   }
 
   public async createProductHandler(req: Request, res: Response): Promise<Response> {

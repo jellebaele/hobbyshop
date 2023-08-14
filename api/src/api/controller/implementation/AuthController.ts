@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthService, UserService, userService } from '../../../service';
+import { AuthService, UserService, authService, userService } from '../../../service';
 import { loginSchema, registerSchema } from '../validation';
 import { IUserDto } from '../../../models/User';
 import TextUtils from '../../../utils/TextUtils';
@@ -13,7 +13,7 @@ export default class AuthController extends BaseController {
   constructor() {
     super();
     this._userService = userService;
-    this._authService = new AuthService();
+    this._authService = authService;
   }
 
   public async registerUserHandler(req: Request, res: Response) {
