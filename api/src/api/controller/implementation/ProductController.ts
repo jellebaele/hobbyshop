@@ -1,6 +1,13 @@
 import { Request, Response } from 'express';
 import { BaseController } from '../BaseController';
-import { AuthService, ProductService, authService, productService } from '../../../service';
+import {
+  AuthService,
+  CategoryService,
+  ProductService,
+  authService,
+  categoryService,
+  productService,
+} from '../../../service';
 import {
   createProductSchema,
   deleteProductByIdSchema,
@@ -15,11 +22,13 @@ import { BadRequestError, NotFoundError, UnauthorizedError } from '../../../erro
 export default class ProductController extends BaseController {
   private readonly _productService: ProductService;
   private readonly _authService: AuthService;
+  private readonly _categoryService: CategoryService;
 
   constructor() {
     super();
     this._productService = productService;
     this._authService = authService;
+    this._categoryService = categoryService;
   }
 
   public async createProductHandler(req: Request, res: Response): Promise<Response> {
@@ -32,10 +41,18 @@ export default class ProductController extends BaseController {
     const found = await this._productService.getOneByQuery({ name: body.name });
     if (found) throw new BadRequestError('Product already exists.');
 
+    const category = await this._categoryService.createIfNotExists({ name: body.category });
+
     const newProduct = await this._productService.create({
       ...body,
+      category: category._id.toString(),
       user,
     });
+
+    await this._categoryService.addProductById(
+      category._id.toString(),
+      new Array(newProduct._id.toString())
+    );
 
     return this.created(res, newProduct);
   }

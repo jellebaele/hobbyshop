@@ -10,7 +10,7 @@
  * TimeCreated
  * TimeUpdated
  */
-import { model, Schema } from 'mongoose';
+import { model, ObjectId, Schema } from 'mongoose';
 import { ProductStatus } from '../utils/enums';
 
 export interface IProductDto {
@@ -24,6 +24,7 @@ export interface IProductDto {
 }
 
 export interface IProductDocument extends Document {
+  _id: ObjectId;
   name: string;
   description: string;
   category: string;
@@ -37,7 +38,7 @@ const ProductSchema = new Schema<IProductDocument>(
   {
     name: { type: String, required: true, unique: true },
     description: { type: String, required: true },
-    category: { type: String, required: true },
+    category: { type: String, ref: 'Category', required: true },
     amount: { type: Number, required: true },
     unit: { type: String, required: true },
     user: { type: Schema.Types.ObjectId, ref: 'User', required: true },

@@ -9,4 +9,18 @@ export class CategoryService extends BaseService<ICategoryDocument> {
     if (found) throw new BadRequestError('Category already exists. The name must be unique.');
     return super.create(categoryDto);
   }
+
+  public async createIfNotExists(categoryDto: ICategoryDto): Promise<ICategoryDocument> {
+    let category = await this.getOneByQuery({ name: categoryDto.name });
+
+    if (category) return category;
+    else
+      return await this.create({
+        name: categoryDto.name,
+      });
+  }
+
+  public async addProductById(id: string, products: string[]): Promise<void> {
+    this.updateById(id, { $push: { products } });
+  }
 }
