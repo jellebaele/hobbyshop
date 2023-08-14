@@ -25,7 +25,7 @@ export default class ProductController extends BaseController {
 
   public async createProductHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(createProductSchema, req.body);
-    const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
+    const body: IProductDto = TextUtils.sanitizeObject(req.body);
 
     const user = req.session.userId;
     if (!user) throw new UnauthorizedError();
@@ -55,7 +55,7 @@ export default class ProductController extends BaseController {
     await this._schemaValidator.validate(getProductsSchema, req.query);
     const pageNumber = parseInt(req.query.page as string) || 1;
     const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
-    const query = TextUtils.sanitizeObject(req.query);
+    const query = TextUtils.sanitizeObject<any>(req.query);
 
     const products = await this.productService.getProducts(query, pageNumber, perPage);
 
@@ -77,7 +77,7 @@ export default class ProductController extends BaseController {
       ...req.body,
     });
     const productId = TextUtils.sanitize(req.params.productId);
-    const body: IProductDto = TextUtils.sanitizeObject(req.body) as IProductDto;
+    const body: IProductDto = TextUtils.sanitizeObject(req.body);
 
     const found = await this.productService.getProductById(productId);
     if (!found) throw new NotFoundError();

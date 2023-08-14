@@ -19,7 +19,7 @@ export default class AuthController {
 
   public async registerUserHandler(req: Request, res: Response) {
     await this.schemaValidator.validate(registerSchema, req.body);
-    const body: IUserDto = TextUtils.sanitizeObject(req.body, ['password']) as IUserDto;
+    const body: IUserDto = TextUtils.sanitizeObject(req.body, ['password']);
 
     const username = body.username;
     const email = body.email;

@@ -25,7 +25,7 @@ export default class CategoryController extends BaseController {
 
   public async createCategoryHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(createCategorySchema, req.body);
-    const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
+    const body = TextUtils.sanitizeObject<ICategoryDto>(req.body);
 
     const newCategory = await this.categoryService.create(body);
 
@@ -46,7 +46,7 @@ export default class CategoryController extends BaseController {
     await this._schemaValidator.validate(getCategoriesSchema, req.query);
     const pageNumber = parseInt(req.query.page as string) || 1;
     const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
-    const query = TextUtils.sanitizeObject(req.query);
+    const query = TextUtils.sanitizeObject<any>(req.query);
 
     const products = await this.categoryService.getByQuery(query, pageNumber, perPage);
     if (!products || products.length < 1) throw new NotFoundError();
@@ -68,7 +68,7 @@ export default class CategoryController extends BaseController {
       ...req.body,
     });
     const categoryId = TextUtils.sanitize(req.params.categoryId);
-    const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
+    const body: ICategoryDto = TextUtils.sanitizeObject(req.body);
 
     const found = await this.categoryService.getById(categoryId);
     if (!found) throw new NotFoundError();

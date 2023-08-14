@@ -39,8 +39,8 @@ export default class UserController {
     await this.schemaValidator.validate(getUsersSchema, req.query);
     const pageNumber = parseInt(req.query.page as string) || 1;
     const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
+    const query = TextUtils.sanitizeObject<any>(req.query);
 
-    const query = TextUtils.sanitizeObject(req.query);
     const users = await this.userService.getUsers(query, pageNumber, perPage);
 
     const pageMetaData = this.pagination.generateHeadersMetadata(
@@ -61,7 +61,7 @@ export default class UserController {
       ...req.body,
     });
     const userId = TextUtils.sanitize(req.params.userId);
-    const body: IUserDto = TextUtils.sanitizeObject(req.body) as IUserDto;
+    const body: IUserDto = TextUtils.sanitizeObject(req.body);
 
     const found = await this.userService.getUserById(userId);
     if (!found) throw new NotFoundError();
