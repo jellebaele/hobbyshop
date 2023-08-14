@@ -50,10 +50,14 @@ export default abstract class BaseService<T> {
     return documents;
   }
 
+  protected async getAllByQuery(query: FilterQuery<T>): Promise<T[]> {
+    return await this._model.find<T>({ ...query });
+  }
+
   public async updateById(
     id: string,
     query: FilterQuery<T>,
-    options: QueryOptions<unknown>
+    options: QueryOptions<unknown> = {}
   ): Promise<T | null> {
     return await this._model.findByIdAndUpdate({ _id: id }, query, {
       ...options,

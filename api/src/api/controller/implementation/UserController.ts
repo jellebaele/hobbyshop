@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
-import SchemaValidator from '../validation/SchemaValidator';
 import { AuthService, UserService } from '../../../service';
-import Pagination from '../../../utils/Pagination';
 import {
   deleteUserByIdSchema,
   getCurrentUserSchema,
@@ -10,78 +8,73 @@ import {
 } from '../validation';
 import TextUtils from '../../../utils/TextUtils';
 import { NotFoundError, UnauthorizedError } from '../../../error';
-import { QUERY_DEFAULT_PER_PAGE } from '../../../config';
-import { IUserDocument, IUserDto } from '../../../models/User';
+import UserModel, { IUserDocument, IUserDto } from '../../../models/User';
+import { BaseController } from '../BaseController';
 
-export default class UserController {
-  schemaValidator: SchemaValidator;
+export default class UserController extends BaseController {
   userService: UserService;
   authService: AuthService;
-  pagination: Pagination;
 
   constructor() {
-    this.schemaValidator = new SchemaValidator();
-    this.userService = new UserService();
+    super();
+    this.userService = new UserService(UserModel);
     this.authService = new AuthService();
-    this.pagination = new Pagination();
   }
 
   public async getUserByIdHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(getCurrentUserSchema, req.params);
+    await this._schemaValidator.validate(getCurrentUserSchema, req.params);
     const userId = TextUtils.sanitize(req.params.userId);
 
-    const user = await this.userService.getUserById(userId);
+    const user = await this.userService.getById(userId);
     if (!user) throw new NotFoundError();
-    return res.status(200).json(user);
+    return this.ok(res, user);
   }
 
   public async getUsersHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(getUsersSchema, req.query);
-    const pageNumber = parseInt(req.query.page as string) || 1;
-    const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
+    await this._schemaValidator.validate(getUsersSchema, req.query);
+    const paginationData = this.getPaginationData(req);
     const query = TextUtils.sanitizeObject<any>(req.query);
+    const users = await this.userService.getByQuery(query, paginationData);
 
-    const users = await this.userService.getUsers(query, pageNumber, perPage);
-
-    const pageMetaData = this.pagination.generateHeadersMetadata(
-      await this.userService.countDocuments(),
-      pageNumber,
-      perPage,
+    const pageMetaData = this._pagination.generateHeadersMetadata(
+      await this.userService.count(),
+      paginationData,
       req
     );
 
     if (pageMetaData) res.set('Link', pageMetaData);
 
-    return res.status(200).json(users);
+    return this.ok(res, users);
   }
 
   public async updateUserByIdHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(updateUserByIdSchema, {
+    await this._schemaValidator.validate(updateUserByIdSchema, {
       ...req.params,
       ...req.body,
     });
     const userId = TextUtils.sanitize(req.params.userId);
     const body: IUserDto = TextUtils.sanitizeObject(req.body);
 
-    const found = await this.userService.getUserById(userId);
+    const found = await this.userService.getById(userId);
     if (!found) throw new NotFoundError();
 
     const isAuthorized = await this.authService.isAdminOrSameUser(req, found._id.toString());
     if (!isAuthorized) throw new UnauthorizedError();
 
-    const updatedUser = await this.userService.updateUserById(userId, body);
-    return res.send(updatedUser);
+    const updatedUser = await this.userService.updateById(userId, body);
+    return this.ok(res, updatedUser);
   }
+
   public async deleteUserByIdHandler(req: Request, res: Response): Promise<Response> {
-    await this.schemaValidator.validate(deleteUserByIdSchema, req.params);
+    await this._schemaValidator.validate(deleteUserByIdSchema, req.params);
     const userId = TextUtils.sanitize(req.params.userId);
 
-    const found: IUserDocument = (await this.userService.getUserById(userId)) as IUserDocument;
+    const found: IUserDocument = (await this.userService.getById(userId)) as IUserDocument;
     if (!found) throw new NotFoundError();
 
-    await this.userService.deleteUserById(userId);
+    await this.userService.deleteById(userId);
     if (found && userId === found._id) await this.authService.logout(req, res);
 
-    return res.sendStatus(200);
+    return this.ok(res);
   }
 }

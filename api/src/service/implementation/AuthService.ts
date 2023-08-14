@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { SESSION_NAME } from '../../config';
-import { IUserDocument, IUserDto } from '../../models/User';
+import UserModel, { IUserDocument, IUserDto } from '../../models/User';
 import { UserService } from './UserService';
 
 export class AuthService {
   userService: UserService;
 
   constructor() {
-    this.userService = new UserService();
+    this.userService = new UserService(UserModel);
   }
 
   public login(req: Request, userId: string): void {
@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   public async registerUser(user: IUserDto): Promise<IUserDocument> {
-    const newUser = await this.userService.createUser(user);
+    const newUser = await this.userService.create(user);
 
     return newUser;
   }
@@ -40,7 +40,7 @@ export class AuthService {
   isAdmin = async (req: Request): Promise<boolean> => {
     if (!this.isLoggedIn(req)) return false;
     const userId = req.session?.userId;
-    const user = await this.userService.getUserById(userId as string);
+    const user = await this.userService.getById(userId as string);
 
     return user === null ? false : user.isAdmin;
   };

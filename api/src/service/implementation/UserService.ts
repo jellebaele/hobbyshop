@@ -1,74 +1,35 @@
-import { FilterQuery, QueryOptions } from 'mongoose';
-import UserModel, { IUserDocument, IUserDto } from '../../models/User';
-import { QUERY_MAX_PER_PAGE } from '../../config';
-import { BadRequestError, InternalServerError } from '../../error';
+import { FilterQuery } from 'mongoose';
+import { IUserDocument, IUserDto } from '../../models/User';
+import { BadRequestError } from '../../error';
+import BaseService from '../BaseService';
 
-export class UserService {
-  public async getUser(
-    filterQuery: FilterQuery<IUserDto>,
-    options: QueryOptions = {}
-  ): Promise<IUserDocument | null> {
-    return await UserModel.findOne(filterQuery, {}, options);
+export class UserService extends BaseService<IUserDocument> {
+  public async create(userDto: IUserDto): Promise<IUserDocument> {
+    const found = await this.isUsernameAndEmailUnique(userDto);
+    if (found) throw new BadRequestError();
+
+    return super.create(userDto);
   }
 
-  public async getUserById(id: string): Promise<IUserDocument | null> {
-    return await this.getUser({ _id: id });
-  }
-
-  public async getUserByUsernameOrEmail(
-    username: string | null = null,
-    email: string | null = null
-  ): Promise<IUserDocument | null> {
-    return await this.getUser({ $or: [{ username }, { email }] });
-  }
-
-  public async getUsers(
-    query: FilterQuery<IUserDocument>,
-    pageNumber: number,
-    perPage: number
-  ): Promise<(IUserDocument | null)[]> {
-    if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
-    const users = await UserModel.find({ ...query })
-      .limit(perPage)
-      .skip(perPage * (pageNumber - 1));
-
-    return users;
-  }
-
-  public async createUser(userDto: IUserDto): Promise<IUserDocument> {
-    const newUser = await new UserModel({ ...userDto, isAdmin: false }).save();
-
-    if (!newUser) {
-      throw new InternalServerError('Something went wrong. User is not created.');
-    }
-
-    return newUser;
-  }
-
-  public async updateUserById(
+  public async updateById(
     id: string,
     query: FilterQuery<IUserDocument>
   ): Promise<IUserDocument | null> {
-    const isUsernameAndEmailUnique = await this.assessIsUsernameAndEmailUnique(query);
+    const isUsernameAndEmailUnique = await this.isUsernameAndEmailUnique(query);
+
     if (!isUsernameAndEmailUnique) throw new BadRequestError('Username or email invalid.');
-
-    return await UserModel.findByIdAndUpdate({ _id: id }, query, {
-      new: true,
-    });
+    return await super.updateById(id, query);
   }
 
-  public async deleteUserById(id: string) {
-    return UserModel.deleteOne({ _id: id });
+  public async getByUsernameOrEmail(
+    username: string | null = null,
+    email: string | null = null
+  ): Promise<IUserDocument | null> {
+    return await this.getOneByQuery({ $or: [{ username }, { email }] });
   }
 
-  public async countDocuments(): Promise<number> {
-    return UserModel.countDocuments();
-  }
-
-  private async assessIsUsernameAndEmailUnique(
-    query: FilterQuery<IUserDocument>
-  ): Promise<boolean> {
-    const existingUser = await UserModel.find({
+  private async isUsernameAndEmailUnique(query: FilterQuery<IUserDocument>): Promise<boolean> {
+    const existingUser = await this.getAllByQuery({
       $or: [{ username: query.username }, { email: query.email }],
     });
 
