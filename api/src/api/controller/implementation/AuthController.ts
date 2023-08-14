@@ -1,18 +1,17 @@
 import { Request, Response } from 'express';
-import SchemaValidator from '../validation/SchemaValidator';
 import { AuthService, UserService, userService } from '../../../service';
 import { loginSchema, registerSchema } from '../validation';
 import { IUserDto } from '../../../models/User';
 import TextUtils from '../../../utils/TextUtils';
 import { BadRequestError, UnauthorizedError } from '../../../error';
+import { BaseController } from '../BaseController';
 
-export default class AuthController {
-  private readonly _schemaValidator: SchemaValidator;
+export default class AuthController extends BaseController {
   private readonly _userService: UserService;
   private readonly _authService: AuthService;
 
   constructor() {
-    this._schemaValidator = new SchemaValidator();
+    super();
     this._userService = userService;
     this._authService = new AuthService();
   }
@@ -29,7 +28,7 @@ export default class AuthController {
 
     await this._authService.registerUser(body);
 
-    return res.status(201).json({ message: 'OK' });
+    return this.created(res, { message: 'OK' });
   }
 
   public async loginUserHandler(req: Request, res: Response) {
@@ -43,13 +42,13 @@ export default class AuthController {
 
     this._authService.login(req, user.id);
 
-    return res.status(200).json({ message: 'OK' });
+    return this.ok(res, { message: 'OK' });
   }
 
   public async logoutUserHandler(req: Request, res: Response) {
     await this._authService.logout(req, res);
 
-    res.json({ message: 'OK' });
+    return this.ok(res, { message: 'OK' });
   }
 
   public async getCurrentUserHandler(req: Request, res: Response) {
@@ -58,6 +57,6 @@ export default class AuthController {
     if (!userId) throw new UnauthorizedError();
 
     const user = await this._userService.getById(userId);
-    return res.json(user);
+    return this.ok(res, user);
   }
 }
