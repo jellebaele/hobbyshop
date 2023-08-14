@@ -34,7 +34,7 @@ export default class ProductController extends BaseController {
     if (found) throw new BadRequestError('Product already exists.');
 
     const newProduct = await this.productService.create({
-      ...(body as IProductDto),
+      ...body,
       user,
     });
 

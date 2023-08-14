@@ -44,7 +44,9 @@ FLUSHDB
 ```
 
 TODO:
-- [ ] Get all categories present in DB
+- [x] Get all categories present in DB
+- [ ] Link categories to products 
+- [ ] Create new categories when not present
 - [ ] Get all units present in DB
 - [ ] Register verification via mail
 - [x] CRUD Product

@@ -40,7 +40,7 @@ const ProductSchema = new Schema<IProductDocument>(
     category: { type: String, required: true },
     amount: { type: Number, required: true },
     unit: { type: String, required: true },
-    user: [{ type: Schema.Types.ObjectId, ref: 'User', required: true }],
+    user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     status: {
       type: String,
       default: ProductStatus.inactive,
