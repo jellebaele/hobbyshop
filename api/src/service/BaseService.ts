@@ -1,4 +1,4 @@
-import { FilterQuery, Model, QueryOptions, isValidObjectId } from 'mongoose';
+import { Document, FilterQuery, Model, QueryOptions, isValidObjectId } from 'mongoose';
 import { QUERY_MAX_PER_PAGE } from '../config';
 import { InternalServerError } from '../error';
 
