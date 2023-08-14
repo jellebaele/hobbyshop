@@ -14,19 +14,16 @@ import {
 } from './validation/productSchemas';
 import BadRequestError from '../../error/implementations/BadRequestError';
 import { QUERY_DEFAULT_PER_PAGE } from '../../config';
-import Pagination from '../../utils/Pagination';
 import { BaseController } from './BaseController';
 
 export default class ProductController extends BaseController {
   productService: ProductService;
   authService: AuthService;
-  pagination: Pagination;
 
   constructor() {
     super();
     this.productService = new ProductService();
     this.authService = new AuthService();
-    this.pagination = new Pagination();
   }
 
   public async createProductHandler(req: Request, res: Response): Promise<Response> {
@@ -65,7 +62,7 @@ export default class ProductController extends BaseController {
 
     const products = await this.productService.getProducts(query, pageNumber, perPage);
 
-    const pageMetaData = this.pagination.generateHeadersMetadata(
+    const pageMetaData = this._pagination.generateHeadersMetadata(
       await this.productService.countDocuments(),
       pageNumber,
       perPage,

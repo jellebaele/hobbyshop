@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import AuthService from '../../service/AuthService';
-import Pagination from '../../utils/Pagination';
 import CategoryService from '../../service/implementation/CategoryService';
 import CategoryModel, { ICategoryDto } from '../../models/Category';
 import {
@@ -17,22 +16,20 @@ import { BaseController } from './BaseController';
 
 export default class CategoryController extends BaseController {
   authService: AuthService;
-  pagination: Pagination;
   categoryService: CategoryService;
 
   constructor() {
     super();
     this.authService = new AuthService();
-    this.pagination = new Pagination();
     this.categoryService = new CategoryService(CategoryModel);
   }
 
   public async createCategoryHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(createCategorySchema, req.body);
-
     const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
 
     const newCategory = await this.categoryService.create(body);
+
     return this.created(res, newCategory);
   }
 
@@ -53,13 +50,14 @@ export default class CategoryController extends BaseController {
     const query = TextUtils.sanitizeObject(req.query);
 
     const products = await this.categoryService.getByQuery(query, pageNumber, perPage);
-    const pageMetaData = this.pagination.generateHeadersMetadata(
+    if (!products || products.length < 1) throw new NotFoundError();
+
+    const pageMetaData = this._pagination.generateHeadersMetadata(
       await this.categoryService.count(query),
       pageNumber,
       perPage,
       req
     );
-
     if (pageMetaData) res.set('Link', pageMetaData);
 
     return this.ok(res, products);

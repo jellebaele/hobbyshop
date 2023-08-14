@@ -1,11 +1,14 @@
 import { Response } from 'express';
 import SchemaValidator from './validation/SchemaValidator';
+import Pagination from '../../utils/Pagination';
 
 export abstract class BaseController {
   protected readonly _schemaValidator: SchemaValidator;
+  protected readonly _pagination: Pagination;
 
   constructor() {
     this._schemaValidator = new SchemaValidator();
+    this._pagination = new Pagination();
   }
 
   async ok<T>(res: Response, dto?: T): Promise<Response> {
