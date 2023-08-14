@@ -1,5 +1,5 @@
 import { Request, Response, Router } from 'express';
-import UserController from '../controller/UserController';
+import UserController from '../controller/implementation/UserController';
 
 import { asyncErrorHandler } from '../middleware';
 import { ensureIsAdmin, ensureLoggedIn } from '../middleware/authMiddleware';

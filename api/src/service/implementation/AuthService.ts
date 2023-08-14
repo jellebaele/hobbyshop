@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
-import { SESSION_NAME } from '../config';
-import { IUserDocument, IUserDto } from '../models/User';
-import UserService from './UserService';
+import { SESSION_NAME } from '../../config';
+import { IUserDocument, IUserDto } from '../../models/User';
+import { UserService } from './UserService';
+import { userService } from '..';
 
-export default class AuthService {
-  userService: UserService;
+export class AuthService {
+  private readonly _userService: UserService;
 
   constructor() {
-    this.userService = new UserService();
+    this._userService = userService;
   }
 
   public login(req: Request, userId: string): void {
@@ -20,7 +21,7 @@ export default class AuthService {
   }
 
   public async registerUser(user: IUserDto): Promise<IUserDocument> {
-    const newUser = await this.userService.createUser(user);
+    const newUser = await this._userService.create(user);
 
     return newUser;
   }
@@ -40,15 +41,12 @@ export default class AuthService {
   isAdmin = async (req: Request): Promise<boolean> => {
     if (!this.isLoggedIn(req)) return false;
     const userId = req.session?.userId;
-    const user = await this.userService.getUserById(userId as string);
+    const user = await this._userService.getById(userId as string);
 
     return user === null ? false : user.isAdmin;
   };
 
-  isAdminOrSameUser = async (
-    req: Request,
-    userId: string
-  ): Promise<boolean> => {
+  isAdminOrSameUser = async (req: Request, userId: string): Promise<boolean> => {
     return (await this.isAdmin(req)) || this.isSameUser(req, userId);
   };
 
