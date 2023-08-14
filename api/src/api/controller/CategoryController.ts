@@ -32,7 +32,7 @@ export default class CategoryController extends BaseController {
 
     const body: ICategoryDto = TextUtils.sanitizeObject(req.body) as ICategoryDto;
 
-    const newCategory = await this.categoryService.createCategory(body);
+    const newCategory = await this.categoryService.create(body);
     return this.created(res, newCategory);
   }
 
