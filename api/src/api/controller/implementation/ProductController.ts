@@ -53,16 +53,14 @@ export default class ProductController extends BaseController {
 
   public async getProductsHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(getProductsSchema, req.query);
-    const pageNumber = parseInt(req.query.page as string) || 1;
-    const perPage = parseInt(req.query.per_page as string) || (QUERY_DEFAULT_PER_PAGE as number);
+    const paginationData = this.getPaginationData(req);
     const query = TextUtils.sanitizeObject<any>(req.query);
 
-    const products = await this.productService.getByQuery(query, pageNumber, perPage);
+    const products = await this.productService.getByQuery(query, paginationData);
 
     const pageMetaData = this._pagination.generateHeadersMetadata(
       await this.productService.count(),
-      pageNumber,
-      perPage,
+      paginationData,
       req
     );
 

@@ -1,6 +1,7 @@
 import { Document, FilterQuery, Model, QueryOptions, isValidObjectId } from 'mongoose';
 import { QUERY_MAX_PER_PAGE } from '../config';
 import { InternalServerError } from '../error';
+import { IPaginationData } from '../utils/Pagination';
 
 export default abstract class BaseService<T> {
   private _model: Model<T>;
@@ -36,9 +37,9 @@ export default abstract class BaseService<T> {
 
   public async getByQuery(
     query: FilterQuery<T>,
-    pageNumber: number,
-    perPage: number
+    paginationData: IPaginationData
   ): Promise<(T | null)[]> {
+    let { pageNumber, perPage } = paginationData;
     if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
 
     const documents = await this._model
