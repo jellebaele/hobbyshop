@@ -2,7 +2,7 @@ import { Document, FilterQuery, Model, QueryOptions, isValidObjectId } from 'mon
 import { QUERY_MAX_PER_PAGE } from '../config';
 import { InternalServerError } from '../error';
 
-export default abstract class BaseService<T extends Document> {
+export default abstract class BaseService<T> {
   private _model: Model<T>;
 
   constructor(model: Model<T>) {
@@ -18,7 +18,8 @@ export default abstract class BaseService<T extends Document> {
       );
     }
 
-    return newDocument;
+    // Mappers!!!!!
+    return newDocument as T;
   }
 
   public async getOneByQuery(
