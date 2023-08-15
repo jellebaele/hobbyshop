@@ -45,8 +45,8 @@ FLUSHDB
 
 TODO:
 - [x] Get all categories present in DB
-- [ ] Link categories to products 
-- [ ] Create new categories when not present
+- [x] Link categories to products 
+- [x] Create new categories when not present
 - [ ] Get all units present in DB
 - [ ] Register verification via mail
 - [x] CRUD Product
@@ -58,3 +58,7 @@ TODO:
 - [ ] Filter request
 - [ ] Sort requests
 - [ ] Get e.g. all products created by one user
+-> /user/:userId/products
+-> /category/:categoryId/products
+- [ ] Mappers in services
+- [ ] Repo?
