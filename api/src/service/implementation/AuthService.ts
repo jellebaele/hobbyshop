@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import { SESSION_NAME } from '../../config';
-import UserModel, { IUserDocument, IUserDto } from '../../models/User';
+import { IUserDocument, IUserDto } from '../../models/User';
 import { UserService } from './UserService';
+import { userRepository } from '../../persistence';
 
 export class AuthService {
   private readonly _userService: UserService;
 
   constructor() {
-    this._userService = new UserService(UserModel);
+    this._userService = new UserService(userRepository);
   }
 
   public login(req: Request, userId: string): void {

@@ -1,10 +1,11 @@
 import { Request, Response } from 'express';
-import { AuthService, UserService, authService, userService } from '../../../service';
+import { AuthService, authService, userService } from '../../../service';
 import { loginSchema, registerSchema } from '../validation';
 import { IUserDto } from '../../../models/User';
 import TextUtils from '../../../utils/TextUtils';
 import { BadRequestError, UnauthorizedError } from '../../../error';
 import { BaseController } from '../BaseController';
+import { UserService } from '../../../service/implementation/UserService';
 
 export default class AuthController extends BaseController {
   private readonly _userService: UserService;
@@ -20,14 +21,10 @@ export default class AuthController extends BaseController {
     await this._schemaValidator.validate(registerSchema, req.body);
     const body: IUserDto = TextUtils.sanitizeObject(req.body, ['password']);
 
-    const username = body.username;
-    const email = body.email;
-
-    const found = await this._userService.getByUsernameOrEmail(username, email);
+    const found = await this._userService.getByUsernameOrEmail(body.username, body.email);
     if (found) throw new BadRequestError('Invalid username or email');
 
     await this._authService.registerUser(body);
-
     return this.created(res, { message: 'OK' });
   }
 

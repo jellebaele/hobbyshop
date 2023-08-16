@@ -1,77 +1,55 @@
-import { FilterQuery, Model, QueryOptions, isValidObjectId } from 'mongoose';
-import { QUERY_MAX_PER_PAGE } from '../config';
-import { InternalServerError } from '../error';
+import { NotFoundError } from '../error';
+import { BaseRepository } from '../persistence/BaseRepository';
 import { IPaginationData } from '../utils/Pagination';
 
-export default abstract class BaseService<T> {
-  private _model: Model<T>;
+export abstract class BaseService<T, U> {
+  protected readonly _repository: BaseRepository<T, U>;
 
-  constructor(model: Model<T>) {
-    this._model = model;
+  constructor(repo: BaseRepository<T, U>) {
+    this._repository = repo;
   }
 
-  public async create(dto: Object): Promise<T> {
-    const newDocument = await new this._model({ ...dto }).save();
+  abstract create(dto: U): Promise<T>;
 
-    if (!newDocument) {
-      throw new InternalServerError(
-        `Something went wrong. ${this._model.modelName} is not created.`
-      );
-    }
+  public async getById(id: string): Promise<T> {
+    const document = await this._repository.getById(id);
+    console.log(document);
+    if (!document) throw new NotFoundError();
 
-    // Mappers!!!!!
-    return newDocument as T;
+    return document;
   }
 
-  public async getOneByQuery(
-    filterQuery: FilterQuery<T>,
-    options: QueryOptions = {}
-  ): Promise<T | null> {
-    return await this._model.findOne<T>(filterQuery, {}, options);
-  }
-
-  public async getById(id: string): Promise<T | null> {
-    console.log('TEST get by id');
-    if (isValidObjectId(id)) return await this.getOneByQuery({ _id: id });
-    else return null;
-  }
-
-  public async getByQuery(
-    query: FilterQuery<T>,
+  public async getPartByQuery(
+    query: object,
     paginationData: IPaginationData
   ): Promise<(T | null)[]> {
-    let { pageNumber, perPage } = paginationData;
-    if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
-
-    const documents = await this._model
-      .find<T>({ ...query })
-      .limit(perPage)
-      .skip(perPage * (pageNumber - 1));
+    const documents = await this._repository.getByQuery(query, paginationData);
+    if (!documents || documents.length < 1) throw new NotFoundError();
 
     return documents;
   }
 
-  protected async getAllByQuery(query: FilterQuery<T>): Promise<T[]> {
-    return await this._model.find<T>({ ...query });
+  protected async getAllByQuery(query: object): Promise<(T | null)[]> {
+    return await this._repository.getAllByQuery(query);
   }
 
-  public async updateById(
-    id: string,
-    query: FilterQuery<T>,
-    options: QueryOptions<unknown> = {}
-  ): Promise<T | null> {
-    return await this._model.findByIdAndUpdate({ _id: id }, query, {
-      ...options,
-      new: true,
+  public async update(id: string, dto: any): Promise<T | null> {
+    const found = await this._repository.getById(id);
+    if (!found) throw new NotFoundError();
+
+    return await this._repository.updateById(id, dto, {
+      lean: true,
     });
   }
 
-  public async deleteById(id: string) {
-    return this._model.deleteOne({ _id: id });
+  public async deleteById(id: string): Promise<void> {
+    const found = await this._repository.getById(id);
+    if (!found) throw new NotFoundError();
+
+    await this._repository.deleteById(id);
   }
 
-  public async count(query?: FilterQuery<T>): Promise<number> {
-    if (query) return this._model.count(query);
-    return this._model.countDocuments();
+  public async count(query?: object): Promise<number> {
+    return await this._repository.count(query);
   }
 }

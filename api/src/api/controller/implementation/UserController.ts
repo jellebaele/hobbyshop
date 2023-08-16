@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { AuthService, UserService, authService, userService } from '../../../service';
+import { AuthService, authService, userService } from '../../../service';
 import {
   deleteUserByIdSchema,
   getCurrentUserSchema,
@@ -7,9 +7,10 @@ import {
   updateUserByIdSchema,
 } from '../validation';
 import TextUtils from '../../../utils/TextUtils';
-import { NotFoundError, UnauthorizedError } from '../../../error';
-import { IUserDocument, IUserDto } from '../../../models/User';
+import { UnauthorizedError } from '../../../error';
+import { IUserDto } from '../../../models/User';
 import { BaseController } from '../BaseController';
+import { UserService } from '../../../service/implementation/UserService';
 
 export default class UserController extends BaseController {
   private readonly _userService: UserService;
@@ -26,7 +27,6 @@ export default class UserController extends BaseController {
     const userId = TextUtils.sanitize(req.params.userId);
 
     const user = await this._userService.getById(userId);
-    if (!user) throw new NotFoundError();
     return this.ok(res, user);
   }
 
@@ -34,7 +34,8 @@ export default class UserController extends BaseController {
     await this._schemaValidator.validate(getUsersSchema, req.query);
     const paginationData = this.getPaginationData(req);
     const query = TextUtils.sanitizeObject<any>(req.query);
-    const users = await this._userService.getByQuery(query, paginationData);
+
+    const users = await this._userService.getPartByQuery(query, paginationData);
 
     const pageMetaData = this._pagination.generateHeadersMetadata(
       await this._userService.count(),
@@ -55,13 +56,9 @@ export default class UserController extends BaseController {
     const userId = TextUtils.sanitize(req.params.userId);
     const body: IUserDto = TextUtils.sanitizeObject(req.body);
 
-    const found = await this._userService.getById(userId);
-    if (!found) throw new NotFoundError();
+    this.checkIsAuthorized(userId, req);
 
-    const isAuthorized = await this._authService.isAdminOrSameUser(req, found._id.toString());
-    if (!isAuthorized) throw new UnauthorizedError();
-
-    const updatedUser = await this._userService.updateById(userId, body);
+    const updatedUser = await this._userService.update(userId, body);
     return this.ok(res, updatedUser);
   }
 
@@ -69,12 +66,19 @@ export default class UserController extends BaseController {
     await this._schemaValidator.validate(deleteUserByIdSchema, req.params);
     const userId = TextUtils.sanitize(req.params.userId);
 
-    const found: IUserDocument = (await this._userService.getById(userId)) as IUserDocument;
-    if (!found) throw new NotFoundError();
-
+    const found = await this._userService.getById(userId);
     await this._userService.deleteById(userId);
+
     if (found && userId === found._id) await this._authService.logout(req, res);
 
     return this.ok(res);
+  }
+
+  private async checkIsAuthorized(userId: string, req: Request): Promise<void> {
+    const found = await this._userService.getById(userId);
+    const isAuthorized = await this._authService.isAdminOrSameUser(req, found._id.toString());
+
+    if (!isAuthorized)
+      throw new UnauthorizedError('You cannot edit this user, as it is not yours.');
   }
 }

@@ -1,9 +1,9 @@
 import { FilterQuery } from 'mongoose';
 import { BadRequestError, InternalServerError, NotFoundError } from '../../error';
 import { IProductDocument, IProductDto } from '../../models/Product';
-import { BService } from '../BService';
+import { BaseService } from '../BaseService';
 
-export class ProductService extends BService<IProductDocument, IProductDto> {
+export class ProductService extends BaseService<IProductDocument, IProductDto> {
   public async create(dto: IProductDto): Promise<IProductDocument> {
     const found = await this._repository.getOneByQuery({ name: dto.name });
     if (found) throw new BadRequestError('Product already exists.');
@@ -26,6 +26,7 @@ export class ProductService extends BService<IProductDocument, IProductDto> {
     return updated;
   }
 
+  // To adjust with custom amount of variables
   private async isUnique(query: FilterQuery<IProductDocument>): Promise<boolean> {
     const existingDocument = await this.getAllByQuery({
       $or: [{ username: query.username }, { email: query.email }],

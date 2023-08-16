@@ -1,34 +1,32 @@
-import { FilterQuery } from 'mongoose';
 import { IUserDocument, IUserDto } from '../../models/User';
+import { BaseService } from '../BaseService';
 import { BadRequestError } from '../../error';
-import BaseService from '../BaseService';
 
-export class UserService extends BaseService<IUserDocument> {
-  public async create(userDto: IUserDto): Promise<IUserDocument> {
-    const found = await this.isUsernameAndEmailUnique(userDto);
-    if (found) throw new BadRequestError();
+export class UserService extends BaseService<IUserDocument, IUserDto> {
+  async create(dto: IUserDto): Promise<IUserDocument> {
+    const isUnique = await this.isUsernameAndEmailUnique(dto);
+    if (!isUnique) throw new BadRequestError();
 
-    return super.create(userDto);
+    return await this._repository.create(dto);
   }
 
-  public async updateById(
-    id: string,
-    query: FilterQuery<IUserDocument>
-  ): Promise<IUserDocument | null> {
-    const isUsernameAndEmailUnique = await this.isUsernameAndEmailUnique(query);
-
+  public async update(id: string, dto: any): Promise<IUserDocument | null> {
+    const isUsernameAndEmailUnique = await this.isUsernameAndEmailUnique(dto);
     if (!isUsernameAndEmailUnique) throw new BadRequestError('Username or email invalid.');
-    return await super.updateById(id, query);
+
+    const updated = await this._repository.updateById(id, dto);
+    return updated;
   }
 
   public async getByUsernameOrEmail(
     username: string | null = null,
     email: string | null = null
   ): Promise<IUserDocument | null> {
-    return await this.getOneByQuery({ $or: [{ username }, { email }] });
+    return await this._repository.getOneByQuery({ $or: [{ username }, { email }] });
   }
 
-  private async isUsernameAndEmailUnique(query: FilterQuery<IUserDocument>): Promise<boolean> {
+  // Generic
+  private async isUsernameAndEmailUnique(query: any): Promise<boolean> {
     const existingUser = await this.getAllByQuery({
       $or: [{ username: query.username }, { email: query.email }],
     });

@@ -60,9 +60,9 @@ Endpoints:
 - [x] CRUD User
 - [x] Admin priviliges (User API)
 - [x] Get all products and users in parts (adjust limit): https://docs.github.com/en/rest/guides/using-pagination-in-the-rest-api?apiVersion=2022-11-28
-- [x] Move all authority to routes layer instead of controller layer
+- [ ] Move all authority to routes layer instead of controller layer
 - [x] Validation for CRUD (test everything)
-- [ ] Filter request
+- [x] Filter request via query
 - [ ] Sort requests
 - [ ] Get e.g. all products created by one user
 -> /user/:userId/products
