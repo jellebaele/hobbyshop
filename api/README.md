@@ -43,7 +43,14 @@ To delete all keys:
 FLUSHDB
 ```
 
-TODO:
+## Features
+Entities: Category, User, Product, Unit, ...
+Authorization: you cannot a product unless it's yours
+
+Endpoints:
+
+## TODO
+
 - [x] Get all categories present in DB
 - [x] Link categories to products 
 - [x] Create new categories when not present

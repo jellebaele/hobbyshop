@@ -1,26 +1,26 @@
-import { BadRequestError } from '../../error';
+import { BadRequestError, NotFoundError, UnauthorizedError } from '../../error';
 import { ICategoryDocument, ICategoryDto } from '../../models/Category';
-import BaseService from '../BaseService';
+import { BService } from '../BService';
 
-export class CategoryService extends BaseService<ICategoryDocument> {
-  public async create(categoryDto: ICategoryDto): Promise<ICategoryDocument> {
-    const found = await this.getOneByQuery({ name: categoryDto.name });
+export class CategoryService extends BService<ICategoryDocument, ICategoryDto> {
+  public async create(dto: ICategoryDto): Promise<ICategoryDocument> {
+    const found = await this._repository.getOneByQuery({ name: dto.name });
+    if (found) throw new BadRequestError('Category already exists.');
 
-    if (found) throw new BadRequestError('Category already exists. The name must be unique.');
-    return super.create(categoryDto);
+    return await this._repository.create({ ...dto });
   }
 
   public async createIfNotExists(categoryDto: ICategoryDto): Promise<ICategoryDocument> {
-    let category = await this.getOneByQuery({ name: categoryDto.name });
+    let category = await this._repository.getOneByQuery({ name: categoryDto.name });
 
     if (category) return category;
     else
-      return await this.create({
+      return await this._repository.create({
         name: categoryDto.name,
       });
   }
 
   public async addProductById(id: string, products: string[]): Promise<void> {
-    this.updateById(id, { $push: { products } });
+    this._repository.updateById(id, { $push: { products } });
   }
 }

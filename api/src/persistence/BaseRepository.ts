@@ -1,16 +1,16 @@
-import { FilterQuery, Model, QueryOptions, isValidObjectId } from 'mongoose';
+import { FilterQuery, Model, QueryOptions, UpdateQuery, isValidObjectId } from 'mongoose';
 import { QUERY_MAX_PER_PAGE } from '../config';
 import { InternalServerError } from '../error';
 import { IPaginationData } from '../utils/Pagination';
 
-export default abstract class BaseService<T> {
-  private _model: Model<T>;
+export abstract class BaseRepository<T, U> {
+  protected _model: Model<T>;
 
   constructor(model: Model<T>) {
     this._model = model;
   }
 
-  public async create(dto: Object): Promise<T> {
+  public async create(dto: U): Promise<T> {
     const newDocument = await new this._model({ ...dto }).save();
 
     if (!newDocument) {
@@ -31,7 +31,6 @@ export default abstract class BaseService<T> {
   }
 
   public async getById(id: string): Promise<T | null> {
-    console.log('TEST get by id');
     if (isValidObjectId(id)) return await this.getOneByQuery({ _id: id });
     else return null;
   }
@@ -51,13 +50,13 @@ export default abstract class BaseService<T> {
     return documents;
   }
 
-  protected async getAllByQuery(query: FilterQuery<T>): Promise<T[]> {
+  public async getAllByQuery(query: FilterQuery<T>): Promise<T[]> {
     return await this._model.find<T>({ ...query });
   }
 
   public async updateById(
     id: string,
-    query: FilterQuery<T>,
+    query: UpdateQuery<T>,
     options: QueryOptions<unknown> = {}
   ): Promise<T | null> {
     return await this._model.findByIdAndUpdate({ _id: id }, query, {

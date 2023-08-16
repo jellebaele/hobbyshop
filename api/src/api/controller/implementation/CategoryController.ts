@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { BaseController } from '../BaseController';
-import { CategoryService, categoryService } from '../../../service';
-import { ICategoryDto } from '../../../models/Category';
+import CategoryModel, { ICategoryDto } from '../../../models/Category';
 import {
   createCategorySchema,
   deleteCategoryByIdSchema,
@@ -10,14 +9,15 @@ import {
   updateCategoryByIdSchema,
 } from '../validation';
 import TextUtils from '../../../utils/TextUtils';
-import { NotFoundError } from '../../../error';
+import { CategoryService } from '../../../service/implementation/CategoryService';
+import { categoryService } from '../../../service';
 
 export default class CategoryController extends BaseController {
   private readonly _categoryService: CategoryService;
 
   constructor() {
     super();
-    this._categoryService = categoryService;
+    this._categoryService = categoryService; // new CategoryService(new CategoryRepository(CategoryModel));
   }
 
   public async createCategoryHandler(req: Request, res: Response): Promise<Response> {
@@ -25,7 +25,6 @@ export default class CategoryController extends BaseController {
     const body = TextUtils.sanitizeObject<ICategoryDto>(req.body);
 
     const newCategory = await this._categoryService.create(body);
-
     return this.created(res, newCategory);
   }
 
@@ -34,19 +33,15 @@ export default class CategoryController extends BaseController {
     const categoryId = TextUtils.sanitize(req.params.categoryId);
 
     const category = await this._categoryService.getById(categoryId);
-    if (!category) throw new NotFoundError();
-
     return this.ok(res, category);
   }
 
   public async getCategoriesHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(getCategoriesSchema, req.query);
     const paginationData = this.getPaginationData(req);
-    const query = TextUtils.sanitizeObject<any>(req.query);
+    const query = TextUtils.sanitizeObject<object>(req.query);
 
-    const products = await this._categoryService.getByQuery(query, paginationData);
-    if (!products || products.length < 1) throw new NotFoundError();
-
+    const products = await this._categoryService.getPartByQuery(query, paginationData);
     const pageMetaData = this._pagination.generateHeadersMetadata(
       await this._categoryService.count(query),
       paginationData,
@@ -54,6 +49,7 @@ export default class CategoryController extends BaseController {
     );
     if (pageMetaData) res.set('Link', pageMetaData);
 
+    // Chain pagination?
     return this.ok(res, products);
   }
 
@@ -65,22 +61,13 @@ export default class CategoryController extends BaseController {
     const categoryId = TextUtils.sanitize(req.params.categoryId);
     const body: ICategoryDto = TextUtils.sanitizeObject(req.body);
 
-    const found = await this._categoryService.getById(categoryId);
-    if (!found) throw new NotFoundError();
-
-    const updatedCategory = await this._categoryService.updateById(categoryId, body, {
-      lean: true,
-    });
-
+    const updatedCategory = await this._categoryService.update(categoryId, body);
     return this.ok(res, updatedCategory);
   }
 
   public async deleteCategoryByIdHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(deleteCategoryByIdSchema, req.params);
     const categoryId = TextUtils.sanitize(req.params.categoryId);
-
-    const found = await this._categoryService.getById(categoryId);
-    if (!found) throw new NotFoundError();
 
     await this._categoryService.deleteById(categoryId);
     return this.ok(res);

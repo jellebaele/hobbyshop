@@ -7,16 +7,16 @@ const categoryId = Joi.string().min(3).max(128).required();
 const page = Joi.number().min(1);
 const perPage = Joi.number().min(1).max(+QUERY_MAX_PER_PAGE);
 
-export const createCategorySchema = Joi.object({
+const createCategorySchema = Joi.object({
   name,
   description,
 });
 
-export const getCategoryByIdSchema = Joi.object({
+const getCategoryByIdSchema = Joi.object({
   categoryId,
 });
 
-export const getCategoriesSchema = Joi.object().keys({
+const getCategoriesSchema = Joi.object().keys({
   categoryId: categoryId.optional(),
   name: name.optional(),
   description,
@@ -24,12 +24,20 @@ export const getCategoriesSchema = Joi.object().keys({
   per_page: perPage,
 });
 
-export const updateCategoryByIdSchema = Joi.object().keys({
+const updateCategoryByIdSchema = Joi.object().keys({
   categoryId,
   name: name.optional(),
   description,
 });
 
-export const deleteCategoryByIdSchema = Joi.object({
+const deleteCategoryByIdSchema = Joi.object({
   categoryId,
 });
+
+export {
+  createCategorySchema,
+  getCategoryByIdSchema,
+  getCategoriesSchema,
+  updateCategoryByIdSchema,
+  deleteCategoryByIdSchema,
+};
