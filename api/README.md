@@ -49,6 +49,28 @@ Authorization: you cannot a product unless it's yours
 
 Endpoints:
 
+CRUD 
+```
+/category
+```
+```
+/category/:categoryId
+```
+```
+/category?query
+```
+```
+/category?page=1&per_page=50&query
+```
+```
+/category/products/:productId
+```
+
+Link header:
+```
+</category?per_page=50&page=3>; rel="last"<http://localhost/category?per_page=50&page=2>; rel="next"<http://localhost/category?per_page=50&page=1>; rel="first"
+```
+
 ## TODO
 
 - [x] Get all categories present in DB
