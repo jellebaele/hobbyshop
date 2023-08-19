@@ -6,18 +6,21 @@ import {
   deleteCategoryByIdSchema,
   getCategoriesSchema,
   getCategoryByIdSchema,
+  getRelatedProductsSchema,
   updateCategoryByIdSchema,
 } from '../validation';
 import TextUtils from '../../../utils/TextUtils';
 import { CategoryService } from '../../../service/implementation/CategoryService';
-import { categoryService } from '../../../service';
+import { ProductService, categoryService, productService } from '../../../service';
 
 export default class CategoryController extends BaseController {
   private readonly _categoryService: CategoryService;
+  private readonly _productService: ProductService;
 
   constructor() {
     super();
-    this._categoryService = categoryService; // new CategoryService(new CategoryRepository(CategoryModel));
+    this._categoryService = categoryService;
+    this._productService = productService;
   }
 
   public async createCategoryHandler(req: Request, res: Response): Promise<Response> {
@@ -41,9 +44,30 @@ export default class CategoryController extends BaseController {
     const paginationData = this.getPaginationData(req);
     const query = TextUtils.sanitizeObject<object>(req.query);
 
-    const products = await this._categoryService.getPartByQuery(query, paginationData);
+    const categories = await this._categoryService.getPartByQuery(query, paginationData);
     const pageMetaData = this._pagination.generateHeadersMetadata(
       await this._categoryService.count(query),
+      paginationData,
+      req
+    );
+    if (pageMetaData) res.set('Link', pageMetaData);
+
+    // Chain pagination?
+    return this.ok(res, categories);
+  }
+
+  public async getRelatedProductsHandler(req: Request, res: Response): Promise<Response> {
+    await this._schemaValidator.validate(getRelatedProductsSchema, req.params);
+    const categoryId = TextUtils.sanitize(req.params.categoryId);
+    const paginationData = this.getPaginationData(req);
+
+    const products = await this._categoryService.getAllRelatedProductsById(
+      categoryId,
+      paginationData
+    );
+
+    const pageMetaData = this._pagination.generateHeadersMetadata(
+      await this._productService.count({ category: categoryId }),
       paginationData,
       req
     );

@@ -29,6 +29,14 @@ categoryRouter.get(
   })
 );
 
+categoryRouter.get(
+  '/products/:categoryId',
+  ensureLoggedIn,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await categoryController.getRelatedProductsHandler(req, res);
+  })
+);
+
 categoryRouter.put(
   '/:categoryId',
   ensureLoggedIn,

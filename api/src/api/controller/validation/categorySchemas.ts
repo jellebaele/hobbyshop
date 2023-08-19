@@ -24,6 +24,10 @@ const getCategoriesSchema = Joi.object().keys({
   per_page: perPage,
 });
 
+const getRelatedProductsSchema = Joi.object({
+  categoryId,
+});
+
 const updateCategoryByIdSchema = Joi.object().keys({
   categoryId,
   name: name.optional(),
@@ -38,6 +42,7 @@ export {
   createCategorySchema,
   getCategoryByIdSchema,
   getCategoriesSchema,
+  getRelatedProductsSchema,
   updateCategoryByIdSchema,
   deleteCategoryByIdSchema,
 };

@@ -19,6 +19,10 @@ export abstract class BaseService<T, U> {
     return document;
   }
 
+  public async getMultipleById(ids: string[], paginationData: IPaginationData): Promise<T[]> {
+    return await this._repository.getMultipleById(ids, paginationData);
+  }
+
   public async getPartByQuery(
     query: object,
     paginationData: IPaginationData

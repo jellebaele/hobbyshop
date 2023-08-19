@@ -35,6 +35,20 @@ export abstract class BaseRepository<T, U> {
     else return null;
   }
 
+  public async getMultipleById(ids: string[], paginationData: IPaginationData): Promise<T[]> {
+    let { pageNumber, perPage } = paginationData;
+    if (perPage > +QUERY_MAX_PER_PAGE) perPage = parseInt(QUERY_MAX_PER_PAGE as string);
+
+    const records = await this._model
+      .find<T>({
+        _id: { $in: ids },
+      })
+      .limit(perPage)
+      .skip(perPage * (pageNumber - 1));
+
+    return records;
+  }
+
   public async getByQuery(
     query: FilterQuery<T>,
     paginationData: IPaginationData
