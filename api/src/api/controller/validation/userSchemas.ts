@@ -23,6 +23,10 @@ export const getUsersSchema = Joi.object().keys({
   username,
 });
 
+export const getRelatedProductsSchema = Joi.object().keys({
+  userId,
+});
+
 export const updateUserByIdSchema = Joi.object({
   userId,
   name,

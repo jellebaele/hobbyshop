@@ -13,7 +13,6 @@ export abstract class BaseService<T, U> {
 
   public async getById(id: string): Promise<T> {
     const document = await this._repository.getById(id);
-    console.log(document);
     if (!document) throw new NotFoundError();
 
     return document;

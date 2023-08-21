@@ -1,8 +1,20 @@
 import { IUserDocument, IUserDto } from '../../models/User';
 import { BaseService } from '../BaseService';
-import { BadRequestError } from '../../error';
+import { BadRequestError, NotFoundError } from '../../error';
+import { IPaginationData } from '../../utils/Pagination';
+import { ProductService } from './ProductService';
+import { BaseRepository } from '../../persistence/BaseRepository';
+import { productRepository } from '../../persistence';
+import { IProductDocument } from '../../models/Product';
 
 export class UserService extends BaseService<IUserDocument, IUserDto> {
+  private readonly _productService: ProductService;
+
+  constructor(repo: BaseRepository<IUserDocument, IUserDto>) {
+    super(repo);
+    this._productService = new ProductService(productRepository);
+  }
+
   async create(dto: IUserDto): Promise<IUserDocument> {
     const isUnique = await this.isUsernameAndEmailUnique(dto);
     if (!isUnique) throw new BadRequestError();
@@ -25,7 +37,23 @@ export class UserService extends BaseService<IUserDocument, IUserDto> {
     return await this._repository.getOneByQuery({ $or: [{ username }, { email }] });
   }
 
-  // Generic
+  public async getAllRelatedProductsById(
+    id: string,
+    paginationData: IPaginationData
+  ): Promise<(IProductDocument | null)[]> {
+    const user = await this._repository.getById(id);
+    if (!user) throw new NotFoundError();
+
+    const relatedProducts = await this._productService.getPartByQuery(
+      { user: user._id },
+      paginationData
+    );
+
+    if (!relatedProducts) throw new NotFoundError();
+    return relatedProducts;
+  }
+
+  // Make Generic
   private async isUsernameAndEmailUnique(query: any): Promise<boolean> {
     const existingUser = await this.getAllByQuery({
       $or: [{ username: query.username }, { email: query.email }],

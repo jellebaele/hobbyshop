@@ -11,6 +11,7 @@ import { UnauthorizedError } from '../../../error';
 import { IUserDto } from '../../../models/User';
 import { BaseController } from '../BaseController';
 import { UserService } from '../../../service/implementation/UserService';
+import { getRelatedProductsSchema } from '../validation/userSchemas';
 
 export default class UserController extends BaseController {
   private readonly _userService: UserService;
@@ -46,6 +47,19 @@ export default class UserController extends BaseController {
     if (pageMetaData) res.set('Link', pageMetaData);
 
     return this.ok(res, users);
+  }
+
+  public async getRelatedProductsHandler(req: Request, res: Response): Promise<Response> {
+    await this._schemaValidator.validate(getRelatedProductsSchema, req.params);
+    const userId = TextUtils.sanitize(req.params.userId);
+    const paginationData = this.getPaginationData(req);
+
+    const relatedProducts = await this._userService.getAllRelatedProductsById(
+      userId,
+      paginationData
+    );
+
+    return this.ok(res, relatedProducts);
   }
 
   public async updateUserByIdHandler(req: Request, res: Response): Promise<Response> {
