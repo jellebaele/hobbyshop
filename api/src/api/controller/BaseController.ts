@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, response } from 'express';
 import SchemaValidator from './validation/SchemaValidator';
 import Pagination, { IPaginationData } from '../../utils/Pagination';
 import { QUERY_DEFAULT_PER_PAGE } from '../../config';
@@ -6,6 +6,7 @@ import { QUERY_DEFAULT_PER_PAGE } from '../../config';
 export abstract class BaseController {
   protected readonly _schemaValidator: SchemaValidator;
   protected readonly _pagination: Pagination;
+  private _res?: Response;
 
   constructor() {
     this._schemaValidator = new SchemaValidator();
@@ -20,6 +21,23 @@ export abstract class BaseController {
   async created<T>(res: Response, dto?: T): Promise<Response> {
     if (dto) return res.status(201).json(dto);
     return res.sendStatus(201);
+  }
+
+  paginateResponse(
+    req: Request,
+    res: Response,
+    totalAmountOfRecords: number,
+    paginationData: IPaginationData
+  ) {
+    const pageMetaData = this._pagination.generateHeadersMetadata(
+      totalAmountOfRecords,
+      paginationData,
+      req
+    );
+    this._res = res;
+    if (pageMetaData) this._res.set('Link', pageMetaData);
+
+    return this;
   }
 
   getPaginationData(req: Request): IPaginationData {

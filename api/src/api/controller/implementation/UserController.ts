@@ -37,16 +37,9 @@ export default class UserController extends BaseController {
     const query = TextUtils.sanitizeObject<any>(req.query);
 
     const users = await this._userService.getPartByQuery(query, paginationData);
+    const totalAmount = await this._userService.count();
 
-    const pageMetaData = this._pagination.generateHeadersMetadata(
-      await this._userService.count(),
-      paginationData,
-      req
-    );
-
-    if (pageMetaData) res.set('Link', pageMetaData);
-
-    return this.ok(res, users);
+    return this.paginateResponse(req, res, totalAmount, paginationData).ok(res, users);
   }
 
   public async getRelatedProductsHandler(req: Request, res: Response): Promise<Response> {

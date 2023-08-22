@@ -63,14 +63,9 @@ export default class ProductController extends BaseController {
     const query = TextUtils.sanitizeObject<any>(req.query);
 
     const products = await this._productService.getPartByQuery(query, paginationData);
-    const pageMetaData = this._pagination.generateHeadersMetadata(
-      await this._productService.count(),
-      paginationData,
-      req
-    );
-    if (pageMetaData) res.set('Link', pageMetaData);
+    const totalAmount = await this._productService.count();
 
-    return this.ok(res, products);
+    return this.paginateResponse(req, res, totalAmount, paginationData).ok(res, products);
   }
 
   public async updateProductByIdHandler(req: Request, res: Response): Promise<Response> {

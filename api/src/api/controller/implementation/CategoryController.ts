@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { BaseController } from '../BaseController';
-import CategoryModel, { ICategoryDto } from '../../../models/Category';
+import { ICategoryDto } from '../../../models/Category';
 import {
   createCategorySchema,
   deleteCategoryByIdSchema,
@@ -45,15 +45,9 @@ export default class CategoryController extends BaseController {
     const query = TextUtils.sanitizeObject<object>(req.query);
 
     const categories = await this._categoryService.getPartByQuery(query, paginationData);
-    const pageMetaData = this._pagination.generateHeadersMetadata(
-      await this._categoryService.count(query),
-      paginationData,
-      req
-    );
-    if (pageMetaData) res.set('Link', pageMetaData);
+    const totalAmount: number = await this._categoryService.count(query);
 
-    // Chain pagination?
-    return this.ok(res, categories);
+    return this.paginateResponse(req, res, totalAmount, paginationData).ok(res, categories);
   }
 
   public async getRelatedProductsHandler(req: Request, res: Response): Promise<Response> {
@@ -65,16 +59,9 @@ export default class CategoryController extends BaseController {
       categoryId,
       paginationData
     );
+    const totalAmount: number = await this._productService.count({ category: categoryId });
 
-    const pageMetaData = this._pagination.generateHeadersMetadata(
-      await this._productService.count({ category: categoryId }),
-      paginationData,
-      req
-    );
-    if (pageMetaData) res.set('Link', pageMetaData);
-
-    // Chain pagination?
-    return this.ok(res, products);
+    return this.paginateResponse(req, res, totalAmount, paginationData).ok(res, products);
   }
 
   public async updateCategoryByIdHandler(req: Request, res: Response): Promise<Response> {
