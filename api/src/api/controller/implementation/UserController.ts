@@ -85,7 +85,6 @@ export default class UserController extends BaseController {
     const found = await this._userService.getById(userId);
     const isAuthorized = await this._authService.isAdminOrSameUser(req, found._id.toString());
 
-    if (!isAuthorized)
-      throw new UnauthorizedError('You cannot edit this user, as it is not yours.');
+    if (!isAuthorized) throw new UnauthorizedError('You cannot edit this user.');
   }
 }

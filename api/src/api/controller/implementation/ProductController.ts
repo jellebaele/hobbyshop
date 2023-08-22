@@ -101,7 +101,6 @@ export default class ProductController extends BaseController {
     return this.ok(res);
   }
 
-  // In middleware?
   private async checkIsAuthorized(productId: string, req: Request): Promise<void> {
     const found = await this._productService.getById(productId);
     const isAuthorized = await this._authService.isAdminOrSameUser(req, found.user.toString());
