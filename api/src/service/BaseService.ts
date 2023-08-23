@@ -1,3 +1,4 @@
+import { FilterQuery } from 'mongoose';
 import { NotFoundError } from '../error';
 import { BaseRepository } from '../persistence/BaseRepository';
 import { IPaginationData } from '../utils/Pagination';
@@ -54,5 +55,17 @@ export abstract class BaseService<T, U> {
 
   public async count(query?: object): Promise<number> {
     return await this._repository.count(query);
+  }
+
+  public async isUnique(query: FilterQuery<T>): Promise<boolean> {
+    const queryArray = Object.keys(query).map((key) => {
+      return { [key]: query[key] };
+    });
+
+    const existingDocuments = await this.getAllByQuery({
+      $or: queryArray,
+    });
+
+    return existingDocuments.length > 0 ? false : true;
   }
 }

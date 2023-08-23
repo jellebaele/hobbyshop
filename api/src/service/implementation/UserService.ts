@@ -16,14 +16,20 @@ export class UserService extends BaseService<IUserDocument, IUserDto> {
   }
 
   async create(dto: IUserDto): Promise<IUserDocument> {
-    const isUnique = await this.isUsernameAndEmailUnique(dto);
+    const isUnique = await this.isUnique({
+      username: dto.username,
+      email: dto.email,
+    });
     if (!isUnique) throw new BadRequestError();
 
     return await this._repository.create(dto);
   }
 
   public async update(id: string, dto: any): Promise<IUserDocument | null> {
-    const isUsernameAndEmailUnique = await this.isUsernameAndEmailUnique(dto);
+    const isUsernameAndEmailUnique = await this.isUnique({
+      username: dto.username,
+      email: dto.email,
+    });
     if (!isUsernameAndEmailUnique) throw new BadRequestError('Username or email invalid.');
 
     const updated = await this._repository.updateById(id, dto);
@@ -51,14 +57,5 @@ export class UserService extends BaseService<IUserDocument, IUserDto> {
 
     if (!relatedProducts) throw new NotFoundError();
     return relatedProducts;
-  }
-
-  // Make Generic
-  private async isUsernameAndEmailUnique(query: any): Promise<boolean> {
-    const existingUser = await this.getAllByQuery({
-      $or: [{ username: query.username }, { email: query.email }],
-    });
-
-    return existingUser.length > 0 ? false : true;
   }
 }

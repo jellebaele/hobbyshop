@@ -63,8 +63,7 @@ export default class UserController extends BaseController {
     const userId = TextUtils.sanitize(req.params.userId);
     const body: IUserDto = TextUtils.sanitizeObject(req.body);
 
-    this.checkIsAuthorized(userId, req);
-
+    await this.checkIsAuthorized(userId, req);
     const updatedUser = await this._userService.update(userId, body);
     return this.ok(res, updatedUser);
   }

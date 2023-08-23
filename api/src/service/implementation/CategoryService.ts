@@ -15,7 +15,7 @@ export class CategoryService extends BaseService<ICategoryDocument, ICategoryDto
   }
 
   public async create(dto: ICategoryDto): Promise<ICategoryDocument> {
-    const found = await this._repository.getOneByQuery({ name: dto.name });
+    const found = await this.isUnique({ name: dto.name });
     if (found) throw new BadRequestError('Category already exists.');
 
     return await this._repository.create({ ...dto });

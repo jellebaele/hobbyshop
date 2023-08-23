@@ -5,8 +5,8 @@ import { BaseService } from '../BaseService';
 
 export class ProductService extends BaseService<IProductDocument, IProductDto> {
   public async create(dto: IProductDto): Promise<IProductDocument> {
-    const found = await this._repository.getOneByQuery({ name: dto.name });
-    if (found) throw new BadRequestError('Product already exists.');
+    const isUnique = await this.isUnique({ name: dto.name });
+    if (!isUnique) throw new BadRequestError('Product already exists.');
 
     return await this._repository.create({ ...dto });
   }
@@ -24,14 +24,5 @@ export class ProductService extends BaseService<IProductDocument, IProductDto> {
 
     if (!updated) throw new InternalServerError();
     return updated;
-  }
-
-  // To adjust with custom amount of variables
-  private async isUnique(query: FilterQuery<IProductDocument>): Promise<boolean> {
-    const existingDocument = await this.getAllByQuery({
-      $or: [{ username: query.username }, { email: query.email }],
-    });
-
-    return existingDocument.length > 0 ? false : true;
   }
 }
