@@ -73,3 +73,7 @@ $ npm run build
    -  [ ] Update products
    -  [ ] Delete products
    -  [ ] ...
+- [ ] Refactor!
+- [ ] Date added
+- [ ] Amount of views
+- [ ] Products in the spotlight
