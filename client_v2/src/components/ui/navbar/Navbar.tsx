@@ -1,12 +1,31 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './navbar.scss'
 import { Outlet } from 'react-router-dom'
-import { useState } from 'react'
+import { navbarItems } from './navbarItems';
+import { usePlatformType } from '../../../hooks/usePlatformType';
+import { useState } from 'react';
+
 
 const Navbar = () => {
-  const [isActive1, setIsActive1] = useState(true)
-  const [isActive2, setIsActive2] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const { pathname } = useLocation();
+  const platformType = usePlatformType();
 
+  const renderNavbarItemsDesktop = () => {
+    return (navbarItems.map(navbarItem => {
+      return (
+        <div className={`navItem ${pathname === navbarItem.link ? 'active' : ''}`} key={navbarItem.title}>
+          <div className={`navLink`}>
+            <Link to={navbarItem.link} >{navbarItem.title}</Link>
+          </div>
+        </div>
+      )
+    }))
+  }
+
+  const renderNavbarItemsMobile = () => {
+    return <div className='navItem hamburger' onClick={() => setMenuOpen(!menuOpen)}>Menu</div>
+  }
 
   return (
     <>
@@ -17,17 +36,10 @@ const Navbar = () => {
               <h1>Herman's hobbyshop</h1>
             </Link>
           </div>
-
-
           <div className="navContent">
-            <div className="navLink">
-              <Link to="/" className={isActive1 ? 'active' : ''} onClick={() => { setIsActive1(true); setIsActive2(false) }}>Uitgelicht</Link>
-              <Link to="/products" className={isActive2 ? 'active' : ""} onClick={() => { setIsActive1(false); setIsActive2(true) }}>Producten</Link>
-              <Link to="/orders">Orders</Link>
-              <Link to="/profile">Profiel</Link>
-              <Link to="/logout">Logout</Link>
-            </div>
+            {platformType === 'desktop' ? renderNavbarItemsDesktop() : renderNavbarItemsMobile()}
           </div>
+
         </section>
       </nav>
 

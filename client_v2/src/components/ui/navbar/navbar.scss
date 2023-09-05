@@ -1,4 +1,4 @@
-@import '../../../shared/variables.scss';
+@import '../../../shared/constants/variables.scss';
 
 nav {
   background-color: white;
@@ -11,6 +11,7 @@ nav {
     margin: 0 10px;
 
     .logo {
+      max-width: 200px;
       h1 {
         padding: 0;
         font-weight: 700;
@@ -22,44 +23,64 @@ nav {
     }
 
     .navContent {
-      .navLink {
-        a {
-          color: $light-blue;
-          text-transform: uppercase;
-          text-decoration: none;
-          display: inline-block;
-          padding: 10px 0;
-          margin: 0 5px;
-          position: relative;
+      max-width: 500px;
+      display: flex;
 
-          &::after {
-            background: none repeat scroll 0 0 transparent;
-            bottom: 5px;
-            content: '';
-            display: block;
-            height: 1px;
-            left: 50%;
-            position: absolute;
-            background: $light-blue;
-            transition: width 0.3s ease 0s, left 0.3s ease 0s;
-            width: 0;
-          }
+      .navItem {
+        color: $light-blue;
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 10px 0;
+        margin: 0 5px;
+        display: flex;
+        position: relative;
 
-          &:hover::after {
-            width: 100%;
-            left: 0;
-          }
+        &::after {
+          background: none repeat scroll 0 0 transparent;
+          bottom: 5px;
+          content: '';
+          display: block;
+          height: 2px;
+          left: 50%;
+          position: absolute;
+          background: $light-blue;
+          transition: width 0.3s ease 0s, left 0.3s ease 0s;
+          width: 0;
+        }
 
-          &.active::after {
-            width: 100%;
-            left: 0;
-          }
+        &:hover::after {
+          width: 100%;
+          left: 0;
+        }
+
+        &.active::after {
+          width: 100%;
+          left: 0;
         }
       }
-    }
 
-    .navLink:first-child {
-      margin-left: 0;
+      .navLink:first-child {
+        margin-left: 0;
+      }
+
+      .hamburger {
+        cursor: pointer !important;
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-breakpoint) {
+  nav {
+    border: $light-blue 4px solid;
+
+    section {
+      .logo {
+        max-width: 100%;
+        h1 {
+          font-size: 20px;
+        }
+      }
     }
   }
 }
