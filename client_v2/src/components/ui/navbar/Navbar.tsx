@@ -39,8 +39,32 @@ const Navbar = () => {
           <div className="navContent">
             {platformType === 'desktop' ? renderNavbarItemsDesktop() : renderNavbarItemsMobile()}
           </div>
-
+          {/* <div className="sidebar">
+            <div className="navContent">
+              <div className="navItem">
+                <div className="navLink">
+                  <Link to='/'>Home</Link>
+                </div>
+              </div>
+              <div className="navItem">
+                <div className="navLink">
+                  <Link to='/'>Home</Link>
+                </div>
+              </div>
+              <div className="navItem">
+                <div className="navLink">
+                  <Link to='/'>Home</Link>
+                </div>
+              </div>
+              <div className="navItem">
+                <div className="navLink">
+                  <Link to='/'>Home</Link>
+                </div>
+              </div>
+            </div>
+          </div> */}
         </section>
+
       </nav>
 
       {/* An <Outlet> renders whatever child route is currently active,

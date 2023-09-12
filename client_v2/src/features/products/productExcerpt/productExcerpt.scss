@@ -1,0 +1,50 @@
+.singleProduct {
+  border: 2px black solid;
+  margin: 10px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .left {
+    h3 {
+      padding: 0;
+      margin: 0 0 5px 0;
+      cursor: pointer;
+      position: relative;
+      width: fit-content;
+
+      &::after {
+        background: none repeat scroll 0 0 transparent;
+        content: '';
+        display: block;
+        height: 2px;
+        left: 0%;
+        position: absolute;
+        background: black;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+      }
+
+      &:hover::after {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .right {
+    display: flex;
+    flex-direction: row;
+
+    .button {
+      margin: 0 5px;
+    }
+  }
+}

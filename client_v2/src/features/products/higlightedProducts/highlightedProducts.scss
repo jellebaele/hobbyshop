@@ -1,0 +1,16 @@
+.higlightedProductsContainer {
+  background-color: white;
+  padding: 15px;
+  margin: 10px 0;
+  border: 3px black solid;
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      margin: 0 0 10px;
+    }
+  }
+}

@@ -1,8 +1,8 @@
-import React from 'react'
+import SingleProduct from "../features/products/singleProduct/SingleProduct"
 
 const SingleProductPage = () => {
   return (
-    <div>SingleProduct</div>
+    <SingleProduct />
   )
 }
 

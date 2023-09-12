@@ -9,6 +9,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     margin: 0 10px;
+    position: relative;
 
     .logo {
       max-width: 200px;
@@ -67,12 +68,18 @@ nav {
         cursor: pointer !important;
       }
     }
+
+    .sidebar {
+      position: absolute;
+      top: 40px;
+    }
   }
 }
 
 @media (max-width: $tablet-breakpoint) {
   nav {
     border: $light-blue 4px solid;
+    height: 40px;
 
     section {
       .logo {

@@ -1,0 +1,10 @@
+@import '../../../shared/constants/variables.scss';
+
+.buttonContainer {
+  background-color: transparent;
+  color: $light-blue;
+  padding: 10px;
+  font-weight: 600;
+  border: $light-blue 2px solid;
+  cursor: pointer;
+}

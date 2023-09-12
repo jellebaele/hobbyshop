@@ -1,8 +1,12 @@
-import React from 'react'
+import "./homePage.scss"
+import HighlightedProducts from "../features/products/higlightedProducts/HighlightedProducts"
 
 const HomePage = () => {
   return (
-    <div>Home</div>
+    <div className='homeContainer'>
+      <HighlightedProducts />
+      <HighlightedProducts />
+    </div >
   )
 }
 
