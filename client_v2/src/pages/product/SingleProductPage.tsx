@@ -1,4 +1,4 @@
-import SingleProduct from "../features/products/singleProduct/SingleProduct"
+import SingleProduct from "../../features/products/singleProduct/SingleProduct"
 
 const SingleProductPage = () => {
   return (
