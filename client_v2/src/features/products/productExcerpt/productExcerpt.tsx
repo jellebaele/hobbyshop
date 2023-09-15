@@ -1,15 +1,10 @@
 import { Link } from 'react-router-dom'
 import './productExcerpt.scss'
 import Button from '../../../components/ui/button/Button'
+import { Product } from '../../../models/Product'
 
 type productExcerptProps = {
-  product: {
-    id: string,
-    name: string,
-    amount: number,
-    unit: string,
-    user: string
-  }
+  product: Product
   isSummarized?: boolean
 }
 
