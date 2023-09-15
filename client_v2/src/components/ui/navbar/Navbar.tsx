@@ -1,70 +1,44 @@
-import { Link, useLocation } from 'react-router-dom'
 import './navbar.scss'
+import { Link, useLocation } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
-import { navbarItems } from './navbarItems';
-import { usePlatformType } from '../../../hooks/usePlatformType';
 import { useState } from 'react';
+import { useIsOutsideClick } from '../../../hooks/useIsClickOutside';
+import { navbarItems } from './navbarItems';
 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
   const { pathname } = useLocation();
-  const platformType = usePlatformType();
 
-  const renderNavbarItemsDesktop = () => {
-    return (navbarItems.map(navbarItem => {
-      return (
-        <div className={`navItem ${pathname === navbarItem.link ? 'active' : ''}`} key={navbarItem.title}>
-          <div className={`navLink`}>
-            <Link to={navbarItem.link} >{navbarItem.title}</Link>
-          </div>
-        </div>
-      )
-    }))
+  const ref = useIsOutsideClick(() => setMenuOpen(false))
+
+  const handleClickMenu = () => {
+    setMenuOpen(!menuOpen)
   }
 
-  const renderNavbarItemsMobile = () => {
-    return <div className='navItem hamburger' onClick={() => setMenuOpen(!menuOpen)}>Menu</div>
+  const renderMenuItems = () => {
+    return navbarItems.map(navbarItem => {
+      return (<li className={`navigationItem ${pathname === navbarItem.link ? 'active' : ''}`} onClick={handleClickMenu} key={navbarItem.title}>
+        <Link to={navbarItem.link} >{navbarItem.title}</Link>
+      </li>)
+    })
   }
 
   return (
     <>
-      <nav>
-        <section>
-          <div className='logo'>
-            <Link to='/'>
-              <h1>Herman's hobbyshop</h1>
-            </Link>
-          </div>
-          <div className="navContent">
-            {platformType === 'desktop' ? renderNavbarItemsDesktop() : renderNavbarItemsMobile()}
-          </div>
-          {/* <div className="sidebar">
-            <div className="navContent">
-              <div className="navItem">
-                <div className="navLink">
-                  <Link to='/'>Home</Link>
-                </div>
-              </div>
-              <div className="navItem">
-                <div className="navLink">
-                  <Link to='/'>Home</Link>
-                </div>
-              </div>
-              <div className="navItem">
-                <div className="navLink">
-                  <Link to='/'>Home</Link>
-                </div>
-              </div>
-              <div className="navItem">
-                <div className="navLink">
-                  <Link to='/'>Home</Link>
-                </div>
-              </div>
-            </div>
-          </div> */}
-        </section>
+      <nav className='navigationContainer'>
+        <div className='logo'>
+          <Link to='/'>
+            <h1>Herman's hobbyshop</h1>
+          </Link>
+        </div>
 
+        <div className="navigationMenu" ref={ref}>
+          <div className='hamburger navigationItem' onClick={handleClickMenu}>{!menuOpen ? 'Menu' : 'Sluit'}</div>
+          <ul className={menuOpen ? 'active' : ''}>
+            {renderMenuItems()}
+          </ul>
+        </div>
       </nav>
 
       {/* An <Outlet> renders whatever child route is currently active,

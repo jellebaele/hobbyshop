@@ -1,92 +1,202 @@
 @import '../../../shared/constants/variables.scss';
+$border-width-desktop: 5px;
+$border-width-tablet: 4px;
 
-nav {
+// nav {
+//   background-color: white;
+//   border: $light-blue 5px solid;
+// section {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin: 0 10px;
+//   position: relative;
+//   .logo {
+//     max-width: 200px;
+//     h1 {
+//       padding: 0;
+//       font-weight: 700;
+//       font-size: 30px;
+//       margin: 5px 0;
+//       text-transform: uppercase;
+//       color: $light-blue;
+//     }
+//   }
+//   .navContent {
+//     max-width: 500px;
+//     display: flex;
+//     .navItem {
+//       color: $light-blue;
+//       text-transform: uppercase;
+//       text-decoration: none;
+//       padding: 10px 0;
+//       margin: 0 5px;
+//       display: flex;
+//       position: relative;
+//       &::after {
+//         background: none repeat scroll 0 0 transparent;
+//         bottom: 5px;
+//         content: '';
+//         display: block;
+//         height: 2px;
+//         left: 50%;
+//         position: absolute;
+//         background: $light-blue;
+//         transition: width 0.3s ease 0s, left 0.3s ease 0s;
+//         width: 0;
+//       }
+//       &:hover::after {
+//         width: 100%;
+//         left: 0;
+//       }
+//       &.active::after {
+//         width: 100%;
+//         left: 0;
+//       }
+//     }
+//     .navLink:first-child {
+//       margin-left: 0;
+//     }
+//     .hamburger {
+//       cursor: pointer !important;
+//     }
+//   }
+//   .sidebar {
+//     position: absolute;
+//     top: 40px;
+//   }
+// }
+// }
+
+.navigationContainer {
   background-color: white;
-  border: $light-blue 5px solid;
+  border: $light-blue $border-width-desktop solid;
+  padding: 0 $padding-container;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+  position: relative;
 
-  section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 10px;
-    position: relative;
-
-    .logo {
-      max-width: 200px;
-      h1 {
-        padding: 0;
-        font-weight: 700;
-        font-size: 30px;
-        margin: 5px 0;
-        text-transform: uppercase;
-        color: $light-blue;
-      }
+  .logo {
+    // max-width: 200px;
+    h1 {
+      padding: 0;
+      font-weight: 700;
+      font-size: 24px;
+      font-style: normal;
+      margin: 5px 0;
+      text-transform: uppercase;
+      color: $light-blue;
+      font-style: normal;
     }
+  }
 
-    .navContent {
-      max-width: 500px;
-      display: flex;
+  .navigationItem {
+    color: $light-blue;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
 
-      .navItem {
-        color: $light-blue;
-        text-transform: uppercase;
-        text-decoration: none;
-        padding: 10px 0;
-        margin: 0 5px;
-        display: flex;
-        position: relative;
-
-        &::after {
-          background: none repeat scroll 0 0 transparent;
-          bottom: 5px;
-          content: '';
-          display: block;
-          height: 2px;
-          left: 50%;
-          position: absolute;
-          background: $light-blue;
-          transition: width 0.3s ease 0s, left 0.3s ease 0s;
-          width: 0;
-        }
-
-        &:hover::after {
-          width: 100%;
-          left: 0;
-        }
-
-        &.active::after {
-          width: 100%;
-          left: 0;
-        }
-      }
-
-      .navLink:first-child {
-        margin-left: 0;
-      }
-
-      .hamburger {
-        cursor: pointer !important;
-      }
-    }
-
-    .sidebar {
+    &::after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: -1px;
+      content: '';
+      display: block;
+      height: 2px;
+      left: 50%;
       position: absolute;
-      top: 40px;
+      background: $light-blue;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+
+    &:hover::after {
+      width: 100%;
+      left: 0;
+    }
+
+    &.active::after {
+      width: 100%;
+      left: 0;
+    }
+  }
+
+  .navigationMenu {
+    .hamburger {
+      position: absolute;
+      right: $padding-container;
+      display: none;
+    }
+  }
+
+  .navigationMenu ul {
+    display: flex;
+
+    li {
+      list-style-type: none;
+      margin: 0 10px;
+      display: flex;
+      position: relative;
     }
   }
 }
 
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: none;
+}
+
 @media (max-width: $tablet-breakpoint) {
-  nav {
-    border: $light-blue 4px solid;
+  .navigationContainer {
+    border: $light-blue $border-width-tablet solid;
     height: 40px;
 
     section {
       .logo {
         max-width: 100%;
         h1 {
-          font-size: 20px;
+          font-size: 16px;
         }
+      }
+    }
+    .navigationMenu {
+      .hamburger {
+        display: block;
+        cursor: pointer;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .navigationMenu ul {
+      position: absolute;
+      top: 40px;
+      left: -$border-width-tablet;
+      background-color: white;
+      flex-direction: column;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      border: $light-blue $border-width-tablet solid;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: all 0.3s ease-in-out;
+
+      &.active {
+        transform: scaleY(1);
+      }
+
+      li {
+        margin: 10px 10px;
+        width: fit-content;
       }
     }
   }
