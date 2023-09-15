@@ -1,24 +1,16 @@
-import './productList.scss'
 import ProductExcerpt from '../productExcerpt/productExcerpt';
 
-const ProductList = () => {
-  return <div className='productList'>
-    {products.map(product => <ProductExcerpt product={product} key={product.id} />)}
+type ProductListProps = {
+  isSummarized?: boolean
+}
+
+const ProductList = ({ isSummarized = false }: ProductListProps) => {
+
+  return <div>
+    {products.map(product => <ProductExcerpt product={product} isSummarized={isSummarized} key={product.id} />)}
   </div>;
-};
 
-export default ProductList;
-
-/**
- *   name: string;
-  description: string;
-  category: string;
-  amount: Number;
-  unit: string;
-  user: string;
-  status: string;
- */
-
+}
 
 const products = [
   {
@@ -26,20 +18,24 @@ const products = [
     name: "Appel",
     amount: 5,
     unit: "stuks",
-    user: "Herman"
+    user: "Herman",
+    status: "actief"
   },
   {
     id: "2",
     name: "Appel",
     amount: 5,
     unit: "stuks",
-    user: "Herman"
+    user: "Herman",
+    status: "actief"
   },
   {
     id: "3",
     name: "Appel",
     amount: 5,
     unit: "stuks",
-    user: "Herman"
-  }
-]
+    user: "Herman",
+    status: "actief"
+  }]
+
+export default ProductList

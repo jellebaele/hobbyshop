@@ -10,9 +10,10 @@ type productExcerptProps = {
     unit: string,
     user: string
   }
+  isSummarized?: boolean
 }
 
-const ProductExcerpt = ({ product }: productExcerptProps) => {
+const ProductExcerpt = ({ product, isSummarized = false }: productExcerptProps) => {
   return (
     <div className='singleProduct'>
       <div className="left">

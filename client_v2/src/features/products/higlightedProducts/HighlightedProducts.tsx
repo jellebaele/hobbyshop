@@ -1,7 +1,7 @@
 import './highlightedProducts.scss'
-import HighlightedProductList from "./HighlightedProductList"
 import { Link } from 'react-router-dom'
 import Button from '../../../components/ui/button/Button'
+import ProductList from '../productList/ProductList'
 
 const HighlightedProducts = () => {
   return (
@@ -13,7 +13,7 @@ const HighlightedProducts = () => {
         </Link>
       </div>
       <div className="content">
-        <HighlightedProductList />
+        <ProductList />
       </div>
     </div>
 
