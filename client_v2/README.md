@@ -1,6 +1,7 @@
 # Client
 
 ## TODO
+- [x] Navbar
 - [ ] Implement store
 - [ ] Products
   - [ ] Display list of products
@@ -8,3 +9,4 @@
   - [ ] Create product
   - [ ] Edit product
   - [ ] Implement product api
+- [ ] Translations
