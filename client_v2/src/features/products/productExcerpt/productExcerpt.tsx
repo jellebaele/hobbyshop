@@ -23,9 +23,8 @@ const ProductExcerpt = ({ product, isSummarized = false }: productExcerptProps) 
         </div>
       </div>
       <div className="right">
-        <Button className='button'>Bestel</Button>
         <Link to={`/products/${product.id}`}>
-          <Button>Meer info</Button>
+          <Button className='button'>Meer info</Button>
         </Link>
       </div>
 
