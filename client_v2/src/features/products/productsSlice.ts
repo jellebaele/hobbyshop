@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { Product } from '../../models/Product';
 import { ReduxStatus } from '../../shared/constants/ReduxStatus';
-import { RootState } from '../../app/store';
+import { RootState } from '../../context/store';
 
 interface productState {
   data: Product[];
