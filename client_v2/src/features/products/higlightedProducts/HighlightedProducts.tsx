@@ -8,15 +8,14 @@ const HighlightedProducts = () => {
   return (
     <div className="higlightedProductsContainer">
       <div className="top">
-        <h2 className="containerTitle">Uitgelichte producten</h2>
+        <h2>Uitgelichte producten</h2>
         <Link to={'/products'}>
           <Button className='button'>
             Alle producten <ArrowForwardIcon className='icon' />
           </Button>
         </Link>
       </div>
-
-      <div className="content">
+      <div>
         <ProductList />
       </div>
     </div>
