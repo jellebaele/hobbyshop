@@ -4,4 +4,5 @@ export interface Product {
   amount: number;
   unit: string;
   user: string;
+  status: string;
 }
