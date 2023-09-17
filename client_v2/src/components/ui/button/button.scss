@@ -15,3 +15,10 @@
     border: 2px $light-blue solid;
   }
 }
+
+@media (max-width: $phone-breakpoint) {
+  .buttonContainer {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+}

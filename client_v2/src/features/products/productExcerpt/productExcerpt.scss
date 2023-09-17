@@ -1,3 +1,5 @@
+@import '../../../shared/constants/variables.scss';
+
 .singleProduct {
   border: 2px black solid;
   margin: 10px 0;
@@ -45,6 +47,40 @@
 
     .button {
       margin: 0 10px;
+    }
+  }
+}
+
+@media (max-width: $tablet-breakpoint) {
+  .singleProduct {
+    .left {
+      h3 {
+        font-size: 16px;
+      }
+
+      .content {
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+@media (max-width: $phone-breakpoint) {
+  .singleProduct {
+    .left {
+      h3 {
+        font-size: 12px;
+      }
+
+      .content {
+        font-size: 12px;
+      }
+    }
+
+    .right {
+      .button {
+        margin: 0 5px;
+      }
     }
   }
 }

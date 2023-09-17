@@ -14,30 +14,4 @@ const ProductList = ({ isSummarized = false }: ProductListProps) => {
   </div>;
 }
 
-// const products = [
-//   {
-//     id: "1",
-//     name: "Appel",
-//     amount: 5,
-//     unit: "stuks",
-//     user: "Herman",
-//     status: "actief"
-//   },
-//   {
-//     id: "2",
-//     name: "Appel",
-//     amount: 5,
-//     unit: "stuks",
-//     user: "Herman",
-//     status: "actief"
-//   },
-//   {
-//     id: "3",
-//     name: "Appel",
-//     amount: 5,
-//     unit: "stuks",
-//     user: "Herman",
-//     status: "actief"
-//   }]
-
 export default ProductList
