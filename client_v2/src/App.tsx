@@ -1,4 +1,4 @@
-import './app.scss'
+import './assets/styles/app.scss'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductsListPage from './pages/product/ProductsListPage';
