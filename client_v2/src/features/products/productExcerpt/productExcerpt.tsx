@@ -14,7 +14,7 @@ const ProductExcerpt = ({ product, isSummarized = false }: productExcerptProps) 
   return (
     <div className='singleProduct'>
       <div className="left">
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${product.id}`} state={{ previousLocation: location }}>
           <h3>{product.name}</h3>
         </Link>
         <div className="content">
