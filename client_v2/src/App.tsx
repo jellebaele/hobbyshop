@@ -3,7 +3,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import ProductsListPage from './pages/product/ProductsListPage';
 import NotExistsPage from './pages/NotExistsPage';
-import Navbar from './components/ui/navbar/Navbar';
+import Navbar from './components/ui/Navbar';
 import SingleProductPage from './pages/product/SingleProductPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/user/ProfilePage';

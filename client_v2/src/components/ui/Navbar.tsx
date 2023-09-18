@@ -1,8 +1,8 @@
-import './navbar.scss'
+import '../../assets/styles/components/ui/navbar.scss'
 import { Link, useLocation } from 'react-router-dom'
 import { Outlet } from 'react-router-dom'
 import { useState } from 'react';
-import { useIsOutsideClick } from '../../../hooks/useIsClickOutside';
+import { useIsOutsideClick } from '../../hooks/useIsClickOutside';
 import { navbarItems } from './navbarItems';
 
 

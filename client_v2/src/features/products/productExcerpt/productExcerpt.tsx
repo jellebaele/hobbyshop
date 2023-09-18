@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import './productExcerpt.scss'
-import Button from '../../../components/ui/button/Button'
+import Button from '../../../components/ui/Button'
 import { Product } from '../../../models/Product'
 
 type productExcerptProps = {

@@ -1,4 +1,4 @@
-import './status.scss'
+import '../../assets/styles/components/ui/status.scss'
 
 type StatusProps = {
   status: 'Actief' | 'Inactief',

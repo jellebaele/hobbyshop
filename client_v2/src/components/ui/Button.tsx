@@ -1,4 +1,4 @@
-import './button.scss'
+import '../../assets/styles/components/ui/button.scss'
 
 type ButtonProps = {
   className?: string,

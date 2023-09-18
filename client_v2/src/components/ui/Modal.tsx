@@ -1,4 +1,4 @@
-import './modal.scss'
+import '../../assets/styles/components/ui/modal.scss'
 
 type ModalProps = {
   visible: boolean,

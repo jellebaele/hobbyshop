@@ -1,6 +1,6 @@
 import './highlightedProducts.scss'
 import { Link } from 'react-router-dom'
-import Button from '../../../components/ui/button/Button'
+import Button from '../../../components/ui/Button'
 import ProductList from '../productList/ProductList'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
