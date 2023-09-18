@@ -1,3 +1,5 @@
+@import '../../../shared/constants/variables.scss';
+
 .singleProductContainer {
   padding: 15px 25px;
   width: 60vw;
@@ -36,5 +38,11 @@
       align-items: center;
       padding: 7px 0;
     }
+  }
+}
+
+@media (max-width: $phone-breakpoint) {
+  .singleProductContainer {
+    width: 80vw;
   }
 }
