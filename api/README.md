@@ -74,6 +74,7 @@ Link header:
 ## TODO
 
 - [x] Get all categories present in DB
+- [ ] Product status in enum
 - [x] Link categories to products 
 - [x] Create new categories when not present
 - [ ] Get all units present in DB
