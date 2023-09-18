@@ -1,0 +1,17 @@
+.status {
+  padding: 5px 10px;
+  border-radius: 5px;
+  width: fit-content;
+  align-items: center;
+  margin-left: 5px;
+
+  &.actief {
+    color: green;
+    background-color: rgba(0, 128, 0, 0.151) !important;
+  }
+
+  &.inactief {
+    color: crimson;
+    background-color: rgba(220, 20, 60, 0.068) !important;
+  }
+}
