@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './productExcerpt.scss'
 import Button from '../../../components/ui/button/Button'
 import { Product } from '../../../models/Product'
@@ -9,6 +9,8 @@ type productExcerptProps = {
 }
 
 const ProductExcerpt = ({ product, isSummarized = false }: productExcerptProps) => {
+  const location = useLocation();
+
   return (
     <div className='singleProduct'>
       <div className="left">
@@ -23,7 +25,7 @@ const ProductExcerpt = ({ product, isSummarized = false }: productExcerptProps) 
         </div>
       </div>
       <div className="right">
-        <Link to={`/products/${product.id}`}>
+        <Link to={`/products/${product.id}`} state={{ previousLocation: location }}>
           <Button className='button'>Meer info</Button>
         </Link>
       </div>

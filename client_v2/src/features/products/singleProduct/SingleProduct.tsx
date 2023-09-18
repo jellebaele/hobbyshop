@@ -1,6 +1,8 @@
+import Modal from "../../../components/ui/modal/Modal"
+
 const SingleProduct = () => {
   return (
-    <div>SingleProduct</div>
+    <div><Modal>Single product</Modal></div>
   )
 }
 

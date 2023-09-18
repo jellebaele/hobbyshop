@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
-import ProductExcerpt from '../productExcerpt/productExcerpt';
 import { selectAllProducts } from '../productsSlice';
+import ProductExcerpt from '../productExcerpt/ProductExcerpt';
 
 type ProductListProps = {
   isSummarized?: boolean
