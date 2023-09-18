@@ -17,7 +17,9 @@ const initialState: productState = {
       amount: 5,
       unit: 'stuks',
       user: 'Herman',
-      status: 'active',
+      status: 'Actief',
+      category: 'Fruit',
+      dateUpdated: new Date(),
     },
     {
       id: '2',
@@ -25,7 +27,9 @@ const initialState: productState = {
       amount: 2,
       unit: 'stuks',
       user: 'Herman',
-      status: 'actief',
+      status: 'Actief',
+      category: 'Fruit',
+      dateUpdated: new Date(),
     },
     {
       id: '3',
@@ -33,7 +37,9 @@ const initialState: productState = {
       amount: 5,
       unit: 'stuks',
       user: 'Herman',
-      status: 'actief',
+      status: 'Inactief',
+      category: 'Fruit',
+      dateUpdated: new Date(),
     },
   ],
   status: ReduxStatus.Idle,
@@ -49,3 +55,7 @@ const productsSlice = createSlice({
 export default productsSlice.reducer;
 
 export const selectAllProducts = (state: RootState): Product[] => state.products.data;
+export const selectPostById = (
+  state: RootState,
+  productId: string | undefined
+): Product | undefined => state.products.data.find((product) => product.id === productId);
