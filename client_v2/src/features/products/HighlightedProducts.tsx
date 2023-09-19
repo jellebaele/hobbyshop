@@ -1,7 +1,7 @@
-import './highlightedProducts.scss'
+import '../../assets/styles/features/products/highlightedProducts.scss'
 import { Link } from 'react-router-dom'
-import Button from '../../../components/ui/Button'
-import ProductList from '../productList/ProductList'
+import Button from '../../components/ui/Button'
+import ProductList from './ProductList'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 const HighlightedProducts = () => {

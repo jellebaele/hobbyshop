@@ -1,12 +1,12 @@
-import './singleProduct.scss'
+import '../../assets/styles/features/products/singleProduct.scss'
 import { useParams } from "react-router-dom"
-import Modal from "../../../components/ui/Modal"
-import { useAppSelector } from "../../../context/hooks";
-import { selectPostById } from "../productsSlice";
+import Modal from "../../components/ui/Modal"
+import { useAppSelector } from "../../context/hooks";
+import { selectPostById } from "./productsSlice";
 import EditIconNote from '@mui/icons-material/EditNote'
 import CloseIcon from '@mui/icons-material/Close';
-import Status from '../../../components/ui/Status';
-import { useSmoothVisibility } from '../../../hooks/useSmoothClose';
+import Status from '../../components/ui/Status';
+import { useSmoothVisibility } from '../../hooks/useSmoothClose';
 
 const SingleProduct = () => {
   const { productId } = useParams();

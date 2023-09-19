@@ -1,7 +1,7 @@
+import '../../assets/styles/features/products/productExcerpt.scss'
 import { Link, useLocation } from 'react-router-dom'
-import './productExcerpt.scss'
-import Button from '../../../components/ui/Button'
-import { Product } from '../../../models/Product'
+import Button from '../../components/ui/Button'
+import { Product } from '../../models/Product'
 
 type productExcerptProps = {
   product: Product

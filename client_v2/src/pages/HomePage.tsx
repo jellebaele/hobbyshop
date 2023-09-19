@@ -1,5 +1,5 @@
-import "./homePage.scss"
-import HighlightedProducts from "../features/products/higlightedProducts/HighlightedProducts"
+import "../assets/styles/pages/homePage.scss"
+import HighlightedProducts from "../features/products/HighlightedProducts"
 
 const HomePage = () => {
   return (
