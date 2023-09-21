@@ -55,7 +55,7 @@ const productsSlice = createSlice({
 export default productsSlice.reducer;
 
 export const selectAllProducts = (state: RootState): Product[] => state.products.data;
-export const selectPostById = (
+export const selectProductById = (
   state: RootState,
   productId: string | undefined
 ): Product | undefined => state.products.data.find((product) => product.id === productId);
