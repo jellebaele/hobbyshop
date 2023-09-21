@@ -1,13 +1,14 @@
 import '../../assets/styles/components/ui/button.scss'
 
 type ButtonProps = {
+  onClick?: (e: React.MouseEvent) => void,
   className?: string,
   children?: React.ReactNode
 }
 
-const Button = ({ className, children }: ButtonProps) => {
+const Button = ({ onClick, className, children }: ButtonProps) => {
   return (
-    <button className={`buttonContainer ${className}`}>{children}</button>
+    <div className={`buttonContainer ${className}`} onClick={onClick}>{children}</div>
   )
 }
 
