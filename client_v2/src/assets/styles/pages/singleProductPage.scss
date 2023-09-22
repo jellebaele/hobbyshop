@@ -1,6 +1,6 @@
-@import '../../variables.scss';
+@import '../variables.scss';
 
-.singleProductContainer {
+.singleProductPageContainer {
   padding: 15px 25px;
   width: 60vw;
   border: black solid 2px;
@@ -37,6 +37,24 @@
       display: flex;
       align-items: center;
       padding: 7px 0;
+    }
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .amountContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px 0;
+
+      .icon {
+        margin: 0 20px;
+      }
     }
   }
 }
