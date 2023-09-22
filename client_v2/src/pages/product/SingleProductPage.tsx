@@ -48,7 +48,7 @@ const SingleProductPage = () => {
                 {amountToOrder}
                 <RoundButton className='icon' onClick={() => adjustAmountToOrder(1)}>+</RoundButton>
               </div>
-              <Button>Bestel</Button>
+              <Button className='orderButton'>Bestel</Button>
             </div>
           </>}
         </div>

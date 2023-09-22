@@ -62,5 +62,13 @@
 @media (max-width: $phone-breakpoint) {
   .singleProductPageContainer {
     width: 80vw;
+
+    .bottom {
+      .orderButton {
+        padding: 5px 20px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
   }
 }
