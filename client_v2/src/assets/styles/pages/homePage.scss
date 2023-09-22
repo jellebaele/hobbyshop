@@ -1,4 +1,68 @@
+@import '../variables.scss';
+
 .homeContainer {
   display: flex;
   flex-direction: column;
+
+  .higlightedProductsContainer {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border: 3px black solid;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      h2 {
+        margin: auto 0;
+        color: $light-blue;
+        font-size: 20px;
+        text-decoration: underline;
+        text-align: center;
+      }
+
+      .button {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          margin-left: 7px;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $tablet-breakpoint) {
+  .homeContainer {
+    .higlightedProductsContainer {
+      .top {
+        h2 {
+          font-size: 18px;
+          align-self: start;
+        }
+
+        .button {
+          .icon {
+            margin-left: 3px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $phone-breakpoint) {
+  .homeContainer {
+    .higlightedProductsContainer {
+      .top {
+        h2 {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 }
