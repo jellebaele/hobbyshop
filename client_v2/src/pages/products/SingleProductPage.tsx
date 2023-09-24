@@ -6,10 +6,10 @@ import EditIconNote from '@mui/icons-material/EditNote'
 import CloseIcon from '@mui/icons-material/Close';
 import { selectProductById } from "../../features/products/productsSlice"
 import { useSmoothNavigation } from "../../hooks/useSmoothNavigation"
-import Status from '../../components/ui/Status'
 import RoundButton from '../../components/ui/RoundButton'
 import { useState } from 'react';
 import Button from '../../components/ui/Button'
+import ProductContent from '../../features/products/ProductContent'
 
 const SingleProductPage = () => {
   const [amountToOrder, setAmountToOrder] = useState(0);
@@ -28,19 +28,15 @@ const SingleProductPage = () => {
       <Modal visible={isVisible} setInvisible={() => navigateTo(-1)}>
         <div className='singleProductPageContainer'>
           <div className="top">
-            {product ? <><h2>{product.name}</h2></> : <><h2>Product not found</h2></>}
+            {product ? <><h2>Overzicht</h2></> : <><h2>Product not found</h2></>}
             <div className="iconContainer">
-              <EditIconNote className='icon editIcon' onClick={() => navigateTo(`/products/${productId}`)} />
+              <EditIconNote className='icon editIcon' onClick={() => navigateTo(`/products/edit/${productId}`)} />
               <CloseIcon className='icon editIcon' onClick={() => navigateTo(-1)} />
             </div>
           </div>
           {product && <>
             <div className="center">
-              <div className='productProperty'>Aantal: {product.amount} {product.unit}</div>
-              <div className='productProperty'>Eigenaar: {product.user}</div>
-              <div className='productProperty'>Categorie: {product.category}</div>
-              <div className='productProperty'>Laatst bijgewerkt: {product.dateUpdated.toDateString()}</div>
-              <div className='productProperty'>Status: <Status status={product.status} /></div>
+              <ProductContent product={product} />
             </div>
             <div className="bottom">
               <div className="amountContainer">
