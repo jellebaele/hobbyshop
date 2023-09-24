@@ -1,9 +1,13 @@
-
 const ProductsListPage = () => {
 
 
   return (
-    <div>ProductsList</div>
+    <>
+      <div>ProductsList</div>
+    </>
+
+
+
   )
 }
 

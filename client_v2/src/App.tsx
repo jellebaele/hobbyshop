@@ -1,13 +1,13 @@
 import './assets/styles/app.scss'
 import { Route, Routes, useLocation } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import ProductsListPage from './pages/product/ProductsListPage';
+import ProductsListPage from './pages/products/ProductsListPage';
 import NotExistsPage from './pages/NotExistsPage';
 import Navbar from './components/ui/Navbar';
-import SingleProductPage from './pages/product/SingleProductPage';
+import SingleProductPage from './pages/products/SingleProductPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/user/ProfilePage';
-import EditProductPage from './pages/product/EditProductPage';
+import EditProductPage from './pages/products/EditProductPage';
 
 function App() {
   const location = useLocation();
