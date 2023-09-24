@@ -5,7 +5,7 @@ import { useAppSelector } from "../../context/hooks"
 import EditIconNote from '@mui/icons-material/EditNote'
 import CloseIcon from '@mui/icons-material/Close';
 import { selectProductById } from "../../features/products/productsSlice"
-import { useSmoothVisibility } from "../../hooks/useSmoothClose"
+import { useSmoothNavigation } from "../../hooks/useSmoothNavigation"
 import Status from '../../components/ui/Status'
 import RoundButton from '../../components/ui/RoundButton'
 import { useState } from 'react';
@@ -14,7 +14,7 @@ import Button from '../../components/ui/Button'
 const SingleProductPage = () => {
   const [amountToOrder, setAmountToOrder] = useState(0);
   const { productId } = useParams();
-  const { visible, setInvisible } = useSmoothVisibility()
+  const { isVisible, navigateTo } = useSmoothNavigation();
 
   const product = useAppSelector(state => selectProductById(state, productId))
 
@@ -25,13 +25,13 @@ const SingleProductPage = () => {
 
   return (
     <>
-      <Modal visible={visible} setInvisible={setInvisible}>
+      <Modal visible={isVisible} setInvisible={() => navigateTo(-1)}>
         <div className='singleProductPageContainer'>
           <div className="top">
             {product ? <><h2>{product.name}</h2></> : <><h2>Product not found</h2></>}
             <div className="iconContainer">
-              <EditIconNote className='icon editIcon' />
-              <CloseIcon className='icon editIcon' onClick={() => setInvisible()} />
+              <EditIconNote className='icon editIcon' onClick={() => navigateTo(`/products/${productId}`)} />
+              <CloseIcon className='icon editIcon' onClick={() => navigateTo(-1)} />
             </div>
           </div>
           {product && <>
