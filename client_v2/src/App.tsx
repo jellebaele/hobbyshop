@@ -7,6 +7,7 @@ import Navbar from './components/ui/Navbar';
 import SingleProductPage from './pages/product/SingleProductPage';
 import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/user/ProfilePage';
+import EditProductPage from './pages/product/EditProductPage';
 
 function App() {
   const location = useLocation();
@@ -17,7 +18,10 @@ function App() {
       <Routes location={previousLocationModal || location}>
         <Route path="/" element={<Navbar />}>
           <Route index element={<HomePage />} />
-          <Route path="products" element={<ProductsListPage />} />
+          <Route path="products">
+            <Route index element={<ProductsListPage />} />
+            <Route path='edit/:productId' element={<EditProductPage />} />
+          </Route>
           <Route path='profile' element={<ProfilePage />} />
           <Route path="*" element={<NotExistsPage />} />
         </Route>
