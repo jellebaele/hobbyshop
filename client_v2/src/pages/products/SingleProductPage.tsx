@@ -1,4 +1,4 @@
-import '../../assets/styles/pages/singleProductPage.scss'
+import '../../assets/styles/pages/products/singleProductPage.scss'
 import { useParams } from "react-router-dom"
 import Modal from "../../components/ui/Modal"
 import { useAppSelector } from "../../context/hooks"
