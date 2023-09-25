@@ -10,7 +10,6 @@ type RoundButtonProps = {
 
 const RoundButton = ({ onClick, className, children }: RoundButtonProps) => {
   return (
-
     <Button className={`roundButton ${className}`} onClick={onClick}>
       {children}
     </Button>
