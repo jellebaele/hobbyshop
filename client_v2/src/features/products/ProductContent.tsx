@@ -1,6 +1,7 @@
 import '../../assets/styles/features/products/productContent.scss'
 import { Product } from '../../models/Product'
 import Status from '../../components/ui/Status'
+import CategoryName from '../categories/CategoryName'
 
 const ProductContent = ({ product }: { product: Product }) => {
   return (
@@ -8,7 +9,7 @@ const ProductContent = ({ product }: { product: Product }) => {
       <div className='productProperty'>Naam: {product.name}</div>
       <div className='productProperty'>Aantal: {product.amount} {product.unit}</div>
       <div className='productProperty'>Eigenaar: {product.user}</div>
-      <div className='productProperty'>Categorie: {product.category}</div>
+      <div className='productProperty'>Categorie:&nbsp;<CategoryName categoryId={product.category} /></div>
       <div className='productProperty'>Laatst bijgewerkt: {product.dateUpdated.toDateString()}</div>
       <div className='productProperty'>Status: <Status status={product.status} /></div>
     </>

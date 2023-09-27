@@ -18,7 +18,7 @@ const initialState: productState = {
       unit: 'stuks',
       user: 'Herman',
       status: 'Actief',
-      category: 'Fruit',
+      category: 'c2',
       dateUpdated: new Date(),
     },
     {
@@ -28,7 +28,7 @@ const initialState: productState = {
       unit: 'stuks',
       user: 'Herman',
       status: 'Actief',
-      category: 'Fruit',
+      category: 'c1',
       dateUpdated: new Date(),
     },
     {
@@ -38,7 +38,7 @@ const initialState: productState = {
       unit: 'stuks',
       user: 'Herman',
       status: 'Inactief',
-      category: 'Fruit',
+      category: 'c1',
       dateUpdated: new Date(),
     },
   ],
