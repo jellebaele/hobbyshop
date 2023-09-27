@@ -25,8 +25,7 @@ const EditProductForm = ({ product }: { product: Product }) => {
       <div className="inputGrid">
         <InputField name='name' label='Naam:' register={register} error={errors?.name} />
         <InputField name='id' label='Id:' register={register} disabled />
-
-
+        <InputField name='status' label='Status:' register={register} />
         {/* <input {...register('status')} /> */}
         {/* {errors?.status?.message} */}
         {/* <input {...register('amount')} /> */}

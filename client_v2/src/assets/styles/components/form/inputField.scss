@@ -4,9 +4,14 @@
 
   .property {
     display: flex;
+    flex-direction: column;
 
-    label {
-      margin-right: 10px;
+    // label {
+    //   margin-right: 10px;
+    // }
+
+    input {
+      margin-top: 5px;
     }
   }
 }
