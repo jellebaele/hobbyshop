@@ -1,0 +1,9 @@
+.editForm {
+  .inputGrid {
+    display: grid;
+    grid-template-columns: fit-content(180px) 1fr;
+    column-gap: 20px;
+    row-gap: 5px;
+    padding: 10px 0px;
+  }
+}

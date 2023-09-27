@@ -1,0 +1,12 @@
+.inputFieldContainer {
+  display: flex;
+  flex-direction: column;
+
+  .property {
+    display: flex;
+
+    label {
+      margin-right: 10px;
+    }
+  }
+}
