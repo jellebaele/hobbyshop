@@ -1,22 +1,21 @@
 import '../../assets/styles/pages/products/singleProductPage.scss'
 import { useParams } from "react-router-dom"
 import Modal from "../../components/ui/Modal"
-import { useAppSelector } from "../../context/hooks"
 import EditIconNote from '@mui/icons-material/EditNote'
 import CloseIcon from '@mui/icons-material/Close';
-import { selectProductById } from "../../features/products/productsSlice"
 import { useSmoothNavigation } from "../../hooks/useSmoothNavigation"
 import RoundButton from '../../components/ui/RoundButton'
 import { useState } from 'react';
 import Button from '../../components/ui/Button'
 import ProductContent from '../../features/products/ProductContent'
+import { useProductAggregate } from '../../features/products/hooks/useProductAggregate'
 
 const SingleProductPage = () => {
   const [amountToOrder, setAmountToOrder] = useState(0);
   const { productId } = useParams();
   const { isVisible, navigateTo } = useSmoothNavigation();
 
-  const product = useAppSelector(state => selectProductById(state, productId))
+  const product = useProductAggregate(productId)
 
   const adjustAmountToOrder = (amount: number = -1 | 1) => {
     if ((amountToOrder + amount) < 1) setAmountToOrder(0);

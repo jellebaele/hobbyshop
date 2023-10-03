@@ -9,7 +9,7 @@ export interface IEditProductFormInput {
   amount: number;
   unit: string;
   user: string;
-  category: string;
+  category: string | undefined;
 }
 
 const productValidationSchema = Yup.object().shape({

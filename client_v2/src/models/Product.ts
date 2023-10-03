@@ -6,5 +6,5 @@ export interface Product {
   user: string;
   status: 'Actief' | 'Inactief';
   category: string;
-  dateUpdated: Date;
+  createdAt: Date;
 }

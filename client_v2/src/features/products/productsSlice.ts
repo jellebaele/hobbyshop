@@ -19,7 +19,7 @@ const initialState: productState = {
       user: 'Herman',
       status: 'Actief',
       category: 'c2',
-      dateUpdated: new Date(),
+      createdAt: new Date(),
     },
     {
       id: '2',
@@ -29,7 +29,7 @@ const initialState: productState = {
       user: 'Herman',
       status: 'Actief',
       category: 'c1',
-      dateUpdated: new Date(),
+      createdAt: new Date(),
     },
     {
       id: '3',
@@ -39,7 +39,7 @@ const initialState: productState = {
       user: 'Herman',
       status: 'Inactief',
       category: 'c1',
-      dateUpdated: new Date(),
+      createdAt: new Date(),
     },
   ],
   status: ReduxStatus.Idle,

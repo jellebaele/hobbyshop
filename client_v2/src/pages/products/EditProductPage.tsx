@@ -1,17 +1,11 @@
-import { useParams } from 'react-router-dom'
 import '../../assets/styles/pages/products/editProductPage.scss'
 import Container from '../../components/ui/Container'
-import { useAppSelector } from '../../context/hooks'
-import { selectProductById } from '../../features/products/productsSlice'
 import Header from '../../components/ui/Header'
 import { Link } from 'react-router-dom'
 import Button from '../../components/ui/Button'
 import EditProductForm from '../../features/products/EditProductForm'
 
 const EditProductPage = () => {
-  const { productId } = useParams()
-  const product = useAppSelector(state => selectProductById(state, productId))
-
   return (
     <Container>
       <div className="top">
@@ -24,7 +18,7 @@ const EditProductPage = () => {
         </Link>
       </div>
       <div className="center">
-        {product && <EditProductForm product={product} />}
+        <EditProductForm />
       </div>
 
     </Container >

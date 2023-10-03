@@ -9,7 +9,7 @@ const ProductContent = ({ product }: { product: Product }) => {
       <div className='productProperty'>Aantal: {product.amount} {product.unit}</div>
       <div className='productProperty'>Eigenaar: {product.user}</div>
       <div className='productProperty'>Categorie: {product.category} </div>
-      <div className='productProperty'>Laatst bijgewerkt: {product.dateUpdated.toDateString()}</div>
+      <div className='productProperty'>Laatst bijgewerkt: {product.createdAt.toDateString()}</div>
       <div className='productProperty'>Status: <Status status={product.status} /></div>
     </>
   )
