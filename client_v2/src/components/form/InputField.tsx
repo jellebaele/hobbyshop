@@ -7,13 +7,14 @@ type InputFieldProps<T extends FieldValues> = {
   label: string,
   type?: string,
   disabled?: boolean,
+  className?: string,
   error?: FieldError,
   register: UseFormRegister<T>,
 }
 
-function InputField<T extends FieldValues>({ name, label, type = 'text', disabled, error, register }: InputFieldProps<T>) {
+function InputField<T extends FieldValues>({ name, label, type = 'text', disabled, className, error, register }: InputFieldProps<T>) {
   return (
-    <div className="inputFieldContainer">
+    <div className={`inputFieldContainer ${className}`}>
       <div className="property">
         <label htmlFor={name}>{label}</label>
         <input {...register(name)} type={type} disabled={disabled} />
