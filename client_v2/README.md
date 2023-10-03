@@ -2,11 +2,12 @@
 
 ## TODO
 - [x] Navbar
-- [ ] Implement store
+- [x] Implement store
 - [ ] Products
   - [ ] Display list of products
-  - [ ] Display list of one product
+  - [x] Display one product
   - [ ] Create product
   - [ ] Edit product
   - [ ] Implement product api
 - [ ] Translations
+- [ ] Search bar
