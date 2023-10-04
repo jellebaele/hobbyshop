@@ -8,6 +8,7 @@ type IconButtonProps = {
   onClick?: () => void;
   className?: string;
   children?: React.ReactNode;
+  type?: 'button' | 'submit' | 'reset' | undefined;
 };
 
 const IconButton = ({
@@ -15,10 +16,11 @@ const IconButton = ({
   iconRight,
   onClick,
   className,
+  type,
   children,
 }: IconButtonProps) => {
   return (
-    <Button>
+    <Button type={type}>
       <div className={`iconButtonContainer ${className}`} onClick={onClick}>
         {iconLeft && React.cloneElement(iconLeft, { className: 'icon left' })}
         {children}
