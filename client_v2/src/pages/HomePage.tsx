@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import '../assets/styles/pages/homePage.scss';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ProductList from '../features/products/ProductList';
+import ProductList from '../features/products/components/ProductList';
 import Container from '../components/ui/Container';
 import Header from '../components/ui/Header';
 import IconButton from '../components/ui/IconButton';

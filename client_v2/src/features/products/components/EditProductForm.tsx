@@ -1,11 +1,11 @@
-import '../../assets/styles/features/products/editProductForm.scss';
+import '../../../assets/styles/features/products/editProductForm.scss';
 import { useForm } from 'react-hook-form';
-import InputField from '../../components/form/InputField';
+import InputField from '../../../components/form/InputField';
 import { useParams } from 'react-router-dom';
-import { useProductAggregate } from './hooks/useProductAggregate';
-import { IEditProductFormInput } from './EditProductValidationSchema';
+import { useProductAggregate } from '../hooks/useProductAggregate';
+import { IEditProductFormInput } from '../validation/EditProductValidationSchema';
 import { useState } from 'react';
-import IconButton from '../../components/ui/IconButton';
+import IconButton from '../../../components/ui/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';

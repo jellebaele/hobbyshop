@@ -2,7 +2,7 @@ import '../../assets/styles/pages/products/editProductPage.scss';
 import Container from '../../components/ui/Container';
 import Header from '../../components/ui/Header';
 import { useNavigate } from 'react-router-dom';
-import EditProductForm from '../../features/products/EditProductForm';
+import EditProductForm from '../../features/products/components/EditProductForm';
 import IconButton from '../../components/ui/IconButton';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
