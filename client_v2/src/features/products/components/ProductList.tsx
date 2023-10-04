@@ -1,14 +1,12 @@
-import { selectAllProducts } from '../context/productsSlice';
 import ProductExcerpt from './ProductExcerpt';
-import { useAppSelector } from '../../../context/hooks';
+import { Product } from '../../../models/Product';
 
 type ProductListProps = {
+  products: Product[];
   isSummarized?: boolean;
 };
 
-const ProductList = ({ isSummarized = false }: ProductListProps) => {
-  const products = useAppSelector(selectAllProducts);
-
+const ProductList = ({ products, isSummarized = false }: ProductListProps) => {
   return (
     <div>
       {products.map((product) => (

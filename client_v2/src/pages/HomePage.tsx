@@ -5,8 +5,11 @@ import ProductList from '../features/products/components/ProductList';
 import Container from '../components/ui/Container';
 import Header from '../components/ui/Header';
 import IconButton from '../components/ui/IconButton';
+import { useAppSelector } from '../context/hooks';
+import { selectAllProducts } from '../features/products/context/productsSlice';
 
 const HomePage = () => {
+  const products = useAppSelector(selectAllProducts);
   const renderHighlightedProducts = () => {
     return (
       <Container>
@@ -19,7 +22,7 @@ const HomePage = () => {
           </Link>
         </div>
         <div>
-          <ProductList />
+          <ProductList products={products} />
         </div>
       </Container>
     );
