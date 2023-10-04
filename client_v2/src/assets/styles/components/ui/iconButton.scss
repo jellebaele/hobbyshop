@@ -1,0 +1,17 @@
+.iconButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .icon {
+    font-size: inherit;
+
+    &.left {
+      margin-right: 3px;
+    }
+
+    &.right {
+      margin-left: 3px;
+    }
+  }
+}
