@@ -1,13 +1,13 @@
-import { useSelector } from 'react-redux';
 import { selectAllProducts } from '../context/productsSlice';
 import ProductExcerpt from './ProductExcerpt';
+import { useAppSelector } from '../../../context/hooks';
 
 type ProductListProps = {
   isSummarized?: boolean;
 };
 
 const ProductList = ({ isSummarized = false }: ProductListProps) => {
-  const products = useSelector(selectAllProducts);
+  const products = useAppSelector(selectAllProducts);
 
   return (
     <div>
