@@ -27,7 +27,10 @@ const ProductsListPage = () => {
       <div className="productListPageContainer">
         <div className="top">
           <Header>Producten</Header>
-          <SearchBar setResult={setQueriedProducts} filter={filter}></SearchBar>
+          <SearchBar
+            setResult={setQueriedProducts}
+            filter={filter}
+            placeholder="Zoek op naam"></SearchBar>
         </div>
         <ProductList products={queriedProducts} />
       </div>

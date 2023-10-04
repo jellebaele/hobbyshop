@@ -13,7 +13,7 @@ function SearchBar<T extends object>({
   placeholder,
 }: SearchBarProps<T>) {
   const [searchTerm, setSearchTerm] = useState('');
-  useDebounce(() => setResult(filter(searchTerm)), [searchTerm], 1000);
+  useDebounce(() => setResult(filter(searchTerm)), [searchTerm], 500);
 
   return (
     <div>
