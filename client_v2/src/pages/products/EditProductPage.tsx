@@ -1,29 +1,27 @@
-import '../../assets/styles/pages/products/editProductPage.scss'
-import Container from '../../components/ui/Container'
-import Header from '../../components/ui/Header'
-import { Link } from 'react-router-dom'
-import Button from '../../components/ui/Button'
-import EditProductForm from '../../features/products/EditProductForm'
+import '../../assets/styles/pages/products/editProductPage.scss';
+import Container from '../../components/ui/Container';
+import Header from '../../components/ui/Header';
+import { useNavigate } from 'react-router-dom';
+import EditProductForm from '../../features/products/EditProductForm';
+import IconButton from '../../components/ui/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const EditProductPage = () => {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <div className="top">
         <Header>Product bewerken</Header>
-        {/* TODO Previous page */}
-        <Link to={'/products'}>
-          {/* <IconButton iconLeft={ArrowBackIcon} />
-          <ArrowBackIcon /> Terug */}
-          <Button>Terug</Button>
-        </Link>
+        <IconButton iconLeft={<ArrowBackIcon />} onClick={() => navigate(-1)}>
+          Terug
+        </IconButton>
       </div>
       <div className="center">
         <EditProductForm />
       </div>
+    </Container>
+  );
+};
 
-    </Container >
-
-  )
-}
-
-export default EditProductPage
+export default EditProductPage;
