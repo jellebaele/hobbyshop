@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Product } from '../../../models/Product';
 import { ReduxStatus } from '../../../shared/constants/ReduxStatus';
 import { RootState } from '../../../context/store';
@@ -49,10 +49,27 @@ const initialState: productState = {
 const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    postUpdated(state, action: PayloadAction<Product>) {
+      const updateProductProps = action.payload;
+      const existingProduct = state.data.find(
+        (product) => product.id === updateProductProps.id
+      );
+
+      if (existingProduct) {
+        existingProduct.name = updateProductProps.name;
+        existingProduct.amount = updateProductProps.amount;
+        existingProduct.unit = updateProductProps.unit;
+        existingProduct.user = updateProductProps.user;
+        existingProduct.status = updateProductProps.status;
+      }
+    },
+  },
 });
 
 export default productsSlice.reducer;
+
+export const { postUpdated } = productsSlice.actions;
 
 export const selectAllProducts = (state: RootState): Product[] =>
   state.products.data;
@@ -60,4 +77,4 @@ export const selectProductById = (
   state: RootState,
   productId: string | undefined
 ): Product | undefined =>
-  state.products.data.find((product) => product.id === productId);
+  state.products.data.find((product: Product) => product.id === productId);

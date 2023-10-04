@@ -10,6 +10,9 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckIcon from '@mui/icons-material/Check';
+import { useAppDispatch } from '../../../context/hooks';
+import { postUpdated } from '../context/productsSlice';
+import { Product } from '../../../models/Product';
 
 const EditProductForm = () => {
   const { productId } = useParams();
@@ -21,6 +24,7 @@ const EditProductForm = () => {
     reset,
   } = useForm<IEditProductFormInput>({ defaultValues: product });
   const [isDisabled, setIsDisabled] = useState(true);
+  const dispatch = useAppDispatch();
 
   const onCancelEdit = () => {
     reset(product);
@@ -31,7 +35,11 @@ const EditProductForm = () => {
     throw new DOMException('Not yet implemented.');
   };
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    const updateProductProps = { ...product, ...data };
+    dispatch(postUpdated(updateProductProps as Product));
+    setIsDisabled(true);
+  });
 
   return (
     <div className="editProductFormContainer">
