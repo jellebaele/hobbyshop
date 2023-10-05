@@ -5,9 +5,10 @@ import ProductsListPage from './pages/products/ProductsListPage';
 import NotExistsPage from './pages/NotExistsPage';
 import Navbar from './components/ui/Navbar';
 import SingleProductPage from './pages/products/SingleProductPage';
-import LoginPage from './pages/LoginPage';
 import ProfilePage from './pages/user/ProfilePage';
 import EditProductPage from './pages/products/EditProductPage';
+import LoginPage from './pages/user/LoginPage';
+import RegisterPage from './pages/user/RegisterPage';
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,7 @@ function App() {
           <Route path="*" element={<NotExistsPage />} />
         </Route>
         <Route path="login" element={<LoginPage />} />
+        <Route path="register" element={<RegisterPage />} />
       </Routes>
 
       {previousLocationModal && (
