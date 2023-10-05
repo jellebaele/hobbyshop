@@ -39,7 +39,7 @@ $border-width-tablet: 4px;
       left: 50%;
       position: absolute;
       background: $light-blue;
-      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      transition: width 0.3s ease, left 0.3s ease;
       width: 0;
     }
 
@@ -119,7 +119,7 @@ $border-width-tablet: 4px;
       border: $light-blue $border-width-tablet solid;
       transform: scaleY(0);
       transform-origin: top;
-      transition: scale 0.3s ease-in-out;
+      transition: transform 0.3s ease-in-out;
 
       &.active {
         transform: scaleY(1);
