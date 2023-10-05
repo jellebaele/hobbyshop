@@ -1,5 +1,7 @@
+import '../../assets/styles/components/ui/searchBar.scss';
 import { useState } from 'react';
 import useDebounce from '../../hooks/useDebounce';
+import SearchIcon from '@mui/icons-material/Search';
 
 type SearchBarProps<T> = {
   setResult: React.Dispatch<React.SetStateAction<T[]>>;
@@ -16,11 +18,14 @@ function SearchBar<T extends object>({
   useDebounce(() => setResult(filter(searchTerm)), [searchTerm], 500);
 
   return (
-    <div>
+    <div className="searchBarContainer">
       <input
         placeholder={placeholder}
         value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}></input>
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="searchInput"
+      />
+      <SearchIcon />
     </div>
   );
 }

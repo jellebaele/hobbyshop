@@ -8,6 +8,7 @@
   border: 2px $light-blue solid;
   cursor: pointer;
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  height: 32px;
 
   &:hover {
     background-color: #fff;
