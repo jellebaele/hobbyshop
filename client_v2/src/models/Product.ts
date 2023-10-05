@@ -4,7 +4,10 @@ export interface Product {
   amount: number;
   unit: string;
   user: string;
-  status: 'Actief' | 'Inactief';
+  status: ProductStatus;
   category: string;
   createdAt: string;
 }
+
+export const productStatus = ['Actief', 'Inactief'];
+export type ProductStatus = (typeof productStatus)[number];

@@ -1,11 +1,12 @@
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { ProductStatus, productStatus } from '../../../models/Product';
 
-const possibleStatus = ['Actief', 'Inactief'];
+// const possibleStatus = ['Actief', 'Inactief'];
 
 export interface IEditProductFormInput {
   name: string;
-  status: string;
+  status: ProductStatus;
   amount: number;
   unit: string;
   user: string;
@@ -19,8 +20,8 @@ const productValidationSchema = Yup.object().shape({
   status: Yup.string()
     .required('De status is verplicht.')
     .oneOf(
-      possibleStatus,
-      `De status moet een van volgende waardes zijn: ${possibleStatus}`
+      productStatus,
+      `De status moet een van volgende waardes zijn: ${productStatus}`
     ),
   amount: Yup.number()
     .integer()

@@ -1,18 +1,23 @@
 # Client
 
 ## TODO
+
 - [x] Navbar
+  - [x] Responsive
+  - [x] Smooth open and close
 - [x] Implement store
 - [ ] Products
-  - [ ] Display list of products
+  - [x] Display list of products
   - [x] Display one product
   - [ ] Create product
   - [ ] Edit product
     - [x] Display product to edit
     - [x] Make editable
+      - [ ] Make status as enum
     - [x] Cancel edit
-    - [ ] Validation errors
-    - [ ] Update store
+    - [x] Validation errors
+    - [x] Update store
+    - [x] Update category -> done?
     - [ ] Update back-end
     - [ ] Show confirmation modal
     - [ ] Search for categories and units
