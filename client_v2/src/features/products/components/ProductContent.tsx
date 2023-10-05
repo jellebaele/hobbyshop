@@ -1,6 +1,7 @@
 import '../../../assets/styles/features/products/productContent.scss';
 import { Product } from '../../../models/Product';
 import Status from '../../../components/ui/Status';
+import ProductCategory from './ProductCategory';
 
 const ProductContent = ({ product }: { product: Product }) => {
   return (
@@ -10,7 +11,10 @@ const ProductContent = ({ product }: { product: Product }) => {
         Aantal: {product.amount} {product.unit}
       </div>
       <div className="productProperty">Eigenaar: {product.user}</div>
-      <div className="productProperty">Categorie: {product.category} </div>
+      <div className="productProperty">
+        Categorie:
+        <ProductCategory categoryId={product.category} />
+      </div>
       <div className="productProperty">
         Laatst bijgewerkt: {product.createdAt}
       </div>

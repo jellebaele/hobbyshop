@@ -8,14 +8,17 @@ import RoundButton from '../../components/ui/RoundButton';
 import { useState } from 'react';
 import Button from '../../components/ui/Button';
 import ProductContent from '../../features/products/components/ProductContent';
-import { useProductAggregate } from '../../features/products/hooks/useProductAggregate';
+import { useAppSelector } from '../../context/hooks';
+import { selectProductById } from '../../features/products/context/productsSlice';
 
 const SingleProductPage = () => {
   const [amountToOrder, setAmountToOrder] = useState(0);
   const { productId } = useParams();
   const { isVisible, navigateTo } = useSmoothNavigation();
 
-  const product = useProductAggregate(productId);
+  const product = useAppSelector((state) =>
+    selectProductById(state, productId)
+  );
 
   const adjustAmountToOrder = (amount: number = -1 | 1) => {
     if (amountToOrder + amount < 1) setAmountToOrder(0);

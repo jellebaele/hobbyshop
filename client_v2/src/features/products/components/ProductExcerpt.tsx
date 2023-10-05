@@ -28,7 +28,7 @@ const ProductExcerpt = ({
             <div className="infoItem">{`Eigenaar: ${product.user}`}</div>
             {!isSummarized && (
               <>
-                <div className="infoItem">{`Cetgorie: ${product.category}`}</div>
+                <div className="infoItem">{`Categorie: ${product.category}`}</div>
                 <div className="infoItem">{`Datum toegevoegd: ${product.createdAt}`}</div>
               </>
             )}

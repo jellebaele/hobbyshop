@@ -2,7 +2,6 @@ import '../../../assets/styles/features/products/editProductForm.scss';
 import { useForm } from 'react-hook-form';
 import InputField from '../../../components/form/InputField';
 import { useParams } from 'react-router-dom';
-import { useProductAggregate } from '../hooks/useProductAggregate';
 import {
   IEditProductFormInput,
   editProductValidationSchema,
@@ -13,21 +12,32 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckIcon from '@mui/icons-material/Check';
-import { useAppDispatch } from '../../../context/hooks';
-import { postDeleted, postUpdated } from '../context/productsSlice';
+import { useAppDispatch, useAppSelector } from '../../../context/hooks';
+import {
+  postDeleted,
+  postUpdated,
+  selectProductById,
+} from '../context/productsSlice';
 import { Product } from '../../../models/Product';
 import { useSmoothNavigation } from '../../../hooks/useSmoothNavigation';
+import { selectCategoryById } from '../../categories/categoriesSlice';
 
 const EditProductForm = () => {
   const { productId } = useParams();
-  const product = useProductAggregate(productId);
+  const product = useAppSelector((state) =>
+    selectProductById(state, productId)
+  );
+  const categoryName = useAppSelector((state) =>
+    selectCategoryById(state, product?.category)
+  )?.name;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm<IEditProductFormInput>({
-    defaultValues: product,
+    defaultValues: { ...product, category: categoryName },
     resolver: editProductValidationSchema,
   });
   const [isDisabled, setIsDisabled] = useState(true);
@@ -40,8 +50,12 @@ const EditProductForm = () => {
   };
 
   const onDelete = () => {
-    dispatch(postDeleted(product));
-    navigateTo('/products');
+    if (product) {
+      dispatch(postDeleted(product));
+      navigateTo('/products');
+    } else {
+      alert('Error');
+    }
   };
 
   const onSubmit = handleSubmit((data) => {
