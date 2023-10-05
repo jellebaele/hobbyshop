@@ -26,6 +26,12 @@ const ProductExcerpt = ({
           <div>
             <div className="infoItem">{`Aantal: ${product.amount} ${product.unit}`}</div>
             <div className="infoItem">{`Eigenaar: ${product.user}`}</div>
+            {!isSummarized && (
+              <>
+                <div className="infoItem">{`Cetgorie: ${product.category}`}</div>
+                <div className="infoItem">{`Datum toegevoegd: ${product.createdAt.toDateString()}`}</div>
+              </>
+            )}
           </div>
         </div>
       </div>

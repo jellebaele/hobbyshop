@@ -22,7 +22,7 @@ const HomePage = () => {
           </Link>
         </div>
         <div>
-          <ProductList products={products} />
+          <ProductList products={products} isSummarized />
         </div>
       </Container>
     );
