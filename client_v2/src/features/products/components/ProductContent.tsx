@@ -12,7 +12,7 @@ const ProductContent = ({ product }: { product: Product }) => {
       <div className="productProperty">Eigenaar: {product.user}</div>
       <div className="productProperty">Categorie: {product.category} </div>
       <div className="productProperty">
-        Laatst bijgewerkt: {product.createdAt.toDateString()}
+        Laatst bijgewerkt: {product.createdAt}
       </div>
       <div className="productProperty">
         Status: <Status status={product.status} />

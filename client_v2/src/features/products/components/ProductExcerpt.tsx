@@ -29,7 +29,7 @@ const ProductExcerpt = ({
             {!isSummarized && (
               <>
                 <div className="infoItem">{`Cetgorie: ${product.category}`}</div>
-                <div className="infoItem">{`Datum toegevoegd: ${product.createdAt.toDateString()}`}</div>
+                <div className="infoItem">{`Datum toegevoegd: ${product.createdAt}`}</div>
               </>
             )}
           </div>

@@ -3,7 +3,10 @@ import { useForm } from 'react-hook-form';
 import InputField from '../../../components/form/InputField';
 import { useParams } from 'react-router-dom';
 import { useProductAggregate } from '../hooks/useProductAggregate';
-import { IEditProductFormInput } from '../validation/EditProductValidationSchema';
+import {
+  IEditProductFormInput,
+  editProductValidationSchema,
+} from '../validation/EditProductValidationSchema';
 import { useState } from 'react';
 import IconButton from '../../../components/ui/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
@@ -11,8 +14,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckIcon from '@mui/icons-material/Check';
 import { useAppDispatch } from '../../../context/hooks';
-import { postUpdated } from '../context/productsSlice';
+import { postDeleted, postUpdated } from '../context/productsSlice';
 import { Product } from '../../../models/Product';
+import { useSmoothNavigation } from '../../../hooks/useSmoothNavigation';
 
 const EditProductForm = () => {
   const { productId } = useParams();
@@ -22,9 +26,13 @@ const EditProductForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<IEditProductFormInput>({ defaultValues: product });
+  } = useForm<IEditProductFormInput>({
+    defaultValues: product,
+    resolver: editProductValidationSchema,
+  });
   const [isDisabled, setIsDisabled] = useState(true);
   const dispatch = useAppDispatch();
+  const { navigateTo } = useSmoothNavigation();
 
   const onCancelEdit = () => {
     reset(product);
@@ -32,7 +40,8 @@ const EditProductForm = () => {
   };
 
   const onDelete = () => {
-    throw new DOMException('Not yet implemented.');
+    dispatch(postDeleted(product));
+    navigateTo('/products');
   };
 
   const onSubmit = handleSubmit((data) => {
@@ -47,7 +56,7 @@ const EditProductForm = () => {
         <div className="inputGrid">
           <InputField
             name="name"
-            label="Naam:"
+            label="Naam"
             register={register}
             error={errors?.name}
             disabled={isDisabled}
@@ -55,13 +64,13 @@ const EditProductForm = () => {
           <InputField name="id" label="Id:" register={register} disabled />
           <InputField
             name="status"
-            label="Status:"
+            label="Status"
             register={register}
             disabled={isDisabled}
           />
           <InputField
             name="category"
-            label="Categorie:"
+            label="Categorie"
             register={register}
             disabled={isDisabled}
           />
@@ -78,6 +87,8 @@ const EditProductForm = () => {
               register={register}
               className="inputField"
               disabled={isDisabled}
+              error={errors?.amount}
+              type="number"
             />
             <InputField
               name="unit"
@@ -85,6 +96,7 @@ const EditProductForm = () => {
               register={register}
               className="inputField"
               disabled={isDisabled}
+              error={errors?.unit}
             />
           </div>
           <InputField
@@ -94,6 +106,7 @@ const EditProductForm = () => {
             disabled
           />
         </div>
+
         {!isDisabled && (
           <div className="buttonGroup">
             <div className="button">

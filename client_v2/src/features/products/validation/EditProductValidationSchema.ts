@@ -9,7 +9,7 @@ export interface IEditProductFormInput {
   amount: number;
   unit: string;
   user: string;
-  category: string | undefined;
+  category: string;
 }
 
 const productValidationSchema = Yup.object().shape({
@@ -18,7 +18,10 @@ const productValidationSchema = Yup.object().shape({
     .required('Naam is verplicht.'),
   status: Yup.string()
     .required('De status is verplicht.')
-    .oneOf(possibleStatus, `De status moet een van volgende waardes zijn: ${possibleStatus}`),
+    .oneOf(
+      possibleStatus,
+      `De status moet een van volgende waardes zijn: ${possibleStatus}`
+    ),
   amount: Yup.number()
     .integer()
     .moreThan(0, 'Het aantal mag niet negatief zijn.')
@@ -28,4 +31,4 @@ const productValidationSchema = Yup.object().shape({
   category: Yup.string().required('De categorie is verplicht.'),
 });
 
-export const editProductValidationSchema = { resolver: yupResolver(productValidationSchema) };
+export const editProductValidationSchema = yupResolver(productValidationSchema);

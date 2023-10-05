@@ -3,7 +3,7 @@
     .inputGrid {
       display: grid;
       // grid-template-columns: fit-content(300px) 1fr;
-      grid-template-columns: 200px 200px;
+      grid-template-columns: 250px 250px;
       column-gap: 100px;
       row-gap: 5px;
       padding: 10px 0px;
@@ -13,7 +13,8 @@
         align-items: center;
 
         .inputField {
-          width: 98px;
+          width: 122px;
+          height: 80px;
 
           &:first-child {
             margin-right: 5px;

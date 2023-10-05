@@ -19,7 +19,7 @@ const initialState: productState = {
       user: 'Herman',
       status: 'Actief',
       category: 'c2',
-      createdAt: new Date(),
+      createdAt: new Date().toISOString(),
     },
     {
       id: '2',
@@ -29,7 +29,7 @@ const initialState: productState = {
       user: 'Herman',
       status: 'Actief',
       category: 'c1',
-      createdAt: new Date(),
+      createdAt: new Date().toISOString(),
     },
     {
       id: '3',
@@ -39,7 +39,7 @@ const initialState: productState = {
       user: 'Herman',
       status: 'Inactief',
       category: 'c1',
-      createdAt: new Date(),
+      createdAt: new Date().toISOString(),
     },
   ],
   status: ReduxStatus.Idle,
@@ -52,6 +52,7 @@ const productsSlice = createSlice({
   reducers: {
     postUpdated(state, action: PayloadAction<Product>) {
       const updateProductProps = action.payload;
+
       const existingProduct = state.data.find(
         (product) => product.id === updateProductProps.id
       );
@@ -64,12 +65,24 @@ const productsSlice = createSlice({
         existingProduct.status = updateProductProps.status;
       }
     },
+    postDeleted(state, action: PayloadAction<Product>) {
+      const productToDelete = action.payload;
+      const existingProduct = state.data.find(
+        (product) => product.id === productToDelete.id
+      );
+
+      if (existingProduct) {
+        state.data = state.data.filter(
+          (product) => product.id !== existingProduct.id
+        );
+      }
+    },
   },
 });
 
 export default productsSlice.reducer;
 
-export const { postUpdated } = productsSlice.actions;
+export const { postUpdated, postDeleted } = productsSlice.actions;
 
 export const selectAllProducts = (state: RootState): Product[] =>
   state.products.data;
