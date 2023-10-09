@@ -2,6 +2,7 @@ import '../../../assets/styles/features/products/productExcerpt.scss';
 import { Link, useLocation } from 'react-router-dom';
 import Button from '../../../components/ui/Button';
 import { Product } from '../../../models/Product';
+import ProductCategory from './ProductCategory';
 
 type productExcerptProps = {
   product: Product;
@@ -28,7 +29,9 @@ const ProductExcerpt = ({
             <div className="infoItem">{`Eigenaar: ${product.user}`}</div>
             {!isSummarized && (
               <>
-                <div className="infoItem">{`Categorie: ${product.category}`}</div>
+                <div className="infoItem">
+                  Categorie: <ProductCategory categoryId={product.category} />
+                </div>
                 <div className="infoItem">{`Datum toegevoegd: ${product.createdAt}`}</div>
               </>
             )}
