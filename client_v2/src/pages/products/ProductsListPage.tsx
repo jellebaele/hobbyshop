@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../../assets/styles/pages/products/productListPage.scss';
 import Container from '../../components/ui/Container';
 import Header from '../../components/ui/Header';
-import SearchBar from '../../components/ui/SearchBar';
+import SearchBar from '../../components/ui/Search/SearchBar';
 import { useAppSelector } from '../../context/hooks';
 import ProductList from '../../features/products/components/ProductList';
 import { selectAllProducts } from '../../features/products/context/productsSlice';

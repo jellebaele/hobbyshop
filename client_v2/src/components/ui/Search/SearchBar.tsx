@@ -1,6 +1,6 @@
-import '../../assets/styles/components/ui/searchBar.scss';
+import '../../../assets/styles/components/ui/searchBar.scss';
 import { useState } from 'react';
-import useDebounce from '../../hooks/useDebounce';
+import useDebounce from '../../../hooks/useDebounce';
 import SearchIcon from '@mui/icons-material/Search';
 
 type SearchBarProps<T> = {
