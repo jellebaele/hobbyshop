@@ -5,7 +5,8 @@ export default function useDebounce(
   dependencies: DependencyList,
   delay: number
 ) {
-  const callback = useCallback(effect, [...dependencies, effect]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const callback = useCallback(effect, dependencies);
 
   useEffect(() => {
     const timeout = setTimeout(callback, delay);
