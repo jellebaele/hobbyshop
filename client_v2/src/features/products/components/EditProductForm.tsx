@@ -21,6 +21,7 @@ import {
 import { Product } from '../../../models/Product';
 import { useSmoothNavigation } from '../../../hooks/useSmoothNavigation';
 import { selectCategoryById } from '../../categories/categoriesSlice';
+import SearchBarCategories from '../../categories/SearchBarCategories';
 
 const EditProductForm = () => {
   const { productId } = useParams();
@@ -36,6 +37,8 @@ const EditProductForm = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
+    getValues,
   } = useForm<IEditProductFormInput>({
     defaultValues: { ...product, category: categoryName },
     resolver: editProductValidationSchema,
@@ -118,6 +121,13 @@ const EditProductForm = () => {
             label="Laatst bijgewerkt: "
             register={register}
             disabled
+          />
+          <SearchBarCategories
+            name="category"
+            label="Categorie"
+            register={register}
+            setValue={setValue}
+            getValues={getValues}
           />
         </div>
 
