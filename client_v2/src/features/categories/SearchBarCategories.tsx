@@ -1,3 +1,4 @@
+import '../../assets/styles/features/categories/searchBarCategories.scss';
 import {
   UseFormRegister,
   FieldValues,
@@ -10,6 +11,8 @@ import { useState } from 'react';
 import { useAppSelector } from '../../context/hooks';
 import { selectAllCategories } from './categoriesSlice';
 import useDebounce from '../../hooks/useDebounce';
+import SearchResultList from '../../components/ui/Search/SearchResultList';
+import { useIsOutsideClick } from '../../hooks/useIsClickOutside';
 
 type SearchBarCategoriesProps<T extends FieldValues> = {
   name: FieldValues[string];
@@ -35,57 +38,59 @@ function SearchBarCategories<T extends FieldValues>({
   getValues,
 }: SearchBarCategoriesProps<T>) {
   const categories = useAppSelector(selectAllCategories);
-  const [queriedCategories, setQueriedCategories] = useState(categories);
+  const categoryNames = categories.map((category) => category.name);
+  const [queriedCategoryNames, setQueriedCategoryNames] =
+    useState(categoryNames);
   const [searchTerm, setSearchTerm] = useState(getValues(name));
+  const [searchBarActive, setSearchBarActive] = useState(false);
+  const ref = useIsOutsideClick(() => setSearchBarActive(false));
 
   useDebounce(
-    () => setQueriedCategories(filter(searchTerm)),
+    () => setQueriedCategoryNames(filter(searchTerm)),
     [searchTerm],
     500
   );
 
   const filter = (query: string) => {
-    if (query === '') return categories;
+    if (query === '') return categoryNames;
     else {
-      const filtered = categories.filter((category) =>
-        category.name.toLowerCase().includes(query.toLowerCase())
+      const filtered = categoryNames.filter((categoryName) =>
+        categoryName.toLowerCase().includes(query.toLowerCase())
       );
       return filtered;
     }
   };
 
-  const renderResults = () => {
-    const searchResults = queriedCategories.map((category) => {
-      return (
-        <div
-          key={category.id}
-          onClick={() => {
-            setValue(name, category.name);
-            setSearchTerm(category.name);
-          }}>
-          {category.name}
-        </div>
-      );
-    });
-    return <div>{searchResults}</div>;
+  const handleOnClick = (categoryName: string) => {
+    setValue(name, categoryName);
+    setSearchTerm(categoryName);
+    setSearchBarActive(false);
   };
 
   return (
-    <div className={`inputFieldContainer ${className}`}>
-      <div className="property">
-        <label htmlFor={name}>{label}</label>
-        <input
-          {...register(name)}
-          type={type}
-          disabled={disabled}
-          onChange={(e) => {
-            setSearchTerm(e.target.value);
-          }}
-        />
+    <div className="searchBarCategoriesContainer">
+      <div className={`inputFieldContainer ${className}`}>
+        <div className="property">
+          <label htmlFor={name}>{label}</label>
+          <input
+            {...register(name)}
+            type={type}
+            disabled={disabled}
+            onChange={(e) => {
+              setSearchTerm(e.target.value);
+            }}
+            onClick={() => setSearchBarActive(true)}
+          />
+        </div>
+        <ValidationError message={error?.message} />
+        {/* <button onClick={() => setValue(name, 'Test')}>Test</button> */}
       </div>
-      {renderResults()}
-      <ValidationError message={error?.message} />
-      {/* <button onClick={() => setValue(name, 'Test')}>Test</button> */}
+      <SearchResultList
+        results={queriedCategoryNames}
+        onClick={handleOnClick}
+        active={searchBarActive}
+        reference={ref}
+      />
     </div>
   );
 }

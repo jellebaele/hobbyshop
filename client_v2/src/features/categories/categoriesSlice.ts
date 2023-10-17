@@ -19,6 +19,26 @@ const initialState: categoryState = {
       id: 'c2',
       name: 'Groente',
     },
+    {
+      id: 'c3',
+      name: 'Vlees',
+    },
+    {
+      id: 'c4',
+      name: 'Drank',
+    },
+    {
+      id: 'c5',
+      name: 'Zeep',
+    },
+    {
+      id: 'c6',
+      name: 'Vleeswaren',
+    },
+    {
+      id: 'c7',
+      name: 'Charcuterie',
+    },
   ],
   status: ReduxStatus.Idle,
   error: null,
@@ -32,8 +52,10 @@ const categorySlice = createSlice({
 
 export default categorySlice.reducer;
 
-export const selectAllCategories = (state: RootState): Category[] => state.categories.data;
+export const selectAllCategories = (state: RootState): Category[] =>
+  state.categories.data;
 export const selectCategoryById = (
   state: RootState,
   categoryId: string | undefined
-): Category | undefined => state.categories.data.find((category) => category.id === categoryId);
+): Category | undefined =>
+  state.categories.data.find((category) => category.id === categoryId);
