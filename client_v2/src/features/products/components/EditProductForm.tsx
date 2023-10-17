@@ -29,13 +29,13 @@ const EditProductForm = ({ product }: { product?: Product }) => {
     defaultValues: { ...product },
     resolver: editProductValidationSchema,
   });
-  const [isDisabled, setIsDisabled] = useState(true);
+  const [isFormDisabled, setIsFormDisabled] = useState(true);
   const dispatch = useAppDispatch();
   const { navigateTo } = useSmoothNavigation();
 
   const onCancelEdit = () => {
     reset(product);
-    setIsDisabled(true);
+    setIsFormDisabled(true);
   };
 
   const onDelete = () => {
@@ -50,7 +50,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
   const onSubmit = handleSubmit((data) => {
     const updateProductProps = { ...product, ...data };
     dispatch(postUpdated(updateProductProps as Product));
-    setIsDisabled(true);
+    setIsFormDisabled(true);
   });
 
   return (
@@ -62,14 +62,14 @@ const EditProductForm = ({ product }: { product?: Product }) => {
             label="Naam"
             register={register}
             error={errors?.name}
-            disabled={isDisabled}
+            disabled={isFormDisabled}
           />
           <InputField name="id" label="Id" register={register} disabled />
           <InputField
             name="status"
             label="Status"
             register={register}
-            disabled={isDisabled}
+            disabled={isFormDisabled}
           />
           <SearchBarCategories
             name="category"
@@ -77,7 +77,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
             register={register}
             setValue={setValue}
             getValues={getValues}
-            disabled={isDisabled}
+            disabled={isFormDisabled}
           />
           <InputField
             name="user"
@@ -91,7 +91,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
               label="Aantal"
               register={register}
               className="inputField"
-              disabled={isDisabled}
+              disabled={isFormDisabled}
               error={errors?.amount}
               type="number"
             />
@@ -100,7 +100,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
               label="Eenheid"
               register={register}
               className="inputField"
-              disabled={isDisabled}
+              disabled={isFormDisabled}
               error={errors?.unit}
             />
           </div>
@@ -112,7 +112,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
           />
         </div>
 
-        {!isDisabled && (
+        {!isFormDisabled && (
           <div className="buttonGroup">
             <div className="button">
               <IconButton
@@ -128,7 +128,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
           </div>
         )}
       </form>
-      {isDisabled && (
+      {isFormDisabled && (
         <div className="buttonGroup">
           <div className="button">
             <IconButton iconLeft={<DeleteIcon />} onClick={onDelete}>
@@ -138,7 +138,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
 
           <IconButton
             iconLeft={<EditIcon />}
-            onClick={() => setIsDisabled(false)}>
+            onClick={() => setIsFormDisabled(false)}>
             Bewerk
           </IconButton>
         </div>
