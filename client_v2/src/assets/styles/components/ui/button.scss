@@ -9,6 +9,9 @@
   cursor: pointer;
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
   height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background-color: #fff;
@@ -21,5 +24,6 @@
   .buttonContainer {
     padding: 3px 8px;
     font-size: 11px;
+    font-weight: 400;
   }
 }
