@@ -32,7 +32,7 @@ const EditProductPage = () => {
         {product ? (
           <EditProductForm product={{ ...product, category: categoryName }} />
         ) : (
-          'Not found'
+          'Product niet gevonden'
         )}
       </div>
     </Container>
