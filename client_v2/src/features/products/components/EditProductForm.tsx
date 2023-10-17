@@ -1,7 +1,6 @@
 import '../../../assets/styles/features/products/editProductForm.scss';
 import { useForm } from 'react-hook-form';
 import InputField from '../../../components/form/InputField';
-import { useParams } from 'react-router-dom';
 import {
   IEditProductFormInput,
   editProductValidationSchema,
@@ -12,26 +11,13 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckIcon from '@mui/icons-material/Check';
-import { useAppDispatch, useAppSelector } from '../../../context/hooks';
-import {
-  postDeleted,
-  postUpdated,
-  selectProductById,
-} from '../context/productsSlice';
+import { useAppDispatch } from '../../../context/hooks';
+import { postDeleted, postUpdated } from '../context/productsSlice';
 import { Product } from '../../../models/Product';
 import { useSmoothNavigation } from '../../../hooks/useSmoothNavigation';
-import { selectCategoryById } from '../../categories/categoriesSlice';
 import SearchBarCategories from '../../categories/SearchBarCategories';
 
-const EditProductForm = () => {
-  const { productId } = useParams();
-  const product = useAppSelector((state) =>
-    selectProductById(state, productId)
-  );
-  const categoryName = useAppSelector((state) =>
-    selectCategoryById(state, product?.category)
-  )?.name;
-
+const EditProductForm = ({ product }: { product?: Product }) => {
   const {
     register,
     handleSubmit,
@@ -40,7 +26,7 @@ const EditProductForm = () => {
     setValue,
     getValues,
   } = useForm<IEditProductFormInput>({
-    defaultValues: { ...product, category: categoryName },
+    defaultValues: { ...product },
     resolver: editProductValidationSchema,
   });
   const [isDisabled, setIsDisabled] = useState(true);
@@ -78,24 +64,26 @@ const EditProductForm = () => {
             error={errors?.name}
             disabled={isDisabled}
           />
-          <InputField name="id" label="Id:" register={register} disabled />
+          <InputField name="id" label="Id" register={register} disabled />
           <InputField
             name="status"
             label="Status"
             register={register}
             disabled={isDisabled}
           />
-          <InputField
+          <SearchBarCategories
             name="category"
             label="Categorie"
             register={register}
+            setValue={setValue}
+            getValues={getValues}
             disabled={isDisabled}
           />
           <InputField
             name="user"
             label="Eigenaar"
             register={register}
-            disabled={isDisabled}
+            disabled
           />
           <div className="amountGroup">
             <InputField
@@ -121,13 +109,6 @@ const EditProductForm = () => {
             label="Laatst bijgewerkt: "
             register={register}
             disabled
-          />
-          <SearchBarCategories
-            name="category"
-            label="Categorie"
-            register={register}
-            setValue={setValue}
-            getValues={getValues}
           />
         </div>
 
