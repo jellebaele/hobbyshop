@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Button from '../../../components/ui/Button';
 import { Product } from '../../../models/Product';
 import ProductCategory from './ProductCategory';
+import { timeAgo } from '../../../shared/utils/format';
 
 type productExcerptProps = {
   product: Product;
@@ -32,7 +33,9 @@ const ProductExcerpt = ({
                 <div className="infoItem">
                   Categorie: <ProductCategory categoryId={product.category} />
                 </div>
-                <div className="infoItem">{`Datum toegevoegd: ${product.createdAt}`}</div>
+                <div className="infoItem">{`Datum toegevoegd: ${timeAgo(
+                  product.createdAt
+                )}`}</div>
               </>
             )}
           </div>

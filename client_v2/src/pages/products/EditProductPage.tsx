@@ -8,6 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useAppSelector } from '../../context/hooks';
 import { selectProductById } from '../../features/products/context/productsSlice';
 import { selectCategoryById } from '../../features/categories/categoriesSlice';
+import { formatDateTime } from '../../shared/utils/format';
 
 const EditProductPage = () => {
   const navigate = useNavigate();
@@ -30,7 +31,13 @@ const EditProductPage = () => {
       </div>
       <div className="center">
         {product ? (
-          <EditProductForm product={{ ...product, category: categoryName }} />
+          <EditProductForm
+            product={{
+              ...product,
+              category: categoryName,
+              createdAt: formatDateTime(product.createdAt),
+            }}
+          />
         ) : (
           'Product niet gevonden'
         )}
