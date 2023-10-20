@@ -31,6 +31,13 @@
       &:hover {
         cursor: pointer;
       }
+
+      &.disabled {
+        background-color: transparent;
+        color: #545454;
+        padding-left: 3px;
+        cursor: default;
+      }
     }
 
     .icon {

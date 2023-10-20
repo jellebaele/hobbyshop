@@ -16,7 +16,7 @@ import { productDeleted, productUpdated } from '../context/productsSlice';
 import { Product } from '../../../models/Product';
 import { useSmoothNavigation } from '../../../hooks/useSmoothNavigation';
 import SearchBarCategories from '../../categories/SearchBarCategories';
-import InputDropdown from '../../../components/form/InputDropdown';
+import DropDownProductStatus from './DropDownProductStatus';
 
 const EditProductForm = ({ product }: { product?: Product }) => {
   const {
@@ -68,10 +68,12 @@ const EditProductForm = ({ product }: { product?: Product }) => {
           />
           <InputField name="id" label="Id" register={register} disabled />
           <InputField name="status" label="Status" register={register} disabled={isFormDisabled} />
-          <InputDropdown name="status" label="Status" disabled={isFormDisabled} />
+          <DropDownProductStatus
+            register={register}
+            setValue={setValue}
+            disabled={isFormDisabled}
+          />
           <SearchBarCategories
-            name="category"
-            label="Categorie"
             register={register}
             setValue={setValue}
             getValues={getValues}

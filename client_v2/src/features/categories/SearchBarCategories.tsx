@@ -15,8 +15,6 @@ import { useIsOutsideClick } from '../../hooks/useIsClickOutside';
 import InputSearch from '../../components/form/InputSearch';
 
 type SearchBarCategoriesProps<T extends FieldValues> = {
-  name: FieldValues[string];
-  label: string;
   type?: string;
   disabled?: boolean;
   className?: string;
@@ -27,8 +25,6 @@ type SearchBarCategoriesProps<T extends FieldValues> = {
 };
 
 function SearchBarCategories<T extends FieldValues>({
-  name,
-  label,
   type = 'text',
   disabled,
   className,
@@ -40,7 +36,7 @@ function SearchBarCategories<T extends FieldValues>({
   const categories = useAppSelector(selectAllCategories);
   const categoryNames = categories.map((category) => category.name);
   const [queriedCategoryNames, setQueriedCategoryNames] = useState(categoryNames);
-  const [searchTerm, setSearchTerm] = useState(getValues(name));
+  const [searchTerm, setSearchTerm] = useState(getValues('category'));
   const [searchBarActive, setSearchBarActive] = useState(false);
 
   const ref = useIsOutsideClick(() => setSearchBarActive(false));
@@ -58,7 +54,7 @@ function SearchBarCategories<T extends FieldValues>({
   };
 
   const handleOnClick = (categoryName: string) => {
-    setValue(name, categoryName);
+    setValue('category', categoryName);
     setSearchTerm(categoryName);
     setSearchBarActive(false);
   };
@@ -66,8 +62,8 @@ function SearchBarCategories<T extends FieldValues>({
   return (
     <div className="searchBarCategoriesContainer">
       <InputSearch
-        name={name}
-        label={label}
+        name="category"
+        label="Categorie"
         register={register}
         disabled={disabled}
         setSearchTerm={setSearchTerm}
