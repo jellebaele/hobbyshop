@@ -20,12 +20,11 @@ const IconButton = ({
   children,
 }: IconButtonProps) => {
   return (
-    <Button type={type}>
-      <div className={`iconButtonContainer ${className}`} onClick={onClick}>
+    <Button type={type} onClick={onClick}>
+      <div className={`iconButtonContainer ${className}`}>
         {iconLeft && React.cloneElement(iconLeft, { className: 'icon left' })}
         {children}
-        {iconRight &&
-          React.cloneElement(iconRight, { className: 'icon right' })}
+        {iconRight && React.cloneElement(iconRight, { className: 'icon right' })}
       </div>
     </Button>
   );
