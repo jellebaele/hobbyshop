@@ -50,12 +50,10 @@ const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    postUpdated(state, action: PayloadAction<Product>) {
+    productUpdated(state, action: PayloadAction<Product>) {
       const updateProductProps = action.payload;
 
-      const existingProduct = state.data.find(
-        (product) => product.id === updateProductProps.id
-      );
+      const existingProduct = state.data.find((product) => product.id === updateProductProps.id);
 
       if (existingProduct) {
         existingProduct.name = updateProductProps.name;
@@ -63,18 +61,15 @@ const productsSlice = createSlice({
         existingProduct.unit = updateProductProps.unit;
         existingProduct.user = updateProductProps.user;
         existingProduct.status = updateProductProps.status;
+        existingProduct.category = updateProductProps.category;
       }
     },
-    postDeleted(state, action: PayloadAction<Product>) {
+    productDeleted(state, action: PayloadAction<Product>) {
       const productToDelete = action.payload;
-      const existingProduct = state.data.find(
-        (product) => product.id === productToDelete.id
-      );
+      const existingProduct = state.data.find((product) => product.id === productToDelete.id);
 
       if (existingProduct) {
-        state.data = state.data.filter(
-          (product) => product.id !== existingProduct.id
-        );
+        state.data = state.data.filter((product) => product.id !== existingProduct.id);
       }
     },
   },
@@ -82,12 +77,10 @@ const productsSlice = createSlice({
 
 export default productsSlice.reducer;
 
-export const { postUpdated, postDeleted } = productsSlice.actions;
+export const { productUpdated, productDeleted } = productsSlice.actions;
 
-export const selectAllProducts = (state: RootState): Product[] =>
-  state.products.data;
+export const selectAllProducts = (state: RootState): Product[] => state.products.data;
 export const selectProductById = (
   state: RootState,
   productId: string | undefined
-): Product | undefined =>
-  state.products.data.find((product: Product) => product.id === productId);
+): Product | undefined => state.products.data.find((product: Product) => product.id === productId);

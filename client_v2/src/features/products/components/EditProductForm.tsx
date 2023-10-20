@@ -12,7 +12,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CancelIcon from '@mui/icons-material/Cancel';
 import CheckIcon from '@mui/icons-material/Check';
 import { useAppDispatch } from '../../../context/hooks';
-import { postDeleted, postUpdated } from '../context/productsSlice';
+import { productDeleted, productUpdated } from '../context/productsSlice';
 import { Product } from '../../../models/Product';
 import { useSmoothNavigation } from '../../../hooks/useSmoothNavigation';
 import SearchBarCategories from '../../categories/SearchBarCategories';
@@ -40,7 +40,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
 
   const onDelete = () => {
     if (product) {
-      dispatch(postDeleted(product));
+      dispatch(productDeleted(product));
       navigateTo('/products');
     } else {
       alert('Error');
@@ -49,7 +49,8 @@ const EditProductForm = ({ product }: { product?: Product }) => {
 
   const onSubmit = handleSubmit((data) => {
     const updateProductProps = { ...product, ...data };
-    dispatch(postUpdated(updateProductProps as Product));
+    console.log(updateProductProps);
+    dispatch(productUpdated(updateProductProps as Product));
     setIsFormDisabled(true);
   });
 
