@@ -19,10 +19,12 @@
     - [x] Validation errors
     - [x] Update store
     - [x] Update category -> done?
+    - [ ] Update category
     - [ ] Responsiveness
     - [ ] Update back-end
     - [ ] Show confirmation modal
     - [ ] Search for categories and units
+    - [ ] Dropdown status
   - [ ] Implement product api
 - [ ] Translations
 - [ ] Search bar
