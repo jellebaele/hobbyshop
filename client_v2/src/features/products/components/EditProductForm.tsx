@@ -65,12 +65,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
             disabled={isFormDisabled}
           />
           <InputField name="id" label="Id" register={register} disabled />
-          <InputField
-            name="status"
-            label="Status"
-            register={register}
-            disabled={isFormDisabled}
-          />
+          <InputField name="status" label="Status" register={register} disabled={isFormDisabled} />
           <SearchBarCategories
             name="category"
             label="Categorie"
@@ -79,12 +74,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
             getValues={getValues}
             disabled={isFormDisabled}
           />
-          <InputField
-            name="user"
-            label="Eigenaar"
-            register={register}
-            disabled
-          />
+          <InputField name="user" label="Eigenaar" register={register} disabled />
           <div className="amountGroup">
             <InputField
               name="amount"
@@ -104,21 +94,13 @@ const EditProductForm = ({ product }: { product?: Product }) => {
               error={errors?.unit}
             />
           </div>
-          <InputField
-            name="createdAt"
-            label="Laatst bijgewerkt: "
-            register={register}
-            disabled
-          />
+          <InputField name="createdAt" label="Laatst bijgewerkt: " register={register} disabled />
         </div>
 
         {!isFormDisabled && (
           <div className="buttonGroup">
             <div className="button">
-              <IconButton
-                iconLeft={<CancelIcon />}
-                type="button"
-                onClick={onCancelEdit}>
+              <IconButton iconLeft={<CancelIcon />} type="button" onClick={onCancelEdit}>
                 Annuleer
               </IconButton>
             </div>
@@ -136,9 +118,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
             </IconButton>
           </div>
 
-          <IconButton
-            iconLeft={<EditIcon />}
-            onClick={() => setIsFormDisabled(false)}>
+          <IconButton iconLeft={<EditIcon />} onClick={() => setIsFormDisabled(false)}>
             Bewerk
           </IconButton>
         </div>

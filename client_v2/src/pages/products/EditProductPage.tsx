@@ -13,13 +13,10 @@ import { formatDateTime } from '../../shared/utils/format';
 const EditProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams();
-  const product = useAppSelector((state) =>
-    selectProductById(state, productId)
-  );
+  const product = useAppSelector((state) => selectProductById(state, productId));
 
   const categoryName =
-    useAppSelector((state) => selectCategoryById(state, product?.category))
-      ?.name ?? '';
+    useAppSelector((state) => selectCategoryById(state, product?.category))?.name ?? '';
 
   return (
     <Container>
