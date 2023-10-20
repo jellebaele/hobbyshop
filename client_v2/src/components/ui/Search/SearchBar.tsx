@@ -9,11 +9,7 @@ type SearchBarProps<T> = {
   placeholder?: string;
 };
 
-function SearchBar<T extends object>({
-  setResult,
-  filter,
-  placeholder,
-}: SearchBarProps<T>) {
+function SearchBar<T extends object>({ setResult, filter, placeholder }: SearchBarProps<T>) {
   const [searchTerm, setSearchTerm] = useState('');
   useDebounce(() => setResult(filter(searchTerm)), [searchTerm], 500);
 

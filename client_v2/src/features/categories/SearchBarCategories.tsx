@@ -6,13 +6,13 @@ import {
   UseFormSetValue,
   UseFormGetValues,
 } from 'react-hook-form';
-import ValidationError from '../../components/form/ValidationError';
 import { useState } from 'react';
 import { useAppSelector } from '../../context/hooks';
 import { selectAllCategories } from './categoriesSlice';
 import useDebounce from '../../hooks/useDebounce';
 import SearchResultList from '../../components/ui/Search/SearchResultList';
 import { useIsOutsideClick } from '../../hooks/useIsClickOutside';
+import InputSearch from '../../components/form/InputSearch';
 
 type SearchBarCategoriesProps<T extends FieldValues> = {
   name: FieldValues[string];
@@ -39,17 +39,13 @@ function SearchBarCategories<T extends FieldValues>({
 }: SearchBarCategoriesProps<T>) {
   const categories = useAppSelector(selectAllCategories);
   const categoryNames = categories.map((category) => category.name);
-  const [queriedCategoryNames, setQueriedCategoryNames] =
-    useState(categoryNames);
+  const [queriedCategoryNames, setQueriedCategoryNames] = useState(categoryNames);
   const [searchTerm, setSearchTerm] = useState(getValues(name));
   const [searchBarActive, setSearchBarActive] = useState(false);
+
   const ref = useIsOutsideClick(() => setSearchBarActive(false));
 
-  useDebounce(
-    () => setQueriedCategoryNames(filter(searchTerm)),
-    [searchTerm],
-    500
-  );
+  useDebounce(() => setQueriedCategoryNames(filter(searchTerm)), [searchTerm], 500);
 
   const filter = (query: string) => {
     if (query === '') return categoryNames;
@@ -69,22 +65,16 @@ function SearchBarCategories<T extends FieldValues>({
 
   return (
     <div className="searchBarCategoriesContainer">
-      <div className={`inputFieldContainer ${className}`}>
-        <div className="property">
-          <label htmlFor={name}>{label}</label>
-          <input
-            {...register(name)}
-            type={type}
-            disabled={disabled}
-            onChange={(e) => {
-              setSearchTerm(e.target.value);
-            }}
-            onClick={() => setSearchBarActive(true)}
-          />
-        </div>
-        <ValidationError message={error?.message} />
-        {/* <button onClick={() => setValue(name, 'Test')}>Test</button> */}
-      </div>
+      <InputSearch
+        name={name}
+        label={label}
+        register={register}
+        disabled={disabled}
+        setSearchTerm={setSearchTerm}
+        setSearchBarActive={setSearchBarActive}
+        error={error}
+        type={type}
+      />
       <SearchResultList
         results={queriedCategoryNames}
         onClick={handleOnClick}
