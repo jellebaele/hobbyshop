@@ -3,6 +3,7 @@ import { useState } from 'react';
 import InputDropdown from '../../../components/form/InputDropdown';
 import { UseFormRegister, FieldValues, UseFormSetValue } from 'react-hook-form';
 import DropdownResultList from '../../../components/form/DropdownResultList';
+import { useIsOutsideClick } from '../../../hooks/useIsClickOutside';
 
 type DropDownProductStatusProps<T extends FieldValues> = {
   disabled?: boolean;
@@ -16,9 +17,11 @@ function DropDownProductStatus<T extends FieldValues>({
   disabled,
 }: DropDownProductStatusProps<T>) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const ref = useIsOutsideClick(() => setDropdownOpen(false));
 
   const handleOnClick = (statusName: string) => {
     setValue('status', statusName);
+    setDropdownOpen(false);
   };
 
   return (
@@ -34,6 +37,7 @@ function DropDownProductStatus<T extends FieldValues>({
         values={['Actief', 'Inactief']}
         onClick={handleOnClick}
         active={dropdownOpen}
+        reference={ref}
       />
     </div>
   );
