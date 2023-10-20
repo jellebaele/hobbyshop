@@ -1,0 +1,42 @@
+.inputDropdownContainer {
+  display: flex;
+  flex-direction: column;
+
+  .inputContainer {
+    border: 1px solid rgb(80, 80, 80);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    padding: 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.disabled {
+      background-color: #f6f6f6;
+      border-color: rgba(118, 118, 118, 0.3);
+      cursor: default;
+    }
+
+    .searchInput {
+      border: none;
+
+      &:focus {
+        outline: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .icon {
+      &.disabled {
+        color: rgb(80, 80, 80);
+      }
+    }
+  }
+}
