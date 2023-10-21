@@ -10,9 +10,9 @@ import { useState } from 'react';
 import { useAppSelector } from '../../context/hooks';
 import { selectAllCategories } from './categoriesSlice';
 import useDebounce from '../../hooks/useDebounce';
-import SearchResultList from '../../components/ui/Search/SearchResultList';
 import { useIsOutsideClick } from '../../hooks/useIsClickOutside';
 import InputSearch from '../../components/form/InputSearch';
+import OptionList from '../../components/ui/OptionList';
 
 type SearchBarCategoriesProps<T extends FieldValues> = {
   type?: string;
@@ -71,8 +71,8 @@ function SearchBarCategories<T extends FieldValues>({
         error={error}
         type={type}
       />
-      <SearchResultList
-        results={queriedCategoryNames}
+      <OptionList
+        options={queriedCategoryNames}
         onClick={handleOnClick}
         active={searchBarActive}
         reference={ref}

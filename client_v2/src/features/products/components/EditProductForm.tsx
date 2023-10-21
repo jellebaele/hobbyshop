@@ -78,6 +78,7 @@ const EditProductForm = ({ product }: { product?: Product }) => {
             setValue={setValue}
             getValues={getValues}
             disabled={isFormDisabled}
+            error={errors?.category}
           />
           <InputField name="user" label="Eigenaar" register={register} disabled />
           <div className="amountGroup">

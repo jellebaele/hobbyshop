@@ -1,0 +1,20 @@
+.inputSearchContainer {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 25px;
+
+  .property {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin-top: 5px;
+    }
+  }
+
+  .validationError {
+    position: absolute;
+    top: 45px;
+  }
+}

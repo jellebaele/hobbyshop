@@ -2,9 +2,9 @@ import '../../../assets/styles/features/products/dropdownProductStatus.scss';
 import { useState } from 'react';
 import InputDropdown from '../../../components/form/InputDropdown';
 import { UseFormRegister, FieldValues, UseFormSetValue } from 'react-hook-form';
-import DropdownResultList from '../../../components/form/DropdownResultList';
 import { useIsOutsideClick } from '../../../hooks/useIsClickOutside';
 import { productStatus } from '../../../models/Product';
+import OptionList from '../../../components/ui/OptionList';
 
 type DropDownProductStatusProps<T extends FieldValues> = {
   disabled?: boolean;
@@ -34,7 +34,7 @@ function DropDownProductStatus<T extends FieldValues>({
         disabled={disabled}
         onClick={() => setDropdownOpen(!dropdownOpen)}
       />
-      <DropdownResultList values={productStatus} onClick={handleOnClick} active={dropdownOpen} />
+      <OptionList options={productStatus} onClick={handleOnClick} active={dropdownOpen} />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import '../../assets/styles/components/form/inputSearch.scss';
 import { UseFormRegister, FieldValues, FieldError } from 'react-hook-form';
 import ValidationError from './ValidationError';
 
@@ -24,8 +25,9 @@ function InputSearch<T extends FieldValues>({
   error,
   className,
 }: InputSearchProps<T>) {
+  console.log(error);
   return (
-    <div className={`inputFieldContainer ${className}`}>
+    <div className={`inputSearchContainer ${className}`}>
       <div className="property">
         <label htmlFor={name}>{label}</label>
         <input
@@ -38,7 +40,7 @@ function InputSearch<T extends FieldValues>({
           onClick={() => setSearchBarActive(true)}
         />
       </div>
-      <ValidationError message={error?.message} />
+      <ValidationError message={error?.message} className="validationError" />
     </div>
   );
 }
