@@ -1,0 +1,66 @@
+@import '../../variables.scss';
+
+.singleProductPageContainer {
+  padding: 15px 25px;
+  width: 60vw;
+  border: black solid 2px;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .iconContainer {
+      display: flex;
+      align-items: center;
+      font-size: 1.5em;
+      cursor: pointer;
+
+      .icon {
+        padding: 5px;
+        margin: 0 5px;
+        transition: transform 0.2s ease-in;
+
+        &:hover {
+          transform: translateY(-3px);
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    .amountContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 15px 0;
+
+      .icon {
+        margin: 0 20px;
+      }
+    }
+  }
+}
+
+@media (max-width: $phone-breakpoint) {
+  .singleProductPageContainer {
+    width: 80vw;
+
+    .bottom {
+      .orderButton {
+        padding: 5px 20px;
+        font-weight: 600;
+        font-size: 14px;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@import '../../variables.scss';
+
+.buttonContainer {
+  background-color: $light-blue;
+  color: white;
+  padding: 5px 20px;
+  font-weight: 600;
+  border: 2px $light-blue solid;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #fff;
+    color: $light-blue;
+    border: 2px $light-blue solid;
+  }
+}
+
+@media (max-width: $phone-breakpoint) {
+  .buttonContainer {
+    padding: 3px 8px;
+    font-size: 11px;
+    font-weight: 400;
+  }
+}

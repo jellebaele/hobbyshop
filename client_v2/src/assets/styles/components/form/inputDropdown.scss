@@ -1,0 +1,48 @@
+.inputDropdownContainer {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+
+  &.disabled {
+    cursor: default;
+  }
+
+  .inputContainer {
+    border: 1px solid rgb(80, 80, 80);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+    padding: 0;
+    cursor: pointer;
+
+    &.disabled {
+      background-color: #f6f6f6;
+      border-color: rgba(118, 118, 118, 0.3);
+      cursor: default;
+    }
+
+    .searchInput {
+      border: none;
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+
+      &.disabled {
+        background-color: transparent;
+        color: #545454;
+        padding-left: 3px;
+        cursor: default;
+      }
+    }
+
+    .icon {
+      &.disabled {
+        color: rgb(80, 80, 80);
+      }
+    }
+  }
+}

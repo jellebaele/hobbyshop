@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.header {
+  margin: auto 0;
+  color: $light-blue;
+  font-size: 20px;
+  text-decoration: underline;
+  text-align: center;
+}
+
+@media (max-width: $tablet-breakpoint) {
+  .header {
+    font-size: 18px;
+    align-self: start;
+  }
+}
+
+@media (max-width: $phone-breakpoint) {
+  .header {
+    font-size: 14px;
+  }
+}

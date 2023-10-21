@@ -1,0 +1,13 @@
+.inputFieldContainer {
+  display: flex;
+  flex-direction: column;
+
+  .property {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin-top: 5px;
+    }
+  }
+}

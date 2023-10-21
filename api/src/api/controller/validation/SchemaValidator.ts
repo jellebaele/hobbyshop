@@ -1,5 +1,5 @@
 import { ObjectSchema } from 'joi';
-import BadRequestError from '../../../error/implementations/BadRequestError';
+import { BadRequestError } from '../../../error';
 
 class SchemaValidator {
   public async validate(schema: ObjectSchema, payload: any) {

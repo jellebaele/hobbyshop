@@ -16,10 +16,18 @@ userRouter.get(
 );
 
 userRouter.get(
-  '/',
+  '',
   ensureIsAdmin,
   asyncErrorHandler(async (req: Request, res: Response) => {
     await userController.getUsersHandler(req, res);
+  })
+);
+
+userRouter.get(
+  '/products/:userId',
+  ensureLoggedIn,
+  asyncErrorHandler(async (req: Request, res: Response) => {
+    await userController.getRelatedProductsHandler(req, res);
   })
 );
 

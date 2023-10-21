@@ -1,0 +1,48 @@
+@import '../../variables.scss';
+
+.editProductFormContainer {
+  .editForm {
+    .inputGrid {
+      display: grid;
+      grid-template-columns: 250px 250px;
+      column-gap: 100px;
+      row-gap: 5px;
+      padding: 10px 0px;
+
+      .amountGroup {
+        display: flex;
+        align-items: center;
+
+        .inputField {
+          width: 122px;
+          height: 80px;
+
+          &:first-child {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .buttonGroup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .button {
+      width: 130px;
+      margin: 0 7px;
+    }
+  }
+}
+
+@media (max-width: $tablet-breakpoint) {
+  .editProductFormContainer {
+    .editForm {
+      .inputGrid {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}

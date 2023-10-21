@@ -1,38 +1,61 @@
-import { FilterQuery } from 'mongoose';
 import { IUserDocument, IUserDto } from '../../models/User';
-import { BadRequestError } from '../../error';
-import BaseService from '../BaseService';
+import { BaseService } from '../BaseService';
+import { BadRequestError, NotFoundError } from '../../error';
+import { IPaginationData } from '../../utils/Pagination';
+import { ProductService } from './ProductService';
+import { BaseRepository } from '../../persistence/BaseRepository';
+import { productRepository } from '../../persistence';
+import { IProductDocument } from '../../models/Product';
 
-export class UserService extends BaseService<IUserDocument> {
-  public async create(userDto: IUserDto): Promise<IUserDocument> {
-    const found = await this.isUsernameAndEmailUnique(userDto);
-    if (found) throw new BadRequestError();
+export class UserService extends BaseService<IUserDocument, IUserDto> {
+  private readonly _productService: ProductService;
 
-    return super.create(userDto);
+  constructor(repo: BaseRepository<IUserDocument, IUserDto>) {
+    super(repo);
+    this._productService = new ProductService(productRepository);
   }
 
-  public async updateById(
-    id: string,
-    query: FilterQuery<IUserDocument>
-  ): Promise<IUserDocument | null> {
-    const isUsernameAndEmailUnique = await this.isUsernameAndEmailUnique(query);
+  async create(dto: IUserDto): Promise<IUserDocument> {
+    const isUnique = await this.isUnique({
+      username: dto.username,
+      email: dto.email,
+    });
+    if (!isUnique) throw new BadRequestError();
 
+    return await this._repository.create(dto);
+  }
+
+  public async update(id: string, dto: any): Promise<IUserDocument | null> {
+    const isUsernameAndEmailUnique = await this.isUnique({
+      username: dto.username,
+      email: dto.email,
+    });
     if (!isUsernameAndEmailUnique) throw new BadRequestError('Username or email invalid.');
-    return await super.updateById(id, query);
+
+    const updated = await this._repository.updateById(id, dto);
+    return updated;
   }
 
   public async getByUsernameOrEmail(
     username: string | null = null,
     email: string | null = null
   ): Promise<IUserDocument | null> {
-    return await this.getOneByQuery({ $or: [{ username }, { email }] });
+    return await this._repository.getOneByQuery({ $or: [{ username }, { email }] });
   }
 
-  private async isUsernameAndEmailUnique(query: FilterQuery<IUserDocument>): Promise<boolean> {
-    const existingUser = await this.getAllByQuery({
-      $or: [{ username: query.username }, { email: query.email }],
-    });
+  public async getAllRelatedProductsById(
+    id: string,
+    paginationData: IPaginationData
+  ): Promise<(IProductDocument | null)[]> {
+    const user = await this._repository.getById(id);
+    if (!user) throw new NotFoundError();
 
-    return existingUser.length > 0 ? false : true;
+    const relatedProducts = await this._productService.getPartByQuery(
+      { user: user._id },
+      paginationData
+    );
+
+    if (!relatedProducts) throw new NotFoundError();
+    return relatedProducts;
   }
 }

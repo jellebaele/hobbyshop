@@ -2,7 +2,6 @@ import { Request, Response } from 'express';
 import { BaseController } from '../BaseController';
 import {
   AuthService,
-  CategoryService,
   ProductService,
   authService,
   categoryService,
@@ -17,7 +16,8 @@ import {
 } from '../validation';
 import { IProductDto } from '../../../models/Product';
 import TextUtils from '../../../utils/TextUtils';
-import { BadRequestError, NotFoundError, UnauthorizedError } from '../../../error';
+import { UnauthorizedError } from '../../../error';
+import { CategoryService } from '../../../service/implementation/CategoryService';
 
 export default class ProductController extends BaseController {
   private readonly _productService: ProductService;
@@ -26,29 +26,21 @@ export default class ProductController extends BaseController {
 
   constructor() {
     super();
-    this._productService = productService;
     this._authService = authService;
+    this._productService = productService;
     this._categoryService = categoryService;
   }
 
   public async createProductHandler(req: Request, res: Response): Promise<Response> {
     await this._schemaValidator.validate(createProductSchema, req.body);
-    const body: IProductDto = TextUtils.sanitizeObject(req.body);
-
-    const user = req.session.userId;
-    if (!user) throw new UnauthorizedError();
-
-    const found = await this._productService.getOneByQuery({ name: body.name });
-    if (found) throw new BadRequestError('Product already exists.');
+    let body: IProductDto = TextUtils.sanitizeObject(req.body);
+    if (req.session.userId) body.user = req.session.userId;
 
     const category = await this._categoryService.createIfNotExists({ name: body.category });
-
     const newProduct = await this._productService.create({
       ...body,
       category: category._id.toString(),
-      user,
     });
-
     await this._categoryService.addProductById(
       category._id.toString(),
       new Array(newProduct._id.toString())
@@ -62,8 +54,6 @@ export default class ProductController extends BaseController {
     const productId = TextUtils.sanitize(req.params.productId);
 
     const product = await this._productService.getById(productId);
-
-    if (!product) throw new NotFoundError();
     return this.ok(res, product);
   }
 
@@ -72,17 +62,10 @@ export default class ProductController extends BaseController {
     const paginationData = this.getPaginationData(req);
     const query = TextUtils.sanitizeObject<any>(req.query);
 
-    const products = await this._productService.getByQuery(query, paginationData);
+    const products = await this._productService.getPartByQuery(query, paginationData);
+    const totalAmount = await this._productService.count();
 
-    const pageMetaData = this._pagination.generateHeadersMetadata(
-      await this._productService.count(),
-      paginationData,
-      req
-    );
-
-    if (pageMetaData) res.set('Link', pageMetaData);
-
-    return this.ok(res, products);
+    return this.paginateResponse(req, res, totalAmount, paginationData).ok(res, products);
   }
 
   public async updateProductByIdHandler(req: Request, res: Response): Promise<Response> {
@@ -93,16 +76,17 @@ export default class ProductController extends BaseController {
     const productId = TextUtils.sanitize(req.params.productId);
     const body: IProductDto = TextUtils.sanitizeObject(req.body);
 
-    const found = await this._productService.getById(productId);
-    if (!found) throw new NotFoundError();
+    await this.checkIsAuthorized(productId, req);
 
-    const isAuthorized = await this._authService.isAdminOrSameUser(req, found.user.toString());
-    if (!isAuthorized)
-      throw new UnauthorizedError('You cannot edit this product, as it is not yours.');
-
-    const updatedProduct = await this._productService.updateById(productId, body, {
-      lean: true,
+    const category = await this._categoryService.createIfNotExists({ name: body.category });
+    const updatedProduct = await this._productService.update(productId, {
+      ...body,
+      category: category._id,
     });
+    await this._categoryService.addProductById(
+      category._id.toString(),
+      new Array(updatedProduct._id.toString())
+    );
 
     return this.ok(res, updatedProduct);
   }
@@ -111,14 +95,17 @@ export default class ProductController extends BaseController {
     await this._schemaValidator.validate(deleteProductByIdSchema, req.params);
     const productId = TextUtils.sanitize(req.params.productId);
 
-    const found = await this._productService.getById(productId);
-    if (!found) throw new NotFoundError();
-
-    const isAuthorized = await this._authService.isAdminOrSameUser(req, found.user.toString());
-    if (!isAuthorized)
-      throw new UnauthorizedError('You cannot delete this product, as it is not yours.');
+    await this.checkIsAuthorized(productId, req);
 
     await this._productService.deleteById(productId);
     return this.ok(res);
+  }
+
+  private async checkIsAuthorized(productId: string, req: Request): Promise<void> {
+    const found = await this._productService.getById(productId);
+    const isAuthorized = await this._authService.isAdminOrSameUser(req, found.user.toString());
+
+    if (!isAuthorized)
+      throw new UnauthorizedError('You cannot edit this product, as it is not yours.');
   }
 }
