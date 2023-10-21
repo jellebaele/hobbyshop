@@ -1,6 +1,11 @@
 .inputDropdownContainer {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+
+  &.disabled {
+    cursor: default;
+  }
 
   .inputContainer {
     border: 1px solid rgb(80, 80, 80);
@@ -10,10 +15,7 @@
     justify-content: space-between;
     margin-top: 5px;
     padding: 0;
-
-    &:hover {
-      cursor: pointer;
-    }
+    cursor: pointer;
 
     &.disabled {
       background-color: #f6f6f6;
@@ -23,13 +25,10 @@
 
     .searchInput {
       border: none;
+      cursor: pointer;
 
       &:focus {
         outline: none;
-      }
-
-      &:hover {
-        cursor: pointer;
       }
 
       &.disabled {

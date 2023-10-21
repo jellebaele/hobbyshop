@@ -18,14 +18,15 @@ function InputDropdown<T extends FieldValues>({
   disabled = false,
 }: InputDrownProps<T>) {
   return (
-    <div className={`inputDropdownContainer`}>
+    <div className={`inputDropdownContainer ${disabled ? 'disabled' : ''}`}>
       <label htmlFor={name}>{label}</label>
-      <div className={`inputContainer ${disabled ? 'disabled' : ''}`}>
+      <div
+        className={`inputContainer ${disabled ? 'disabled' : ''}`}
+        onClick={() => !disabled && onClick()}>
         <input
           {...register(name)}
           className={`searchInput ${disabled ? 'disabled' : ''}`}
           readOnly
-          onClick={() => !disabled && onClick()}
         />
         <ArrowDropDownIcon className={`icon ${disabled ? 'disabled' : ''}`} />
       </div>

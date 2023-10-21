@@ -4,6 +4,7 @@ import InputDropdown from '../../../components/form/InputDropdown';
 import { UseFormRegister, FieldValues, UseFormSetValue } from 'react-hook-form';
 import DropdownResultList from '../../../components/form/DropdownResultList';
 import { useIsOutsideClick } from '../../../hooks/useIsClickOutside';
+import { productStatus } from '../../../models/Product';
 
 type DropDownProductStatusProps<T extends FieldValues> = {
   disabled?: boolean;
@@ -21,11 +22,11 @@ function DropDownProductStatus<T extends FieldValues>({
 
   const handleOnClick = (statusName: string) => {
     setValue('status', statusName);
-    setDropdownOpen(false);
+    setDropdownOpen(!dropdownOpen);
   };
 
   return (
-    <div className="dropdownProductStatusContainer">
+    <div className="dropdownProductStatusContainer" ref={ref}>
       <InputDropdown
         name="status"
         label="Status"
@@ -33,12 +34,7 @@ function DropDownProductStatus<T extends FieldValues>({
         disabled={disabled}
         onClick={() => setDropdownOpen(!dropdownOpen)}
       />
-      <DropdownResultList
-        values={['Actief', 'Inactief']}
-        onClick={handleOnClick}
-        active={dropdownOpen}
-        reference={ref}
-      />
+      <DropdownResultList values={productStatus} onClick={handleOnClick} active={dropdownOpen} />
     </div>
   );
 }
