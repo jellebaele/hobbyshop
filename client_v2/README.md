@@ -24,7 +24,8 @@
     - [ ] Update back-end
     - [ ] Show confirmation modal
     - [ ] Search for categories and units
-    - [ ] Dropdown status
+    - [x] Dropdown status
+    - [ ] Properly position validation error
   - [ ] Implement product api
 - [ ] Translations
 - [ ] Search bar
