@@ -5,8 +5,9 @@ import { UseFormRegister, FieldValues, UseFormSetValue } from 'react-hook-form';
 import { useIsOutsideClick } from '../../../hooks/useIsClickOutside';
 import { productStatus } from '../../../models/Product';
 import OptionList from '../../../components/ui/OptionList';
+import ValidationError from '../../../components/form/ValidationError';
 
-type DropDownProductStatusProps<T extends FieldValues> = {
+type DropdownProductStatusProps<T extends FieldValues> = {
   disabled?: boolean;
   register: UseFormRegister<T>;
   setValue: UseFormSetValue<FieldValues[string]>;
@@ -16,7 +17,7 @@ function DropDownProductStatus<T extends FieldValues>({
   register,
   setValue,
   disabled,
-}: DropDownProductStatusProps<T>) {
+}: DropdownProductStatusProps<T>) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const ref = useIsOutsideClick(() => setDropdownOpen(false));
 
@@ -35,6 +36,7 @@ function DropDownProductStatus<T extends FieldValues>({
         onClick={() => setDropdownOpen(!dropdownOpen)}
       />
       <OptionList options={productStatus} onClick={handleOnClick} active={dropdownOpen} />
+      <ValidationError />
     </div>
   );
 }

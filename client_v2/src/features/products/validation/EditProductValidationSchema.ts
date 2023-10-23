@@ -2,8 +2,6 @@ import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { ProductStatus, productStatus } from '../../../models/Product';
 
-// const possibleStatus = ['Actief', 'Inactief'];
-
 export interface IEditProductFormInput {
   name: string;
   status: ProductStatus;
@@ -19,12 +17,10 @@ const productValidationSchema = Yup.object().shape({
     .required('Naam is verplicht.'),
   status: Yup.string()
     .required('De status is verplicht.')
-    .oneOf(
-      productStatus,
-      `De status moet een van volgende waardes zijn: ${productStatus}`
-    ),
+    .oneOf(productStatus, `De status moet een van volgende waardes zijn: ${productStatus}`),
   amount: Yup.number()
-    .integer()
+    .typeError('Geen geldig getal')
+    .integer('Geen geldig getal')
     .moreThan(0, 'Het aantal mag niet negatief zijn.')
     .required('Een aantal is verplicht'),
   unit: Yup.string().required('De eenheid is verplicht.'),
