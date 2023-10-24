@@ -1,6 +1,14 @@
+@import '../../variables.scss';
+
 .validationErrorContainer {
   color: crimson;
   padding-top: 3px;
   min-height: 15px;
   font-size: 0.75rem;
+}
+
+@media (max-width: $phone-breakpoint) {
+  .validationErrorContainer {
+    font-size: 0.6rem;
+  }
 }

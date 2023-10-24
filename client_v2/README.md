@@ -20,12 +20,12 @@
     - [x] Update store
     - [x] Update category -> done?
     - [ ] Update category
-    - [ ] Responsiveness
+    - [x] Responsiveness
     - [ ] Update back-end
     - [ ] Show confirmation modal
     - [ ] Search for categories and units
     - [x] Dropdown status
-    - [ ] Properly position validation error
+    - [x] Properly position validation error
   - [ ] Implement product api
 - [ ] Translations
 - [ ] Search bar
