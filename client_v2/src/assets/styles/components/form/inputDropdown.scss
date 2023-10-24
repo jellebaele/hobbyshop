@@ -10,12 +10,16 @@
   .inputContainer {
     border: 1px solid rgb(80, 80, 80);
     border-radius: 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 5px;
+    margin: 5px 0 0 0;
     padding: 0;
     cursor: pointer;
+    height: fit-content;
 
     &.disabled {
       background-color: #f6f6f6;
@@ -26,6 +30,7 @@
     .searchInput {
       border: none;
       cursor: pointer;
+      padding: 1px 4px;
 
       &:focus {
         outline: none;
@@ -34,7 +39,6 @@
       &.disabled {
         background-color: transparent;
         color: #545454;
-        padding-left: 3px;
         cursor: default;
       }
     }

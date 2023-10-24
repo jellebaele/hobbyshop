@@ -25,7 +25,6 @@ function InputSearch<T extends FieldValues>({
   error,
   className,
 }: InputSearchProps<T>) {
-  console.log(error);
   return (
     <div className={`inputSearchContainer ${className}`}>
       <div className="property">

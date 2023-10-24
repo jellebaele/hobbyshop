@@ -1,7 +1,7 @@
 .optionListContainer {
   display: flex;
   border: rgb(118, 118, 118) 1px solid;
-  border-radius: 1px;
+  border-radius: 2px;
   position: absolute;
   padding: 0;
   width: 99.6%;
@@ -12,6 +12,7 @@
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.2s ease-in-out;
+  top: 100%;
 
   &.active {
     transform: scaleY(1);

@@ -4,8 +4,8 @@
   .editForm {
     .inputGrid {
       display: grid;
-      grid-template-columns: 250px 250px;
-      column-gap: 100px;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 50px;
       row-gap: 5px;
       padding: 10px 0px;
 
@@ -14,7 +14,7 @@
         align-items: center;
 
         .inputField {
-          width: 100%;
+          width: calc(50% - 2.5px);
 
           &:first-child {
             margin-right: 5px;
@@ -40,7 +40,8 @@
   .editProductFormContainer {
     .editForm {
       .inputGrid {
-        grid-template-columns: 1fr;
+        display: flex;
+        flex-direction: column;
       }
     }
   }

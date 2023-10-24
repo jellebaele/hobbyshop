@@ -66,8 +66,8 @@ const EditProductForm = ({ product }: { product?: Product }) => {
             error={errors?.name}
             disabled={isFormDisabled}
           />
+
           <InputField name="id" label="Id" register={register} disabled />
-          <InputField name="status" label="Status" register={register} disabled={isFormDisabled} />
           <DropdownProductStatus
             register={register}
             setValue={setValue}

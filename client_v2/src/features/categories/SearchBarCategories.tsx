@@ -61,22 +61,24 @@ function SearchBarCategories<T extends FieldValues>({
 
   return (
     <div className="searchBarCategoriesContainer">
-      <InputSearch
-        name="category"
-        label="Categorie"
-        register={register}
-        disabled={disabled}
-        setSearchTerm={setSearchTerm}
-        setSearchBarActive={setSearchBarActive}
-        error={error}
-        type={type}
-      />
-      <OptionList
-        options={queriedCategoryNames}
-        onClick={handleOnClick}
-        active={searchBarActive}
-        reference={ref}
-      />
+      <div className="inputContainer">
+        <InputSearch
+          name="category"
+          label="Categorie"
+          register={register}
+          disabled={disabled}
+          setSearchTerm={setSearchTerm}
+          setSearchBarActive={setSearchBarActive}
+          error={error}
+          type={type}
+        />
+        <OptionList
+          options={queriedCategoryNames}
+          onClick={handleOnClick}
+          active={searchBarActive}
+          reference={ref}
+        />
+      </div>
     </div>
   );
 }

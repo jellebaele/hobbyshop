@@ -1,9 +1,11 @@
 .searchBarCategoriesContainer {
-  position: relative;
+  .inputContainer {
+    position: relative;
 
-  .inputFieldContainer {
-    input {
-      border-radius: 0;
+    .inputFieldContainer {
+      input {
+        border-radius: 0;
+      }
     }
   }
 }
