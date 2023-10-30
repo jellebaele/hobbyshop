@@ -11,7 +11,7 @@ export interface IEditProductFormInput {
   category: string;
 }
 
-const productValidationSchema = Yup.object().shape({
+const productSchema = Yup.object().shape({
   name: Yup.string()
     .min(3, 'De naam moet minstens 3 karakters lang zijn')
     .required('Naam is verplicht.'),
@@ -28,4 +28,4 @@ const productValidationSchema = Yup.object().shape({
   category: Yup.string().required('De categorie is verplicht.'),
 });
 
-export const editProductValidationSchema = yupResolver(productValidationSchema);
+export const editProductValidationSchema = yupResolver(productSchema);

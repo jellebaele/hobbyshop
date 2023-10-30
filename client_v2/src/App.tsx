@@ -7,7 +7,7 @@ import Navbar from './components/ui/Navbar';
 import SingleProductPage from './pages/products/SingleProductPage';
 import ProfilePage from './pages/user/ProfilePage';
 import EditProductPage from './pages/products/EditProductPage';
-import LoginPage from './pages/user/LoginPage';
+import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/user/RegisterPage';
 
 function App() {

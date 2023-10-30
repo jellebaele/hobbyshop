@@ -5,7 +5,7 @@ import ValidationError from './ValidationError';
 type InputFieldProps<T extends FieldValues> = {
   name: FieldValues[string];
   label: string;
-  type?: string;
+  type?: React.HTMLInputTypeAttribute;
   disabled?: boolean;
   className?: string;
   error?: FieldError;
