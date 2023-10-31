@@ -1,9 +1,7 @@
-import '../../assets/styles/components/ui/container.scss'
+import '../../assets/styles/components/ui/container.scss';
 
-const Container = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <div className="container">{children}</div>
-  )
-}
+const Container = ({ children, className }: { children: React.ReactNode; className?: string }) => {
+  return <div className={`container ${className ? className : ''}`}>{children}</div>;
+};
 
-export default Container
+export default Container;
