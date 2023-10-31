@@ -1,3 +1,4 @@
+import '../../assets/styles/features/auth/loginForm.scss';
 import { useForm } from 'react-hook-form';
 import { ILoginFormInput, loginValidationSchema } from './LoginValidationSchema';
 import InputField from '../../components/form/InputField';
@@ -24,6 +25,7 @@ const LoginForm = () => {
           label="Gebruikersnaam"
           register={register}
           error={errors?.username}
+          className="inputField"
         />
         <InputField
           name="password"
@@ -31,9 +33,10 @@ const LoginForm = () => {
           register={register}
           error={errors?.password}
           type="password"
+          className="inputField"
         />
 
-        <IconButton iconRight={<ArrowForwardIcon />} type="submit">
+        <IconButton iconRight={<ArrowForwardIcon />} type="submit" className="iconButton">
           Login
         </IconButton>
       </form>

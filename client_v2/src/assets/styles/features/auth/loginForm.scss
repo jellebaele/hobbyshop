@@ -1,0 +1,18 @@
+.loginFormContainer {
+  width: 100%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .inputField {
+      width: 100%;
+    }
+
+    .iconButton {
+      margin-top: 20px;
+    }
+  }
+}
